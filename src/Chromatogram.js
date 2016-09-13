@@ -47,7 +47,7 @@ module.exports = class Chromatogram {
 
     getLastTime() {
         return this.times[this.length - 1];
-    };
+    }
 
     getTimes() {
         return this.times;

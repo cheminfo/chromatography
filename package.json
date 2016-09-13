@@ -4,21 +4,33 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "test": "ava"
+    "eslint": "eslint src test",
+    "eslint-fix": "npm run eslint -- --fix",
+    "test": "npm run test-ava && npm run eslint",
+    "test-ava": "ava"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cheminfo-js/chromatography.git"
   },
   "author": "Michaël Zasso",
+  "contributors": [
+    "Miguel Asencio <maasencioh@gmail.com> (https://github.com/maasencioh)"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cheminfo-js/chromatography/issues"
   },
   "homepage": "https://github.com/cheminfo-js/chromatography#readme",
   "devDependencies": {
-    "ava": "^0.13.0",
+    "ava": "^0.16.0",
     "bluebird": "^3.3.4",
+    "eslint": "^3.4.0",
+    "eslint-config-cheminfo": "^1.2.0",
+    "eslint-plugin-no-only-tests": "^1.1.0",
     "jcampconverter": "^2.3.0"
+  },
+  "dependencies": {
+    "ml-gsd": "mljs/global-spectral-deconvolution#peak-high"
   }
 }
