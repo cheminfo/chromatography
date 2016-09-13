@@ -1,12 +1,20 @@
 'use strict';
 
-module.exports = class Chromatogram {
-    constructor(data, options) {
-        if (Array.isArray(data)) { // init with times
+/**
+ * Class allowing to store time / ms (ms) series
+ * It allows also to store simple time a trace
+ * @class Chromatogram
+ * @param {Object|Array<Number>} data - A GC/MS data format object or a time serie
+ */
+class Chromatogram {
+    constructor(data) {
+        if (Array.isArray(data)) {
+            // init with times
             data = {times: data};
         } else if (typeof data !== 'object') {
             throw new TypeError('data must be an object or array');
         }
+
         if (!Array.isArray(data.times)) {
             throw new TypeError('times array is mandatory');
         }
@@ -21,10 +29,19 @@ module.exports = class Chromatogram {
         }
     }
 
+    /**
+     * Find the serie giving the name
+     * @param {String} name - name of the serie
+     * @return {Object} - Object with an array of data, dimensions of the elements in the array and name of the serie
+     */
     findSerieByName(name) {
         return this.series.find(serie => serie.name === name);
     }
 
+    /**
+     * Add a new serie
+     * @param {Object} serie - Object with an array of data, dimensions of the elements in the array and name of the serie
+     */
     addSerie(serie) {
         if (typeof serie.dimension !== 'number') {
             throw new Error('serie must have a dimension');
@@ -41,15 +58,29 @@ module.exports = class Chromatogram {
         this.series.push(serie);
     }
 
+    /**
+     * Returns the first time value
+     * @return {Number} - First time value
+     */
     getFirstTime() {
         return this.times[0];
     }
 
+    /**
+     * Returns the last time value
+     * @return {Number} - Last time value
+     */
     getLastTime() {
         return this.times[this.length - 1];
     }
 
+    /**
+     * Returns the time values
+     * @return {Array<Number>} - Time values
+     */
     getTimes() {
         return this.times;
     }
-};
+}
+
+module.exports = Chromatogram;
