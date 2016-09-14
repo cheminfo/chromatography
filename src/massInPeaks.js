@@ -1,6 +1,6 @@
 'use strict';
 
-const gsd = require('ml-gsd');
+const gsd = require('ml-gsd').gsd;
 
 /**
  * Calculate the array of peaks with their respective integrated MS
