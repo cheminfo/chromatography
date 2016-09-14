@@ -1,7 +1,5 @@
 'use strict';
 
-const massInPeaks = require('./massInPeaks');
-
 /**
  * Class allowing to store time / ms (ms) series
  * It allows also to store simple time a trace
@@ -82,25 +80,6 @@ class Chromatogram {
      */
     getTimes() {
         return this.times;
-    }
-
-    /**
-     * Calculate and stores the array of peaks with their respective integrated MS
-     */
-    massInPeaks() {
-        let tic = this.findSerieByName('tic');
-        if (!tic) {
-            throw new Error('\'tic\' serie not founded');
-        }
-        tic = tic.data;
-
-        let sampleMS = this.findSerieByName('ms');
-        if (!sampleMS) {
-            throw new Error('\'ms\' serie not founded');
-        }
-        sampleMS = sampleMS.data;
-
-        this.peakList = massInPeaks(tic, this.times, sampleMS);
     }
 }
 
