@@ -16,7 +16,7 @@ function vectorify(peakList, massPower = 3, intPower = 0.6) {
             y: new Array(len)
         };
         for (let j = 0; j < len; ++j) {
-            vector[i].y[j] = Math.pow(peakList[i].ms.x[j], massPower) * Math.pow(peakList[i].ms.x[j], intPower);
+            vector[i].y[j] = Math.pow(peakList[i].ms.x[j], massPower) * Math.pow(peakList[i].ms.y[j], intPower);
         }
     }
 

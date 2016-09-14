@@ -65,3 +65,22 @@ test('triplet', async t => {
     let vector = vectorify(integratedList);
     t.is(vector.length, peakList.length);
 });
+
+test('simple case', async t => {
+    let peaks = [
+        { ms: {
+            x: [1, 2, 3],
+            y: [1, 1, 1]
+        }}
+    ];
+
+    t.deepEqual(vectorify(peaks, 1), [{
+        x: [1, 2, 3],
+        y: [1, 2, 3]
+    }]);
+
+    t.deepEqual(vectorify(peaks), [{
+        x: [1, 2, 3],
+        y: [1, 8, 27]
+    }]);
+});

@@ -73,3 +73,11 @@ test('triplet', async t => {
         t.is(cosine(vector[i].x, vector[i].y, vector[i].x, vector[i].y), 1);
     }
 });
+
+test.only('simple case', async t => {
+    t.is(cosine([1,2,3], [1,1,1], [1,2,3], [1,1,1]), 1);
+    t.is(cosine([1,2,3], [1,1,1], [1,2,4], [1,1,1]), 4/9);
+    t.is(cosine([1,2,3], [1,2,3], [1,2,3], [1,2,3]), 1);
+    t.is(cosine([1,2,3,4], [1,1,1,1], [1,2,4,5], [1,1,1,1]), 9/16);
+    t.is(cosine([1,2,3,4], [1,1,1,1], [4,5], [1,1]), 1/8);
+});

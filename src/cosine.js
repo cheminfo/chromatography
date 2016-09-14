@@ -18,7 +18,7 @@ function cosine(ms1x, ms1y, ms2x, ms2y) {
 
     while ((index1 < ms1x.length) || (index2 < ms2x.length)) {
         let w1 = ms1y[index1];
-        let w2 = ms2y[index1];
+        let w2 = ms2y[index2];
         if (index2 === ms2x.length || ms1x[index1] < ms2x[index2]) {
             norm1 += w1 * w1;
             ++index1;
