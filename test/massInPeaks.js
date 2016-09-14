@@ -59,3 +59,32 @@ test('triplet', async t => {
     let integratedList = massInPeaks(peaks, sampleMS);
     t.is(peaks.length, integratedList.length);
 });
+
+test('simple case', async t => {
+    let peaks = [{
+        left: {index: 0},
+        right: {index: 2}
+    }];
+
+    t.deepEqual(massInPeaks(peaks, [
+        [
+            [1, 2],
+            [1, 1]
+        ],
+        [
+            [1, 2, 5],
+            [1, 1, 1]
+        ],
+        [
+            [3, 4],
+            [1, 1]
+        ]
+    ]), [{
+        left: {index: 0},
+        right: {index: 2},
+        ms: {
+            x: [1, 2, 3, 4, 5],
+            y: [2, 2, 1, 1, 1]
+        }
+    }]);
+});
