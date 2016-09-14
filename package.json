@@ -1,7 +1,7 @@
 {
   "name": "chromatography",
   "version": "1.0.0",
-  "description": "",
+  "description": "Tools for storing, search and analize GC/MS spectra",
   "main": "src/index.js",
   "scripts": {
     "eslint": "eslint src test",
