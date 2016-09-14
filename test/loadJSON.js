@@ -1,7 +1,4 @@
-'use strict';
-
 import test from 'ava';
-import {convert} from 'jcampconverter';
 import fs from 'fs';
 import Promise from 'bluebird';
 import {join} from 'path';
