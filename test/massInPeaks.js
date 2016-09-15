@@ -67,24 +67,57 @@ test('simple case', t => {
     }];
 
     t.deepEqual(massInPeaks(peaks, [
-        [
-            [1, 2],
-            [1, 1]
-        ],
-        [
-            [1, 2, 5],
-            [1, 1, 1]
-        ],
-        [
-            [3, 4],
-            [1, 1]
-        ]
+        [ [1, 2], [1, 1] ],
+        [ [1, 2, 5], [1, 1, 1] ],
+        [ [3, 4], [1, 1] ]
     ]), [{
         left: {index: 0},
         right: {index: 2},
         ms: {
             x: [1, 2, 3, 4, 5],
             y: [2, 2, 1, 1, 1]
+        }
+    }]);
+});
+
+test('thresholdFactor', t => {
+    let peaks = [{
+        left: {index: 0},
+        right: {index: 2}
+    }];
+    let mass = [
+        [ [1, 2], [1, 1] ],
+        [ [1, 2, 5], [1, 1, 1] ],
+        [ [2, 4], [1, 1] ]
+    ];
+
+    t.deepEqual(massInPeaks(peaks, mass, 0.5), [{
+        left: {index: 0},
+        right: {index: 2},
+        ms: {
+            x: [1, 2],
+            y: [2, 3]
+        }
+    }]);
+});
+
+test('maxNumberPeaks', t => {
+    let peaks = [{
+        left: {index: 0},
+        right: {index: 2}
+    }];
+    let mass = [
+        [ [1, 2], [1, 1] ],
+        [ [1, 2, 5], [1, 1, 1] ],
+        [ [2, 4], [1, 2] ]
+    ];
+
+    t.deepEqual(massInPeaks(peaks, mass, 0, 3), [{
+        left: {index: 0},
+        right: {index: 2},
+        ms: {
+            x: [1, 2, 4],
+            y: [2, 3, 2]
         }
     }]);
 });
