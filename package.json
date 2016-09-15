@@ -4,6 +4,7 @@
   "description": "Tools for storing, search and analize GC/MS spectra",
   "main": "src/index.js",
   "scripts": {
+    "build": "cheminfo build --babel --no-uglify --root Chromatography",
     "eslint": "eslint src test",
     "eslint-fix": "npm run eslint -- --fix",
     "test": "npm run test-ava && npm run eslint",
@@ -26,6 +27,7 @@
     "ava": "^0.16.0",
     "babel-eslint": "^6.1.2",
     "bluebird": "^3.3.4",
+    "cheminfo-tools": "^1.9.0",
     "eslint": "^3.4.0",
     "eslint-config-cheminfo": "^1.2.0",
     "eslint-plugin-no-only-tests": "^1.1.0",
