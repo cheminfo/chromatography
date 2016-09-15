@@ -35,7 +35,7 @@ test('from a Diesel chromatogram', async t => {
     }
 });
 
-test('triplet', async t => {
+test('triplet', t => {
     const size = 30;
     const fourth = size / 4;
     let times = new Array(size);
@@ -74,7 +74,7 @@ test('triplet', async t => {
     }
 });
 
-test('simple case', async t => {
+test('simple case', t => {
     t.is(cosine([1, 2, 3], [1, 1, 1], [1, 2, 3], [1, 1, 1]), 1);
     t.is(cosine([1, 2, 3], [1, 1, 1], [1, 2, 4], [1, 1, 1]), 4 / 9);
     t.is(cosine([1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3]), 1);

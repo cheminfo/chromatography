@@ -31,7 +31,7 @@ test('from a Diesel chromatogram', async t => {
     t.is(vector.length, peakList.length);
 });
 
-test('triplet', async t => {
+test('triplet', t => {
     const size = 30;
     const fourth = size / 4;
     let times = new Array(size);
@@ -66,7 +66,7 @@ test('triplet', async t => {
     t.is(vector.length, peakList.length);
 });
 
-test('simple case', async t => {
+test('simple case', t => {
     let peaks = [
         { ms: {
             x: [1, 2, 3],
