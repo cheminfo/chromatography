@@ -91,7 +91,7 @@ test('thresholdFactor', t => {
         [ [2, 4], [1, 1] ]
     ];
 
-    t.deepEqual(massInPeaks(peaks, mass, 0.5), [{
+    t.deepEqual(massInPeaks(peaks, mass, {thresholdFactor: 0.5}), [{
         left: {index: 0},
         right: {index: 2},
         ms: {
@@ -112,7 +112,7 @@ test('maxNumberPeaks', t => {
         [ [2, 4], [1, 2] ]
     ];
 
-    t.deepEqual(massInPeaks(peaks, mass, 0, 3), [{
+    t.deepEqual(massInPeaks(peaks, mass, {maxNumberPeaks: 3}), [{
         left: {index: 0},
         right: {index: 2},
         ms: {

@@ -4,11 +4,15 @@
  * Integrate MS spectra of a peak list
  * @param {Array<Object>} peakList - List of GSD objects
  * @param {Array<Object>} sampleMS - MS array of GC spectra
- * @param {Number} thresholdFactor - Every peak that it's bellow the main peak times this factor fill be removed (when is 0 there's no filter)
- * @param {Number} maxNumberPeaks - Maximum number of peaks for each mass spectra (when is -1 there's no filter)
+ * @param {Object} options - Options for the integral filtering
+ * @param {Number} options.thresholdFactor - Every peak that it's bellow the main peak times this factor fill be removed (when is 0 there's no filter)
+ * @param {Number} options.maxNumberPeaks - Maximum number of peaks for each mass spectra (when is -1 there's no filter)
  * @return {Array<Object>} - List of GSD objects with an extra 'ms' field with the integrated MS spectra
  */
-function massInPeaks(peakList, sampleMS, thresholdFactor = 0, maxNumberPeaks = -1) {
+function massInPeaks(peakList, sampleMS, options = {thresholdFactor: 0, maxNumberPeaks: -1}) {
+    const thresholdFactor = options.thresholdFactor || 0;
+    const maxNumberPeaks = options.maxNumberPeaks || -1;
+
     // integrate MS
     for (let i = 0; i < peakList.length; ++i) {
         let massDictionary = {};

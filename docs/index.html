@@ -132,7 +132,7 @@
       Chromatogram
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/6046a7793cefb55a228cd0f77c0b0e6e28ef4f2c/src/Chromatogram.js#L9-L84'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/3814ff265f7c9feb2f36afc8510eeab13ec7b552/src/Chromatogram.js#L9-L84'>
       <span>src/Chromatogram.js</span>
       </a>
     
@@ -483,7 +483,7 @@ It allows also to store simple time a trace</p>
       peakPicking
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/6046a7793cefb55a228cd0f77c0b0e6e28ef4f2c/src/peakPicking.js#L10-L56'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/3814ff265f7c9feb2f36afc8510eeab13ec7b552/src/peakPicking.js#L10-L56'>
       <span>src/peakPicking.js</span>
       </a>
     
@@ -552,7 +552,7 @@ It allows also to store simple time a trace</p>
       massInPeaks
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/6046a7793cefb55a228cd0f77c0b0e6e28ef4f2c/src/massInPeaks.js#L11-L83'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/3814ff265f7c9feb2f36afc8510eeab13ec7b552/src/massInPeaks.js#L12-L87'>
       <span>src/massInPeaks.js</span>
       </a>
     
@@ -562,7 +562,7 @@ It allows also to store simple time a trace</p>
   <p>Integrate MS spectra of a peak list</p>
 
 
-  <div class='pre p1 fill-light mt0'>massInPeaks(peakList: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;, sampleMS: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;, thresholdFactor: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>](default 0), maxNumberPeaks: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>](default -1)): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;</div>
+  <div class='pre p1 fill-light mt0'>massInPeaks(peakList: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;, sampleMS: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;, options: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>](default {thresholdFactor: 0, maxNumberPeaks: -1})): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;</div>
 
   
 
@@ -594,17 +594,39 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>thresholdFactor</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>](default 0))</code> Every peak that it&#x27;s bellow the main peak times this factor fill be removed (when is 0 there&#x27;s no filter)
+            <span class='code bold'>options</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>](default {thresholdFactor: 0, maxNumberPeaks: -1}))</code> Options for the integral filtering
 
           </div>
           
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>maxNumberPeaks</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>](default -1))</code> Maximum number of peaks for each mass spectra (when is -1 there&#x27;s no filter)
-
-          </div>
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+                  <td class='break-word'><span class='code bold'>options.thresholdFactor</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+                  </td>
+                  <td class='break-word'><span>Every peak that it&#x27;s bellow the main peak times this factor fill be removed (when is 0 there&#x27;s no filter)
+</span></td>
+                </tr>
+              
+                <tr>
+                  <td class='break-word'><span class='code bold'>options.maxNumberPeaks</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+                  </td>
+                  <td class='break-word'><span>Maximum number of peaks for each mass spectra (when is -1 there&#x27;s no filter)
+</span></td>
+                </tr>
+              
+            </tbody>
+          </table>
           
         </div>
       
@@ -645,7 +667,7 @@ It allows also to store simple time a trace</p>
       vectorify
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/6046a7793cefb55a228cd0f77c0b0e6e28ef4f2c/src/vectorify.js#L10-L24'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/3814ff265f7c9feb2f36afc8510eeab13ec7b552/src/vectorify.js#L10-L24'>
       <span>src/vectorify.js</span>
       </a>
     
@@ -730,7 +752,7 @@ It allows also to store simple time a trace</p>
       cosine
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/6046a7793cefb55a228cd0f77c0b0e6e28ef4f2c/src/cosine.js#L11-L43'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/3814ff265f7c9feb2f36afc8510eeab13ec7b552/src/cosine.js#L11-L43'>
       <span>src/cosine.js</span>
       </a>
     
