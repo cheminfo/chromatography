@@ -6613,13 +6613,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Integrate MS spectra of a peak list
 	 * @param {Array<Object>} peakList - List of GSD objects
 	 * @param {Array<Object>} sampleMS - MS array of GC spectra
+	 * @param {Number} thresholdFactor - Every peak that it's bellow the main peak times this factor fill be removed (when is 0 there's no filter)
+	 * @param {Number} maxNumberPeaks - Maximum number of peaks for each mass spectra (when is -1 there's no filter)
 	 * @return {Array<Object>} - List of GSD objects with an extra 'ms' field with the integrated MS spectra
 	 */
 
 	function massInPeaks(peakList, sampleMS) {
+	    var thresholdFactor = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
+	    var maxNumberPeaks = arguments.length <= 3 || arguments[3] === undefined ? -1 : arguments[3];
+
 	    // integrate MS
 	    for (var i = 0; i < peakList.length; ++i) {
 	        var massDictionary = {};
+	        var max = -1;
 	        for (var j = peakList[i].left.index; j <= peakList[i].right.index; ++j) {
 	            for (var k = 0; k < sampleMS[j][0].length; ++k) {
 	                // round the mass value
@@ -6634,6 +6640,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                } else {
 	                    massDictionary[mass] = sampleMS[j][1][k];
 	                }
+
+	                if (massDictionary[mass] > max) {
+	                    max = massDictionary[mass];
+	                }
 	            }
 	        }
 	        var massList = Object.keys(massDictionary);
@@ -6642,9 +6652,45 @@ return /******/ (function(modules) { // webpackBootstrap
 	            y: new Array(massList.length)
 	        };
 
-	        for (var _j = 0; _j < massList.length; ++_j) {
-	            msSum.x[_j] = Number(massList[_j]);
-	            msSum.y[_j] = massDictionary[massList[_j]];
+	        if (thresholdFactor > 0 || maxNumberPeaks !== -1) {
+	            var count = 0;
+	            max *= thresholdFactor;
+
+	            // filters based in thresholdFactor
+	            var filteredList = new Array(massList.length);
+	            for (var _j = 0; _j < massList.length; ++_j) {
+	                if (massDictionary[massList[_j]] > max) {
+	                    filteredList[count++] = {
+	                        x: Number(massList[_j]),
+	                        y: massDictionary[massList[_j]]
+	                    };
+	                }
+	            }
+	            filteredList.length = count;
+
+	            // filters based in maxNumberPeaks
+	            if (count > maxNumberPeaks && maxNumberPeaks !== -1) {
+	                filteredList.sort(function (a, b) {
+	                    return b.y - a.y;
+	                });
+	                filteredList.splice(maxNumberPeaks);
+	                filteredList.sort(function (a, b) {
+	                    return a.x - b.x;
+	                });
+	            }
+
+	            for (var _j2 = 0; _j2 < filteredList.length; ++_j2) {
+	                msSum.x[_j2] = filteredList[_j2].x;
+	                msSum.y[_j2] = filteredList[_j2].y;
+	            }
+
+	            msSum.x.length = filteredList.length;
+	            msSum.y.length = filteredList.length;
+	        } else {
+	            for (var _j3 = 0; _j3 < massList.length; ++_j3) {
+	                msSum.x[_j3] = Number(massList[_j3]);
+	                msSum.y[_j3] = massDictionary[massList[_j3]];
+	            }
 	        }
 
 	        peakList[i].ms = msSum;
