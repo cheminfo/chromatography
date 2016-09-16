@@ -9,6 +9,7 @@ const massFilter = require('./massFilter');
  * @param {Object} options - Options for the integral filtering
  * @param {Number} [options.thresholdFactor = 0] - Every peak that it's bellow the main peak times this factor fill be removed (when is 0 there's no filter)
  * @param {Number} [options.maxNumberPeaks = Number.MAX_VALUE] - Maximum number of peaks for each mass spectra (when is Number.MAX_VALUE there's no filter)
+ * @param {Number} [options.groupWidth = 0] - When find a max can't be another max in a radius of this size
  * @return {Array<Object>} - List of GSD objects with an extra 'ms' field with the integrated MS spectra
  */
 function massInPeaks(peakList, sampleMS, options = {}) {
@@ -47,7 +48,7 @@ function massInPeaks(peakList, sampleMS, options = {}) {
             msSum.y[j] = massDictionary[massList[j]];
         }
 
-        if (options.maxNumberPeaks || options.thresholdFactor) {
+        if (options.maxNumberPeaks || options.thresholdFactor || options.groupWidth) {
             msSum = massFilter(msSum, options);
         }
         peakList[i].ms = msSum;
