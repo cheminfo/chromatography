@@ -40,10 +40,8 @@ function moreDistinct(list, maxNumberPeaks, groupWidth) {
  * @param {Number} [options.groupWidth = 0] - When find a max can't be another max in a radius of this size
  * @return {Object} - Object with filtered x and y data
  */
-function massFilter(massXYObject, options = {thresholdFactor: 0, maxNumberPeaks: Number.MAX_VALUE, groupWidth: 0}) {
-    const thresholdFactor = options.thresholdFactor || 0;
-    const maxNumberPeaks = options.maxNumberPeaks || Number.MAX_VALUE;
-    const groupWidth = options.groupWidth || 0;
+function massFilter(massXYObject, options = {}) {
+    const {thresholdFactor = 0, maxNumberPeaks = Number.MAX_VALUE, groupWidth = 0} = options;
 
     let max = -1;
     let massList = new Array(massXYObject.x.length);

@@ -14,8 +14,7 @@ const massFilter = require('./massFilter');
  * @return {Array<Object>} - List of mass and weighted mass times abundance objects
  */
 function vectorify(peakList, options = {}) {
-    const massPower = options.massPower || 3;
-    const intPower = options.intPower || 0.6;
+    const {massPower = 3, intPower = 0.6} = options;
     let filter = (options.thresholdFactor || options.maxNumberPeaks || options.groupWidth);
 
     let vector = new Array(peakList.length);
