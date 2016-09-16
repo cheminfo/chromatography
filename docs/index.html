@@ -142,7 +142,7 @@
       Chromatogram
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/62b93d33cca0a5e1bb5639077cc02c5442b096f7/src/Chromatogram.js#L9-L84'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/d5e09fced09eb674834ea31e83c7212df3310af7/src/Chromatogram.js#L9-L84'>
       <span>src/Chromatogram.js</span>
       </a>
     
@@ -493,7 +493,7 @@ It allows also to store simple time a trace</p>
       peakPicking
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/62b93d33cca0a5e1bb5639077cc02c5442b096f7/src/peakPicking.js#L10-L56'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/d5e09fced09eb674834ea31e83c7212df3310af7/src/peakPicking.js#L10-L56'>
       <span>src/peakPicking.js</span>
       </a>
     
@@ -562,7 +562,7 @@ It allows also to store simple time a trace</p>
       massInPeaks
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/62b93d33cca0a5e1bb5639077cc02c5442b096f7/src/massInPeaks.js#L14-L57'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/d5e09fced09eb674834ea31e83c7212df3310af7/src/massInPeaks.js#L15-L58'>
       <span>src/massInPeaks.js</span>
       </a>
     
@@ -622,16 +622,29 @@ It allows also to store simple time a trace</p>
             <tbody class='mt1'>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.thresholdFactor</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+                  <td class='break-word'><span class='code bold'>options.thresholdFactor</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  
+                    (default <code>0</code>)
                   </td>
                   <td class='break-word'><span>Every peak that it&#x27;s bellow the main peak times this factor fill be removed (when is 0 there&#x27;s no filter)
 </span></td>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.maxNumberPeaks</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+                  <td class='break-word'><span class='code bold'>options.maxNumberPeaks</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  
+                    (default <code>Number.MAX_VALUE</code>)
                   </td>
-                  <td class='break-word'><span>Maximum number of peaks for each mass spectra (when is -1 there&#x27;s no filter)
+                  <td class='break-word'><span>Maximum number of peaks for each mass spectra (when is Number.MAX_VALUE there&#x27;s no filter)
+</span></td>
+                </tr>
+              
+                <tr>
+                  <td class='break-word'><span class='code bold'>options.groupWidth</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  
+                    (default <code>0</code>)
+                  </td>
+                  <td class='break-word'><span>When find a max can&#x27;t be another max in a radius of this size
 </span></td>
                 </tr>
               
@@ -677,7 +690,7 @@ It allows also to store simple time a trace</p>
       vectorify
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/62b93d33cca0a5e1bb5639077cc02c5442b096f7/src/vectorify.js#L15-L53'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/d5e09fced09eb674834ea31e83c7212df3310af7/src/vectorify.js#L16-L55'>
       <span>src/vectorify.js</span>
       </a>
     
@@ -729,30 +742,47 @@ It allows also to store simple time a trace</p>
             <tbody class='mt1'>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.massPower</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+                  <td class='break-word'><span class='code bold'>options.massPower</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  
+                    (default <code>3</code>)
                   </td>
                   <td class='break-word'><span>Power applied to the mass values
 </span></td>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.intPower</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+                  <td class='break-word'><span class='code bold'>options.intPower</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  
+                    (default <code>0.6</code>)
                   </td>
                   <td class='break-word'><span>Power applied to the abundance values
 </span></td>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.thresholdFactor</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+                  <td class='break-word'><span class='code bold'>options.thresholdFactor</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  
+                    (default <code>0</code>)
                   </td>
                   <td class='break-word'><span>Every peak that it&#x27;s bellow the main peak times this factor fill be removed (when is 0 there&#x27;s no filter)
 </span></td>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.maxNumberPeaks</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+                  <td class='break-word'><span class='code bold'>options.maxNumberPeaks</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  
+                    (default <code>Number.MAX_VALUE</code>)
                   </td>
-                  <td class='break-word'><span>Maximum number of peaks for each mass spectra (when is -1 there&#x27;s no filter)
+                  <td class='break-word'><span>Maximum number of peaks for each mass spectra (when is Number.MAX_VALUE there&#x27;s no filter)
+</span></td>
+                </tr>
+              
+                <tr>
+                  <td class='break-word'><span class='code bold'>options.groupWidth</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  
+                    (default <code>0</code>)
+                  </td>
+                  <td class='break-word'><span>When find a max can&#x27;t be another max in a radius of this size
 </span></td>
                 </tr>
               
@@ -798,7 +828,7 @@ It allows also to store simple time a trace</p>
       cosine
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/62b93d33cca0a5e1bb5639077cc02c5442b096f7/src/cosine.js#L11-L43'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/d5e09fced09eb674834ea31e83c7212df3310af7/src/cosine.js#L11-L43'>
       <span>src/cosine.js</span>
       </a>
     
@@ -891,7 +921,7 @@ It allows also to store simple time a trace</p>
       massFilter
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/62b93d33cca0a5e1bb5639077cc02c5442b096f7/src/massFilter.js#L13-L51'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/d5e09fced09eb674834ea31e83c7212df3310af7/src/massFilter.js#L43-L85'>
       <span>src/massFilter.js</span>
       </a>
     
@@ -901,7 +931,7 @@ It allows also to store simple time a trace</p>
   <p>Filters a mass object</p>
 
 
-  <div class='pre p1 fill-light mt0'>massFilter(massXYObject: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, options: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>](default {thresholdFactor: 0, maxNumberPeaks: Number.MAX_VALUE})): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
+  <div class='pre p1 fill-light mt0'>massFilter(massXYObject: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, options: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>](default {thresholdFactor: 0, maxNumberPeaks: Number.MAX_VALUE, groupWidth: 0})): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
 
   
 
@@ -955,7 +985,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>options</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>](default {thresholdFactor: 0, maxNumberPeaks: Number.MAX_VALUE}))</code> Options for the integral filtering
+            <span class='code bold'>options</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>](default {thresholdFactor: 0, maxNumberPeaks: Number.MAX_VALUE, groupWidth: 0}))</code> Options for the integral filtering
 
           </div>
           
@@ -973,16 +1003,29 @@ It allows also to store simple time a trace</p>
             <tbody class='mt1'>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.thresholdFactor</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+                  <td class='break-word'><span class='code bold'>options.thresholdFactor</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  
+                    (default <code>0</code>)
                   </td>
                   <td class='break-word'><span>Every peak that it&#x27;s bellow the main peak times this factor fill be removed (when is 0 there&#x27;s no filter)
 </span></td>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.maxNumberPeaks</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+                  <td class='break-word'><span class='code bold'>options.maxNumberPeaks</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  
+                    (default <code>Number.MAX_VALUE</code>)
                   </td>
                   <td class='break-word'><span>Maximum number of peaks for each mass spectra (when is Number.MAX_VALUE there&#x27;s no filter)
+</span></td>
+                </tr>
+              
+                <tr>
+                  <td class='break-word'><span class='code bold'>options.groupWidth</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  
+                    (default <code>0</code>)
+                  </td>
+                  <td class='break-word'><span>When find a max can&#x27;t be another max in a radius of this size
 </span></td>
                 </tr>
               

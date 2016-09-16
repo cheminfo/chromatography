@@ -25,6 +25,18 @@ test('maxNumberPeaks', t => {
     });
 });
 
+test('groupWidth', t => {
+    let mass = {
+        x: [1, 2, 3, 5, 6],
+        y: [4, 5, 4, 3, 1]
+    };
+
+    t.deepEqual(massFilter(mass, {groupWidth: 2}), {
+        x: [2, 5],
+        y: [5, 3]
+    });
+});
+
 test('from massInPeaks', t => {
     let peaks = [{
         left: {index: 0},
