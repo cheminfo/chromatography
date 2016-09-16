@@ -1,22 +1,51 @@
 'use strict';
 
+const massFilter = require('./massFilter');
+
 /**
  * Given a list of GSD objects returns the weighted mass times abundance
  * @param {Array<Object>} peakList - List of GSD objects
- * @param {Number} massPower - Power applied to the mass values
- * @param {Number} intPower - Power applied to the abundance values
+ * @param {Object} options - Options for the integral filtering
+ * @param {Number} options.massPower - Power applied to the mass values
+ * @param {Number} options.intPower - Power applied to the abundance values
+ * @param {Number} options.thresholdFactor - Every peak that it's bellow the main peak times this factor fill be removed (when is 0 there's no filter)
+ * @param {Number} options.maxNumberPeaks - Maximum number of peaks for each mass spectra (when is -1 there's no filter)
  * @return {Array<Object>} - List of mass and weighted mass times abundance objects
  */
-function vectorify(peakList, massPower = 3, intPower = 0.6) {
+function vectorify(peakList, options = {}) {
+    const massPower = options.massPower || 3;
+    const intPower = options.intPower || 0.6;
+    let filter = (options.thresholdFactor || options.maxNumberPeaks);
+
     let vector = new Array(peakList.length);
-    for (let i = 0; i < peakList.length; ++i) {
-        let len = peakList[i].ms.x.length;
-        vector[i] = {
-            x: peakList[i].ms.x,
-            y: new Array(len)
+    if (filter) {
+        const filterOptions = {
+            thresholdFactor: options.thresholdFactor,
+            maxNumberPeaks: options.maxNumberPeaks
         };
-        for (let j = 0; j < len; ++j) {
-            vector[i].y[j] = Math.pow(peakList[i].ms.x[j], massPower) * Math.pow(peakList[i].ms.y[j], intPower);
+
+        for (let i = 0; i < peakList.length; ++i) {
+            let len = peakList[i].ms.x.length;
+            vector[i] = {
+                x: peakList[i].ms.x,
+                y: new Array(len)
+            };
+            for (let j = 0; j < len; ++j) {
+                vector[i].y[j] = Math.pow(peakList[i].ms.x[j], massPower) * Math.pow(peakList[i].ms.y[j], intPower);
+            }
+
+            vector[i] = massFilter(vector[i], filterOptions);
+        }
+    } else {
+        for (let i = 0; i < peakList.length; ++i) {
+            let len = peakList[i].ms.x.length;
+            vector[i] = {
+                x: peakList[i].ms.x,
+                y: new Array(len)
+            };
+            for (let j = 0; j < len; ++j) {
+                vector[i].y[j] = Math.pow(peakList[i].ms.x[j], massPower) * Math.pow(peakList[i].ms.y[j], intPower);
+            }
         }
     }
 

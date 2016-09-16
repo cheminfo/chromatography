@@ -74,7 +74,7 @@ test('simple case', t => {
         }}
     ];
 
-    t.deepEqual(vectorify(peaks, 1), [{
+    t.deepEqual(vectorify(peaks, {massPower: 1}), [{
         x: [1, 2, 3],
         y: [1, 2, 3]
     }]);

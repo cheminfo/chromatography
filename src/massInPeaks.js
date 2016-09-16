@@ -1,12 +1,17 @@
 'use strict';
 
+const massFilter = require('./massFilter');
+
 /**
  * Integrate MS spectra of a peak list
  * @param {Array<Object>} peakList - List of GSD objects
  * @param {Array<Object>} sampleMS - MS array of GC spectra
+ * @param {Object} options - Options for the integral filtering
+ * @param {Number} options.thresholdFactor - Every peak that it's bellow the main peak times this factor fill be removed (when is 0 there's no filter)
+ * @param {Number} options.maxNumberPeaks - Maximum number of peaks for each mass spectra (when is -1 there's no filter)
  * @return {Array<Object>} - List of GSD objects with an extra 'ms' field with the integrated MS spectra
  */
-function massInPeaks(peakList, sampleMS) {
+function massInPeaks(peakList, sampleMS, options = {}) {
     // integrate MS
     for (let i = 0; i < peakList.length; ++i) {
         let massDictionary = {};
@@ -42,6 +47,9 @@ function massInPeaks(peakList, sampleMS) {
             msSum.y[j] = massDictionary[massList[j]];
         }
 
+        if (options.maxNumberPeaks || options.thresholdFactor) {
+            msSum = massFilter(msSum, options);
+        }
         peakList[i].ms = msSum;
     }
 
