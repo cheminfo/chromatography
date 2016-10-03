@@ -10,7 +10,11 @@ const Regression = require('ml-regression').NLR.PolynomialRegression;
  * @param {Boolean} [options.computeQuality = false] - Calculate the quality of the regression
  * @param {Number} [options.stringFormula = 0] - Precision of the string formula (0 if don't need the value)
  * @param {Number} [options.polynomialDegree = 3] - Degree of the polynomial regression
- * @return {{reference: Array<Object>, sample: Array<Object>}}
+ * @return {Object} - The scaled spectra:
+ * * `reference`: The reference array
+ * * `sample`: The scaled sample array
+ * * `stringFormula`: Regression equation
+ * * `r2`: R2 quality number
  */
 function scaleAlignment(reference, sample, options = {}) {
     const {computeQuality = false, stringFormula = 0, polynomialDegree = 3} = options;
