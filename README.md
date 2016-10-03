@@ -2,6 +2,7 @@
 
   [![NPM version][npm-image]][npm-url]
   [![Build Status][travis-image]][travis-url]
+  [![Test coverage][coveralls-image]][coveralls-url]
   [![Dependency Status][daviddm-image]][daviddm-url]
   [![npm download][download-image]][download-url]
 
@@ -32,6 +33,8 @@ npm test
 [npm-url]: https://npmjs.org/package/chromatography
 [travis-image]: https://travis-ci.org/cheminfo-js/chromatography.svg?branch=master
 [travis-url]: https://travis-ci.org/cheminfo-js/chromatography
+[coveralls-image]: https://img.shields.io/coveralls/cheminfo-js/chromatography.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/github/cheminfo-js/chromatography
 [daviddm-image]: https://david-dm.org/cheminfo-js/chromatography.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/cheminfo-js/chromatography
 [download-image]: https://img.shields.io/npm/dm/chromatography.svg?style=flat-square
