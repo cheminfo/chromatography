@@ -5,6 +5,13 @@ const massInPeaks = require('./massInPeaks');
 const vectorify = require('./vectorify');
 const cosine = require('./cosine');
 
+/**
+ * Preprocessing task over the signals
+ * @ignore
+ * @param {Chromatogram} chromatography - Chromatogram to process
+ * @param {Object} [options] - Options object (same as spectraComparison)
+ * @return {{peaks: Array<Object>, integratedMs: Array<Object>, vector: Array<Object>}} - Array of peaks, integrated mass spectra and weighted mass spectra
+ */
 function preprocessing(chromatography, options) {
     // peak picking
     let peaks = peakPicking(chromatography, options);
@@ -17,7 +24,6 @@ function preprocessing(chromatography, options) {
 
     return {
         peaks,
-        ms,
         integratedMs,
         vector
     };
@@ -33,8 +39,25 @@ const defaultOption = {
     similarityThreshold: 0.7
 };
 
+/**
+ * Returns the most similar peaks between two GC/MS and their similarities
+ * @param {Chromatogram} chrom1 - First chromatogram
+ * @param {Chromatogram} chrom2 - Second chromatogram
+ * @param {Object} [options] - Options object
+ * @param {Number} [options.thresholdFactor = 0] - Every peak that it's bellow the main peak times this factor fill be removed (when is 0 there's no filter)
+ * @param {Number} [options.maxNumberPeaks = Number.MAX_VALUE] - Maximum number of peaks for each mass spectra (when is Number.MAX_VALUE there's no filter)
+ * @param {Number} [options.groupWidth = 0] - When find a max can't be another max in a radius of this size
+ * @param {Number} [options.heightFilter = 2] - Filter all objects that are bellow `heightFilter` times the median of the height
+ * @param {Number} [options.massPower = 3] - Power applied to the mass values
+ * @param {Number} [options.intPower = 0.6] - Power applied to the abundance values
+ * @param {Number} [options.similarityThreshold = 0.7] - Minimum similarity value to consider them similar
+ * @return {Object} - Most similar peaks and their similarities:
+ * * `peaksFirst`: Array of peaks, integrated mass spectra and weighted mass spectra for the first chromatogram
+ * * `peaksSecond`: Array of peaks, integrated mass spectra and weighted mass spectra for the second chromatogram
+ * * `peaksSimilarity`: Array of similarities (Number)
+ */
 function spectraComparison(chrom1, chrom2, options) {
-    options = Object.extends({}, defaultOption, options);
+    options = Object.assign({}, defaultOption, options);
 
     // peak picking
     let reference = preprocessing(chrom1, options);
@@ -78,10 +101,10 @@ function spectraComparison(chrom1, chrom2, options) {
 
     let duplicates = {};
     for (let i = 0; i < similarLen; ++i) {
-        if (duplicates.hasOwnProperty(similarityPeaks.chrom1.peaks[i].x)) {
-            duplicates[similarityPeaks.chrom1.peaks[i].x].push(i);
+        if (duplicates.hasOwnProperty(similarityPeaks.chrom1[i].x)) {
+            duplicates[similarityPeaks.chrom1[i].x].push(i);
         } else {
-            duplicates[similarityPeaks.chrom1.peaks[i].x] = [i];
+            duplicates[similarityPeaks.chrom1[i].x] = [i];
         }
     }
 
