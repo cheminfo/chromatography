@@ -8,7 +8,27 @@
     "eslint": "eslint src test",
     "eslint-fix": "npm run eslint -- --fix",
     "test": "npm run test-ava && npm run eslint",
-    "test-ava": "ava"
+    "test-ava": "nyc ava",
+    "report": "nyc report --reporter=html"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      "transform-runtime"
+    ],
+    "ignore": "test.js",
+    "env": {
+      "development": {
+        "sourceMaps": "inline"
+      }
+    }
+  },
+  "ava": {
+    "require": [
+      "babel-core/register"
+    ]
   },
   "repository": {
     "type": "git",
@@ -28,10 +48,12 @@
     "babel-eslint": "^6.1.2",
     "bluebird": "^3.3.4",
     "cheminfo-tools": "^1.9.0",
+    "coveralls": "^2.11.14",
     "eslint": "^3.4.0",
     "eslint-config-cheminfo": "^1.2.0",
     "eslint-plugin-no-only-tests": "^1.1.0",
-    "jcampconverter": "^2.3.0"
+    "jcampconverter": "^2.3.0",
+    "nyc": "^8.3.0"
   },
   "dependencies": {
     "ml-gsd": "mljs/global-spectral-deconvolution#peak-high",
