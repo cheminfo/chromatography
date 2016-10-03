@@ -21,9 +21,6 @@ function massInPeaks(peakList, sampleMS, options = {}) {
             for (let k = 0; k < sampleMS[j][0].length; ++k) {
                 // round the mass value
                 let mass = Math.round(sampleMS[j][0][k]);
-                if (Math.round(sampleMS[j][0][k]) - mass > 0.5) {
-                    ++mass;
-                }
 
                 // add the mass value to the dictionary
                 if (massDictionary[mass]) {

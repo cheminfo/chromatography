@@ -24,14 +24,14 @@ test('from a Diesel chromatogram', async t => {
 });
 
 test('triplet', t => {
-    const size = 30;
+    const size = 60;
     const fourth = size / 4;
     let times = new Array(size);
     let tic = new Array(size);
     let ms = new Array(size);
     for (let i = 0; i < size; ++i) {
         times[i] = i;
-        tic[i] = lorentzian(i, fourth) + 2 * lorentzian(i, 2 * fourth) + lorentzian(i, 3 * fourth);
+        tic[i] = lorentzian(i, fourth, 9) + 2 * lorentzian(i, 2 * fourth, 9) + lorentzian(i, 3 * fourth, 9);
         ms[i] = [[1, 2, 3], [1, 1, 1]];
     }
     let chrom = new Chromatogram(times);
@@ -48,4 +48,15 @@ test('triplet', t => {
 
     let peaks = peakPicking(chrom);
     t.is(peaks.length, 1);
+});
+
+test('throws when not send a tic serie', t => {
+    const size = 30;
+    let times = new Array(size);
+    for (let i = 0; i < size; ++i) {
+        times[i] = i;
+    }
+    let chrom = new Chromatogram(times);
+
+    t.throws(peakPicking.bind(null, chrom), '\'tic\' serie not founded');
 });
