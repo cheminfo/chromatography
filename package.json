@@ -34,6 +34,7 @@
     "jcampconverter": "^2.3.0"
   },
   "dependencies": {
-    "ml-gsd": "mljs/global-spectral-deconvolution#peak-high"
+    "ml-gsd": "mljs/global-spectral-deconvolution#peak-high",
+    "ml-regression": "^4.1.1"
   }
 }
