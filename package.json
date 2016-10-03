@@ -7,7 +7,8 @@
     "build": "cheminfo build --babel --no-uglify --root Chromatography",
     "eslint": "eslint src test",
     "eslint-fix": "npm run eslint -- --fix",
-    "test": "npm run test-ava && npm run eslint",
+    "test": "ava",
+    "test-travis": "npm run test-ava && npm run eslint",
     "test-ava": "nyc ava",
     "report": "nyc report --reporter=html"
   },
