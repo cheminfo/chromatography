@@ -8,3 +8,4 @@ exports.massInPeaks = require('./massInPeaks');
 exports.vectorify = require('./vectorify');
 exports.cosine = require('./cosine');
 exports.massFilter = require('./massFilter');
+exports.spectraComparison = require('./spectraComparison');
