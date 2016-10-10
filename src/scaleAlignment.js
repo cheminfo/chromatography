@@ -11,8 +11,7 @@ const Regression = require('ml-regression').NLR.PolynomialRegression;
  * @param {Number} [options.stringFormula = 0] - Precision of the string formula (0 if don't need the value)
  * @param {Number} [options.polynomialDegree = 3] - Degree of the polynomial regression
  * @return {Object} - The scaled spectra:
- * * `reference`: The reference array
- * * `sample`: The scaled sample array
+ * * `sample`: The scaled time sample array
  * * `stringFormula`: Regression equation
  * * `r2`: R2 quality number
  * * `error`: Vector of the difference between the spected value and the actual shift value
@@ -28,14 +27,12 @@ function scaleAlignment(reference, sample, options = {}) {
     let scaledSample = new Array(sample.length);
     let error = new Array(sample.length);
     for (var i = 0; i < scaledSample.length; i++) {
-        scaledSample[i] = sample[i];
-        scaledSample[i].x = regression.predict(sample[i].x);
-        error[i] = reference[i].x - scaledSample[i].x;
+        scaledSample[i] = regression.predict(sample[i].x);
+        error[i] = reference[i].x - scaledSample[i];
     }
-    scaledSample = scaledSample.filter((peak) => peak.x <= maxTime);
+    scaledSample = scaledSample.filter((peak) => peak <= maxTime);
 
     let ans = {
-        reference: reference,
         sample: scaledSample
     };
 

@@ -56,8 +56,7 @@ test('Simple case', async t => {
     t.deepEqual(compared.peaksSecond.map((val) => val.x), [30, 40, 50, 60]);
 
     let aligned = scaleAlignment(compared.peaksFirst, compared.peaksSecond);
-    t.deepEqual(aligned.reference.map((val) => val.x), [20, 30, 40, 50]);
-    t.deepEqual(aligned.sample.map((val) => val.x), [20, 30, 40, 50]);
+    t.deepEqual(aligned.sample, [20, 30, 40, 50]);
 });
 
 test('Quality and string', async t => {
@@ -110,8 +109,7 @@ test('Quality and string', async t => {
     t.deepEqual(compared.peaksSecond.map((val) => val.x), [30, 40, 50, 60]);
 
     let aligned = scaleAlignment(compared.peaksFirst, compared.peaksSecond, {computeQuality: true, stringFormula: 3});
-    t.deepEqual(aligned.reference.map((val) => val.x), [20, 30, 40, 50]);
-    t.deepEqual(aligned.sample.map((val) => val.x), [20, 30, 40, 50]);
+    t.deepEqual(aligned.sample, [20, 30, 40, 50]);
     t.is(aligned.stringFormula, 'y = 1.00*x-10.0');
     t.is(aligned.r2, 1);
 });
