@@ -15,6 +15,7 @@ const Regression = require('ml-regression').NLR.PolynomialRegression;
  * * `sample`: The scaled sample array
  * * `stringFormula`: Regression equation
  * * `r2`: R2 quality number
+ * * `standardDeviation`: Standard deviation of the rescaled values
  */
 function scaleAlignment(reference, sample, options = {}) {
     const {computeQuality = false, stringFormula = 0, polynomialDegree = 3} = options;
@@ -24,10 +25,14 @@ function scaleAlignment(reference, sample, options = {}) {
     const regression = new Regression(sampleTime, referenceTime, polynomialDegree, {computeQuality: computeQuality});
 
     const maxTime = Math.max(...referenceTime);
-    let scaledSample = sample.map((peak) => {
-        peak.x = regression.predict(peak.x);
-        return peak;
-    }).filter((peak) => peak.x <= maxTime);
+    let scaledSample = new Array(sample.length);
+    let std = 0;
+    for (var i = 0; i < scaledSample.length; i++) {
+        scaledSample[i] = sample[i];
+        scaledSample[i].x = regression.predict(sample[i].x);
+        std += (scaledSample[i].x - sample[i].x) * (scaledSample[i].x - sample[i].x);
+    }
+    scaledSample = scaledSample.filter((peak) => peak.x <= maxTime);
 
     let ans = {
         reference: reference,
@@ -39,6 +44,7 @@ function scaleAlignment(reference, sample, options = {}) {
     }
     if (computeQuality) {
         ans.r2 = regression.quality.r2;
+        ans.standardDeviation = Math.sqrt(std);
     }
     return ans;
 }

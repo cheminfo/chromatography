@@ -114,4 +114,5 @@ test('Quality and string', async t => {
     t.deepEqual(aligned.sample.map((val) => val.x), [20, 30, 40, 50]);
     t.is(aligned.stringFormula, 'y = 1.00*x-10.0');
     t.is(aligned.r2, 1);
+    t.is(aligned.standardDeviation, 0);
 });
