@@ -1180,8 +1180,8 @@ babili-webpack-plugin@0.0.3:
     webpack-sources "^0.1.2"
 
 babylon@^6.1.0, babylon@^6.11.0, babylon@^6.5.2, babylon@^6.8.1:
-  version "6.11.4"
-  resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.11.4.tgz#75e1f52187efa0cde5a541a7f7fdda38f6eb5bd2"
+  version "6.11.5"
+  resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.11.5.tgz#35cce8fb5f98353931d275cb56871fbf17bf9a00"
 
 bail@^1.0.0:
   version "1.0.1"
@@ -1990,11 +1990,11 @@ debounce@^1.0.0:
     date-now "1.0.1"
 
 debug-fabulous@0.0.X:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/debug-fabulous/-/debug-fabulous-0.0.3.tgz#d154582976646bcf35b4b8a47ce174439dd5019b"
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/debug-fabulous/-/debug-fabulous-0.0.4.tgz#fa071c5d87484685424807421ca4b16b0b1a0763"
   dependencies:
     debug "2.X"
-    lazy-debug "0.X"
+    lazy-debug-legacy "0.0.X"
     object-assign "4.1.0"
 
 debug@^2.0.0, debug@^2.1.0, debug@^2.1.1, debug@^2.2.0, debug@~2.2.0, debug@2.2.0, debug@2.X:
@@ -2479,8 +2479,8 @@ escope@^3.6.0:
     estraverse "^4.1.1"
 
 eslint-config-cheminfo@^1.2.0:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-cheminfo/-/eslint-config-cheminfo-1.3.1.tgz#4efb776d61f1798a3801635cb95bdb45584cf8e1"
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-cheminfo/-/eslint-config-cheminfo-1.3.2.tgz#36bc95334050775e119f9f8ff9b679197328c859"
 
 eslint-plugin-no-only-tests@^1.1.0:
   version "1.1.0"
@@ -3144,8 +3144,8 @@ gulp-rename@^1.2.0:
   resolved "https://registry.yarnpkg.com/gulp-rename/-/gulp-rename-1.2.2.tgz#3ad4428763f05e2764dec1c67d868db275687817"
 
 gulp-sourcemaps@^1.5.2:
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/gulp-sourcemaps/-/gulp-sourcemaps-1.7.2.tgz#a4a61c01a7b8f39abd2723a3f3e334011c63e8f6"
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/gulp-sourcemaps/-/gulp-sourcemaps-1.7.3.tgz#a468a2801996c969e47476fcc6dcd5a7e2aa53c1"
   dependencies:
     acorn "4.X"
     convert-source-map "1.X"
@@ -3894,9 +3894,9 @@ lazy-cache@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/lazy-cache/-/lazy-cache-1.0.4.tgz#a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"
 
-lazy-debug@0.X:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/lazy-debug/-/lazy-debug-0.1.3.tgz#e052ef145337bb51471e05fd4bafc096ae794f30"
+lazy-debug-legacy@0.0.X:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/lazy-debug-legacy/-/lazy-debug-legacy-0.0.1.tgz#537716c0776e4cf79e3ed1b621f7658c2911b1b1"
 
 lazy-req@^1.1.0:
   version "1.1.0"

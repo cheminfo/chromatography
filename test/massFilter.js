@@ -43,9 +43,9 @@ test('from massInPeaks', t => {
         right: {index: 2}
     }];
     let mass = [
-        [ [1, 2], [1, 1] ],
-        [ [1, 2, 5], [1, 1, 1] ],
-        [ [2, 4], [1, 1] ]
+        [[1, 2], [1, 1]],
+        [[1, 2, 5], [1, 1, 1]],
+        [[2, 4], [1, 1]]
     ];
 
     peaks = massInPeaks(peaks, mass, {thresholdFactor: 0.5});
@@ -61,7 +61,7 @@ test('from massInPeaks', t => {
 
 test('from vectorify', t => {
     let peaks = [
-        { ms: {
+        {ms: {
             x: [1, 2, 3],
             y: [1, 1, 1]
         }}

@@ -67,9 +67,9 @@ test('simple case', t => {
     }];
 
     t.deepEqual(massInPeaks(peaks, [
-        [ [1, 2], [1, 1] ],
-        [ [1, 2, 5], [1, 1, 1] ],
-        [ [3, 4], [1, 1] ]
+        [[1, 2], [1, 1]],
+        [[1, 2, 5], [1, 1, 1]],
+        [[3, 4], [1, 1]]
     ]), [{
         left: {index: 0},
         right: {index: 2},
@@ -86,9 +86,9 @@ test('thresholdFactor', t => {
         right: {index: 2}
     }];
     let mass = [
-        [ [1, 2], [1, 1] ],
-        [ [1, 2, 5], [1, 1, 1] ],
-        [ [2, 4], [1, 1] ]
+        [[1, 2], [1, 1]],
+        [[1, 2, 5], [1, 1, 1]],
+        [[2, 4], [1, 1]]
     ];
 
     t.deepEqual(massInPeaks(peaks, mass, {thresholdFactor: 0.5}), [{
@@ -107,9 +107,9 @@ test('maxNumberPeaks', t => {
         right: {index: 2}
     }];
     let mass = [
-        [ [1, 2], [1, 1] ],
-        [ [1, 2, 5], [1, 1, 1] ],
-        [ [2, 4], [1, 2] ]
+        [[1, 2], [1, 1]],
+        [[1, 2, 5], [1, 1, 1]],
+        [[2, 4], [1, 2]]
     ];
 
     t.deepEqual(massInPeaks(peaks, mass, {maxNumberPeaks: 3}), [{
