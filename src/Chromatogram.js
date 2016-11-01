@@ -4,7 +4,7 @@
  * Class allowing to store time / ms (ms) series
  * It allows also to store simple time a trace
  * @class Chromatogram
- * @param {Object|Array<Number>} data - A GC/MS data format object or a time serie
+ * @param {object|Array<number>} data - A GC/MS data format object or a time serie
  */
 class Chromatogram {
     constructor(data) {
@@ -31,8 +31,8 @@ class Chromatogram {
 
     /**
      * Find the serie giving the name
-     * @param {String} name - name of the serie
-     * @return {Object} - Object with an array of data, dimensions of the elements in the array and name of the serie
+     * @param {string} name - name of the serie
+     * @return {object} - Object with an array of data, dimensions of the elements in the array and name of the serie
      */
     findSerieByName(name) {
         return this.series.find(serie => serie.name === name);
@@ -40,7 +40,7 @@ class Chromatogram {
 
     /**
      * Add a new serie
-     * @param {Object} serie - Object with an array of data, dimensions of the elements in the array and name of the serie
+     * @param {object} serie - Object with an array of data, dimensions of the elements in the array and name of the serie
      */
     addSerie(serie) {
         if (typeof serie.dimension !== 'number') {
@@ -60,7 +60,7 @@ class Chromatogram {
 
     /**
      * Returns the first time value
-     * @return {Number} - First time value
+     * @return {number} - First time value
      */
     getFirstTime() {
         return this.times[0];
@@ -68,7 +68,7 @@ class Chromatogram {
 
     /**
      * Returns the last time value
-     * @return {Number} - Last time value
+     * @return {number} - Last time value
      */
     getLastTime() {
         return this.times[this.length - 1];
@@ -76,7 +76,7 @@ class Chromatogram {
 
     /**
      * Returns the time values
-     * @return {Array<Number>} - Time values
+     * @return {Array<number>} - Time values
      */
     getTimes() {
         return this.times;

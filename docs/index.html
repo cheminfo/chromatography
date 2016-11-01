@@ -76,9 +76,9 @@
               
                 
                 <li><a
-                  href='#peakpicking'
+                  href='#getpeaks'
                   class="">
-                  peakPicking
+                  getPeaks
                   
                 </a>
                 
@@ -172,7 +172,7 @@
       Chromatogram
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/d484d7c03a4077eefbc37ead31c00d24083aaeb5/src/Chromatogram.js#L9-L84'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e88e72a6d320f2afff919a8b83e0c93123941bed/src/Chromatogram.js#L9-L84'>
       <span>src/Chromatogram.js</span>
       </a>
     
@@ -183,7 +183,7 @@
 It allows also to store simple time a trace</p>
 
 
-  <div class='pre p1 fill-light mt0'>new Chromatogram(data: (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>&gt;))</div>
+  <div class='pre p1 fill-light mt0'>new Chromatogram(data: (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;))</div>
 
   
 
@@ -199,7 +199,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>data</span> <code class='quiet'>((<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>&gt;))</code> A GC/MS data format object or a time serie
+            <span class='code bold'>data</span> <code class='quiet'>((<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;))</code> A GC/MS data format object or a time serie
 
           </div>
           
@@ -237,7 +237,7 @@ It allows also to store simple time a trace</p>
   <p>Find the serie giving the name</p>
 
 
-  <div class='pre p1 fill-light mt0'>findSerieByName(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
+  <div class='pre p1 fill-light mt0'>findSerieByName(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
 
   
 
@@ -253,7 +253,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>name</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code> name of the serie
+            <span class='code bold'>name</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> name of the serie
 
           </div>
           
@@ -267,7 +267,7 @@ It allows also to store simple time a trace</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
         Object with an array of data, dimensions of the elements in the array and name of the serie
 
       
@@ -303,7 +303,7 @@ It allows also to store simple time a trace</p>
   <p>Add a new serie</p>
 
 
-  <div class='pre p1 fill-light mt0'>addSerie(serie: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  <div class='pre p1 fill-light mt0'>addSerie(serie: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</div>
 
   
 
@@ -319,7 +319,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>serie</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code> Object with an array of data, dimensions of the elements in the array and name of the serie
+            <span class='code bold'>serie</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code> Object with an array of data, dimensions of the elements in the array and name of the serie
 
           </div>
           
@@ -361,7 +361,7 @@ It allows also to store simple time a trace</p>
   <p>Returns the first time value</p>
 
 
-  <div class='pre p1 fill-light mt0'>getFirstTime(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></div>
+  <div class='pre p1 fill-light mt0'>getFirstTime(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
 
   
 
@@ -378,7 +378,7 @@ It allows also to store simple time a trace</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>:
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
         First time value
 
       
@@ -414,7 +414,7 @@ It allows also to store simple time a trace</p>
   <p>Returns the last time value</p>
 
 
-  <div class='pre p1 fill-light mt0'>getLastTime(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></div>
+  <div class='pre p1 fill-light mt0'>getLastTime(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
 
   
 
@@ -431,7 +431,7 @@ It allows also to store simple time a trace</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>:
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
         Last time value
 
       
@@ -467,7 +467,7 @@ It allows also to store simple time a trace</p>
   <p>Returns the time values</p>
 
 
-  <div class='pre p1 fill-light mt0'>getTimes(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>&gt;</div>
+  <div class='pre p1 fill-light mt0'>getTimes(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;</div>
 
   
 
@@ -484,7 +484,7 @@ It allows also to store simple time a trace</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>&gt;</code>:
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;</code>:
         Time values
 
       
@@ -519,12 +519,12 @@ It allows also to store simple time a trace</p>
 
   
   <div class='clearfix'>
-    <h3 class='fl m0' id='peakpicking'>
-      peakPicking
+    <h3 class='fl m0' id='getpeaks'>
+      getPeaks
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/d484d7c03a4077eefbc37ead31c00d24083aaeb5/src/peakPicking.js#L12-L60'>
-      <span>src/peakPicking.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e88e72a6d320f2afff919a8b83e0c93123941bed/src/getPeaks.js#L12-L60'>
+      <span>src/getPeaks.js</span>
       </a>
     
   </div>
@@ -533,7 +533,7 @@ It allows also to store simple time a trace</p>
   <p>Apply the GSD peak picking algorithm</p>
 
 
-  <div class='pre p1 fill-light mt0'>peakPicking(chrom: <a href="#chromatogram">Chromatogram</a>, options: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>]): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;</div>
+  <div class='pre p1 fill-light mt0'>getPeaks(chrom: <a href="#chromatogram">Chromatogram</a>, options: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>]): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;</div>
 
   
 
@@ -557,7 +557,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>options</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>])</code> Options object
+            <span class='code bold'>options</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>])</code> Options object
 
           </div>
           
@@ -575,7 +575,7 @@ It allows also to store simple time a trace</p>
             <tbody class='mt1'>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.heightFilter</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.heightFilter</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>]</code>
                   
                     (default <code>2</code>)
                   </td>
@@ -598,7 +598,7 @@ It allows also to store simple time a trace</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;</code>:
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;</code>:
         List of GSD objects
 
       
@@ -627,7 +627,7 @@ It allows also to store simple time a trace</p>
       massInPeaks
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/d484d7c03a4077eefbc37ead31c00d24083aaeb5/src/massInPeaks.js#L15-L55'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e88e72a6d320f2afff919a8b83e0c93123941bed/src/massInPeaks.js#L15-L55'>
       <span>src/massInPeaks.js</span>
       </a>
     
@@ -637,7 +637,7 @@ It allows also to store simple time a trace</p>
   <p>Integrate MS spectra of a peak list</p>
 
 
-  <div class='pre p1 fill-light mt0'>massInPeaks(peakList: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;, sampleMS: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;, options: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>](default {})): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;</div>
+  <div class='pre p1 fill-light mt0'>massInPeaks(peakList: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;, sampleMS: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;, options: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>](default {})): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;</div>
 
   
 
@@ -653,7 +653,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>peakList</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;)</code> List of GSD objects
+            <span class='code bold'>peakList</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;)</code> List of GSD objects
 
           </div>
           
@@ -661,7 +661,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>sampleMS</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;)</code> MS array of GC spectra
+            <span class='code bold'>sampleMS</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;)</code> MS array of GC spectra
 
           </div>
           
@@ -669,7 +669,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>options</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>](default {}))</code> Options for the integral filtering
+            <span class='code bold'>options</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>](default {}))</code> Options for the integral filtering
 
           </div>
           
@@ -687,7 +687,7 @@ It allows also to store simple time a trace</p>
             <tbody class='mt1'>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.thresholdFactor</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.thresholdFactor</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
                   
                     (default <code>0</code>)
                   </td>
@@ -696,7 +696,7 @@ It allows also to store simple time a trace</p>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.maxNumberPeaks</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.maxNumberPeaks</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
                   
                     (default <code>Number.MAX_VALUE</code>)
                   </td>
@@ -705,7 +705,7 @@ It allows also to store simple time a trace</p>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.groupWidth</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.groupWidth</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
                   
                     (default <code>0</code>)
                   </td>
@@ -726,7 +726,7 @@ It allows also to store simple time a trace</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;</code>:
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;</code>:
         List of GSD objects with an extra &#x27;ms&#x27; field with the integrated MS spectra
 
       
@@ -755,7 +755,7 @@ It allows also to store simple time a trace</p>
       vectorify
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/d484d7c03a4077eefbc37ead31c00d24083aaeb5/src/vectorify.js#L16-L54'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e88e72a6d320f2afff919a8b83e0c93123941bed/src/vectorify.js#L16-L54'>
       <span>src/vectorify.js</span>
       </a>
     
@@ -765,7 +765,7 @@ It allows also to store simple time a trace</p>
   <p>Given a list of GSD objects returns the weighted mass times abundance</p>
 
 
-  <div class='pre p1 fill-light mt0'>vectorify(peakList: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;, options: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>](default {})): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;</div>
+  <div class='pre p1 fill-light mt0'>vectorify(peakList: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;, options: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>](default {})): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;</div>
 
   
 
@@ -781,7 +781,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>peakList</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;)</code> List of GSD objects
+            <span class='code bold'>peakList</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;)</code> List of GSD objects
 
           </div>
           
@@ -789,7 +789,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>options</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>](default {}))</code> Options for the integral filtering
+            <span class='code bold'>options</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>](default {}))</code> Options for the integral filtering
 
           </div>
           
@@ -807,7 +807,7 @@ It allows also to store simple time a trace</p>
             <tbody class='mt1'>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.massPower</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.massPower</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
                   
                     (default <code>3</code>)
                   </td>
@@ -816,7 +816,7 @@ It allows also to store simple time a trace</p>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.intPower</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.intPower</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
                   
                     (default <code>0.6</code>)
                   </td>
@@ -825,7 +825,7 @@ It allows also to store simple time a trace</p>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.thresholdFactor</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.thresholdFactor</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
                   
                     (default <code>0</code>)
                   </td>
@@ -834,7 +834,7 @@ It allows also to store simple time a trace</p>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.maxNumberPeaks</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.maxNumberPeaks</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
                   
                     (default <code>Number.MAX_VALUE</code>)
                   </td>
@@ -843,7 +843,7 @@ It allows also to store simple time a trace</p>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.groupWidth</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.groupWidth</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
                   
                     (default <code>0</code>)
                   </td>
@@ -864,7 +864,7 @@ It allows also to store simple time a trace</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;</code>:
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;</code>:
         List of mass and weighted mass times abundance objects
 
       
@@ -893,7 +893,7 @@ It allows also to store simple time a trace</p>
       cosine
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/d484d7c03a4077eefbc37ead31c00d24083aaeb5/src/cosine.js#L11-L43'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e88e72a6d320f2afff919a8b83e0c93123941bed/src/cosine.js#L11-L43'>
       <span>src/cosine.js</span>
       </a>
     
@@ -903,7 +903,7 @@ It allows also to store simple time a trace</p>
   <p>Cosine similarity between two MS spectra</p>
 
 
-  <div class='pre p1 fill-light mt0'>cosine(ms1x: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>&gt;, ms1y: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>&gt;, ms2x: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>&gt;, ms2y: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>&gt;): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></div>
+  <div class='pre p1 fill-light mt0'>cosine(ms1x: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;, ms1y: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;, ms2x: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;, ms2y: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
 
   
 
@@ -919,7 +919,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>ms1x</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>&gt;)</code> Array of mass values for the first spectra
+            <span class='code bold'>ms1x</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;)</code> Array of mass values for the first spectra
 
           </div>
           
@@ -927,7 +927,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>ms1y</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>&gt;)</code> Array of weighted abundance values for the first spectra
+            <span class='code bold'>ms1y</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;)</code> Array of weighted abundance values for the first spectra
 
           </div>
           
@@ -935,7 +935,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>ms2x</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>&gt;)</code> Array of mass values for the second spectra
+            <span class='code bold'>ms2x</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;)</code> Array of mass values for the second spectra
 
           </div>
           
@@ -943,7 +943,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>ms2y</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>&gt;)</code> Array of weighted abundance values for the second spectra
+            <span class='code bold'>ms2y</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;)</code> Array of weighted abundance values for the second spectra
 
           </div>
           
@@ -957,7 +957,7 @@ It allows also to store simple time a trace</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>:
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
         Similarity between two MS spectra
 
       
@@ -986,7 +986,7 @@ It allows also to store simple time a trace</p>
       massFilter
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/d484d7c03a4077eefbc37ead31c00d24083aaeb5/src/massFilter.js#L43-L83'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e88e72a6d320f2afff919a8b83e0c93123941bed/src/massFilter.js#L43-L83'>
       <span>src/massFilter.js</span>
       </a>
     
@@ -996,7 +996,7 @@ It allows also to store simple time a trace</p>
   <p>Filters a mass object</p>
 
 
-  <div class='pre p1 fill-light mt0'>massFilter(massXYObject: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, options: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>](default {})): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
+  <div class='pre p1 fill-light mt0'>massFilter(massXYObject: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>, options: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>](default {})): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
 
   
 
@@ -1012,7 +1012,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>massXYObject</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code> Object with x and y data
+            <span class='code bold'>massXYObject</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code> Object with x and y data
 
           </div>
           
@@ -1030,14 +1030,14 @@ It allows also to store simple time a trace</p>
             <tbody class='mt1'>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>massXYObject.x</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>&gt;</code>
+                  <td class='break-word'><span class='code bold'>massXYObject.x</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;</code>
                   </td>
                   <td class='break-word'><span>Array of mass values
 </span></td>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>massXYObject.y</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>&gt;</code>
+                  <td class='break-word'><span class='code bold'>massXYObject.y</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;</code>
                   </td>
                   <td class='break-word'><span>Array of abundance values
 </span></td>
@@ -1050,7 +1050,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>options</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>](default {}))</code> Options for the integral filtering
+            <span class='code bold'>options</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>](default {}))</code> Options for the integral filtering
 
           </div>
           
@@ -1068,7 +1068,7 @@ It allows also to store simple time a trace</p>
             <tbody class='mt1'>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.thresholdFactor</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.thresholdFactor</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
                   
                     (default <code>0</code>)
                   </td>
@@ -1077,7 +1077,7 @@ It allows also to store simple time a trace</p>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.maxNumberPeaks</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.maxNumberPeaks</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
                   
                     (default <code>Number.MAX_VALUE</code>)
                   </td>
@@ -1086,7 +1086,7 @@ It allows also to store simple time a trace</p>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.groupWidth</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.groupWidth</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
                   
                     (default <code>0</code>)
                   </td>
@@ -1107,7 +1107,7 @@ It allows also to store simple time a trace</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
         Object with filtered x and y data
 
       
@@ -1136,7 +1136,7 @@ It allows also to store simple time a trace</p>
       spectraComparison
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/d484d7c03a4077eefbc37ead31c00d24083aaeb5/src/spectraComparison.js#L59-L127'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e88e72a6d320f2afff919a8b83e0c93123941bed/src/spectraComparison.js#L59-L127'>
       <span>src/spectraComparison.js</span>
       </a>
     
@@ -1146,7 +1146,7 @@ It allows also to store simple time a trace</p>
   <p>Returns the most similar peaks between two GC/MS and their similarities</p>
 
 
-  <div class='pre p1 fill-light mt0'>spectraComparison(chrom1: <a href="#chromatogram">Chromatogram</a>, chrom2: <a href="#chromatogram">Chromatogram</a>, options: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>]): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
+  <div class='pre p1 fill-light mt0'>spectraComparison(chrom1: <a href="#chromatogram">Chromatogram</a>, chrom2: <a href="#chromatogram">Chromatogram</a>, options: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>]): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
 
   
 
@@ -1178,7 +1178,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>options</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>])</code> Options object
+            <span class='code bold'>options</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>])</code> Options object
 
           </div>
           
@@ -1196,7 +1196,7 @@ It allows also to store simple time a trace</p>
             <tbody class='mt1'>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.thresholdFactor</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.thresholdFactor</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
                   
                     (default <code>0</code>)
                   </td>
@@ -1205,7 +1205,7 @@ It allows also to store simple time a trace</p>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.maxNumberPeaks</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.maxNumberPeaks</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
                   
                     (default <code>Number.MAX_VALUE</code>)
                   </td>
@@ -1214,7 +1214,7 @@ It allows also to store simple time a trace</p>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.groupWidth</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.groupWidth</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
                   
                     (default <code>0</code>)
                   </td>
@@ -1223,7 +1223,7 @@ It allows also to store simple time a trace</p>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.heightFilter</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.heightFilter</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
                   
                     (default <code>2</code>)
                   </td>
@@ -1234,7 +1234,7 @@ It allows also to store simple time a trace</p>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.massPower</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.massPower</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
                   
                     (default <code>3</code>)
                   </td>
@@ -1243,7 +1243,7 @@ It allows also to store simple time a trace</p>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.intPower</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.intPower</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
                   
                     (default <code>0.6</code>)
                   </td>
@@ -1252,7 +1252,7 @@ It allows also to store simple time a trace</p>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.similarityThreshold</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.similarityThreshold</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
                   
                     (default <code>0.7</code>)
                   </td>
@@ -1273,12 +1273,12 @@ It allows also to store simple time a trace</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
         Most similar peaks and their similarities:
 <ul>
 <li><code>peaksFirst</code>: Array of peaks, integrated mass spectra and weighted mass spectra for the first chromatogram</li>
 <li><code>peaksSecond</code>: Array of peaks, integrated mass spectra and weighted mass spectra for the second chromatogram</li>
-<li><code>peaksSimilarity</code>: Array of similarities (Number)</li>
+<li><code>peaksSimilarity</code>: Array of similarities (number)</li>
 </ul>
 
       
@@ -1307,7 +1307,7 @@ It allows also to store simple time a trace</p>
       scaleAlignment
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/d484d7c03a4077eefbc37ead31c00d24083aaeb5/src/scaleAlignment.js#L20-L50'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e88e72a6d320f2afff919a8b83e0c93123941bed/src/scaleAlignment.js#L18-L39'>
       <span>src/scaleAlignment.js</span>
       </a>
     
@@ -1317,7 +1317,7 @@ It allows also to store simple time a trace</p>
   <p>Aligns the time of the sample based on the regression with his reference value</p>
 
 
-  <div class='pre p1 fill-light mt0'>scaleAlignment(reference: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;, sample: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;, options: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>]): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
+  <div class='pre p1 fill-light mt0'>scaleAlignment(reference: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;, sample: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;, options: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>]): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
 
   
 
@@ -1333,7 +1333,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>reference</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;)</code> Array of peaks, integrated mass spectra and weighted mass spectra for the reference chromatogram
+            <span class='code bold'>reference</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;)</code> Array of peaks, integrated mass spectra and weighted mass spectra for the reference chromatogram
 
           </div>
           
@@ -1341,7 +1341,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>sample</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&gt;)</code> Array of peaks, integrated mass spectra and weighted mass spectra for the sample chromatogram
+            <span class='code bold'>sample</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;)</code> Array of peaks, integrated mass spectra and weighted mass spectra for the sample chromatogram
 
           </div>
           
@@ -1349,7 +1349,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>options</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>])</code> Options object
+            <span class='code bold'>options</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>])</code> Options object
 
           </div>
           
@@ -1367,7 +1367,7 @@ It allows also to store simple time a trace</p>
             <tbody class='mt1'>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.computeQuality</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.computeQuality</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>]</code>
                   
                     (default <code>false</code>)
                   </td>
@@ -1376,16 +1376,7 @@ It allows also to store simple time a trace</p>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.stringFormula</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
-                  
-                    (default <code>0</code>)
-                  </td>
-                  <td class='break-word'><span>Precision of the string formula (0 if don&#x27;t need the value)
-</span></td>
-                </tr>
-              
-                <tr>
-                  <td class='break-word'><span class='code bold'>options.polynomialDegree</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>]</code>
+                  <td class='break-word'><span class='code bold'>options.polynomialDegree</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
                   
                     (default <code>3</code>)
                   </td>
@@ -1406,14 +1397,13 @@ It allows also to store simple time a trace</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
         The scaled spectra:
 <ul>
-<li><code>reference</code>: The reference array</li>
-<li><code>sample</code>: The scaled sample array</li>
+<li><code>scaleRegression</code>: The regression function to make the regression</li>
 <li><code>stringFormula</code>: Regression equation</li>
 <li><code>r2</code>: R2 quality number</li>
-<li><code>standardDeviation</code>: Standard deviation of the rescaled values</li>
+<li><code>error</code>: Vector of the difference between the spected value and the actual shift value</li>
 </ul>
 
       
@@ -1442,7 +1432,7 @@ It allows also to store simple time a trace</p>
       kovats
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/d484d7c03a4077eefbc37ead31c00d24083aaeb5/src/kovats.js#L10-L39'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e88e72a6d320f2afff919a8b83e0c93123941bed/src/kovats.js#L10-L39'>
       <span>src/kovats.js</span>
       </a>
     
@@ -1452,7 +1442,7 @@ It allows also to store simple time a trace</p>
   <p>Calculates the Kovats retention index for a mass spectra of a n-alkane</p>
 
 
-  <div class='pre p1 fill-light mt0'>kovats(ms: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></div>
+  <div class='pre p1 fill-light mt0'>kovats(ms: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
 
   
 
@@ -1468,7 +1458,7 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>ms</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code> An mass spectra object
+            <span class='code bold'>ms</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code> An mass spectra object
 
           </div>
           
@@ -1486,14 +1476,14 @@ It allows also to store simple time a trace</p>
             <tbody class='mt1'>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>ms.x</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>&gt;</code>
+                  <td class='break-word'><span class='code bold'>ms.x</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;</code>
                   </td>
                   <td class='break-word'><span>Array of masses
 </span></td>
                 </tr>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>ms.y</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>&gt;</code>
+                  <td class='break-word'><span class='code bold'>ms.y</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;</code>
                   </td>
                   <td class='break-word'><span>Array of intensities
 </span></td>
@@ -1512,7 +1502,7 @@ It allows also to store simple time a trace</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>:
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
         Kovats retention index
 
       

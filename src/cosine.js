@@ -2,11 +2,11 @@
 
 /**
  * Cosine similarity between two MS spectra
- * @param {Array<Number>} ms1x - Array of mass values for the first spectra
- * @param {Array<Number>} ms1y - Array of weighted abundance values for the first spectra
- * @param {Array<Number>} ms2x - Array of mass values for the second spectra
- * @param {Array<Number>} ms2y - Array of weighted abundance values for the second spectra
- * @return {Number} - Similarity between two MS spectra
+ * @param {Array<number>} ms1x - Array of mass values for the first spectra
+ * @param {Array<number>} ms1y - Array of weighted abundance values for the first spectra
+ * @param {Array<number>} ms2x - Array of mass values for the second spectra
+ * @param {Array<number>} ms2y - Array of weighted abundance values for the second spectra
+ * @return {number} - Similarity between two MS spectra
  */
 function cosine(ms1x, ms1y, ms2x, ms2y) {
     let index1 = 0;

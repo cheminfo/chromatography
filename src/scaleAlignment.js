@@ -4,12 +4,12 @@ const Regression = require('ml-regression').NLR.PolynomialRegression;
 
 /**
  * Aligns the time of the sample based on the regression with his reference value
- * @param {Array<Object>} reference - Array of peaks, integrated mass spectra and weighted mass spectra for the reference chromatogram
- * @param {Array<Object>} sample - Array of peaks, integrated mass spectra and weighted mass spectra for the sample chromatogram
- * @param {Object} [options] - Options object
- * @param {Boolean} [options.computeQuality = false] - Calculate the quality of the regression
- * @param {Number} [options.polynomialDegree = 3] - Degree of the polynomial regression
- * @return {Object} - The scaled spectra:
+ * @param {Array<object>} reference - Array of peaks, integrated mass spectra and weighted mass spectra for the reference chromatogram
+ * @param {Array<object>} sample - Array of peaks, integrated mass spectra and weighted mass spectra for the sample chromatogram
+ * @param {object} [options] - Options object
+ * @param {boolean} [options.computeQuality = false] - Calculate the quality of the regression
+ * @param {number} [options.polynomialDegree = 3] - Degree of the polynomial regression
+ * @return {object} - The scaled spectra:
  * * `scaleRegression`: The regression function to make the regression
  * * `stringFormula`: Regression equation
  * * `r2`: R2 quality number
