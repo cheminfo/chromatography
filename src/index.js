@@ -11,3 +11,4 @@ exports.massFilter = require('./massFilter');
 exports.spectraComparison = require('./spectraComparison');
 exports.scaleAlignment = require('./scaleAlignment');
 exports.kovats = require('./kovats');
+exports.getKovatsTable = require('./getKovatsTable');
