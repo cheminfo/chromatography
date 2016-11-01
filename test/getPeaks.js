@@ -3,7 +3,7 @@ import {convert} from 'jcampconverter';
 import fs from 'fs';
 import Promise from 'bluebird';
 import {join} from 'path';
-import {Chromatogram, peakPicking} from '..';
+import {Chromatogram, getPeaks} from '..';
 
 const readFileAsync = Promise.promisify(fs.readFile);
 
@@ -19,7 +19,7 @@ test('from a Diesel chromatogram', async t => {
     const chrom = new Chromatogram(data);
     t.is(chrom.length, 6992);
 
-    let peakList = peakPicking(chrom);
+    let peakList = getPeaks(chrom);
     t.is(peakList.length, 312);
 });
 
@@ -46,7 +46,7 @@ test('triplet', t => {
         data: ms
     });
 
-    let peaks = peakPicking(chrom);
+    let peaks = getPeaks(chrom);
     t.is(peaks.length, 1);
 });
 
@@ -58,5 +58,5 @@ test('throws when not send a tic serie', t => {
     }
     let chrom = new Chromatogram(times);
 
-    t.throws(peakPicking.bind(null, chrom), '\'tic\' serie not founded');
+    t.throws(getPeaks.bind(null, chrom), '\'tic\' serie not founded');
 });

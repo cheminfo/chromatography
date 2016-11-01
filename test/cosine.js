@@ -3,7 +3,7 @@ import {convert} from 'jcampconverter';
 import fs from 'fs';
 import Promise from 'bluebird';
 import {join} from 'path';
-import {Chromatogram, massInPeaks, peakPicking, vectorify, cosine} from '..';
+import {Chromatogram, massInPeaks, getPeaks, vectorify, cosine} from '..';
 
 const readFileAsync = Promise.promisify(fs.readFile);
 
@@ -19,7 +19,7 @@ test('from a Diesel chromatogram', async t => {
     const chrom = new Chromatogram(data);
     t.is(chrom.length, 6992);
 
-    let peakList = peakPicking(chrom);
+    let peakList = getPeaks(chrom);
     t.is(peakList.length, 312);
 
     let sampleMS = chrom.findSerieByName('ms').data;
@@ -58,7 +58,7 @@ test('triplet', t => {
         data: ms
     });
 
-    let peakList = peakPicking(chrom);
+    let peakList = getPeaks(chrom);
     t.is(peakList.length, 1);
 
     let sampleMS = chrom.findSerieByName('ms').data;

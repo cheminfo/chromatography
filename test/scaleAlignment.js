@@ -110,6 +110,6 @@ test('Quality and string', async t => {
 
     let aligned = scaleAlignment(compared.peaksFirst, compared.peaksSecond, {computeQuality: true, stringFormula: 3});
     t.deepEqual([30, 40, 50, 60].map(val => aligned.scaleRegression.predict(val)), [20, 30, 40, 50]);
-    t.is(aligned.scaleRegression.toString(3), 'y = 1.00*x-10.0');
+    t.is(aligned.scaleRegression.toString(3), 'f(x) =  + 1.00 * x - 10.0');
     t.is(aligned.r2, 1);
 });
