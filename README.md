@@ -6,23 +6,37 @@
   [![Dependency Status][daviddm-image]][daviddm-url]
   [![npm download][download-image]][download-url]
 
-> Tools for storing, search and analize GC/MS spectra
+> Tools for storing, search and analyze GC/MS spectra
 
 https://docs.google.com/document/d/1Jg2l6wKjFCYBSqdVWBSujSkqMhsEV6ZMyxeI9RSLhn0/edit#heading=h.8gjgl6jygt0s
 
 ## Installation
 
-```bash
-npm install chromatography
-```
+`npm install chromatography`
 
 ## [API Documentation](https://cheminfo-js.github.io/chromatography/)
 
-## Test
+## Example
 
-```bash
-npm install
-npm test
+```js
+const GCMS = require('chromatography');
+let gcms = GCMS.fromJcamp(jcampReferenceMixture);
+
+let kovatsConvertionTable = GCMS.getKovatsTable(gcms); // [{time, value}, ]
+let convertionFunction = GCMS.convertionFunction(kovatsConvertionTable, {});
+
+let diesel = GCMS.fromJcamp(jcampOfDiesel);
+let times = diesel.rescaleTime({convertionFunction, inplace: false});
+diesel.setTimes(times);
+
+let peaks = GCMS.getPeaks(diesel, options);
+let dieselJSON = diesel.toJSON(options); // [ time:12, height:12, width: 3, mass: [{mass, intensity}] ]
+let gcms2 = GCMS.fromJSON(anotherDieselJSON);
+let similarity = GCMS.similarity(gcms, gcms2, options)
+
+// get a spectrum in another reference model
+let revertConvertionFunction = GCMS.convertionFunction(kovatsConvertionTable, {revert: true});
+let mySpectrumInAnotherReference = mySpectrum
 ```
 
 ## License
