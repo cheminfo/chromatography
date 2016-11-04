@@ -67,6 +67,18 @@
                         #getTimes
                       </a></li>
                       
+                      <li><a
+                        href='#Chromatogram#setTimes'
+                        class='regular pre-open'>
+                        #setTimes
+                      </a></li>
+                      
+                      <li><a
+                        href='#Chromatogram#rescaleTime'
+                        class='regular pre-open'>
+                        #rescaleTime
+                      </a></li>
+                      
                     </ul>
                   
                   
@@ -154,6 +166,36 @@
                 
                 </li>
               
+                
+                <li><a
+                  href='#getkovatstable'
+                  class="">
+                  getKovatsTable
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#kovatsconversionfunction'
+                  class="">
+                  kovatsConversionFunction
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#rescaletime'
+                  class="">
+                  rescaleTime
+                  
+                </a>
+                
+                </li>
+              
             </ul>
           </div>
           <div class='mt1 h6 quiet'>
@@ -172,7 +214,7 @@
       Chromatogram
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e88e72a6d320f2afff919a8b83e0c93123941bed/src/Chromatogram.js#L9-L84'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/650e5ca5a418f8fc489a1278f107e0993e1c41ad/src/Chromatogram.js#L11-L102'>
       <span>src/Chromatogram.js</span>
       </a>
     
@@ -505,6 +547,121 @@ It allows also to store simple time a trace</p>
       </div>
     </div>
   
+    <div class='border-bottom' id='Chromatogram#setTimes'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>setTimes(times)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Assign the time values</p>
+
+
+  <div class='pre p1 fill-light mt0'>setTimes(times: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>times</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;)</code> New time values
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='Chromatogram#rescaleTime'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>rescaleTime(conversionFunction)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Modifies the time applying the conversion function</p>
+
+
+  <div class='pre p1 fill-light mt0'>rescaleTime(conversionFunction: function (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>))</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>conversionFunction</span> <code class='quiet'>(function (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>))</code> 
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
 </div>
 
   
@@ -523,7 +680,7 @@ It allows also to store simple time a trace</p>
       getPeaks
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e88e72a6d320f2afff919a8b83e0c93123941bed/src/getPeaks.js#L12-L60'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/650e5ca5a418f8fc489a1278f107e0993e1c41ad/src/getPeaks.js#L12-L60'>
       <span>src/getPeaks.js</span>
       </a>
     
@@ -627,7 +784,7 @@ It allows also to store simple time a trace</p>
       massInPeaks
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e88e72a6d320f2afff919a8b83e0c93123941bed/src/massInPeaks.js#L15-L55'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/650e5ca5a418f8fc489a1278f107e0993e1c41ad/src/massInPeaks.js#L15-L55'>
       <span>src/massInPeaks.js</span>
       </a>
     
@@ -755,7 +912,7 @@ It allows also to store simple time a trace</p>
       vectorify
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e88e72a6d320f2afff919a8b83e0c93123941bed/src/vectorify.js#L16-L54'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/650e5ca5a418f8fc489a1278f107e0993e1c41ad/src/vectorify.js#L16-L54'>
       <span>src/vectorify.js</span>
       </a>
     
@@ -893,7 +1050,7 @@ It allows also to store simple time a trace</p>
       cosine
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e88e72a6d320f2afff919a8b83e0c93123941bed/src/cosine.js#L11-L43'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/650e5ca5a418f8fc489a1278f107e0993e1c41ad/src/cosine.js#L11-L43'>
       <span>src/cosine.js</span>
       </a>
     
@@ -986,7 +1143,7 @@ It allows also to store simple time a trace</p>
       massFilter
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e88e72a6d320f2afff919a8b83e0c93123941bed/src/massFilter.js#L43-L83'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/650e5ca5a418f8fc489a1278f107e0993e1c41ad/src/massFilter.js#L43-L83'>
       <span>src/massFilter.js</span>
       </a>
     
@@ -1136,7 +1293,7 @@ It allows also to store simple time a trace</p>
       spectraComparison
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e88e72a6d320f2afff919a8b83e0c93123941bed/src/spectraComparison.js#L59-L127'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/650e5ca5a418f8fc489a1278f107e0993e1c41ad/src/spectraComparison.js#L59-L127'>
       <span>src/spectraComparison.js</span>
       </a>
     
@@ -1307,7 +1464,7 @@ It allows also to store simple time a trace</p>
       scaleAlignment
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e88e72a6d320f2afff919a8b83e0c93123941bed/src/scaleAlignment.js#L18-L39'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/650e5ca5a418f8fc489a1278f107e0993e1c41ad/src/scaleAlignment.js#L18-L39'>
       <span>src/scaleAlignment.js</span>
       </a>
     
@@ -1432,7 +1589,7 @@ It allows also to store simple time a trace</p>
       kovats
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e88e72a6d320f2afff919a8b83e0c93123941bed/src/kovats.js#L10-L39'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/650e5ca5a418f8fc489a1278f107e0993e1c41ad/src/kovats.js#L10-L39'>
       <span>src/kovats.js</span>
       </a>
     
@@ -1504,6 +1661,318 @@ It allows also to store simple time a trace</p>
       <div class='py1 quiet mt1 prose-big'>Returns</div>
       <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
         Kovats retention index
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='getkovatstable'>
+      getKovatsTable
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/650e5ca5a418f8fc489a1278f107e0993e1c41ad/src/getKovatsTable.js#L17-L37'>
+      <span>src/getKovatsTable.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Calculates the table of Kovats indexes for the reference spectra</p>
+
+
+  <div class='pre p1 fill-light mt0'>getKovatsTable(reference: <a href="#chromatogram">Chromatogram</a>, options: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>]): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>reference</span> <code class='quiet'>(<a href="#chromatogram">Chromatogram</a>)</code> Reference spectra
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>]
+            (default <code>{}</code>)
+            )</code> Options object
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+                  <td class='break-word'><span class='code bold'>options.heightFilter</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
+                  
+                    (default <code>100</code>)
+                  </td>
+                  <td class='break-word'><span>Filter all objects that are bellow heightFilter times the median of the height
+</span></td>
+                </tr>
+              
+                <tr>
+                  <td class='break-word'><span class='code bold'>options.thresholdFactor</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
+                  
+                    (default <code>0.005</code>)
+                  </td>
+                  <td class='break-word'><span>Every peak that it&#x27;s bellow the main peak times this factor fill be removed (when is 0 there&#x27;s no filter)
+</span></td>
+                </tr>
+              
+                <tr>
+                  <td class='break-word'><span class='code bold'>options.maxNumberPeaks</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
+                  
+                    (default <code>40</code>)
+                  </td>
+                  <td class='break-word'><span>Maximum number of peaks for each mass spectra (when is Number.MAX_VALUE there&#x27;s no filter)
+</span></td>
+                </tr>
+              
+                <tr>
+                  <td class='break-word'><span class='code bold'>options.groupWidth</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>]</code>
+                  
+                    (default <code>5</code>)
+                  </td>
+                  <td class='break-word'><span>When find a max can&#x27;t be another max in a radius of this size
+</span></td>
+                </tr>
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;</code>:
+        Time and value for the Kovats index
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='kovatsconversionfunction'>
+      kovatsConversionFunction
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/650e5ca5a418f8fc489a1278f107e0993e1c41ad/src/kovatsConversionFunction.js#L14-L62'>
+      <span>src/kovatsConversionFunction.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Returns a function that allows to convert from time to Kovats or from Kovats to time</p>
+
+
+  <div class='pre p1 fill-light mt0'>kovatsConversionFunction(kovatsConversionTable: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;, options: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>]): function (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>kovatsConversionTable</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>&gt;)</code> List of time-kovats from the reference
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>]
+            (default <code>{}</code>)
+            )</code> Options object
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+                  <td class='break-word'><span class='code bold'>options.revert</span> <code class='quiet'>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>]</code>
+                  
+                    (default <code>false</code>)
+                  </td>
+                  <td class='break-word'><span>True for convert from Kovats to time, false otherwise
+</span></td>
+                </tr>
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>function (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>:
+        One parameter function that convert to one dimension to the other
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='rescaletime'>
+      rescaleTime
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/650e5ca5a418f8fc489a1278f107e0993e1c41ad/src/rescaleTime.js#L9-L11'>
+      <span>src/rescaleTime.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Modifies the time applying the conversion function</p>
+
+
+  <div class='pre p1 fill-light mt0'>rescaleTime(originalTime: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;, conversionFunction: function (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>originalTime</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;)</code> Original list of time values
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>conversionFunction</span> <code class='quiet'>(function (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>))</code> Function that given a number computes the new value
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>&gt;</code>:
+        Modified list of time values
 
       
     
