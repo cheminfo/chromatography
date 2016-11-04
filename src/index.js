@@ -14,3 +14,4 @@ exports.kovats = require('./kovats');
 exports.getKovatsTable = require('./getKovatsTable');
 exports.kovatsConversionFunction = require('./kovatsConversionFunction');
 exports.rescaleTime = require('./rescaleTime');
+exports.fromJcamp = require('./fromJcamp');
