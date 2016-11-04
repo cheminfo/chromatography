@@ -1,6 +1,6 @@
 'use strict';
 
-const peakPicking = require('./getPeaks');
+const getPeaks = require('./getPeaks');
 const massInPeaks = require('./massInPeaks');
 const vectorify = require('./vectorify');
 const cosine = require('./cosine');
@@ -14,7 +14,7 @@ const cosine = require('./cosine');
  */
 function preprocessing(chromatography, options) {
     // peak picking
-    let peaks = peakPicking(chromatography, options);
+    let peaks = getPeaks(chromatography, options);
     peaks = peaks.sort((a, b) => a.index - b.index);
 
     // integrate mass in the peaks
