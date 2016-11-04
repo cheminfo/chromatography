@@ -1,5 +1,7 @@
 'use strict';
 
+const rescaleTime = require('./rescaleTime');
+
 /**
  * Class allowing to store time / ms (ms) series
  * It allows also to store simple time a trace
@@ -80,6 +82,22 @@ class Chromatogram {
      */
     getTimes() {
         return this.times;
+    }
+
+    /**
+     * Assign the time values
+     * @param {Array<number>} times - New time values
+     */
+    setTimes(times) {
+        this.times = times;
+    }
+
+    /**
+     * Modifies the time applying the conversion function
+     * @param {function(number)} conversionFunction
+     */
+    rescaleTime(conversionFunction) {
+        this.times = rescaleTime(this.times, conversionFunction);
     }
 }
 
