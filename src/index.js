@@ -12,3 +12,4 @@ exports.spectraComparison = require('./spectraComparison');
 exports.scaleAlignment = require('./scaleAlignment');
 exports.kovats = require('./kovats');
 exports.getKovatsTable = require('./getKovatsTable');
+exports.kovatsConversionFunction = require('./kovatsConversionFunction');
