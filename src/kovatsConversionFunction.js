@@ -22,6 +22,12 @@ function kovatsConversionFunction(kovatsConversionTable, options = {}) {
 
             if (position < 0) {
                 position = ~position;
+
+                // handle extreme cases
+                if (position === 0 || position === values.length) {
+                    return 0;
+                }
+
                 let smallerAlcane = values[position - 1].time;
                 let largerAlcane = values[position].time;
                 return (index - values[position - 1].value) * (largerAlcane - smallerAlcane) / 100
@@ -38,6 +44,12 @@ function kovatsConversionFunction(kovatsConversionTable, options = {}) {
 
             if (position < 0) {
                 position = ~position;
+
+                // handle extreme cases
+                if (position === 0 || position === times.length) {
+                    return 0;
+                }
+
                 let smallerAlcane = times[position - 1].time;
                 let largerAlcane = times[position].time;
                 return 100 * (time - smallerAlcane) / (largerAlcane - smallerAlcane)
