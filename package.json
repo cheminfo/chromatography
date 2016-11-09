@@ -33,7 +33,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CaribeSoy/chromatography.git"
+    "url": "git+https://github.com/cheminfo-js/chromatography.git"
   },
   "author": "Michaël Zasso",
   "contributors": [
