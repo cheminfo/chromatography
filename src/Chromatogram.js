@@ -1,10 +1,12 @@
 'use strict';
 
+const rescaleTime = require('./rescaleTime');
+
 /**
  * Class allowing to store time / ms (ms) series
  * It allows also to store simple time a trace
  * @class Chromatogram
- * @param {Object|Array<Number>} data - A GC/MS data format object or a time serie
+ * @param {object|Array<number>} data - A GC/MS data format object or a time serie
  */
 class Chromatogram {
     constructor(data) {
@@ -31,8 +33,8 @@ class Chromatogram {
 
     /**
      * Find the serie giving the name
-     * @param {String} name - name of the serie
-     * @return {Object} - Object with an array of data, dimensions of the elements in the array and name of the serie
+     * @param {string} name - name of the serie
+     * @return {object} - Object with an array of data, dimensions of the elements in the array and name of the serie
      */
     findSerieByName(name) {
         return this.series.find(serie => serie.name === name);
@@ -40,7 +42,7 @@ class Chromatogram {
 
     /**
      * Add a new serie
-     * @param {Object} serie - Object with an array of data, dimensions of the elements in the array and name of the serie
+     * @param {object} serie - Object with an array of data, dimensions of the elements in the array and name of the serie
      */
     addSerie(serie) {
         if (typeof serie.dimension !== 'number') {
@@ -60,7 +62,7 @@ class Chromatogram {
 
     /**
      * Returns the first time value
-     * @return {Number} - First time value
+     * @return {number} - First time value
      */
     getFirstTime() {
         return this.times[0];
@@ -68,7 +70,7 @@ class Chromatogram {
 
     /**
      * Returns the last time value
-     * @return {Number} - Last time value
+     * @return {number} - Last time value
      */
     getLastTime() {
         return this.times[this.length - 1];
@@ -76,10 +78,58 @@ class Chromatogram {
 
     /**
      * Returns the time values
-     * @return {Array<Number>} - Time values
+     * @return {Array<number>} - Time values
      */
     getTimes() {
         return this.times;
+    }
+
+    /**
+     * Assign the time values
+     * @param {Array<number>} times - New time values
+     */
+    setTimes(times) {
+        this.times = times;
+    }
+
+    /**
+     * Modifies the time applying the conversion function
+     * @param {function(number)} conversionFunction
+     */
+    rescaleTime(conversionFunction) {
+        this.times = rescaleTime(this.times, conversionFunction);
+    }
+
+    /**
+     * Parse the content to an JSON Array
+     * @return {Array<object>} - Returns a list with the following fields:
+     *  * `time`: Number for the retention time
+     *  * `tic`: Number for the total ion chromatogram
+     *  * `mass`: List of mass values and their respective intensities
+     */
+    toJSON() {
+        var ans = new Array(this.times.length);
+        const tic = this.findSerieByName('tic').data;
+        const mass = this.findSerieByName('ms').data.map((ms) => {
+            var ansMS = new Array(ms[0].length);
+            for (var i = 0; i < ansMS.length; i++) {
+                ansMS[i] = {
+                    mass: ms[0][i],
+                    intensity: ms[1][i]
+                };
+            }
+            return ansMS;
+        });
+
+        for (var i = 0; i < ans.length; i++) {
+            ans[i] = {
+                time: this.times[i],
+                tic: tic[i],
+                mass: mass[i]
+            };
+        }
+
+        return ans;
     }
 }
 

@@ -2,10 +2,10 @@
 
 /**
  * Calculates the Kovats retention index for a mass spectra of a n-alkane
- * @param {Object} ms - An mass spectra object
- * @param {Array<Number>} ms.x - Array of masses
- * @param {Array<Number>} ms.y - Array of intensities
- * @return {Number} - Kovats retention index
+ * @param {object} ms - An mass spectra object
+ * @param {Array<number>} ms.x - Array of masses
+ * @param {Array<number>} ms.y - Array of intensities
+ * @return {number} - Kovats retention index
  */
 function kovats(ms) {
     let mass = ms.x;
