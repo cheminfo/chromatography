@@ -4259,9 +4259,9 @@ ml-distance-euclidean@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ml-distance-euclidean/-/ml-distance-euclidean-1.0.0.tgz#08447c2233641a2b2a9b4c29e5f792d28f1d5b95"
 
-ml-gsd@mljs/global-spectral-deconvolution#peak-high:
-  version "1.1.6"
-  resolved "https://codeload.github.com/mljs/global-spectral-deconvolution/tar.gz/1b222df1f85578874cb3fdfffeb3ac1669904ccf"
+ml-gsd@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/ml-gsd/-/ml-gsd-2.0.1.tgz#322fa970e28dc83957e4c25b6116658b80904522"
   dependencies:
     extend "3.0.0"
     ml-optimize-lorentzian "0.1.1"

@@ -51,12 +51,12 @@ test('Simple case', async t => {
     });
 
     let compared = spectraComparison(chrom1, chrom2, options);
-    t.deepEqual(compared.peaksSimilarity, [1, 1, 1, 1]);
-    t.deepEqual(compared.peaksFirst.map((val) => val.x), [20, 30, 40, 50]);
-    t.deepEqual(compared.peaksSecond.map((val) => val.x), [30, 40, 50, 60]);
+    t.deepEqual(compared.peaksSimilarity, [1, 1, 1, 1, 1]);
+    t.deepEqual(compared.peaksFirst.map((val) => val.x), [10, 20, 30, 40, 50]);
+    t.deepEqual(compared.peaksSecond.map((val) => val.x), [20, 30, 40, 50, 60]);
 
     let aligned = scaleAlignment(compared.peaksFirst, compared.peaksSecond);
-    t.deepEqual([30, 40, 50, 60].map(val => aligned.scaleRegression.predict(val)), [20, 30, 40, 50]);
+    t.is(Math.abs(aligned.scaleRegression.predict(30) - 20) < 1e-4, true);
 });
 
 test('Quality and string', async t => {
@@ -104,12 +104,12 @@ test('Quality and string', async t => {
     });
 
     let compared = spectraComparison(chrom1, chrom2, options);
-    t.deepEqual(compared.peaksSimilarity, [1, 1, 1, 1]);
-    t.deepEqual(compared.peaksFirst.map((val) => val.x), [20, 30, 40, 50]);
-    t.deepEqual(compared.peaksSecond.map((val) => val.x), [30, 40, 50, 60]);
+    t.deepEqual(compared.peaksSimilarity, [1, 1, 1, 1, 1]);
+    t.deepEqual(compared.peaksFirst.map((val) => val.x), [10, 20, 30, 40, 50]);
+    t.deepEqual(compared.peaksSecond.map((val) => val.x), [20, 30, 40, 50, 60]);
 
     let aligned = scaleAlignment(compared.peaksFirst, compared.peaksSecond, {computeQuality: true, stringFormula: 3});
-    t.deepEqual([30, 40, 50, 60].map(val => aligned.scaleRegression.predict(val)), [20, 30, 40, 50]);
-    t.is(aligned.scaleRegression.toString(3), 'f(x) =  + 1.00 * x - 10.0');
-    t.is(aligned.r2, 1);
+    t.is(Math.abs(aligned.scaleRegression.predict(30) - 20) < 1e-4, true);
+    t.is(aligned.scaleRegression.toString(3), 'f(x) = 9.95e-17 * x^3 - 1.22e-14 * x^2 + 1.00 * x - 10.0');
+    t.is(Math.abs(aligned.r2 - 1) < 1e-4, true);
 });

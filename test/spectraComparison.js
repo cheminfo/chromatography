@@ -51,9 +51,9 @@ test('Simple case', t => {
     });
 
     let compared = spectraComparison(chrom1, chrom2, options);
-    t.deepEqual(compared.peaksSimilarity, [1, 1, 1, 1]);
-    t.deepEqual(compared.peaksFirst.map((val) => val.x), [20, 30, 40, 50]);
-    t.deepEqual(compared.peaksSecond.map((val) => val.x), [30, 40, 50, 60]);
+    t.deepEqual(compared.peaksSimilarity, [1, 1, 1, 1, 1]);
+    t.deepEqual(compared.peaksFirst.map((val) => val.x), [10, 20, 30, 40, 50]);
+    t.deepEqual(compared.peaksSecond.map((val) => val.x), [20, 30, 40, 50, 60]);
 });
 
 test('Shifted peaks', t => {
@@ -101,9 +101,9 @@ test('Shifted peaks', t => {
     });
 
     let compared = spectraComparison(chrom1, chrom2, options);
-    t.deepEqual(compared.peaksSimilarity, [1, 1, 1]);
-    t.deepEqual(compared.peaksFirst.map((val) => val.x), [30, 40, 50]);
-    t.deepEqual(compared.peaksSecond.map((val) => val.x), [30, 40, 50]);
+    t.deepEqual(compared.peaksSimilarity, [1, 1, 1, 1]);
+    t.deepEqual(compared.peaksFirst.map((val) => val.x), [20, 30, 40, 50]);
+    t.deepEqual(compared.peaksSecond.map((val) => val.x), [20, 30, 40, 50]);
 });
 
 test('Remove similar peaks in the similarity matrix column', t => {
