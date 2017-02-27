@@ -3,7 +3,7 @@ import {Chromatogram, applyLockMass} from '..';
 
 test('simple case', t => {
     let ms = [
-        [[100,200,300], [10,20,30]],
+        [[100, 200, 300], [10, 20, 30]],
         [[622.024747], [274]]
     ];
 
@@ -28,7 +28,7 @@ test('simple case', t => {
 
     t.deepEqual(ans.tic, [60]);
     t.deepEqual(ans.time, [0]);
-    t.deepEqual(ans.ms[0][1], [10,20,30]);
+    t.deepEqual(ans.ms[0][1], [10, 20, 30]);
 
     const expectedMass = [100.005, 200.005, 300.005];
     for (var i = 0; i < expectedMass.length; i++) {
