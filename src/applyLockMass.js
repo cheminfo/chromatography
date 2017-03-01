@@ -2,20 +2,28 @@
 
 const analyseMF = require('chemcalc').analyseMF;
 
+const defaultOptions = {
+    oddReference: true
+};
+
 /**
  * Recalculates series for GC/MS with lock mass
  * @param {Chromatogram} chromatogram - GC/MS chromatogram where make the peak picking
- * @param {string|Array<string>} molecularForm - Reference molecular formula(s)
+ * @param {string|Array<string>} mf - Reference molecular formula(s)
+ * @param {object} [options] - Options object
+ * @param {boolean} [options.oddReference] - Mass reference it's in the odd position
  * @return {{tic: Array<number>, ms: Array<Array<number>>, time: Array<number>}}
  */
-function applyLockMass(chromatogram, molecularForm) {
-    // allows molecularForm as string or array
-    if (typeof molecularForm === 'string') {
-        molecularForm = [molecularForm];
+function applyLockMass(chromatogram, mf, options) {
+    options = Object.assign({}, defaultOptions, options);
+
+    // allows mf as string or array
+    if (typeof mf === 'string') {
+        mf = [mf];
     }
 
     // calculate the mass reference values
-    const referenceMass = molecularForm.map((mf) => analyseMF(mf).em);
+    const referenceMass = mf.map((mf) => analyseMF(mf).em);
 
     const ms = chromatogram.findSerieByName('ms').data;
     if (!ms) {
@@ -24,34 +32,13 @@ function applyLockMass(chromatogram, molecularForm) {
     const time = chromatogram.getTimes();
 
     // check where is the reference values
-    var oddReference;
-    var evenReference;
-    if ((ms[0][0].length === 1) && (ms[1][0].length === 1)) {
-        // both have one value
-        if ((ms[2][0].length !== 1) && (ms[3][0].length === 1)) {
-            oddReference = 1;
-            evenReference = 0;
-        } else if ((ms[2][0].length === 1) && (ms[3][0].length !== 1)) {
-            oddReference = 0;
-            evenReference = 1;
-        } else {
-            throw new Error('Unable to know where is the reference spectrum');
-        }
-    } else if ((ms[0][0].length !== 1) && (ms[1][0].length === 1)) {
-        oddReference = 1;
-        evenReference = 0;
-    } else if ((ms[0][0].length === 1) && (ms[1][0].length !== 1)) {
-        oddReference = 0;
-        evenReference = 1;
-    } else {
-        // both have more than one value
-        throw new Error('Unable to know where is the reference spectrum');
-    }
+    var referenceIndexShift = Number(options.oddReference);
+    var msIndexShift = Number(!options.oddReference);
 
     if (ms.length % 2 !== 0) {
         throw new Error('The series must have an even size');
     }
-    var ans = {
+    var result = {
         tic: new Array(ms.length / 2),
         ms: new Array(ms.length / 2),
         time: new Array(ms.length / 2)
@@ -61,28 +48,28 @@ function applyLockMass(chromatogram, molecularForm) {
         // calculate the difference between theory and experimental
         var difference = Number.MAX_VALUE;
         for (var j = 0; j < referenceMass.length; j++) {
-            if (Math.abs(difference) > Math.abs(referenceMass[j] - ms[2 * i + oddReference][0])) {
-                difference = referenceMass[j] - ms[2 * i + oddReference][0];
+            if (Math.abs(difference) > Math.abs(referenceMass[j] - ms[2 * i + referenceIndexShift][0])) {
+                difference = referenceMass[j] - ms[2 * i + referenceIndexShift][0];
             }
         }
 
         // apply the difference
-        ans.time[i] = time[2 * i + evenReference];
+        result.time[i] = time[2 * i + msIndexShift];
 
-        var len = ms[2 * i + evenReference][0].length;
-        ans.ms[i] = [
+        var len = ms[2 * i + msIndexShift][0].length;
+        result.ms[i] = [
             new Array(len),
             new Array(len)
         ];
         for (var m = 0; m < len; m++) {
-            ans.ms[i][0][m] = ms[2 * i + evenReference][0][m] + difference;
-            ans.ms[i][1][m] = ms[2 * i + evenReference][1][m];
+            result.ms[i][0][m] = ms[2 * i + msIndexShift][0][m] + difference;
+            result.ms[i][1][m] = ms[2 * i + msIndexShift][1][m];
         }
 
-        ans.tic[i] = ms[2 * i + evenReference][1].reduce((a, b) => (a + b), 0);
+        result.tic[i] = ms[2 * i + msIndexShift][1].reduce((a, b) => (a + b), 0);
     }
 
-    return ans;
+    return result;
 }
 
 module.exports = applyLockMass;
