@@ -25,10 +25,11 @@ function applyLockMass(chromatogram, mf, options) {
     // calculate the mass reference values
     const referenceMass = mf.map((mf) => analyseMF(mf).em);
 
-    const ms = chromatogram.findSerieByName('ms').data;
+    let ms = chromatogram.findSerieByName('ms');
     if (!ms) {
         throw new Error('The mass serie must be defined');
     }
+    ms = ms.data;
     const time = chromatogram.getTimes();
 
     // check where is the reference values

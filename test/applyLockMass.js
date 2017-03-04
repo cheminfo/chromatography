@@ -107,3 +107,25 @@ test('different references', t => {
         t.is(Math.abs(result.ms[1][0][i] - expectedMass[i]) < 10e-4, true);
     }
 });
+
+test('check exceptions', t => {
+    let ms = [
+        [[622.024747], [274]]
+    ];
+
+    let times = new Array(ms.length);
+    for (let i = 0; i < ms.length; ++i) {
+        times[i] = i;
+    }
+
+    let chrom = new Chromatogram(times);
+
+    t.throws(applyLockMass.bind(null, chrom, 'C12H19F12N3O6P3'), 'The mass serie must be defined');
+
+    chrom.addSerie({
+        dimension: 2,
+        name: 'ms',
+        data: ms
+    });
+    t.throws(applyLockMass.bind(null, chrom, 'C12H19F12N3O6P3'), 'The series must have an even size');
+});
