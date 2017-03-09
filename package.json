@@ -5,6 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "build": "cheminfo build --babel --no-uglify --root Chromatography",
+    "build-doc": "documentation build src/index.js --github --output docs --format html --sort-order alpha",
+    "publish-doc": "npm run build-doc && git add docs && git commit -m \"doc: rebuild docs\" && git push origin master",
     "eslint": "eslint src test",
     "eslint-fix": "npm run eslint -- --fix",
     "test": "ava",
@@ -57,6 +59,7 @@
   "dependencies": {
     "binary-search": "^1.3.2",
     "chemcalc": "^3.3.2",
+    "documentation": "^4.0.0-beta.18",
     "jcampconverter": "^2.3.0",
     "ml-gsd": "^2.0.1",
     "ml-regression": "^4.1.1"

@@ -2175,7 +2175,7 @@ doctrine@^1.1.0, doctrine@^1.2.2:
     esutils "^2.0.2"
     isarray "^1.0.0"
 
-documentation@4.0.0-beta10:
+documentation@4.0.0-beta10, documentation@^4.0.0-beta.18:
   version "4.0.0-beta10"
   resolved "https://registry.yarnpkg.com/documentation/-/documentation-4.0.0-beta10.tgz#35d4551e3e519f4d9bdf2bce9b5bb3bc3a227390"
   dependencies:
