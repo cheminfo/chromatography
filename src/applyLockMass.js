@@ -10,8 +10,8 @@ const defaultOptions = {
  * Recalculates series for GC/MS with lock mass
  * @param {Chromatogram} chromatogram - GC/MS chromatogram where make the peak picking
  * @param {string|Array<string>} mf - Reference molecular formula(s)
- * @param {object} [options] - Options object
- * @param {boolean} [options.oddReference] - Mass reference it's in the odd position
+ * @param {object} [options={}] - Options object
+ * @param {boolean} [options.oddReference=true] - Mass reference it's in the odd position
  * @return {{tic: Array<number>, ms: Array<Array<number>>, time: Array<number>}}
  */
 function applyLockMass(chromatogram, mf, options) {
