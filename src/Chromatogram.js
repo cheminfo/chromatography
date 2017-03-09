@@ -60,6 +60,8 @@ class Chromatogram {
         this.series.push(serie);
     }
 
+
+
     /**
      * Returns the first time value
      * @return {number} - First time value

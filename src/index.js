@@ -17,3 +17,4 @@ exports.rescaleTime = require('./rescaleTime');
 exports.fromJcamp = require('./fromJcamp');
 exports.fromJSON = require('./fromJSON');
 exports.applyLockMass = require('./applyLockMass');
+exports.calculateTic = require('./calculateTic');
