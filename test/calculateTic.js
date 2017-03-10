@@ -1,5 +1,5 @@
 import test from 'ava';
-import {Chromatogram, calculateTic,} from '..';
+import {Chromatogram, calculateTic} from '..';
 
 test('simple case', t => {
     let ms = [
@@ -7,7 +7,7 @@ test('simple case', t => {
         [[101, 201, 301], [11, 21, 31]],
     ];
 
-    let i=1;
+    let i = 1;
     let times = ms.map(() => i++);
 
     let chrom = new Chromatogram(times);
@@ -18,6 +18,6 @@ test('simple case', t => {
     });
 
     calculateTic(chrom);
-    t.is(chrom.series[1].name, 'tic');
-    t.deepEqual(chrom.series[1].data, [60, 63]);
+    t.is(chrom.series.tic.name, 'tic');
+    t.deepEqual(chrom.series.tic.data, [60, 63]);
 });

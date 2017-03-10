@@ -23,7 +23,7 @@ class Chromatogram {
         this.times = data.times;
         this.length = data.times.length;
 
-        this.series = [];
+        this.series = {};
         if (data.series) {
             for (const serie of data.series) {
                 this.addSerie(serie);
@@ -37,7 +37,7 @@ class Chromatogram {
      * @return {object} - Object with an array of data, dimensions of the elements in the array and name of the serie
      */
     findSerieByName(name) {
-        return this.series.find(serie => serie.name === name);
+        return this.series[name];
     }
 
     /**
@@ -57,9 +57,8 @@ class Chromatogram {
         if (!Array.isArray(serie.data)) {
             throw new Error('serie must have a data array');
         }
-        this.series.push(serie);
+        this.series[serie.name] = serie;
     }
-
 
 
     /**
