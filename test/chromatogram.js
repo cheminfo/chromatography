@@ -21,8 +21,23 @@ test('addSerie errors', t => {
     t.throws(() => chrom.addSerie({dimension: 1, name: 'a'}), 'serie must have a data array');
 });
 
-test('addSerie errors', t => {
+test('get first and last time', t => {
     let chrom = new Chromatogram([1, 2, 3]);
     t.is(chrom.getFirstTime(), 1);
     t.is(chrom.getLastTime(), 3);
+});
+
+test('deleteSerieByName', t => {
+    let chrom = new Chromatogram({
+        times: [1, 2],
+        series: [{
+            name: 'tic',
+            dimension: 1,
+            data: [1, 2]
+        }]
+    });
+    t.throws(() => chrom.deleteSerieByName('ms'), 'a serie with name ms doesn\'t exists');
+
+    chrom.deleteSerieByName('tic');
+    t.is(chrom.findSerieByName('tic'), undefined);
 });
