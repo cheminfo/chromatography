@@ -2,42 +2,38 @@ import test from 'ava';
 import {Chromatogram} from '..';
 
 test('Constructor errors', t => {
-    t.throws(() => new Chromatogram(), 'data must be an object or array');
-    t.throws(() => new Chromatogram({}), 'times array is mandatory');
-});
-
-test('addSerie errors', t => {
-    let chrom = new Chromatogram({
-        times: [1, 2],
-        series: [{
-            name: 'tic',
-            dimension: 1,
-            data: [1, 2]
-        }]
-    });
-    t.throws(() => chrom.addSerie({dimension: 'a'}), 'serie must have a dimension');
-    t.throws(() => chrom.addSerie({dimension: 1, name: 1}), 'serie must have a name');
-    t.throws(() => chrom.addSerie({dimension: 1, name: 'tic'}), 'a serie with name tic already exists');
-    t.throws(() => chrom.addSerie({dimension: 1, name: 'a'}), 'serie must have a data array');
+    t.throws(() => new Chromatogram({a:1}), 'Times must be an array');
+    t.throws(() => new Chromatogram(12), 'Times must be an array');
 });
 
 test('get first and last time', t => {
     let chrom = new Chromatogram([1, 2, 3]);
-    t.is(chrom.getFirstTime(), 1);
-    t.is(chrom.getLastTime(), 3);
+    t.is(chrom.firstTime, 1);
+    t.is(chrom.lastTime, 3);
 });
 
-test('deleteSerie', t => {
-    let chrom = new Chromatogram({
-        times: [1, 2],
-        series: [{
-            name: 'tic',
-            dimension: 1,
-            data: [1, 2]
-        }]
-    });
-    t.throws(() => chrom.deleteSerie('ms'), 'a serie with name ms doesn\'t exists');
+test.only('addSerie errors', t => {
+    let chromatogram = new Chromatogram(
+        [1, 2],
+        {'tic' : [1, 2]}
+    );
+    t.throws(() => chromatogram.addSerie('abc',1234), 'Serie.fromArray requires as parameter an array of numbers or array');
+    t.throws(() => chromatogram.addSerie('abc',{a:1, b:2}), 'Serie.fromArray requires as parameter an array of numbers or array');
+    t.throws(() => chromatogram.addSerie('tic', [2,3,4]), 'A serie with name "tic" already exists');
 
-    chrom.deleteSerie('tic');
-    t.is(chrom.getSerie('tic'), undefined);
+});
+
+
+
+test('deleteSerie', t => {
+    let chromatogram = new Chromatogram(
+        [1, 2],
+        {
+            tic:[1,2]
+        }
+    );
+    t.is(chromatogram.hasSerie('tic'), true);
+    t.throws(() => chromatogram.deleteSerie('ms'), 'The serie "ms" does not exist');
+    chromatogram.deleteSerie('tic');
+    t.is(chromatogram.hasSerie('tic'), false);
 });

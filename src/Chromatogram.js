@@ -1,9 +1,9 @@
 'use strict';
 
 const rescaleTime = require('./rescaleTime');
-const Serie1D = require('./Serie1D');
-const Serie2D = require('./Serie2D');
-const Serie = require('./Serie');
+const serieFromArray = require('./serieFromArray');
+
+const toJSON = require('./to/json');
 
 /**
  * Class allowing to store time / ms (ms) series
@@ -19,9 +19,10 @@ class Chromatogram {
             return;
         } else {
             if (!Array.isArray(times)) {
-                throw new TypeError('imes array is mandatory');
+                throw new TypeError('Times must be an array');
             }
             this.times=times;
+            if (! series) return;
             this.addSeries(series);
         }
     }
@@ -45,8 +46,8 @@ class Chromatogram {
      * @param {string} name - Name of the serie
      */
     deleteSerie(name) {
-        if (!this.getSerie(name)) {
-            throw new Error(`a serie with name ${name} doesn't exists`);
+        if (!this.hasSerie(name)) {
+            throw new Error(`The serie "${name}" does not exist`);
         } else {
             delete this.series[name];
         }
@@ -69,15 +70,23 @@ class Chromatogram {
      * Add a new serie
      * @param {string} name - Name of the serie to add
      * @param {array} array - Object with an array of data, dimensions of the elements in the array and name of the serie
+     * @param {object} [options={}] -
+     * @param {boolean} [options.force=false] - Force replacement of existing serie
      */
     addSerie(name, array, options={}) {
-        if (this.getSerie(name)) {
-            throw new Error(`a serie with name ${serie.name} already exists`);
+        if (this.hasSerie(name) && ! options.force) {
+            throw new Error(`A serie with name "${name}" already exists`);
         }
-        if (!Array.isArray(serie.data)) {
-            throw new Error('serie must have a data array');
-        }
-        this.series[name] = Serie.fromArray(array);
+        this.series[name] = serieFromArray(array);
+    }
+
+    /**
+     * Returns true if the serie name exists
+     * @param name
+     * @returns {boolean}
+     */
+    hasSerie(name) {
+        return typeof this.series[name] !== 'undefined';
     }
 
 
@@ -85,8 +94,7 @@ class Chromatogram {
      * Returns the first time value
      * @return {number} - First time value
      */
-    // TODO this should be converted to a getter so we can use chromatogram.firstTime
-    getFirstTime() {
+    get firstTime() {
         return this.times[0];
     }
 
@@ -94,8 +102,7 @@ class Chromatogram {
      * Returns the last time value
      * @return {number} - Last time value
      */
-    // TODO this should be converted to a getter so we can use chromatogram.lastTime
-    getLastTime() {
+    get lastTime() {
         return this.times[this.length - 1];
     }
 
@@ -122,8 +129,14 @@ class Chromatogram {
     rescaleTime(conversionFunction) {
         this.times = rescaleTime(this.times, conversionFunction);
     }
+
+    toJSON() {
+        toJSON.call(this);
+    }
+
+
 }
 
-Chromatogram.toJSON=require('./to/json');
+
 
 module.exports = Chromatogram;
