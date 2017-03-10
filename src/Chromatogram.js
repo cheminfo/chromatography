@@ -41,6 +41,18 @@ class Chromatogram {
     }
 
     /**
+     * Delete a serie
+     * @param {string} name - Name of the serie
+     */
+    deleteSerieByName(name) {
+        if (!this.findSerieByName(name)) {
+            throw new Error(`a serie with name ${name} doesn't exists`);
+        } else {
+            delete this.series[name];
+        }
+    }
+
+    /**
      * Add a new serie
      * @param {object} serie - Object with an array of data, dimensions of the elements in the array and name of the serie
      */
