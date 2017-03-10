@@ -35,6 +35,6 @@ test('toJSON - fromJSON', t => {
 
     let newChrom = fromJSON(json);
     t.deepEqual(newChrom.getTimes(), chrom.getTimes());
-    t.deepEqual(newChrom.findSerieByName('tic'), chrom.findSerieByName('tic'));
-    t.deepEqual(newChrom.findSerieByName('ms'), chrom.findSerieByName('ms'));
+    t.deepEqual(newChrom.getSerie('tic'), chrom.getSerie('tic'));
+    t.deepEqual(newChrom.getSerie('ms'), chrom.getSerie('ms'));
 });

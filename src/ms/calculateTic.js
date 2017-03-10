@@ -14,11 +14,11 @@ const defaultOptions = {
 function calcultateTic(chromatogram, options) {
     options = Object.assign({}, defaultOptions, options);
 
-    if (chromatogram.findSerieByName('tic') && !options.force) {
+    if (chromatogram.getSerie('tic') && !options.force) {
         return chromatogram;
     }
 
-    let ms = chromatogram.findSerieByName('ms');
+    let ms = chromatogram.getSerie('ms');
     if (!ms) {
         throw new Error('The mass serie must be defined');
     }

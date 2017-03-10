@@ -27,7 +27,7 @@ test('get first and last time', t => {
     t.is(chrom.getLastTime(), 3);
 });
 
-test('deleteSerieByName', t => {
+test('deleteSerie', t => {
     let chrom = new Chromatogram({
         times: [1, 2],
         series: [{
@@ -36,8 +36,8 @@ test('deleteSerieByName', t => {
             data: [1, 2]
         }]
     });
-    t.throws(() => chrom.deleteSerieByName('ms'), 'a serie with name ms doesn\'t exists');
+    t.throws(() => chrom.deleteSerie('ms'), 'a serie with name ms doesn\'t exists');
 
-    chrom.deleteSerieByName('tic');
-    t.is(chrom.findSerieByName('tic'), undefined);
+    chrom.deleteSerie('tic');
+    t.is(chrom.getSerie('tic'), undefined);
 });

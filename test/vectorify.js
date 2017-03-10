@@ -22,7 +22,7 @@ test('from a Diesel chromatogram', async t => {
     let peakList = getPeaks(chrom);
     t.is(peakList.length, 312);
 
-    let sampleMS = chrom.findSerieByName('ms').data;
+    let sampleMS = chrom.getSerie('ms').data;
     t.not(sampleMS.length, 0);
     let integratedList = massInPeaks(peakList, sampleMS);
     t.is(peakList.length, integratedList.length);
@@ -57,7 +57,7 @@ test('triplet', t => {
     let peakList = getPeaks(chrom);
     t.is(peakList.length, 1);
 
-    let sampleMS = chrom.findSerieByName('ms').data;
+    let sampleMS = chrom.getSerie('ms').data;
     t.not(sampleMS.length, 0);
     let integratedList = massInPeaks(peakList, sampleMS);
     t.is(peakList.length, integratedList.length);

@@ -1,6 +1,6 @@
 'use strict';
 
-const Chromatogram = require('./Chromatogram');
+const Chromatogram = require('./../Chromatogram');
 
 /**
  * Parse from a JSON element to a new Chromatogram

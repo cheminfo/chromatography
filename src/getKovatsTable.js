@@ -22,7 +22,7 @@ function getKovatsTable(reference, options = {}) {
     peaks = peaks.sort((a, b) => a.index - b.index);
 
     // integrate mass in the peaks
-    let ms = reference.findSerieByName('ms').data;
+    let ms = reference.getSerie('ms').data;
     let integratedMs = massInPeaks(peaks, ms, {thresholdFactor, maxNumberPeaks, groupWidth});
 
     var kovatsIndexes = new Array(integratedMs.length);

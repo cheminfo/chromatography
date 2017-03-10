@@ -1,6 +1,9 @@
 'use strict';
 
 const rescaleTime = require('./rescaleTime');
+const Serie1D = require('./Serie1D');
+const Serie2D = require('./Serie2D');
+const Serie = require('./Serie');
 
 /**
  * Class allowing to store time / ms (ms) series
@@ -9,34 +12,31 @@ const rescaleTime = require('./rescaleTime');
  * @param {object|Array<number>} data - A GC/MS data format object or a time serie
  */
 class Chromatogram {
-    constructor(data) {
-        if (Array.isArray(data)) {
-            // init with times
-            data = {times: data};
-        } else if (typeof data !== 'object') {
-            throw new TypeError('data must be an object or array');
-        }
-
-        if (!Array.isArray(data.times)) {
-            throw new TypeError('times array is mandatory');
-        }
-        this.times = data.times;
-        this.length = data.times.length;
-
-        this.series = {};
-        if (data.series) {
-            for (const serie of data.series) {
-                this.addSerie(serie);
+    constructor(times, series) {
+        this.series={};
+        this.times=[];
+        if (! times) {
+            return;
+        } else {
+            if (!Array.isArray(times)) {
+                throw new TypeError('imes array is mandatory');
             }
+            this.times=times;
+            this.addSeries(series);
         }
     }
+
+    get length() {
+        return this.times.length;
+    }
+
 
     /**
      * Find the serie giving the name
      * @param {string} name - name of the serie
      * @return {object} - Object with an array of data, dimensions of the elements in the array and name of the serie
      */
-    findSerieByName(name) {
+    getSerie(name) {
         return this.series[name];
     }
 
@@ -44,8 +44,8 @@ class Chromatogram {
      * Delete a serie
      * @param {string} name - Name of the serie
      */
-    deleteSerieByName(name) {
-        if (!this.findSerieByName(name)) {
+    deleteSerie(name) {
+        if (!this.getSerie(name)) {
             throw new Error(`a serie with name ${name} doesn't exists`);
         } else {
             delete this.series[name];
@@ -54,22 +54,30 @@ class Chromatogram {
 
     /**
      * Add a new serie
-     * @param {object} serie - Object with an array of data, dimensions of the elements in the array and name of the serie
+     * @param {object} series - Object with an array of data, dimensions of the elements in the array and name of the serie
      */
-    addSerie(serie) {
-        if (typeof serie.dimension !== 'number') {
-            throw new Error('serie must have a dimension');
+    addSeries(series, options={}) {
+        if (typeof series !== 'object' || Array.isArray(series)) {
+            throw new TypeError('data must be an object containing arrays of series');
         }
-        if (typeof serie.name !== 'string') {
-            throw new Error('serie must have a name');
+        for (const key of Object.keys(series)) {
+            this.addSerie(key, series[key], options);
         }
-        if (this.findSerieByName(serie.name)) {
+    }
+    
+    /**
+     * Add a new serie
+     * @param {string} name - Name of the serie to add
+     * @param {array} array - Object with an array of data, dimensions of the elements in the array and name of the serie
+     */
+    addSerie(name, array, options={}) {
+        if (this.getSerie(name)) {
             throw new Error(`a serie with name ${serie.name} already exists`);
         }
         if (!Array.isArray(serie.data)) {
             throw new Error('serie must have a data array');
         }
-        this.series[serie.name] = serie;
+        this.series[name] = Serie.fromArray(array);
     }
 
 
@@ -77,6 +85,7 @@ class Chromatogram {
      * Returns the first time value
      * @return {number} - First time value
      */
+    // TODO this should be converted to a getter so we can use chromatogram.firstTime
     getFirstTime() {
         return this.times[0];
     }
@@ -85,6 +94,7 @@ class Chromatogram {
      * Returns the last time value
      * @return {number} - Last time value
      */
+    // TODO this should be converted to a getter so we can use chromatogram.lastTime
     getLastTime() {
         return this.times[this.length - 1];
     }
@@ -112,38 +122,8 @@ class Chromatogram {
     rescaleTime(conversionFunction) {
         this.times = rescaleTime(this.times, conversionFunction);
     }
-
-    /**
-     * Parse the content to an JSON Array
-     * @return {Array<object>} - Returns a list with the following fields:
-     *  * `time`: Number for the retention time
-     *  * `tic`: Number for the total ion chromatogram
-     *  * `mass`: List of mass values and their respective intensities
-     */
-    toJSON() {
-        var ans = new Array(this.times.length);
-        const tic = this.findSerieByName('tic').data;
-        const mass = this.findSerieByName('ms').data.map((ms) => {
-            var ansMS = new Array(ms[0].length);
-            for (var i = 0; i < ansMS.length; i++) {
-                ansMS[i] = {
-                    mass: ms[0][i],
-                    intensity: ms[1][i]
-                };
-            }
-            return ansMS;
-        });
-
-        for (var i = 0; i < ans.length; i++) {
-            ans[i] = {
-                time: this.times[i],
-                tic: tic[i],
-                mass: mass[i]
-            };
-        }
-
-        return ans;
-    }
 }
+
+Chromatogram.toJSON=require('./to/json');
 
 module.exports = Chromatogram;

@@ -1,6 +1,6 @@
 'use strict';
 
-const Chromatogram = require('./Chromatogram');
+const Chromatogram = require('./../Chromatogram');
 const converter = require('jcampconverter').convert;
 
 /**

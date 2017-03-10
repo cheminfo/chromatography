@@ -12,7 +12,7 @@ const gsd = require('ml-gsd').gsd;
 function getPeaks(chrom, options = {}) {
     const {heightFilter = 2} = options;
 
-    let tic = chrom.findSerieByName('tic');
+    let tic = chrom.getSerie('tic');
     if (!tic) {
         throw new Error('\'tic\' serie not founded');
     }
