@@ -150,8 +150,6 @@ class Chromatogram {
     toStringifiedJSON() {
         return toStringifiedJSON.call(this);
     }
-
-
 }
 
 
