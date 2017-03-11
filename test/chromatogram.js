@@ -2,7 +2,7 @@ import test from 'ava';
 import {Chromatogram} from '..';
 
 test('Constructor errors', t => {
-    t.throws(() => new Chromatogram({a:1}), 'Times must be an array');
+    t.throws(() => new Chromatogram({a: 1}), 'Times must be an array');
     t.throws(() => new Chromatogram(12), 'Times must be an array');
 });
 
@@ -15,21 +15,20 @@ test('get first and last time', t => {
 test('addSerie errors', t => {
     let chromatogram = new Chromatogram(
         [1, 2],
-        {'tic' : [1, 2]}
+        {'tic': [1, 2]}
     );
-    t.throws(() => chromatogram.addSerie('abc',1234), 'Serie.fromArray requires as parameter an array of numbers or array');
-    t.throws(() => chromatogram.addSerie('abc',{a:1, b:2}), 'Serie.fromArray requires as parameter an array of numbers or array');
-    t.throws(() => chromatogram.addSerie('tic', [2,3,4]), 'A serie with name "tic" already exists');
+    t.throws(() => chromatogram.addSerie('abc', 1234), 'Serie.fromArray requires as parameter an array of numbers or array');
+    t.throws(() => chromatogram.addSerie('abc', {a: 1, b: 2}), 'Serie.fromArray requires as parameter an array of numbers or array');
+    t.throws(() => chromatogram.addSerie('tic', [2, 3, 4]), 'A serie with name "tic" already exists');
 
 });
-
 
 
 test('deleteSerie', t => {
     let chromatogram = new Chromatogram(
         [1, 2],
         {
-            tic:[1,2]
+            tic: [1, 2]
         }
     );
     t.is(chromatogram.hasSerie('tic'), true);
