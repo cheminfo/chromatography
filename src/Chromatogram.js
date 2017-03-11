@@ -20,7 +20,8 @@ class Chromatogram {
                 throw new TypeError('Times must be an array');
             }
             this.times = times;
-            if (!series) return;
+        }
+        if (series) {
             this.addSeries(series);
         }
     }

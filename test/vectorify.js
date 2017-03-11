@@ -1,9 +1,8 @@
 import test from 'ava';
-import {convert} from 'jcampconverter';
 import fs from 'fs';
 import Promise from 'bluebird';
 import {join} from 'path';
-import {Chromatogram, massInPeaks, getPeaks, vectorify} from '..';
+import {Chromatogram, massInPeaks, getPeaks, vectorify, fromJcamp} from '..';
 
 const readFileAsync = Promise.promisify(fs.readFile);
 
@@ -15,8 +14,7 @@ function lorentzian(x, x0 = 0, gamma = 1) {
 test('from a Diesel chromatogram', async t => {
     const path = join(__dirname, 'data/jcamp/P064.JDX');
     const jcamp = await readFileAsync(path, 'utf8');
-    const data = convert(jcamp, {newGCMS: true}).gcms;
-    const chrom = new Chromatogram(data);
+    const chrom = fromJcamp(jcamp);
     t.is(chrom.length, 6992);
 
     let peakList = getPeaks(chrom);

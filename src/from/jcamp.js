@@ -10,7 +10,14 @@ const converter = require('jcampconverter').convert;
  */
 function fromJcamp(jcamp) {
     const data = converter(jcamp, {newGCMS: true}).gcms;
-    return new Chromatogram(data);
+
+    const time = data.times;
+    let series = {};
+    for (var i = 0; i < data.series.length; i++) {
+        series[data.series[i].name] = data.series[i].data;
+    }
+
+    return new Chromatogram(time, series);
 }
 
 module.exports = fromJcamp;

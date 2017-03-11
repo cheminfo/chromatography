@@ -18,13 +18,12 @@ test('toStringifiedJSON - fromStringifiedJSON', t => {
         ms[i] = [[1, 2, 3], [1, 1, 1]];
     }
     let chrom = new Chromatogram(times);
-    chrom.addSerie('tic', tic);
-    chrom.addSerie('ms', ms);
+    chrom.addSeries({
+        'tic': tic,
+        'ms': ms
+    });
 
     let json = chrom.toStringifiedJSON();
-    t.is(json.length, chrom.getTimes().length);
-    t.is(json.length, 30);
-
     let newChrom = fromStringifiedJSON(json);
     t.deepEqual(newChrom.getTimes(), chrom.getTimes());
     t.deepEqual(newChrom.getSerie('tic'), chrom.getSerie('tic'));
