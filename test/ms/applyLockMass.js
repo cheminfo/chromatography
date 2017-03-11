@@ -2,7 +2,7 @@ import test from 'ava';
 import {Chromatogram, applyLockMass} from '../..';
 
 test('simple case', t => {
-    var chromatogram=new Chromatogram(
+    let chromatogram=new Chromatogram(
         [1,2],
         {
             ms:[
@@ -12,113 +12,91 @@ test('simple case', t => {
         }
     );
 
-    // em: 622.02951
-    let result = applyLockMass(chromatogram, 'C12H19F12N3O6P3');
-    console.log(result.series.ms.data);
-    // t.is(result.tic.length, ms.length / 2);
-    // t.is(result.time.length, ms.length / 2);
-    // t.is(result.ms.length, ms.length / 2);
-    //
-    // t.deepEqual(result.tic, [60]);
-    // t.deepEqual(result.time, [0]);
-    // t.deepEqual(result.ms[0][1], [10, 20, 30]);
-    //
-    // const expectedMass = [100.005, 200.005, 300.005];
-    // for (var i = 0; i < expectedMass.length; i++) {
-    //     t.is(Math.abs(result.ms[0][0][i] - expectedMass[i]) < 10e-4, true);
-    // }
+    let newLength=chromatogram.getTimes().length/2;
+    applyLockMass(chromatogram, 'C12H19F12N3O6P3'); // em: 622.02951
+
+    t.is(chromatogram.getTimes().length, newLength);
+    t.is(chromatogram.length, newLength);
+    t.is(chromatogram.getSerie('ms').data.length, newLength);
+
+    t.deepEqual(chromatogram.getTimes(), [1]);
+    t.deepEqual(chromatogram.getSerie('ms').data[0][1], [10, 20, 30]);
+
+    const expectedMass = [100.005, 200.005, 300.005];
+    for (let i = 0; i < expectedMass.length; i++) {
+        t.is(Math.abs(chromatogram.getSerie('ms').data[0][0][i] - expectedMass[i]) < 10e-4, true);
+    }
 });
 
 test('array of mf', t => {
-    let ms = [
-        [[100, 200, 300], [10, 20, 30]],
-        [[622.024747], [274]]
-    ];
+    let chromatogram=new Chromatogram(
+        [1,2],
+        {
+            ms:[
+                [[100, 200, 300], [10, 20, 30]],
+                [[622.024747], [274]]
+            ]
+        }
+    );
 
-    let times = new Array(ms.length);
-    for (let i = 0; i < ms.length; ++i) {
-        times[i] = i;
-    }
+    let newLength=chromatogram.getTimes().length/2;
+    applyLockMass(chromatogram, ['C12H19F12N3O6P3', 'CCl3H', 'C10H20O3']); // em: 622.02951
 
-    let chrom = new Chromatogram(times);
-    chrom.addSerie({
-        dimension: 2,
-        name: 'ms',
-        data: ms
-    });
+    t.is(chromatogram.getTimes().length, newLength);
+    t.is(chromatogram.length, newLength);
+    t.is(chromatogram.getSerie('ms').data.length, newLength);
 
-    let result = applyLockMass(chrom, ['C12H19F12N3O6P3', 'CCl3H', 'C10H20O3']);
-
-    t.is(result.tic.length, ms.length / 2);
-    t.is(result.time.length, ms.length / 2);
-    t.is(result.ms.length, ms.length / 2);
-
-    t.deepEqual(result.tic, [60]);
-    t.deepEqual(result.time, [0]);
-    t.deepEqual(result.ms[0][1], [10, 20, 30]);
+    t.deepEqual(chromatogram.getTimes(), [1]);
+    t.deepEqual(chromatogram.getSerie('ms').data[0][1], [10, 20, 30]);
 
     const expectedMass = [100.005, 200.005, 300.005];
-    for (var i = 0; i < expectedMass.length; i++) {
-        t.is(Math.abs(result.ms[0][0][i] - expectedMass[i]) < 10e-4, true);
+    for (let i = 0; i < expectedMass.length; i++) {
+        t.is(Math.abs(chromatogram.getSerie('ms').data[0][0][i] - expectedMass[i]) < 10e-4, true);
     }
 });
 
 test('different references', t => {
-    let ms = [
-        [[100, 200, 300], [10, 20, 30]],
-        [[622.024747], [274]],
-        [[100, 200, 300], [10, 20, 30]],
-        [[188.136240], [272]],
-    ];
+    let chromatogram=new Chromatogram(
+        [1,2,3,4],
+        {
+            ms:[
+                [[622.024747], [274]],
+                [[100, 200, 300], [10, 20, 30]],
+                [[188.136240], [272]],
+                [[100, 200, 300], [10, 20, 30]],
+            ]
+        }
+    );
 
-    let times = new Array(ms.length);
-    for (let i = 0; i < ms.length; ++i) {
-        times[i] = i;
-    }
+    let newLength=chromatogram.getTimes().length/2;
+    applyLockMass(chromatogram, ['C12H19F12N3O6P3', 'C10H20O3'],
+        {
+            oddReference:false
+        }
+    ); // em: 622.02951
 
-    let chrom = new Chromatogram(times);
-    chrom.addSerie({
-        dimension: 2,
-        name: 'ms',
-        data: ms
-    });
+    t.is(chromatogram.getTimes().length, newLength);
+    t.is(chromatogram.length, newLength);
+    t.is(chromatogram.getSerie('ms').data.length, newLength);
 
-    let result = applyLockMass(chrom, ['C12H19F12N3O6P3', 'C10H20O3']);
-
-    t.is(result.tic.length, ms.length / 2);
-    t.is(result.time.length, ms.length / 2);
-    t.is(result.ms.length, ms.length / 2);
-
-    t.deepEqual(result.tic, [60, 60]);
-    t.deepEqual(result.time, [0, 2]);
-    t.deepEqual(result.ms[0][1], [10, 20, 30]);
-    t.deepEqual(result.ms[1][1], [10, 20, 30]);
+    t.deepEqual(chromatogram.getTimes(), [2,4]);
+    t.deepEqual(chromatogram.getSerie('ms').data[0][1], [10, 20, 30]);
+    t.deepEqual(chromatogram.getSerie('ms').data[1][1], [10, 20, 30]);
 
     const expectedMass = [100.005, 200.005, 300.005];
-    for (var i = 0; i < expectedMass.length; i++) {
-        t.is(Math.abs(result.ms[0][0][i] - expectedMass[i]) < 10e-4, true);
-        t.is(Math.abs(result.ms[1][0][i] - expectedMass[i]) < 10e-4, true);
+    for (let i = 0; i < expectedMass.length; i++) {
+        t.is(Math.abs(chromatogram.getSerie('ms').data[0][0][i] - expectedMass[i]) < 10e-4, true);
+        t.is(Math.abs(chromatogram.getSerie('ms').data[1][0][i] - expectedMass[i]) < 10e-4, true);
     }
 });
 
 test('check exceptions', t => {
-    let ms = [
-        [[622.024747], [274]]
-    ];
+    let chromatogram=new Chromatogram(
+        [1]
+    );
 
-    let times = new Array(ms.length);
-    for (let i = 0; i < ms.length; ++i) {
-        times[i] = i;
-    }
+    t.throws(applyLockMass.bind(null, chromatogram, 'C12H19F12N3O6P3'), 'The mass serie must be defined');
 
-    let chrom = new Chromatogram(times);
-
-    t.throws(applyLockMass.bind(null, chrom, 'C12H19F12N3O6P3'), 'The mass serie must be defined');
-
-    chrom.addSerie({
-        dimension: 2,
-        name: 'ms',
-        data: ms
-    });
-    t.throws(applyLockMass.bind(null, chrom, 'C12H19F12N3O6P3'), 'The series must have an even size');
+    chromatogram.addSerie('ms',[[[622.024747], [274]]]);
+    t.throws(applyLockMass.bind(null, chromatogram, 'C12H19F12N3O6P3'), 'The series must have an even size');
 });
