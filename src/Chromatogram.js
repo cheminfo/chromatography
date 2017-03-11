@@ -82,6 +82,9 @@ class Chromatogram {
         if (this.hasSerie(name) && ! options.force) {
             throw new Error(`A serie with name "${name}" already exists`);
         }
+        if (this.times.length !== array.length) {
+            throw new Error(`The array size is not the same as the time size`);
+        }
         this.series[name] = serieFromArray(array);
     }
 
