@@ -33,44 +33,44 @@ function applyLockMass(chromatogram, mf, options) {
     const time = chromatogram.getTimes();
 
     // check where is the reference values
-    var referenceIndexShift = Number(options.oddReference);
-    var msIndexShift = Number(!options.oddReference);
+    let referenceIndexShift = Number(options.oddReference);
+    let msIndexShift = Number(!options.oddReference);
 
     if (ms.length % 2 !== 0) {
         throw new Error('The series must have an even size');
     }
-    var result = {
-        tic: new Array(ms.length / 2),
-        ms: new Array(ms.length / 2),
-        time: new Array(ms.length / 2)
-    };
 
-    for (var i = 0; i < (ms.length / 2); i++) {
-        // calculate the difference between theory and experimental
-        var difference = Number.MAX_VALUE;
-        for (var j = 0; j < referenceMass.length; j++) {
+    let newLength=ms.length>>1;
+    let newTimes=new Array(newLength);
+    let newData=new Array(newLength);
+
+    // applying the changes for all the spectra
+    for (let i = 0; i < newLength; i++) {
+        // calculate the difference between theory and experimental (the smallest)
+        let difference = Number.MAX_VALUE;
+        for (let j = 0; j < referenceMass.length; j++) {
             if (Math.abs(difference) > Math.abs(referenceMass[j] - ms[2 * i + referenceIndexShift][0])) {
                 difference = referenceMass[j] - ms[2 * i + referenceIndexShift][0];
             }
         }
 
         // apply the difference
-        result.time[i] = time[2 * i + msIndexShift];
+        newTimes[i] = time[2 * i + msIndexShift];
 
         var len = ms[2 * i + msIndexShift][0].length;
-        result.ms[i] = [
+        newData[i] = [
             new Array(len),
             new Array(len)
         ];
-        for (var m = 0; m < len; m++) {
-            result.ms[i][0][m] = ms[2 * i + msIndexShift][0][m] + difference;
-            result.ms[i][1][m] = ms[2 * i + msIndexShift][1][m];
+        for (let m = 0; m < len; m++) {
+            newData[i][0][m] = ms[2 * i + msIndexShift][0][m] + difference;
+            newData[i][1][m] = ms[2 * i + msIndexShift][1][m];
         }
-
-        result.tic[i] = ms[2 * i + msIndexShift][1].reduce((a, b) => (a + b), 0);
     }
 
-    return result;
+    chromatogram.filter( (index) => index%2 === referenceIndexShift );
+
+    return chromatogram;
 }
 
 module.exports = applyLockMass;

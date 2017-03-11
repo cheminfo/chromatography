@@ -1,10 +1,11 @@
 'use strict';
 
 const rescaleTime = require('./rescaleTime');
+const filter = require('./util/filter');
+
 const serieFromArray = require('./serieFromArray');
 
-const toJSON = require('./to/json');
-
+const toStringifiedJSON = require('./to/stringifiedJson');
 /**
  * Class allowing to store time / ms (ms) series
  * It allows also to store simple time a trace
@@ -39,6 +40,10 @@ class Chromatogram {
      */
     getSerie(name) {
         return this.series[name];
+    }
+
+    getSerieNames() {
+        return Object.keys(this.series);
     }
 
     /**
@@ -128,10 +133,21 @@ class Chromatogram {
      */
     rescaleTime(conversionFunction) {
         this.times = rescaleTime(this.times, conversionFunction);
+        return this;
     }
 
-    toJSON() {
-        toJSON.call(this);
+    /**
+     * Will filter the entries based on the time
+     * You can either use the index of the actual time
+     * @param {function(index, time)} -
+     */
+    filter(callback) {
+        filter(this, callback);
+        return this;
+    }
+
+    toStringifiedJSON() {
+        return toStringifiedJSON.call(this);
     }
 
 

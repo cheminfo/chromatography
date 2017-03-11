@@ -1,12 +1,12 @@
 import test from 'ava';
-import {Chromatogram, fromJSON} from '..';
+import {Chromatogram, fromStringifiedJSON} from '..';
 
 // https://en.wikipedia.org/wiki/Cauchy_distribution
 function lorentzian(x, x0 = 0, gamma = 1) {
     return (gamma * gamma) / (Math.PI * gamma * (gamma * gamma + (x - x0) * (x - x0)));
 }
 
-test('toJSON - fromJSON', t => {
+test('toStringifiedJSON - fromStringifiedJSON', t => {
     const size = 30;
     const fourth = size / 4;
     let times = new Array(size);
@@ -29,11 +29,11 @@ test('toJSON - fromJSON', t => {
         data: ms
     });
 
-    let json = chrom.toJSON();
+    let json = chrom.toStringifiedJSON();
     t.is(json.length, chrom.getTimes().length);
     t.is(json.length, 30);
 
-    let newChrom = fromJSON(json);
+    let newChrom = fromStringifiedJSON(json);
     t.deepEqual(newChrom.getTimes(), chrom.getTimes());
     t.deepEqual(newChrom.getSerie('tic'), chrom.getSerie('tic'));
     t.deepEqual(newChrom.getSerie('ms'), chrom.getSerie('ms'));

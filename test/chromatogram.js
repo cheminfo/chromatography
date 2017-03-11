@@ -12,7 +12,7 @@ test('get first and last time', t => {
     t.is(chrom.lastTime, 3);
 });
 
-test.only('addSerie errors', t => {
+test('addSerie errors', t => {
     let chromatogram = new Chromatogram(
         [1, 2],
         {'tic' : [1, 2]}

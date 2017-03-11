@@ -1,8 +1,5 @@
 'use strict';
 
-const defaultOptions = {
-    force: false
-};
 
 /**
  * Calculate tic
@@ -11,8 +8,7 @@ const defaultOptions = {
  * @param {boolean} [options.force = false] - Force the calculation it it exists
  * @return {Chromatogram} - Modified chromatogram
  */
-function calcultateTic(chromatogram, options) {
-    options = Object.assign({}, defaultOptions, options);
+function calcultateTic(chromatogram, options={}) {
 
     if (chromatogram.getSerie('tic') && !options.force) {
         return chromatogram;
@@ -23,16 +19,11 @@ function calcultateTic(chromatogram, options) {
         throw new Error('The mass serie must be defined');
     }
     var massSpectra = ms.data;
-    var tic = {
-        name: 'tic',
-        data: [],
-        dimension: 1
-    };
-    chromatogram.addSerie(tic);
-
+    var tic=[];
     for (var massSpectrum of massSpectra) {
-        tic.data.push(massSpectrum[1].reduce((a, b) => (a + b), 0));
+        tic.push(massSpectrum[1].reduce((a, b) => (a + b), 0));
     }
+    chromatogram.addSerie('tic',tic);
     return chromatogram;
 }
 
