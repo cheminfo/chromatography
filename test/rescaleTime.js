@@ -1,9 +1,8 @@
 import test from 'ava';
 import fs from 'fs';
-import {convert} from 'jcampconverter';
 import Promise from 'bluebird';
 import {join} from 'path';
-import {Chromatogram, kovatsConversionFunction, rescaleTime} from '..';
+import {kovatsConversionFunction, rescaleTime, fromJcamp} from '..';
 
 const readFileAsync = Promise.promisify(fs.readFile);
 
@@ -33,8 +32,7 @@ test('Simple case', t => {
 test('Non-in place', async t => {
     const path = join(__dirname, 'data/jcamp/P064.JDX');
     const jcamp = await readFileAsync(path, 'utf8');
-    const data = convert(jcamp, {newGCMS: true}).gcms;
-    const chrom = new Chromatogram(data);
+    const chrom = fromJcamp(jcamp);
 
     const time2kovats = kovatsConversionFunction([
         {time: 2.735, value: 800},
@@ -73,8 +71,7 @@ test('Non-in place', async t => {
 test('In place', async t => {
     const path = join(__dirname, 'data/jcamp/P064.JDX');
     const jcamp = await readFileAsync(path, 'utf8');
-    const data = convert(jcamp, {newGCMS: true}).gcms;
-    const chrom = new Chromatogram(data);
+    const chrom = fromJcamp(jcamp);
 
     const time2kovats = kovatsConversionFunction([
         {time: 2.735, value: 800},

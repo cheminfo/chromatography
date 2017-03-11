@@ -27,28 +27,12 @@ test('Simple case', async t => {
     };
 
     let chrom1 = new Chromatogram(times);
-    chrom1.addSerie({
-        dimension: 1,
-        name: 'tic',
-        data: tic1
-    });
-    chrom1.addSerie({
-        dimension: 2,
-        name: 'ms',
-        data: ms1
-    });
+    chrom1.addSerie('tic', tic1);
+    chrom1.addSerie('ms', ms1);
 
     let chrom2 = new Chromatogram(times);
-    chrom2.addSerie({
-        dimension: 1,
-        name: 'tic',
-        data: tic2
-    });
-    chrom2.addSerie({
-        dimension: 2,
-        name: 'ms',
-        data: ms2
-    });
+    chrom2.addSerie('tic', tic2);
+    chrom2.addSerie('ms', ms2);
 
     let compared = spectraComparison(chrom1, chrom2, options);
     t.deepEqual(compared.peaksSimilarity, [1, 1, 1, 1, 1]);
@@ -80,28 +64,12 @@ test('Quality and string', async t => {
     };
 
     let chrom1 = new Chromatogram(times);
-    chrom1.addSerie({
-        dimension: 1,
-        name: 'tic',
-        data: tic1
-    });
-    chrom1.addSerie({
-        dimension: 2,
-        name: 'ms',
-        data: ms1
-    });
+    chrom1.addSerie('tic', tic1);
+    chrom1.addSerie('ms', ms1);
 
     let chrom2 = new Chromatogram(times);
-    chrom2.addSerie({
-        dimension: 1,
-        name: 'tic',
-        data: tic2
-    });
-    chrom2.addSerie({
-        dimension: 2,
-        name: 'ms',
-        data: ms2
-    });
+    chrom2.addSerie('tic', tic2);
+    chrom2.addSerie('ms', ms2);
 
     let compared = spectraComparison(chrom1, chrom2, options);
     t.deepEqual(compared.peaksSimilarity, [1, 1, 1, 1, 1]);

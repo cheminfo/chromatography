@@ -40,7 +40,7 @@ function applyLockMass(chromatogram, mf, options) {
     }
 
     // applying the changes for all the spectra
-    for (let i = 0; i < ms.length>>1; i++) {
+    for (let i = 0; i < ms.length >> 1; i++) {
         let massIndex = 2 * i + msIndexShift;
         let referenceIndex = 2 * i + referenceIndexShift;
 
@@ -58,7 +58,7 @@ function applyLockMass(chromatogram, mf, options) {
     }
 
     // we remove the time and the mass spectra that containss the reference
-    chromatogram.filter( (index) => index%2 !== referenceIndexShift );
+    chromatogram.filter((index) => index % 2 !== referenceIndexShift);
 
     return chromatogram;
 }
