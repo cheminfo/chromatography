@@ -18,16 +18,8 @@ test('triplet', t => {
         ms[i] = [[29, 43, 57, 71, 85, 114], [1, 1, 1, 1, 1, 1]];
     }
     let chrom = new Chromatogram(times);
-    chrom.addSerie({
-        dimension: 1,
-        name: 'tic',
-        data: tic
-    });
-    chrom.addSerie({
-        dimension: 2,
-        name: 'ms',
-        data: ms
-    });
+    chrom.addSerie('tic', tic);
+    chrom.addSerie('ms', ms);
 
     const options = {
         heightFilter: 2,

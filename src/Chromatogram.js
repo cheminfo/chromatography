@@ -56,7 +56,7 @@ class Chromatogram {
     }
 
     /**
-     * Add a new serie
+     * Add new series
      * @param {object} series - Object with an array of data, dimensions of the elements in the array and name of the serie
      * @param {object} [options = {}] - Object with an array of data, dimensions of the elements in the array and name of the serie
      */

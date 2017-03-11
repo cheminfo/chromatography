@@ -47,16 +47,8 @@ test('triplet', t => {
         ms[i] = [[1, 2, 3], [1, 1, 1]];
     }
     let chrom = new Chromatogram(times);
-    chrom.addSerie({
-        dimension: 1,
-        name: 'tic',
-        data: tic
-    });
-    chrom.addSerie({
-        dimension: 2,
-        name: 'ms',
-        data: ms
-    });
+    chrom.addSerie('tic', tic);
+    chrom.addSerie('ms', ms);
 
     let peakList = getPeaks(chrom);
     t.is(peakList.length, 1);
