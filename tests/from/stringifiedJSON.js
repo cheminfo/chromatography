@@ -1,8 +1,8 @@
-import test from 'ava';
-import {simpleStringified} from '../data/_examples.js';
-import {fromStringifiedJSON} from '../..';
+const should = require('should');
+const {simpleStringified} = require('../data/_examples.js');
+const {fromStringifiedJSON} = require('../..');
 
-test('Create a JSON', async t => {
+test('Create a JSON', async () => {
     let newChromatogram = fromStringifiedJSON(simpleStringified);
 
     t.is(newChromatogram.getSerie('ms').data.length, 2);

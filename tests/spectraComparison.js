@@ -1,12 +1,12 @@
-import test from 'ava';
-import {Chromatogram, spectraComparison} from '..';
+const should = require('should');
+const {Chromatogram, spectraComparison} = require('..');
 
 // https://en.wikipedia.org/wiki/Cauchy_distribution
 function lorentzian(x, x0 = 0, gamma = 1) {
     return (gamma * gamma) / (Math.PI * gamma * (gamma * gamma + (x - x0) * (x - x0)));
 }
 
-test('Simple case', t => {
+test('Simple case', () => {
     const size = 70;
     const peakX = 10;
     let times = new Array(size);
@@ -40,7 +40,7 @@ test('Simple case', t => {
     t.deepEqual(compared.peaksSecond.map((val) => val.x), [20, 30, 40, 50, 60]);
 });
 
-test('Shifted peaks', t => {
+test('Shifted peaks', () => {
     const size = 70;
     const peakX = 10;
     let times = new Array(size);
@@ -74,7 +74,7 @@ test('Shifted peaks', t => {
     t.deepEqual(compared.peaksSecond.map((val) => val.x), [20, 30, 40, 50]);
 });
 
-test('Remove similar peaks in the similarity matrix column', t => {
+test('Remove similar peaks in the similarity matrix column', () => {
     const size = 70;
     const peakX = 10;
     let times = new Array(size);

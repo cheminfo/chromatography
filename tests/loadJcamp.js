@@ -1,12 +1,12 @@
-import test from 'ava';
-import fs from 'fs';
-import Promise from 'bluebird';
-import {join} from 'path';
-import {fromJcamp} from '..';
+const should = require('should');
+const fs = require('fs');
+const Promise = require('bluebird');
+const {join} = require('path');
+const {fromJcamp} = require('..');
 
 const readFileAsync = Promise.promisify(fs.readFile);
 
-test('load JCAMP', async t => {
+test('load JCAMP', async () => {
     const path = join(__dirname, 'data/jcamp/MixC8-C40_140630.JDX');
     const jcamp = await readFileAsync(path, 'utf8');
     const chrom = fromJcamp(jcamp);

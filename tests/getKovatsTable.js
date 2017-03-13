@@ -1,12 +1,12 @@
-import test from 'ava';
-import {Chromatogram, getKovatsTable} from '..';
+const should = require('should');
+const {Chromatogram, getKovatsTable} = require('..');
 
 // https://en.wikipedia.org/wiki/Cauchy_distribution
 function lorentzian(x, x0 = 0, gamma = 1) {
     return (gamma * gamma) / (Math.PI * gamma * (gamma * gamma + (x - x0) * (x - x0)));
 }
 
-test('triplet', t => {
+test('triplet', () => {
     const size = 30;
     const fourth = size / 4;
     let times = new Array(size);

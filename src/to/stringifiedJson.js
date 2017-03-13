@@ -1,15 +1,14 @@
 'use strict';
 
-
 /**
  * Stringify a instance of Chromatogram
- * @return {string} -
+ * @return {object}
  */
-function toStringifiedJSON() {
-    return JSON.stringify({
+function toJSON() {
+    return {
         times: this.times,
         series: this.series
-    });
+    };
 }
 
-module.exports = toStringifiedJSON;
+module.exports = toJSON;

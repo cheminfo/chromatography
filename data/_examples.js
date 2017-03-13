@@ -1,4 +1,4 @@
-import {Chromatogram} from '../..';
+const {Chromatogram} = require('..');
 
 let simple = new Chromatogram(
     [1, 2],

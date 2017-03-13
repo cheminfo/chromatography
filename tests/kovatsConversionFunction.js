@@ -1,5 +1,5 @@
-import test from 'ava';
-import {kovatsConversionFunction} from '..';
+const should = require('should');
+const {kovatsConversionFunction} = require('..');
 
 const conversionTable = [
     {time: 10, value: 800},
@@ -7,7 +7,7 @@ const conversionTable = [
     {time: 30, value: 1000}
 ];
 
-test('from time to kovats', t => {
+test('from time to kovats', () => {
     const time2kovats = kovatsConversionFunction(conversionTable);
     t.is(time2kovats(10), 800);
     t.is(time2kovats(15), 850);
@@ -16,7 +16,7 @@ test('from time to kovats', t => {
     t.is(time2kovats(30), 1000);
 });
 
-test('from kovats to time', t => {
+test('from kovats to time', () => {
     const kovats2time = kovatsConversionFunction(conversionTable, {revert: true});
     t.is(kovats2time(800), 10);
     t.is(kovats2time(850), 15);
