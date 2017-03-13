@@ -19,6 +19,7 @@ function getKovatsTable(reference, options = {}) {
 
     // Peak picking
     let peaks = getPeaks(reference, {heightFilter});
+    /* istanbul ignore next */
     peaks = peaks.sort((a, b) => a.index - b.index);
 
     // integrate mass in the peaks
