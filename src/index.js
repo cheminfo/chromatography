@@ -2,8 +2,7 @@
 
 exports.Chromatogram = require('./Chromatogram');
 
-// Chromatography utils
-exports.getPeaks = require('./getPeaks');
+
 exports.massInPeaks = require('./massInPeaks');
 exports.vectorify = require('./vectorify');
 exports.cosine = require('./filter/cosine');

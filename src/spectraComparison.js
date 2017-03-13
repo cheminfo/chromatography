@@ -1,6 +1,6 @@
 'use strict';
 
-const getPeaks = require('./getPeaks');
+const getPeaks = require('./util/getPeaks');
 const massInPeaks = require('./massInPeaks');
 const vectorify = require('./vectorify');
 const cosine = require('./filter/cosine');

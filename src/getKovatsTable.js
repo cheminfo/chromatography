@@ -1,7 +1,7 @@
 'use strict';
 
 const kovats = require('./kovats');
-const getPeaks = require('./getPeaks');
+const getPeaks = require('./util/getPeaks');
 const massInPeaks = require('./massInPeaks');
 
 /**

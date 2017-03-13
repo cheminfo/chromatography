@@ -157,5 +157,8 @@ class Chromatogram {
 Chromatogram.prototype.applyLockMass = require('./ms/applyLockMass');
 Chromatogram.prototype.calculateTic = require('./ms/calculateTic');
 Chromatogram.prototype.toJSON = require('./to/json');
+Chromatogram.prototype.getPeaks = require('./util/getPeaks');
+
+
 
 module.exports = Chromatogram;
