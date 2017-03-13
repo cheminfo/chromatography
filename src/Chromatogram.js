@@ -159,6 +159,9 @@ Chromatogram.prototype.calculateTic = require('./ms/calculateTic');
 Chromatogram.prototype.toJSON = require('./to/json');
 Chromatogram.prototype.getPeaks = require('./util/getPeaks');
 
+Chromatogram.fromJcamp = require('./from/jcamp');
+
+
 
 
 module.exports = Chromatogram;

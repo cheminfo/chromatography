@@ -1,18 +1,14 @@
 const fs = require('fs');
 const Promise = require('bluebird');
 const {join} = require('path');
-const {Chromatogram, fromJcamp} = require('..');
+const {Chromatogram} = require('../..');
 const getSimulatedSpectrum = require('../data/examples').getSimulatedSpectrum;
-
-
-
-const readFileAsync = Promise.promisify(fs.readFile);
 
 
 test('from a Diesel chromatogram', async () => {
     const path = join(__dirname, 'data/jcamp/P064.JDX');
-    const jcamp = await readFileAsync(path, 'utf8');
-    const chrom = fromJcamp(jcamp);
+    const jcamp = fs.readFileSync(path, 'utf8');
+    const chrom = Chromatogram.fromJcamp(jcamp);
     expect(chrom.length).toEqual(6992);
 
     let peakList = chrom.getPeaks();
@@ -20,7 +16,7 @@ test('from a Diesel chromatogram', async () => {
 });
 
 test('triplet', () => {
-    let chromatogram=getSimulatedSpectrum({size: 60})
+    let chromatogram=getSimulatedSpectrum({size: 60});
     let peaks = chromatogram.getPeaks();
     expect(peaks.length).toEqual(1);
 });
