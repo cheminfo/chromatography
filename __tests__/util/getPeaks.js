@@ -1,6 +1,6 @@
 const fs = require('fs');
 const {join} = require('path');
-const Chromatogram = require('../../src/Chromatogram.js');
+const {Chromatogram, fromJcamp} = require('../..');
 const getSimulatedSpectrum = require('../data/examples').getSimulatedSpectrum;
 
 
@@ -8,7 +8,7 @@ test('from a Diesel chromatogram', () => {
     const path = join(__dirname, '../data/jcamp/P064.JDX');
     const jcamp = fs.readFileSync(path, 'utf8');
 
-    const chrom = Chromatogram.fromJcamp(jcamp);
+    const chrom = fromJcamp(jcamp);
     expect(chrom.length).toEqual(6992);
 
     let peakList = chrom.getPeaks();
