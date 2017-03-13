@@ -3,9 +3,6 @@
 const rescaleTime = require('./rescaleTime');
 const filter = require('./util/filter');
 const serieFromArray = require('./serieFromArray');
-const toJSON = require('./to/json');
-const applyLockMass = require('./ms/applyLockMass');
-const calculateTic = require('./ms/calculateTic');
 
 
 /**
@@ -153,22 +150,12 @@ class Chromatogram {
         return this;
     }
 
-    toJSON() {
-        return toJSON.call(this);
-    }
-
-    applyLockMass(mf, options) {
-        return applyLockMass.call(this, mf, options);
-    }
-
-    calculateTic(mf, options) {
-        return calculateTic.call(this, mf, options);
-    }
-
-
-
 
 }
 
+
+Chromatogram.prototype.applyLockMass = require('./ms/applyLockMass');
+Chromatogram.prototype.calculateTic = require('./ms/calculateTic');
+Chromatogram.prototype.toJSON = require('./to/json');
 
 module.exports = Chromatogram;

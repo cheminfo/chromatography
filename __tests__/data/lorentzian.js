@@ -1,12 +1,11 @@
-|
-const {Chromatogram, fromJSON} = require('..');
+const {Chromatogram} = require('../..');
 
 // https://en.wikipedia.org/wiki/Cauchy_distribution
 function lorentzian(x, x0 = 0, gamma = 1) {
     return (gamma * gamma) / (Math.PI * gamma * (gamma * gamma + (x - x0) * (x - x0)));
 }
 
-test('toJSON - fromJSON', () => {
+function createSpectrum() {
     const size = 30;
     const fourth = size / 4;
     let times = new Array(size);
@@ -17,15 +16,15 @@ test('toJSON - fromJSON', () => {
         tic[i] = lorentzian(i, fourth) + 2 * lorentzian(i, 2 * fourth) + lorentzian(i, 3 * fourth);
         ms[i] = [[1, 2, 3], [1, 1, 1]];
     }
-    let chrom = new Chromatogram(times);
-    chrom.addSeries({
+    let chrom = new Chromatogram(times,
+        {
         'tic': tic,
         'ms': ms
-    });
+        }
+    );
 
-    let json = chrom.toJSON();
-    let newChrom = fromJSON(json);
-    expect(newChrom.getTimes()).toEqual(chrom.getTimes());
-    expect(newChrom.getSerie('tic')).toEqual(chrom.getSerie('tic'));
-    expect(newChrom.getSerie('ms')).toEqual(chrom.getSerie('ms'));
-});
+    return chrom;
+};
+
+
+module.exports = createSpectrum();
