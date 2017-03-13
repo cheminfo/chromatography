@@ -20,9 +20,9 @@ test('addSerie errors', () => {
         [1, 2],
         {'tic': [1, 2]}
     );
-    expect(chromatogram.addSerie('abc', 1234)).toThrow('Serie.fromArray requires as parameter an array of numbers or array');
-    expect(chromatogram.addSerie('abc', {a: 1, b: 2})).toThrow('Serie.fromArray requires as parameter an array of numbers or array');
-    expect(chromatogram.addSerie('tic', [2, 3, 4])).toThrow('A serie with name "tic" already exists');
+    expect(() => chromatogram.addSerie('abc', 1234)).toThrow('The array size is not the same as the time size');
+    expect(() => chromatogram.addSerie('abc', {a: 1, b: 2})).toThrow('The array size is not the same as the time size');
+    expect(() => chromatogram.addSerie('tic', [2, 3, 4])).toThrow('A serie with name "tic" already exists');
 
 });
 
@@ -35,7 +35,7 @@ test('deleteSerie', () => {
         }
     );
     expect(chromatogram.hasSerie('tic')).toEqual(true);
-    expect(chromatogram.deleteSerie('ms'), 'The serie "ms" does not exist');
+    expect(() => chromatogram.deleteSerie('ms')).toThrow('The serie "ms" does not exist');
     chromatogram.deleteSerie('tic');
     expect(chromatogram.hasSerie('tic')).toEqual(false);
 });

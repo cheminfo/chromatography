@@ -1,5 +1,5 @@
 const {simpleStringified} = require('../data/examples.js');
-const {fromJSON} = require('../../src/index.js');
+const {fromJSON} = require('../..');
 
 test('Parse a JSON', () => {
     let newChromatogram = fromJSON(JSON.parse(simpleStringified));
