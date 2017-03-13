@@ -1,4 +1,4 @@
-const should = require('should');
+|
 const fs = require('fs');
 const Promise = require('bluebird');
 const {join} = require('path');
@@ -25,7 +25,7 @@ test('Simple case', () => {
 
     const newTime = rescaleTime(time, time2kovats);
     for (let j = 0; j < newTime.length; j++) {
-        t.is(newTime[j], time2kovats(time[j]));
+        expect(newTime[j]).toEqual(time2kovats(time[j]));
     }
 });
 
@@ -64,7 +64,7 @@ test('Non-in place', async () => {
     chrom.setTimes(newTime);
     const internalTime = chrom.getTimes();
     for (let i = 0; i < newTime.length; i++) {
-        t.is(internalTime[i], newTime[i]);
+        expect(internalTime[i]).toEqual(newTime[i]);
     }
 });
 
@@ -102,7 +102,7 @@ test('In place', async () => {
     chrom.rescaleTime(time2kovats);
     const internalTime = chrom.getTimes();
     for (let i = 0; i < internalTime.length; i++) {
-        //t.is(internalTime[i] > 800, true);
-        t.is(internalTime[i] < 3100, true);
+        //expect(internalTime[i] > 800).toEqual(true);
+        expect(internalTime[i] < 3100).toEqual(true);
     }
 });

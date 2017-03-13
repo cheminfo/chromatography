@@ -1,4 +1,4 @@
-const should = require('should');
+|
 const {Chromatogram, spectraComparison, scaleAlignment} = require('..');
 
 // https://en.wikipedia.org/wiki/Cauchy_distribution
@@ -36,11 +36,11 @@ test('Simple case', async () => {
 
     let compared = spectraComparison(chrom1, chrom2, options);
     should(compared.peaksSimilarity).deepEqual([1, 1, 1, 1, 1]);
-    t.deepEqual(compared.peaksFirst.map((val) => val.x), [10, 20, 30, 40, 50]);
-    t.deepEqual(compared.peaksSecond.map((val) => val.x), [20, 30, 40, 50, 60]);
+    expect(compared.peaksFirst.map((val) => val.x), [10, 20, 30, 40).toEqual(50]);
+    expect(compared.peaksSecond.map((val) => val.x), [20, 30, 40, 50).toEqual(60]);
 
     let aligned = scaleAlignment(compared.peaksFirst, compared.peaksSecond);
-    t.is(Math.abs(aligned.scaleRegression.predict(30) - 20) < 1e-4, true);
+    expect(Math.abs(aligned.scaleRegression.predict(30) - 20) < 1e-4).toEqual(true);
 });
 
 test('Quality and string', async () => {
@@ -72,12 +72,12 @@ test('Quality and string', async () => {
     chrom2.addSerie('ms', ms2);
 
     let compared = spectraComparison(chrom1, chrom2, options);
-    t.deepEqual(compared.peaksSimilarity, [1, 1, 1, 1, 1]);
-    t.deepEqual(compared.peaksFirst.map((val) => val.x), [10, 20, 30, 40, 50]);
-    t.deepEqual(compared.peaksSecond.map((val) => val.x), [20, 30, 40, 50, 60]);
+    expect(compared.peaksSimilarity, [1, 1, 1, 1).toEqual(1]);
+    expect(compared.peaksFirst.map((val) => val.x), [10, 20, 30, 40).toEqual(50]);
+    expect(compared.peaksSecond.map((val) => val.x), [20, 30, 40, 50).toEqual(60]);
 
     let aligned = scaleAlignment(compared.peaksFirst, compared.peaksSecond, {computeQuality: true, stringFormula: 3});
-    t.is(Math.abs(aligned.scaleRegression.predict(30) - 20) < 1e-4, true);
-    t.is(aligned.scaleRegression.toString(3), 'f(x) = 9.95e-17 * x^3 - 1.22e-14 * x^2 + 1.00 * x - 10.0');
-    t.is(Math.abs(aligned.r2 - 1) < 1e-4, true);
+    expect(Math.abs(aligned.scaleRegression.predict(30) - 20) < 1e-4).toEqual(true);
+    expect(aligned.scaleRegression.toString(3)).toEqual('f(x) = 9.95e-17 * x^3 - 1.22e-14 * x^2 + 1.00 * x - 10.0');
+    expect(Math.abs(aligned.r2 - 1) < 1e-4).toEqual(true);
 });

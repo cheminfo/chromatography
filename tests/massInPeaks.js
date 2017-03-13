@@ -1,4 +1,4 @@
-const should = require('should');
+|
 const fs = require('fs');
 const Promise = require('bluebird');
 const {join} = require('path');
@@ -15,15 +15,15 @@ test('from a Diesel chromatogram', async () => {
     const path = join(__dirname, 'data/jcamp/P064.JDX');
     const jcamp = await readFileAsync(path, 'utf8');
     const chrom = fromJcamp(jcamp);
-    t.is(chrom.length, 6992);
+    expect(chrom.length).toEqual(6992);
 
     let peakList = getPeaks(chrom);
-    t.is(peakList.length, 312);
+    expect(peakList.length).toEqual(312);
 
     let sampleMS = chrom.getSerie('ms').data;
     t.not(sampleMS.length, 0);
     let integratedList = massInPeaks(peakList, sampleMS);
-    t.is(peakList.length, integratedList.length);
+    expect(peakList.length).toEqual(integratedList.length);
 });
 
 test('triplet', () => {
@@ -42,12 +42,12 @@ test('triplet', () => {
     chrom.addSerie('ms', ms);
 
     let peaks = getPeaks(chrom);
-    t.is(peaks.length, 1);
+    expect(peaks.length).toEqual(1);
 
     let sampleMS = chrom.getSerie('ms').data;
     t.not(sampleMS.length, 0);
     let integratedList = massInPeaks(peaks, sampleMS);
-    t.is(peaks.length, integratedList.length);
+    expect(peaks.length).toEqual(integratedList.length);
 });
 
 test('simple case', () => {

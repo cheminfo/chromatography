@@ -1,4 +1,4 @@
-const should = require('should');
+|
 const fs = require('fs');
 const Promise = require('bluebird');
 const {join} = require('path');
@@ -10,5 +10,5 @@ test('load JCAMP', async () => {
     const path = join(__dirname, 'data/jcamp/MixC8-C40_140630.JDX');
     const jcamp = await readFileAsync(path, 'utf8');
     const chrom = fromJcamp(jcamp);
-    t.is(chrom.length, 6993);
+    expect(chrom.length).toEqual(6993);
 });

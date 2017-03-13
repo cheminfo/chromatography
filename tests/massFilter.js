@@ -1,4 +1,4 @@
-const should = require('should');
+|
 const {massFilter, massInPeaks, vectorify} = require('..');
 
 test('thresholdFactor', () => {

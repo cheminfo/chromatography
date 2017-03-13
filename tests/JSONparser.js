@@ -1,4 +1,4 @@
-const should = require('should');
+|
 const {Chromatogram, fromJSON} = require('..');
 
 // https://en.wikipedia.org/wiki/Cauchy_distribution
@@ -25,7 +25,7 @@ test('toStringifiedJSON - fromJSON', () => {
 
     let json = chrom.toStringifiedJSON();
     let newChrom = fromJSON(json);
-    t.deepEqual(newChrom.getTimes(), chrom.getTimes());
-    t.deepEqual(newChrom.getSerie('tic'), chrom.getSerie('tic'));
-    t.deepEqual(newChrom.getSerie('ms'), chrom.getSerie('ms'));
+    expect(newChrom.getTimes()).toEqual(chrom.getTimes());
+    expect(newChrom.getSerie('tic')).toEqual(chrom.getSerie('tic'));
+    expect(newChrom.getSerie('ms')).toEqual(chrom.getSerie('ms'));
 });

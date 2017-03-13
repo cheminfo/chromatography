@@ -1,4 +1,4 @@
-const should = require('should');
+|
 const {Chromatogram, getKovatsTable} = require('..');
 
 // https://en.wikipedia.org/wiki/Cauchy_distribution
@@ -29,7 +29,7 @@ test('triplet', () => {
     };
 
     let table = getKovatsTable(chrom, options);
-    t.is(table.length, 1);
-    t.is(table[0].time, 15);
-    t.is(table[0].value, 800);
+    expect(table.length).toEqual(1);
+    expect(table[0].time).toEqual(15);
+    expect(table[0].value).toEqual(800);
 });

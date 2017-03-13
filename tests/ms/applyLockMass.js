@@ -1,4 +1,4 @@
-const should = require('should');
+|
 const {Chromatogram, applyLockMass} = require('../..');
 
 test('simple case', () => {
@@ -15,16 +15,16 @@ test('simple case', () => {
     let newLength = chromatogram.getTimes().length / 2;
     applyLockMass(chromatogram, 'C12H19F12N3O6P3'); // em: 622.02951
 
-    t.is(chromatogram.getTimes().length, newLength);
-    t.is(chromatogram.length, newLength);
-    t.is(chromatogram.getSerie('ms').data.length, newLength);
+    expect(chromatogram.getTimes().length).toEqual(newLength);
+    expect(chromatogram.length).toEqual(newLength);
+    expect(chromatogram.getSerie('ms').data.length).toEqual(newLength);
 
-    t.deepEqual(chromatogram.getTimes(), [1]);
-    t.deepEqual(chromatogram.getSerie('ms').data[0][1], [10, 20, 30]);
+    expect(chromatogram.getTimes()).toEqual([1]);
+    expect(chromatogram.getSerie('ms').data[0][1], [10, 20).toEqual(30]);
 
     const expectedMass = [100.005, 200.005, 300.005];
     for (let i = 0; i < expectedMass.length; i++) {
-        t.is(Math.abs(chromatogram.getSerie('ms').data[0][0][i] - expectedMass[i]) < 10e-4, true);
+        expect(Math.abs(chromatogram.getSerie('ms').data[0][0][i] - expectedMass[i]) < 10e-4).toEqual(true);
     }
 });
 
@@ -42,16 +42,16 @@ test('array of mf', () => {
     let newLength = chromatogram.getTimes().length / 2;
     applyLockMass(chromatogram, ['C12H19F12N3O6P3', 'CCl3H', 'C10H20O3']); // em: 622.02951
 
-    t.is(chromatogram.getTimes().length, newLength);
-    t.is(chromatogram.length, newLength);
-    t.is(chromatogram.getSerie('ms').data.length, newLength);
+    expect(chromatogram.getTimes().length).toEqual(newLength);
+    expect(chromatogram.length).toEqual(newLength);
+    expect(chromatogram.getSerie('ms').data.length).toEqual(newLength);
 
-    t.deepEqual(chromatogram.getTimes(), [1]);
-    t.deepEqual(chromatogram.getSerie('ms').data[0][1], [10, 20, 30]);
+    expect(chromatogram.getTimes()).toEqual([1]);
+    expect(chromatogram.getSerie('ms').data[0][1], [10, 20).toEqual(30]);
 
     const expectedMass = [100.005, 200.005, 300.005];
     for (let i = 0; i < expectedMass.length; i++) {
-        t.is(Math.abs(chromatogram.getSerie('ms').data[0][0][i] - expectedMass[i]) < 10e-4, true);
+        expect(Math.abs(chromatogram.getSerie('ms').data[0][0][i] - expectedMass[i]) < 10e-4).toEqual(true);
     }
 });
 
@@ -75,18 +75,18 @@ test('different references', () => {
         }
     ); // em: 622.02951
 
-    t.is(chromatogram.getTimes().length, newLength);
-    t.is(chromatogram.length, newLength);
-    t.is(chromatogram.getSerie('ms').data.length, newLength);
+    expect(chromatogram.getTimes().length).toEqual(newLength);
+    expect(chromatogram.length).toEqual(newLength);
+    expect(chromatogram.getSerie('ms').data.length).toEqual(newLength);
 
-    t.deepEqual(chromatogram.getTimes(), [2, 4]);
-    t.deepEqual(chromatogram.getSerie('ms').data[0][1], [10, 20, 30]);
-    t.deepEqual(chromatogram.getSerie('ms').data[1][1], [10, 20, 30]);
+    expect(chromatogram.getTimes(), [2).toEqual(4]);
+    expect(chromatogram.getSerie('ms').data[0][1], [10, 20).toEqual(30]);
+    expect(chromatogram.getSerie('ms').data[1][1], [10, 20).toEqual(30]);
 
     const expectedMass = [100.005, 200.005, 300.005];
     for (let i = 0; i < expectedMass.length; i++) {
-        t.is(Math.abs(chromatogram.getSerie('ms').data[0][0][i] - expectedMass[i]) < 10e-4, true);
-        t.is(Math.abs(chromatogram.getSerie('ms').data[1][0][i] - expectedMass[i]) < 10e-4, true);
+        expect(Math.abs(chromatogram.getSerie('ms').data[0][0][i] - expectedMass[i]) < 10e-4).toEqual(true);
+        expect(Math.abs(chromatogram.getSerie('ms').data[1][0][i] - expectedMass[i]) < 10e-4).toEqual(true);
     }
 });
 

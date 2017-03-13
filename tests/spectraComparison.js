@@ -1,4 +1,4 @@
-const should = require('should');
+|
 const {Chromatogram, spectraComparison} = require('..');
 
 // https://en.wikipedia.org/wiki/Cauchy_distribution
@@ -35,9 +35,9 @@ test('Simple case', () => {
     chrom2.addSerie('ms', ms2);
 
     let compared = spectraComparison(chrom1, chrom2, options);
-    t.deepEqual(compared.peaksSimilarity, [1, 1, 1, 1, 1]);
-    t.deepEqual(compared.peaksFirst.map((val) => val.x), [10, 20, 30, 40, 50]);
-    t.deepEqual(compared.peaksSecond.map((val) => val.x), [20, 30, 40, 50, 60]);
+    expect(compared.peaksSimilarity, [1, 1, 1, 1).toEqual(1]);
+    expect(compared.peaksFirst.map((val) => val.x), [10, 20, 30, 40).toEqual(50]);
+    expect(compared.peaksSecond.map((val) => val.x), [20, 30, 40, 50).toEqual(60]);
 });
 
 test('Shifted peaks', () => {
@@ -69,9 +69,9 @@ test('Shifted peaks', () => {
     chrom2.addSerie('ms', ms2);
 
     let compared = spectraComparison(chrom1, chrom2, options);
-    t.deepEqual(compared.peaksSimilarity, [1, 1, 1, 1]);
-    t.deepEqual(compared.peaksFirst.map((val) => val.x), [20, 30, 40, 50]);
-    t.deepEqual(compared.peaksSecond.map((val) => val.x), [20, 30, 40, 50]);
+    expect(compared.peaksSimilarity, [1, 1, 1).toEqual(1]);
+    expect(compared.peaksFirst.map((val) => val.x), [20, 30, 40).toEqual(50]);
+    expect(compared.peaksSecond.map((val) => val.x), [20, 30, 40).toEqual(50]);
 });
 
 test('Remove similar peaks in the similarity matrix column', () => {
@@ -108,7 +108,7 @@ test('Remove similar peaks in the similarity matrix column', () => {
     chrom2.addSerie('ms', ms2);
 
     let compared = spectraComparison(chrom1, chrom2, options);
-    t.deepEqual(compared.peaksSimilarity, [1, 1]);
-    t.deepEqual(compared.peaksFirst.map((val) => val.x), [40, 50]);
-    t.deepEqual(compared.peaksSecond.map((val) => val.x), [50, 60]);
+    expect(compared.peaksSimilarity, [1).toEqual(1]);
+    expect(compared.peaksFirst.map((val) => val.x), [40).toEqual(50]);
+    expect(compared.peaksSecond.map((val) => val.x), [50).toEqual(60]);
 });

@@ -19,7 +19,6 @@
     "url": "git+https://github.com/cheminfo-js/chromatography.git"
   },
   "jest": {
-    "verbose": true,
     "testPathIgnorePatterns": ["<rootDir>/__tests__/data/.*"]
   },
   "author": "Michaël Zasso",

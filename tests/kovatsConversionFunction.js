@@ -1,4 +1,4 @@
-const should = require('should');
+|
 const {kovatsConversionFunction} = require('..');
 
 const conversionTable = [
@@ -9,18 +9,18 @@ const conversionTable = [
 
 test('from time to kovats', () => {
     const time2kovats = kovatsConversionFunction(conversionTable);
-    t.is(time2kovats(10), 800);
-    t.is(time2kovats(15), 850);
-    t.is(time2kovats(20), 900);
-    t.is(time2kovats(25), 950);
-    t.is(time2kovats(30), 1000);
+    expect(time2kovats(10)).toEqual(800);
+    expect(time2kovats(15)).toEqual(850);
+    expect(time2kovats(20)).toEqual(900);
+    expect(time2kovats(25)).toEqual(950);
+    expect(time2kovats(30)).toEqual(1000);
 });
 
 test('from kovats to time', () => {
     const kovats2time = kovatsConversionFunction(conversionTable, {revert: true});
-    t.is(kovats2time(800), 10);
-    t.is(kovats2time(850), 15);
-    t.is(kovats2time(900), 20);
-    t.is(kovats2time(950), 25);
-    t.is(kovats2time(1000), 30);
+    expect(kovats2time(800)).toEqual(10);
+    expect(kovats2time(850)).toEqual(15);
+    expect(kovats2time(900)).toEqual(20);
+    expect(kovats2time(950)).toEqual(25);
+    expect(kovats2time(1000)).toEqual(30);
 });
