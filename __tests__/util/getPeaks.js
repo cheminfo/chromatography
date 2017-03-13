@@ -1,13 +1,13 @@
 const fs = require('fs');
-const Promise = require('bluebird');
 const {join} = require('path');
-const {Chromatogram} = require('../..');
+const Chromatogram = require('../../src/Chromatogram.js');
 const getSimulatedSpectrum = require('../data/examples').getSimulatedSpectrum;
 
 
-test('from a Diesel chromatogram', async () => {
-    const path = join(__dirname, 'data/jcamp/P064.JDX');
+test('from a Diesel chromatogram', () => {
+    const path = join(__dirname, '../data/jcamp/P064.JDX');
     const jcamp = fs.readFileSync(path, 'utf8');
+
     const chrom = Chromatogram.fromJcamp(jcamp);
     expect(chrom.length).toEqual(6992);
 

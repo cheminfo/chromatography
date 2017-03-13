@@ -1,6 +1,6 @@
 'use strict';
 
-const Chromatogram = require('./../Chromatogram');
+const Chromatogram = require('../Chromatogram');
 const converter = require('jcampconverter').convert;
 
 /**
@@ -16,7 +16,7 @@ function fromJcamp(jcamp) {
     for (var i = 0; i < data.series.length; i++) {
         series[data.series[i].name] = data.series[i].data;
     }
-
+console.log('---------------',Chromatogram);
     return new Chromatogram(time, series);
 }
 

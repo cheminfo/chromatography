@@ -1,7 +1,7 @@
 'use strict';
 
-exports.Chromatogram = require('./Chromatogram');
 
+exports.Chromatogram = require('./Chromatogram');
 
 exports.massInPeaks = require('./massInPeaks');
 exports.vectorify = require('./vectorify');
@@ -14,6 +14,6 @@ exports.getKovatsTable = require('./getKovatsTable');
 exports.kovatsConversionFunction = require('./kovatsConversionFunction');
 exports.rescaleTime = require('./rescaleTime');
 
-
 exports.fromJcamp = require('./from/jcamp');
 exports.fromJSON = require('./from/json');
+

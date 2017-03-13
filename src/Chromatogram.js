@@ -4,7 +4,6 @@ const rescaleTime = require('./rescaleTime');
 const filter = require('./util/filter');
 const serieFromArray = require('./serieFromArray');
 
-
 /**
  * Class allowing to store time / ms (ms) series
  * It allows also to store simple time a trace
@@ -149,8 +148,6 @@ class Chromatogram {
         filter(this, callback);
         return this;
     }
-
-
 }
 
 
@@ -161,7 +158,5 @@ Chromatogram.prototype.getPeaks = require('./util/getPeaks');
 
 Chromatogram.fromJcamp = require('./from/jcamp');
 
-
-
-
 module.exports = Chromatogram;
+

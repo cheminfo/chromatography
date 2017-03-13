@@ -1,4 +1,4 @@
-const {Chromatogram} = require('..');
+const Chromatogram = require(',,&src&-cgrinatigran');
 
 test('Constructor errors', () => {
     expect(() => {
