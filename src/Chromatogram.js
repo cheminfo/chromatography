@@ -3,7 +3,10 @@
 const rescaleTime = require('./rescaleTime');
 const filter = require('./util/filter');
 const serieFromArray = require('./serieFromArray');
-const toStringifiedJSON = require('./to/json');
+const toJSON = require('./to/json');
+const applyLockMass = require('./ms/applyLockMass');
+const calculateTic = require('./ms/calculateTic');
+
 
 /**
  * Class allowing to store time / ms (ms) series
@@ -150,9 +153,21 @@ class Chromatogram {
         return this;
     }
 
-    toStringifiedJSON() {
-        return toStringifiedJSON.call(this);
+    toJSON() {
+        return toJSON.call(this);
     }
+
+    applyLockMass(mf, options) {
+        return applyLockMass.call(this, mf, options);
+    }
+
+    calculateTic(mf, options) {
+        return calculateTic.call(this, mf, options);
+    }
+
+
+
+
 }
 
 

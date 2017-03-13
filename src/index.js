@@ -16,5 +16,3 @@ exports.kovatsConversionFunction = require('./kovatsConversionFunction');
 exports.rescaleTime = require('./rescaleTime');
 exports.fromJcamp = require('./from/jcamp');
 exports.fromJSON = require('./from/json');
-exports.applyLockMass = require('./ms/applyLockMass');
-exports.calculateTic = require('./reduce/calculateTic');

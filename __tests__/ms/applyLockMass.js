@@ -1,5 +1,4 @@
-|
-const {Chromatogram, applyLockMass} = require('../..');
+const {Chromatogram} = require('../../src/index.js');
 
 test('simple case', () => {
     let chromatogram = new Chromatogram(
@@ -13,18 +12,18 @@ test('simple case', () => {
     );
 
     let newLength = chromatogram.getTimes().length / 2;
-    applyLockMass(chromatogram, 'C12H19F12N3O6P3'); // em: 622.02951
+    chromatogram.applyLockMass('C12H19F12N3O6P3'); // em: 622.02951
 
     expect(chromatogram.getTimes().length).toEqual(newLength);
     expect(chromatogram.length).toEqual(newLength);
     expect(chromatogram.getSerie('ms').data.length).toEqual(newLength);
 
     expect(chromatogram.getTimes()).toEqual([1]);
-    expect(chromatogram.getSerie('ms').data[0][1], [10, 20).toEqual(30]);
+    expect(chromatogram.getSerie('ms').data[0][1]).toEqual([10, 20, 30]);
 
     const expectedMass = [100.005, 200.005, 300.005];
     for (let i = 0; i < expectedMass.length; i++) {
-        expect(Math.abs(chromatogram.getSerie('ms').data[0][0][i] - expectedMass[i]) < 10e-4).toEqual(true);
+        expect(chromatogram.getSerie('ms').data[0][0][i]).toBeCloseTo(expectedMass[i],3);
     }
 });
 
@@ -40,14 +39,14 @@ test('array of mf', () => {
     );
 
     let newLength = chromatogram.getTimes().length / 2;
-    applyLockMass(chromatogram, ['C12H19F12N3O6P3', 'CCl3H', 'C10H20O3']); // em: 622.02951
+    chromatogram.applyLockMass(['C12H19F12N3O6P3', 'CCl3H', 'C10H20O3']); // em: 622.02951
 
     expect(chromatogram.getTimes().length).toEqual(newLength);
     expect(chromatogram.length).toEqual(newLength);
     expect(chromatogram.getSerie('ms').data.length).toEqual(newLength);
 
     expect(chromatogram.getTimes()).toEqual([1]);
-    expect(chromatogram.getSerie('ms').data[0][1], [10, 20).toEqual(30]);
+    expect(chromatogram.getSerie('ms').data[0][1]).toEqual([10, 20, 30]);
 
     const expectedMass = [100.005, 200.005, 300.005];
     for (let i = 0; i < expectedMass.length; i++) {
@@ -69,7 +68,7 @@ test('different references', () => {
     );
 
     let newLength = chromatogram.getTimes().length / 2;
-    applyLockMass(chromatogram, ['C12H19F12N3O6P3', 'C10H20O3'],
+    chromatogram.applyLockMass(['C12H19F12N3O6P3', 'C10H20O3'],
         {
             oddReference: false
         }
@@ -79,9 +78,9 @@ test('different references', () => {
     expect(chromatogram.length).toEqual(newLength);
     expect(chromatogram.getSerie('ms').data.length).toEqual(newLength);
 
-    expect(chromatogram.getTimes(), [2).toEqual(4]);
-    expect(chromatogram.getSerie('ms').data[0][1], [10, 20).toEqual(30]);
-    expect(chromatogram.getSerie('ms').data[1][1], [10, 20).toEqual(30]);
+    expect(chromatogram.getTimes()).toEqual([2,4]);
+    expect(chromatogram.getSerie('ms').data[0][1]).toEqual([10, 20,  30]);
+    expect(chromatogram.getSerie('ms').data[1][1]).toEqual([10, 20, 30]);
 
     const expectedMass = [100.005, 200.005, 300.005];
     for (let i = 0; i < expectedMass.length; i++) {
@@ -94,9 +93,8 @@ test('check exceptions', () => {
     let chromatogram = new Chromatogram(
         [1]
     );
-
-    t.throws(applyLockMass.bind(null, chromatogram, 'C12H19F12N3O6P3'), 'The mass serie must be defined');
+    expect(() => chromatogram.applyLockMass('C12H19F12N3O6P3')).toThrow('The "ms" serie must be defined');
 
     chromatogram.addSerie('ms', [[[622.024747], [274]]]);
-    t.throws(applyLockMass.bind(null, chromatogram, 'C12H19F12N3O6P3'), 'The series must have an even size');
+    expect(() => chromatogram.applyLockMass('C12H19F12N3O6P3')).toThrow('The series must have an even size');
 });

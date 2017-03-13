@@ -2764,7 +2764,7 @@ var Chromatogram = function () {
          */
 
     }, {
-        key: 'toStringifiedJSON',
+        key: 'toJSON',
         value: function toJSON() {
             var ans = new Array(this.times.length);
             var tic = this.getSerie('tic').data;
@@ -10481,7 +10481,7 @@ var Chromatogram = __webpack_require__(28);
 
 /**
  * Parse from a JSON element to a new Chromatogram
- * @param {Array<object>} json - Result from the toStringifiedJSON
+ * @param {Array<object>} json - Result from the toJSON
  * @return {Chromatogram} - New parsed Chromatogram
  */
 function fromJSON(json) {

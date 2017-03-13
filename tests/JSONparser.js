@@ -6,7 +6,7 @@ function lorentzian(x, x0 = 0, gamma = 1) {
     return (gamma * gamma) / (Math.PI * gamma * (gamma * gamma + (x - x0) * (x - x0)));
 }
 
-test('toStringifiedJSON - fromJSON', () => {
+test('toJSON - fromJSON', () => {
     const size = 30;
     const fourth = size / 4;
     let times = new Array(size);
@@ -23,7 +23,7 @@ test('toStringifiedJSON - fromJSON', () => {
         'ms': ms
     });
 
-    let json = chrom.toStringifiedJSON();
+    let json = chrom.toJSON();
     let newChrom = fromJSON(json);
     expect(newChrom.getTimes()).toEqual(chrom.getTimes());
     expect(newChrom.getSerie('tic')).toEqual(chrom.getSerie('tic'));

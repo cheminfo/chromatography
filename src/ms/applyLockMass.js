@@ -8,13 +8,12 @@ const defaultOptions = {
 
 /**
  * Recalculates series for GC/MS with lock mass
- * @param {Chromatogram} chromatogram - GC/MS chromatogram where make the peak picking
  * @param {string|Array<string>} mf - Reference molecular formula(s)
  * @param {object} [options={}] - Options object
  * @param {boolean} [options.oddReference=true] - Mass reference it's in the odd position
  * @return {{tic: Array<number>, ms: Array<Array<number>>, time: Array<number>}}
  */
-function applyLockMass(chromatogram, mf, options) {
+function applyLockMass(mf, options) {
     options = Object.assign({}, defaultOptions, options);
 
     // allows mf as string or array
@@ -25,9 +24,9 @@ function applyLockMass(chromatogram, mf, options) {
     // calculate the mass reference values
     const referenceMass = mf.map((mf) => analyseMF(mf).em);
 
-    let ms = chromatogram.getSerie('ms');
+    let ms = this.getSerie('ms');
     if (!ms) {
-        throw new Error('The mass serie must be defined');
+        throw new Error('The "ms" serie must be defined');
     }
     ms = ms.data;
 
@@ -58,9 +57,9 @@ function applyLockMass(chromatogram, mf, options) {
     }
 
     // we remove the time and the mass spectra that containss the reference
-    chromatogram.filter((index) => index % 2 !== referenceIndexShift);
+    this.filter((index) => index % 2 !== referenceIndexShift);
 
-    return chromatogram;
+    return this;
 }
 
 module.exports = applyLockMass;
