@@ -1,5 +1,5 @@
 const should = require('should');
-const {simple4: chromatogram} = require('../data/_examples.js');
+const {simple4: chromatogram} = require('../data/examples.js');
 
 
 test('Filter: keep the odd', () => {

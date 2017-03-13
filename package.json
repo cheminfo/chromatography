@@ -5,20 +5,22 @@
   "main": "src/index.js",
   "scripts": {
     "build": "cheminfo build --no-uglify --root Chromatography",
-    "build-doc": "documentation build src/index.js --github --output docs --format html --sort-order alpha",
-    "publish-doc": "npm run build-doc && git add docs && git commit -m \"doc: rebuild docs\" && git push origin master",
+    "build-doc": "cheminfo doc",
+    "publish-doc": "cheminfo doc --publish",
     "eslint": "eslint src __tests__",
     "eslint-fix": "npm run eslint -- --fix",
     "test": "jest",
-    "test-only": "jest --onlyChanged",
     "watch": "npm run test -- --watch",
     "test-travis": "npm run test-ava && npm run eslint && npm run report-coverage",
-    "test-ava": "nyc ava && nyc report --reporter=html",
     "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cheminfo-js/chromatography.git"
+  },
+  "jest": {
+    "verbose": true,
+    "testPathIgnorePatterns": ["<rootDir>/__tests__/data/.*"]
   },
   "author": "Michaël Zasso",
   "contributors": [

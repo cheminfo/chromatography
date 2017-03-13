@@ -1,12 +1,12 @@
 const should = require('should');
-const {Chromatogram, fromStringifiedJSON} = require('..');
+const {Chromatogram, fromJSON} = require('..');
 
 // https://en.wikipedia.org/wiki/Cauchy_distribution
 function lorentzian(x, x0 = 0, gamma = 1) {
     return (gamma * gamma) / (Math.PI * gamma * (gamma * gamma + (x - x0) * (x - x0)));
 }
 
-test('toStringifiedJSON - fromStringifiedJSON', () => {
+test('toStringifiedJSON - fromJSON', () => {
     const size = 30;
     const fourth = size / 4;
     let times = new Array(size);
@@ -24,7 +24,7 @@ test('toStringifiedJSON - fromStringifiedJSON', () => {
     });
 
     let json = chrom.toStringifiedJSON();
-    let newChrom = fromStringifiedJSON(json);
+    let newChrom = fromJSON(json);
     t.deepEqual(newChrom.getTimes(), chrom.getTimes());
     t.deepEqual(newChrom.getSerie('tic'), chrom.getSerie('tic'));
     t.deepEqual(newChrom.getSerie('ms'), chrom.getSerie('ms'));

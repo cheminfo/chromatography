@@ -15,6 +15,6 @@ exports.getKovatsTable = require('./getKovatsTable');
 exports.kovatsConversionFunction = require('./kovatsConversionFunction');
 exports.rescaleTime = require('./rescaleTime');
 exports.fromJcamp = require('./from/jcamp');
-exports.fromStringifiedJSON = require('./from/stringifiedJson');
+exports.fromJSON = require('./from/json');
 exports.applyLockMass = require('./ms/applyLockMass');
 exports.calculateTic = require('./reduce/calculateTic');

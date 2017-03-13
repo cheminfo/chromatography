@@ -9,6 +9,6 @@ const readFileAsync = Promise.promisify(fs.readFile);
 test('load JSON', async () => {
     const path = join(__dirname, 'data/json/small.json');
     const data = await readFileAsync(path, 'utf8');
-    const chromatogram = Chromatogram.fromStringifiedJSON(JSON.parse(data));
+    const chromatogram = Chromatogram.fromJSON(JSON.parse(data));
     t.is(chromatogram.length, 45);
 });

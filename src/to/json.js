@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Stringify a instance of Chromatogram
+ * Create an object of Chromatogram
  * @return {object}
  */
 function toJSON() {
