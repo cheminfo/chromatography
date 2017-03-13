@@ -1,7 +1,7 @@
-import test from 'ava';
-import {Chromatogram, applyLockMass} from '../..';
+const should = require('should');
+const {Chromatogram, applyLockMass} = require('../..');
 
-test('simple case', t => {
+test('simple case', () => {
     let chromatogram = new Chromatogram(
         [1, 2],
         {
@@ -28,7 +28,7 @@ test('simple case', t => {
     }
 });
 
-test('array of mf', t => {
+test('array of mf', () => {
     let chromatogram = new Chromatogram(
         [1, 2],
         {
@@ -55,7 +55,7 @@ test('array of mf', t => {
     }
 });
 
-test('different references', t => {
+test('different references', () => {
     let chromatogram = new Chromatogram(
         [1, 2, 3, 4],
         {
@@ -90,7 +90,7 @@ test('different references', t => {
     }
 });
 
-test('check exceptions', t => {
+test('check exceptions', () => {
     let chromatogram = new Chromatogram(
         [1]
     );

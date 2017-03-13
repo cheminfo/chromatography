@@ -1,12 +1,12 @@
-import test from 'ava';
-import {Chromatogram, spectraComparison, scaleAlignment} from '..';
+const should = require('should');
+const {Chromatogram, spectraComparison, scaleAlignment} = require('..');
 
 // https://en.wikipedia.org/wiki/Cauchy_distribution
 function lorentzian(x, x0 = 0, gamma = 1) {
     return (gamma * gamma) / (Math.PI * gamma * (gamma * gamma + (x - x0) * (x - x0)));
 }
 
-test('Simple case', async t => {
+test('Simple case', async () => {
     const size = 70;
     const peakX = 10;
     let times = new Array(size);
@@ -35,7 +35,7 @@ test('Simple case', async t => {
     chrom2.addSerie('ms', ms2);
 
     let compared = spectraComparison(chrom1, chrom2, options);
-    t.deepEqual(compared.peaksSimilarity, [1, 1, 1, 1, 1]);
+    should(compared.peaksSimilarity).deepEqual([1, 1, 1, 1, 1]);
     t.deepEqual(compared.peaksFirst.map((val) => val.x), [10, 20, 30, 40, 50]);
     t.deepEqual(compared.peaksSecond.map((val) => val.x), [20, 30, 40, 50, 60]);
 
@@ -43,7 +43,7 @@ test('Simple case', async t => {
     t.is(Math.abs(aligned.scaleRegression.predict(30) - 20) < 1e-4, true);
 });
 
-test('Quality and string', async t => {
+test('Quality and string', async () => {
     const size = 70;
     const peakX = 10;
     let times = new Array(size);

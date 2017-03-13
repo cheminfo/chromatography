@@ -1,18 +1,18 @@
-import test from 'ava';
-import {Chromatogram} from '..';
+const should = require('should');
+const {Chromatogram} = require('..');
 
-test('Constructor errors', t => {
+test('Constructor errors', () => {
     t.throws(() => new Chromatogram({a: 1}), 'Times must be an array');
     t.throws(() => new Chromatogram(12), 'Times must be an array');
 });
 
-test('get first and last time', t => {
+test('get first and last time', () => {
     let chrom = new Chromatogram([1, 2, 3]);
     t.is(chrom.firstTime, 1);
     t.is(chrom.lastTime, 3);
 });
 
-test('addSerie errors', t => {
+test('addSerie errors', () => {
     let chromatogram = new Chromatogram(
         [1, 2],
         {'tic': [1, 2]}
@@ -24,7 +24,7 @@ test('addSerie errors', t => {
 });
 
 
-test('deleteSerie', t => {
+test('deleteSerie', () => {
     let chromatogram = new Chromatogram(
         [1, 2],
         {

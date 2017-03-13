@@ -4,11 +4,10 @@ const Chromatogram = require('./../Chromatogram');
 
 /**
  * Parse from a JSON element to a new Chromatogram
- * @param {string} stringifiedJSON - Result from the toStringifiedJSON
+ * @param {object} json - Result from the toJSON method
  * @return {Chromatogram} - New parsed Chromatogram
  */
-function fromStringifiedJSON(stringifiedJSON) {
-    let json = JSON.parse(stringifiedJSON);
+function fromJSON(json) {
     let series = json.series;
     let times = json.times;
     let chromatogram = new Chromatogram(times);
@@ -20,4 +19,4 @@ function fromStringifiedJSON(stringifiedJSON) {
     return chromatogram;
 }
 
-module.exports = fromStringifiedJSON;
+module.exports = fromJSON;

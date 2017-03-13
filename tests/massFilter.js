@@ -1,7 +1,7 @@
-import test from 'ava';
-import {massFilter, massInPeaks, vectorify} from '..';
+const should = require('should');
+const {massFilter, massInPeaks, vectorify} = require('..');
 
-test('thresholdFactor', t => {
+test('thresholdFactor', () => {
     let mass = {
         x: [1, 2, 4, 5],
         y: [2, 3, 2, 1]
@@ -13,7 +13,7 @@ test('thresholdFactor', t => {
     });
 });
 
-test('maxNumberPeaks', t => {
+test('maxNumberPeaks', () => {
     let mass = {
         x: [1, 2, 3, 4, 5],
         y: [2, 3, 2, 1, 3]
@@ -25,7 +25,7 @@ test('maxNumberPeaks', t => {
     });
 });
 
-test('groupWidth', t => {
+test('groupWidth', () => {
     let mass = {
         x: [1, 2, 3, 5, 6],
         y: [4, 5, 4, 3, 1]
@@ -37,7 +37,7 @@ test('groupWidth', t => {
     });
 });
 
-test('from massInPeaks', t => {
+test('from massInPeaks', () => {
     let peaks = [{
         left: {index: 0},
         right: {index: 2}
@@ -59,7 +59,7 @@ test('from massInPeaks', t => {
     }]);
 });
 
-test('from vectorify', t => {
+test('from vectorify', () => {
     let peaks = [
         {ms: {
             x: [1, 2, 3],

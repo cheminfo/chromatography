@@ -3,7 +3,7 @@
 const rescaleTime = require('./rescaleTime');
 const filter = require('./util/filter');
 const serieFromArray = require('./serieFromArray');
-const toStringifiedJSON = require('./to/stringifiedJson');
+const toStringifiedJSON = require('./to/json');
 
 /**
  * Class allowing to store time / ms (ms) series
@@ -80,6 +80,9 @@ class Chromatogram {
     addSerie(name, array, options = {}) {
         if (this.hasSerie(name) && !options.force) {
             throw new Error(`A serie with name "${name}" already exists`);
+        }
+        if (this.times.length !== array.length) {
+            throw new Error('The array size is not the same as the time size');
         }
         this.series[name] = serieFromArray(array);
     }

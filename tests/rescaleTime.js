@@ -1,12 +1,12 @@
-import test from 'ava';
-import fs from 'fs';
-import Promise from 'bluebird';
-import {join} from 'path';
-import {kovatsConversionFunction, rescaleTime, fromJcamp} from '..';
+const should = require('should');
+const fs = require('fs');
+const Promise = require('bluebird');
+const {join} = require('path');
+const {kovatsConversionFunction, rescaleTime, fromJcamp} = require('..');
 
 const readFileAsync = Promise.promisify(fs.readFile);
 
-test('Simple case', t => {
+test('Simple case', () => {
     const time2kovats = kovatsConversionFunction([
         {time: 10, value: 800},
         {time: 20, value: 900},
@@ -29,7 +29,7 @@ test('Simple case', t => {
     }
 });
 
-test('Non-in place', async t => {
+test('Non-in place', async () => {
     const path = join(__dirname, 'data/jcamp/P064.JDX');
     const jcamp = await readFileAsync(path, 'utf8');
     const chrom = fromJcamp(jcamp);
@@ -68,7 +68,7 @@ test('Non-in place', async t => {
     }
 });
 
-test('In place', async t => {
+test('In place', async () => {
     const path = join(__dirname, 'data/jcamp/P064.JDX');
     const jcamp = await readFileAsync(path, 'utf8');
     const chrom = fromJcamp(jcamp);

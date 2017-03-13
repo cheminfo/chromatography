@@ -1,7 +1,7 @@
-import test from 'ava';
-import {kovats} from '..';
+const should = require('should');
+const {kovats} = require('..');
 
-test('Simple case', t => {
+test('Simple case', () => {
     t.is(kovats({
         x: [43, 57, 71, 85],
     }), 0);
