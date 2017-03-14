@@ -17,3 +17,4 @@ exports.rescaleTime = require('./rescaleTime');
 exports.fromJcamp = require('./from/jcamp');
 exports.fromJSON = require('./from/json');
 
+exports.getKovatsRescale = require('./getKovatsRescale');

@@ -12,7 +12,7 @@ const massInPeaks = require('./massInPeaks');
  * @param {number} [options.thresholdFactor = 0.005] - Every peak that is below the main peak times this factor will be removed (when is 0 there's no filter)
  * @param {number} [options.maxNumberPeaks = 40] - Maximum number of peaks for each mass spectra (when is Number.MAX_VALUE there's no filter)
  * @param {number} [options.groupWidth = 5] - When find a max can't be another max in a radius of this size
- * @return {Array<object>} - Time and value for the Kovats index
+ * @return {{kovatsIndexes:Array<object>,peaks:Array<object>}} - Time and value for the Kovats index
  */
 function getKovatsTable(reference, options = {}) {
     const {
@@ -39,7 +39,10 @@ function getKovatsTable(reference, options = {}) {
         };
     }
 
-    return kovatsIndexes;
+    return {
+        kovatsIndexes,
+        peaks
+    };
 }
 
 module.exports = getKovatsTable;
