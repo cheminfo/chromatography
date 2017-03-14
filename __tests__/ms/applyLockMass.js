@@ -23,7 +23,7 @@ test('simple case', () => {
 
     const expectedMass = [100.005, 200.005, 300.005];
     for (let i = 0; i < expectedMass.length; i++) {
-        expect(chromatogram.getSerie('ms').data[0][0][i]).toBeCloseTo(expectedMass[i],3);
+        expect(chromatogram.getSerie('ms').data[0][0][i]).toBeCloseTo(expectedMass[i], 3);
     }
 });
 
@@ -78,8 +78,8 @@ test('different references', () => {
     expect(chromatogram.length).toEqual(newLength);
     expect(chromatogram.getSerie('ms').data.length).toEqual(newLength);
 
-    expect(chromatogram.getTimes()).toEqual([2,4]);
-    expect(chromatogram.getSerie('ms').data[0][1]).toEqual([10, 20,  30]);
+    expect(chromatogram.getTimes()).toEqual([2, 4]);
+    expect(chromatogram.getSerie('ms').data[0][1]).toEqual([10, 20, 30]);
     expect(chromatogram.getSerie('ms').data[1][1]).toEqual([10, 20, 30]);
 
     const expectedMass = [100.005, 200.005, 300.005];

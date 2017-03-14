@@ -32,7 +32,7 @@ function lorentzian(x, x0 = 0, gamma = 1) {
 
 function getSimulatedSpectrum(options) {
     const {
-        size=30
+        size = 30
     } = options;
     const fourth = size / 4;
     let times = new Array(size);
@@ -51,8 +51,7 @@ function getSimulatedSpectrum(options) {
     );
 
     return chromatogram;
-};
-
+}
 
 
 module.exports = {

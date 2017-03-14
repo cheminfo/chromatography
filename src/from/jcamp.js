@@ -16,7 +16,7 @@ function fromJcamp(jcamp) {
     for (var i = 0; i < data.series.length; i++) {
         series[data.series[i].name] = data.series[i].data;
     }
-console.log('---------------',Chromatogram);
+    console.log('---------------', Chromatogram);
     return new Chromatogram(time, series);
 }
 

@@ -2,10 +2,10 @@ const Chromatogram = require('../src/Chromatogram');
 
 test('Constructor errors', () => {
     expect(() => {
-        new Chromatogram({a: 1})
+        new Chromatogram({a: 1});
     }).toThrow('Times must be an array');
     expect(() => {
-        new Chromatogram(12)
+        new Chromatogram(12);
     }).toThrow('Times must be an array');
 });
 

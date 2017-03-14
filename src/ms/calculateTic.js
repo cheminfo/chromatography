@@ -3,17 +3,18 @@
 
 /**
  * Calculate tic
+ * @param {Chromatogram} chrom - GC/MS chromatogram where make the peak picking
  * @param {object} [options = {}] - Options object
  * @param {boolean} [options.force = false] - Force the calculation it it exists
  * @return {Chromatogram} - Modified chromatogram
  */
-function calcultateTic(options = {}) {
+function calcultateTic(chrom, options = {}) {
 
-    if (this.getSerie('tic') && !options.force) {
-        return this;
+    if (chrom.getSerie('tic') && !options.force) {
+        return chrom;
     }
 
-    let ms = this.getSerie('ms');
+    let ms = chrom.getSerie('ms');
     if (!ms) {
         throw new Error('The mass serie must be defined');
     }
@@ -23,7 +24,7 @@ function calcultateTic(options = {}) {
         tic.push(massSpectrum[1].reduce((a, b) => (a + b), 0));
     }
     this.addSerie('tic', tic);
-    return this;
+    return chrom;
 }
 
 module.exports = calcultateTic;

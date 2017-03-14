@@ -148,13 +148,31 @@ class Chromatogram {
         filter(this, callback);
         return this;
     }
+
+    /**
+     * Apply the GSD peak picking algorithm
+     * @param {object} [options] - Options object
+     * @param {object} [options.heightFilter = 2] - Filter all objects that are bellow `heightFilter` times the median of the height
+     * @return {Array<object>} - List of GSD objects
+     */
+    getPeaks(options) {
+        return require('./util/getPeaks')(this, options);
+    }
+
+    /**
+     * Calculate tic
+     * @param {object} [options = {}] - Options object
+     * @param {boolean} [options.force = false] - Force the calculation it it exists
+     * @return {Chromatogram} - Modified chromatogram
+     */
+    calcultateTic(options) {
+        return require('./ms/calculateTic')(this, options)
+    }
 }
 
 
 Chromatogram.prototype.applyLockMass = require('./ms/applyLockMass');
-Chromatogram.prototype.calculateTic = require('./ms/calculateTic');
 Chromatogram.prototype.toJSON = require('./to/json');
-Chromatogram.prototype.getPeaks = require('./util/getPeaks');
 
 module.exports = Chromatogram;
 

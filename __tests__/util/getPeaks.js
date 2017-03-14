@@ -16,7 +16,7 @@ test('from a Diesel chromatogram', () => {
 });
 
 test('triplet', () => {
-    let chromatogram=getSimulatedSpectrum({size: 60});
+    let chromatogram = getSimulatedSpectrum({size: 60});
     let peaks = chromatogram.getPeaks();
     expect(peaks.length).toEqual(1);
 });

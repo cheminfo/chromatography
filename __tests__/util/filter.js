@@ -23,7 +23,7 @@ describe('filter', () => {
         chromatogram.filter((index, time) => time < 3);
         expect(chromatogram.getTimes().length).toEqual(2);
         expect(chromatogram.getSerie('ms').data.length).toEqual(2);
-        expect(chromatogram.getTimes()).toEqual([1,2]);
+        expect(chromatogram.getTimes()).toEqual([1, 2]);
         expect(chromatogram.getSerie('ms').data).toEqual(
             [
                 [[101, 201, 301], [11, 21, 31]],
@@ -32,5 +32,5 @@ describe('filter', () => {
         );
     });
 
-})
+});
 
