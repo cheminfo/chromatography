@@ -166,7 +166,7 @@ class Chromatogram {
      * @return {Chromatogram} - Modified chromatogram
      */
     calcultateTic(options) {
-        return require('./ms/calculateTic')(this, options)
+        return require('./ms/calculateTic')(this, options);
     }
 
     /**

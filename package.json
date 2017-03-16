@@ -7,7 +7,7 @@
     "build": "cheminfo build --no-uglify --root Chromatography",
     "build-doc": "cheminfo doc",
     "publish-doc": "cheminfo doc --publish",
-    "eslint": "eslint src __tests__",
+    "eslint": "eslint src",
     "eslint-fix": "npm run eslint -- --fix",
     "test": "jest",
     "watch": "npm run test -- --watch",
