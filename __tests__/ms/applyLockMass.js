@@ -2,8 +2,7 @@ const {Chromatogram} = require('../../src/index.js');
 
 test('simple case', () => {
     let chromatogram = new Chromatogram(
-        [1, 2],
-        {
+        [1, 2], {
             ms: [
                 [[100, 200, 300], [10, 20, 30]],
                 [[622.024747], [274]]
@@ -29,8 +28,7 @@ test('simple case', () => {
 
 test('array of mf', () => {
     let chromatogram = new Chromatogram(
-        [1, 2],
-        {
+        [1, 2], {
             ms: [
                 [[100, 200, 300], [10, 20, 30]],
                 [[622.024747], [274]]
@@ -56,8 +54,7 @@ test('array of mf', () => {
 
 test('different references', () => {
     let chromatogram = new Chromatogram(
-        [1, 2, 3, 4],
-        {
+        [1, 2, 3, 4], {
             ms: [
                 [[622.024747], [274]],
                 [[100, 200, 300], [10, 20, 30]],
@@ -90,9 +87,7 @@ test('different references', () => {
 });
 
 test('check exceptions', () => {
-    let chromatogram = new Chromatogram(
-        [1]
-    );
+    let chromatogram = new Chromatogram([1]);
     expect(() => chromatogram.applyLockMass('C12H19F12N3O6P3')).toThrow('The "ms" serie must be defined');
 
     chromatogram.addSerie('ms', [[[622.024747], [274]]]);

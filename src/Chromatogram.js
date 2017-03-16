@@ -165,8 +165,11 @@ class Chromatogram {
      * @param {boolean} [options.force = false] - Force the calculation it it exists
      * @return {Chromatogram} - Modified chromatogram
      */
-    calcultateTic(options) {
-        return require('./ms/calculateTic')(this, options);
+    calculateTic(options = {}) {
+        if (!this.getSerie('tic') || options.force) {
+            let tic = require('./ms/calculateTic')(this);
+            this.addSerie('tic', tic);
+        }
     }
 
     /**
