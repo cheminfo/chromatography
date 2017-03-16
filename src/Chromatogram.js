@@ -95,6 +95,15 @@ class Chromatogram {
         return typeof this.series[name] !== 'undefined';
     }
 
+    /**
+     * Throws if the serie does not exists
+     * @param {string} name - Name of the serie to check
+     */
+    requiresSerie(name) {
+        if (!this.hasSerie(name)) {
+            throw new Error(`The serie "${name}" does not exist`);
+        }
+    }
 
     /**
      * Returns the first time value
@@ -190,6 +199,8 @@ class Chromatogram {
 
 Chromatogram.prototype.applyLockMass = require('./ms/applyLockMass');
 Chromatogram.prototype.toJSON = require('./to/json');
+Chromatogram.prototype.getClosestTime = require('./util/getClosestTime');
+Chromatogram.prototype.getClosestData = require('./util/getClosestData');
 
 module.exports = Chromatogram;
 

@@ -4,20 +4,20 @@ const gsd = require('ml-gsd').gsd;
 
 /**
  * Apply the GSD peak picking algorithm
- * @param {Chromatogram} chrom - GC/MS chromatogram where make the peak picking
+ * @param {Chromatogram} chromatogram - GC/MS chromatogram where make the peak picking
  * @param {object} [options] - Options object
  * @param {object} [options.heightFilter = 2] - Filter all objects that are bellow `heightFilter` times the median of the height
  * @return {Array<object>} - List of GSD objects
  */
-function getPeaks(chrom, options = {}) {
+function getPeaks(chromatogram, options = {}) {
     const {heightFilter = 2} = options;
 
-    let tic = chrom.getSerie('tic');
+    let tic = chromatogram.getSerie('tic');
     if (!tic) {
         throw new Error('\'tic\' serie not founded');
     }
     tic = tic.data;
-    let times = chrom.getTimes();
+    let times = chromatogram.getTimes();
 
     // first peak selection
     let peakList = gsd(times, tic, {
