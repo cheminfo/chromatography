@@ -22,7 +22,7 @@ function getKovatsRescale(reference, options) {
         conversionFunction: conversionFunction,
         kovatsIndexes: kovatsTable.kovatsIndexes,
         peaks: kovatsTable.peaks
-    }
+    };
 }
 
 module.exports = getKovatsRescale;

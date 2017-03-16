@@ -1,8 +1,7 @@
 const {Chromatogram} = require('../..');
 
 let simple = new Chromatogram(
-    [1, 2],
-    {
+    [1, 2], {
         ms: [
             [[100, 200, 300], [10, 20, 30]],
             [[101, 201, 301], [11, 21, 31]],
@@ -13,8 +12,7 @@ let simple = new Chromatogram(
 let simpleStringified = '{"times":[1,2],"series":{"ms":{"data":[[[100,200,300],[10,20,30]],[[101,201,301],[11,21,31]]],"meta":{}}}}';
 
 let simple4 = new Chromatogram(
-    [1, 2, 3, 4],
-    {
+    [1, 2, 3, 4], {
         ms: [
             [[101, 201, 301], [11, 21, 31]],
             [[102, 202, 302], [12, 22, 32]],
@@ -43,14 +41,10 @@ function getSimulatedSpectrum(options) {
         tic[i] = lorentzian(i, fourth) + 2 * lorentzian(i, 2 * fourth) + lorentzian(i, 3 * fourth);
         ms[i] = [[1, 2, 3], [1, 1, 1]];
     }
-    let chromatogram = new Chromatogram(times,
-        {
-            'tic': tic,
-            'ms': ms
-        }
-    );
-
-    return chromatogram;
+    return new Chromatogram(times, {
+        'tic': tic,
+        'ms': ms
+    });
 }
 
 
