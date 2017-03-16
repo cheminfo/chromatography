@@ -56,7 +56,7 @@ test('different references', () => {
     let chromatogram = new Chromatogram(
         [1, 2, 3, 4], {
             ms: [
-                [[622.024747], [274]],
+                [[10, 622.024747, 100, 200], [10, 274, 40, 50]],
                 [[100, 200, 300], [10, 20, 30]],
                 [[188.136240], [272]],
                 [[100, 200, 300], [10, 20, 30]],
@@ -80,6 +80,7 @@ test('different references', () => {
     expect(chromatogram.getSerie('ms').data[1][1]).toEqual([10, 20, 30]);
 
     const expectedMass = [100.005, 200.005, 300.005];
+    console.log(chromatogram.getSerie('ms').data[0][0])
     for (let i = 0; i < expectedMass.length; i++) {
         expect(Math.abs(chromatogram.getSerie('ms').data[0][0][i] - expectedMass[i]) < 10e-4).toEqual(true);
         expect(Math.abs(chromatogram.getSerie('ms').data[1][0][i] - expectedMass[i]) < 10e-4).toEqual(true);
