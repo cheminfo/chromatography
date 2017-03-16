@@ -9,7 +9,7 @@
  */
 function getClosestData(name, rt) {
     this.requiresSerie(name);
-    let closest=this.getClosestTime(rt)
+    let closest = this.getClosestTime(rt);
     return {
         rt: closest.timeClosest,
         index: closest.index,

@@ -23,7 +23,7 @@ function integrate(from, to, options) {
 
     var fromIndex = this.getClosestTime(from).safeIndexBefore;
     var toIndex = this.getClosestTime(to).safeIndexAfter;
-    var ms=[];
+    var ms = [];
 
 
     return {

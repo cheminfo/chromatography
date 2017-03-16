@@ -100,7 +100,7 @@ class Chromatogram {
      * @param {string} name - Name of the serie to check
      */
     requiresSerie(name) {
-        if (! this.hasSerie(name)) {
+        if (!this.hasSerie(name)) {
             throw new Error(`The serie "${name}" does not exist`);
         }
     }
