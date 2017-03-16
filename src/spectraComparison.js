@@ -1,9 +1,9 @@
 'use strict';
 
-const getPeaks = require('./getPeaks');
+const getPeaks = require('./util/getPeaks');
 const massInPeaks = require('./massInPeaks');
 const vectorify = require('./vectorify');
-const cosine = require('./cosine');
+const cosine = require('./filter/cosine');
 
 /**
  * Preprocessing task over the signals
@@ -18,7 +18,7 @@ function preprocessing(chromatography, options) {
     peaks = peaks.sort((a, b) => a.index - b.index);
 
     // integrate mass in the peaks
-    let ms = chromatography.findSerieByName('ms').data;
+    let ms = chromatography.getSerie('ms').data;
     let integratedMs = massInPeaks(peaks, ms, options);
     let vector = vectorify(integratedMs, options);
 

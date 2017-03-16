@@ -1,6 +1,8 @@
 'use strict';
 
 const rescaleTime = require('./rescaleTime');
+const filter = require('./util/filter');
+const serieFromArray = require('./serieFromArray');
 
 /**
  * Class allowing to store time / ms (ms) series
@@ -9,67 +11,88 @@ const rescaleTime = require('./rescaleTime');
  * @param {object|Array<number>} data - A GC/MS data format object or a time serie
  */
 class Chromatogram {
-    constructor(data) {
-        if (Array.isArray(data)) {
-            // init with times
-            data = {times: data};
-        } else if (typeof data !== 'object') {
-            throw new TypeError('data must be an object or array');
-        }
-
-        if (!Array.isArray(data.times)) {
-            throw new TypeError('times array is mandatory');
-        }
-        this.times = data.times;
-        this.length = data.times.length;
-
+    constructor(times, series) {
         this.series = {};
-        if (data.series) {
-            for (const serie of data.series) {
-                this.addSerie(serie);
+        this.times = [];
+        if (times) {
+            if (!Array.isArray(times)) {
+                throw new TypeError('Times must be an array');
             }
+            this.times = times;
+        }
+        if (series) {
+            this.addSeries(series);
         }
     }
+
+    get length() {
+        return this.times.length;
+    }
+
 
     /**
      * Find the serie giving the name
      * @param {string} name - name of the serie
      * @return {object} - Object with an array of data, dimensions of the elements in the array and name of the serie
      */
-    findSerieByName(name) {
+    getSerie(name) {
         return this.series[name];
+    }
+
+    getSerieNames() {
+        return Object.keys(this.series);
     }
 
     /**
      * Delete a serie
      * @param {string} name - Name of the serie
      */
-    deleteSerieByName(name) {
-        if (!this.findSerieByName(name)) {
-            throw new Error(`a serie with name ${name} doesn't exists`);
+    deleteSerie(name) {
+        if (!this.hasSerie(name)) {
+            throw new Error(`The serie "${name}" does not exist`);
         } else {
             delete this.series[name];
         }
     }
 
     /**
-     * Add a new serie
-     * @param {object} serie - Object with an array of data, dimensions of the elements in the array and name of the serie
+     * Add new series
+     * @param {object} series - Object with an array of data, dimensions of the elements in the array and name of the serie
+     * @param {object} [options = {}] - Object with an array of data, dimensions of the elements in the array and name of the serie
      */
-    addSerie(serie) {
-        if (typeof serie.dimension !== 'number') {
-            throw new Error('serie must have a dimension');
+    addSeries(series, options = {}) {
+        if (typeof series !== 'object' || Array.isArray(series)) {
+            throw new TypeError('data must be an object containing arrays of series');
         }
-        if (typeof serie.name !== 'string') {
-            throw new Error('serie must have a name');
+        for (const key of Object.keys(series)) {
+            this.addSerie(key, series[key], options);
         }
-        if (this.findSerieByName(serie.name)) {
-            throw new Error(`a serie with name ${serie.name} already exists`);
+    }
+
+    /**
+     * Add a new serie
+     * @param {string} name - Name of the serie to add
+     * @param {Array} array - Object with an array of data, dimensions of the elements in the array and name of the serie
+     * @param {object} [options = {}] - Options object
+     * @param {boolean} [options.force = false] - Force replacement of existing serie
+     */
+    addSerie(name, array, options = {}) {
+        if (this.hasSerie(name) && !options.force) {
+            throw new Error(`A serie with name "${name}" already exists`);
         }
-        if (!Array.isArray(serie.data)) {
-            throw new Error('serie must have a data array');
+        if (this.times.length !== array.length) {
+            throw new Error('The array size is not the same as the time size');
         }
-        this.series[serie.name] = serie;
+        this.series[name] = serieFromArray(array);
+    }
+
+    /**
+     * Returns true if the serie name exists
+     * @param {string} name - Name of the serie to check
+     * @return {boolean}
+     */
+    hasSerie(name) {
+        return typeof this.series[name] !== 'undefined';
     }
 
 
@@ -77,7 +100,7 @@ class Chromatogram {
      * Returns the first time value
      * @return {number} - First time value
      */
-    getFirstTime() {
+    get firstTime() {
         return this.times[0];
     }
 
@@ -85,7 +108,7 @@ class Chromatogram {
      * Returns the last time value
      * @return {number} - Last time value
      */
-    getLastTime() {
+    get lastTime() {
         return this.times[this.length - 1];
     }
 
@@ -108,42 +131,62 @@ class Chromatogram {
     /**
      * Modifies the time applying the conversion function
      * @param {function(number)} conversionFunction
+     * @return {Chromatogram}
      */
     rescaleTime(conversionFunction) {
         this.times = rescaleTime(this.times, conversionFunction);
+        return this;
     }
 
     /**
-     * Parse the content to an JSON Array
-     * @return {Array<object>} - Returns a list with the following fields:
-     *  * `time`: Number for the retention time
-     *  * `tic`: Number for the total ion chromatogram
-     *  * `mass`: List of mass values and their respective intensities
+     * Will filter the entries based on the time
+     * You can either use the index of the actual time
+     * @param {function(index, time)} callback
+     * @return {Chromatogram}
      */
-    toJSON() {
-        var ans = new Array(this.times.length);
-        const tic = this.findSerieByName('tic').data;
-        const mass = this.findSerieByName('ms').data.map((ms) => {
-            var ansMS = new Array(ms[0].length);
-            for (var i = 0; i < ansMS.length; i++) {
-                ansMS[i] = {
-                    mass: ms[0][i],
-                    intensity: ms[1][i]
-                };
-            }
-            return ansMS;
-        });
+    filter(callback) {
+        filter(this, callback);
+        return this;
+    }
 
-        for (var i = 0; i < ans.length; i++) {
-            ans[i] = {
-                time: this.times[i],
-                tic: tic[i],
-                mass: mass[i]
-            };
-        }
+    /**
+     * Apply the GSD peak picking algorithm
+     * @param {object} [options] - Options object
+     * @param {object} [options.heightFilter = 2] - Filter all objects that are bellow `heightFilter` times the median of the height
+     * @return {Array<object>} - List of GSD objects
+     */
+    getPeaks(options) {
+        return require('./util/getPeaks')(this, options);
+    }
 
-        return ans;
+    /**
+     * Calculate tic
+     * @param {object} [options = {}] - Options object
+     * @param {boolean} [options.force = false] - Force the calculation it it exists
+     * @return {Chromatogram} - Modified chromatogram
+     */
+    calcultateTic(options) {
+        return require('./ms/calculateTic')(this, options)
+    }
+
+    /**
+     * Calculates the table of Kovats indexes for the reference spectra
+     * @param {object} [options = {}] - Options object
+     * @param {number} [options.heightFilter = 100] - Filter all objects that are below heightFilter times the median of the height
+     * @param {number} [options.thresholdFactor = 0.005] - Every peak that is below the main peak times this factor will be removed (when is 0 there's no filter)
+     * @param {number} [options.maxNumberPeaks = 40] - Maximum number of peaks for each mass spectra (when is Number.MAX_VALUE there's no filter)
+     * @param {number} [options.groupWidth = 5] - When find a max can't be another max in a radius of this size
+     * @param {boolean} [options.revert = false] - True for convert from Kovats to time, false otherwise
+     * @return {{conversionFunction:function(number),kovatsIndexes:Array<object>,peaks:Array<object>}} - Time and value for the Kovats index
+     */
+    getKovatsRescale(options) {
+        return require('./getKovatsRescale')(this, options);
     }
 }
 
+
+Chromatogram.prototype.applyLockMass = require('./ms/applyLockMass');
+Chromatogram.prototype.toJSON = require('./to/json');
+
 module.exports = Chromatogram;
+

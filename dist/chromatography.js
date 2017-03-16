@@ -2670,7 +2670,7 @@ var Chromatogram = function () {
 
 
     (0, _createClass3.default)(Chromatogram, [{
-        key: 'findSerieByName',
+        key: 'getSerie',
         value: function findSerieByName(name) {
             return this.series.find(function (serie) {
                 return serie.name === name;
@@ -2691,7 +2691,7 @@ var Chromatogram = function () {
             if (typeof serie.name !== 'string') {
                 throw new Error('serie must have a name');
             }
-            if (this.findSerieByName(serie.name)) {
+            if (this.getSerie(serie.name)) {
                 throw new Error('a serie with name ' + serie.name + ' already exists');
             }
             if (!Array.isArray(serie.data)) {
@@ -2767,8 +2767,8 @@ var Chromatogram = function () {
         key: 'toJSON',
         value: function toJSON() {
             var ans = new Array(this.times.length);
-            var tic = this.findSerieByName('tic').data;
-            var mass = this.findSerieByName('ms').data.map(function (ms) {
+            var tic = this.getSerie('tic').data;
+            var mass = this.getSerie('ms').data.map(function (ms) {
                 var ansMS = new Array(ms[0].length);
                 for (var i = 0; i < ansMS.length; i++) {
                     ansMS[i] = {
@@ -2818,7 +2818,7 @@ function getPeaks(chrom) {
         heightFilter = _options$heightFilter === undefined ? 2 : _options$heightFilter;
 
 
-    var tic = chrom.findSerieByName('tic');
+    var tic = chrom.getSerie('tic');
     if (!tic) {
         throw new Error('\'tic\' serie not founded');
     }
@@ -10420,7 +10420,7 @@ function applyLockMass(chromatogram, mf, options) {
         return analyseMF(mf).em;
     });
 
-    var ms = chromatogram.findSerieByName('ms');
+    var ms = chromatogram.getSerie('ms');
     if (!ms) {
         throw new Error('The mass serie must be defined');
     }
@@ -10580,7 +10580,7 @@ function getKovatsTable(reference) {
     });
 
     // integrate mass in the peaks
-    var ms = reference.findSerieByName('ms').data;
+    var ms = reference.getSerie('ms').data;
     var integratedMs = massInPeaks(peaks, ms, { thresholdFactor: thresholdFactor, maxNumberPeaks: maxNumberPeaks, groupWidth: groupWidth });
 
     var kovatsIndexes = new Array(integratedMs.length);
@@ -10763,7 +10763,7 @@ function preprocessing(chromatography, options) {
     });
 
     // integrate mass in the peaks
-    var ms = chromatography.findSerieByName('ms').data;
+    var ms = chromatography.getSerie('ms').data;
     var integratedMs = massInPeaks(peaks, ms, options);
     var vector = vectorify(integratedMs, options);
 
