@@ -11,7 +11,7 @@ const defaultOptions = {
  * @param {string|Array<string>} mf - Reference molecular formula(s)
  * @param {object} [options={}] - Options object
  * @param {boolean} [options.oddReference=true] - Mass reference it's in the odd position
- * @return {{tic: Array<number>, ms: Array<Array<number>>, time: Array<number>}}
+ * @return {object} this
  */
 function applyLockMass(mf, options) {
     options = Object.assign({}, defaultOptions, options);
