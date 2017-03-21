@@ -3,9 +3,8 @@
 
 /**
  * Returns information for the closest time
- * @param {number} rt - Retention time
- * @return {{index: <number>, timeBefore: <number>, timeAfter: <number>, timeClosest: <number>, safeIndexBefore: <number>
- *     safeIndexAfter: <number>}}
+ * @param {number} time - Retention time
+ * @return {{index: number, timeBefore: number, timeAfter: number, timeClosest: number, safeIndexBefore: number, safeIndexAfter: number}}
  */
 function getClosestTime(time) {
 

@@ -172,7 +172,6 @@ class Chromatogram {
      * Calculate tic
      * @param {object} [options = {}] - Options object
      * @param {boolean} [options.force = false] - Force the calculation it it exists
-     * @return {Chromatogram} - Modified chromatogram
      */
     calculateTic(options = {}) {
         if (!this.getSerie('tic') || options.force) {
