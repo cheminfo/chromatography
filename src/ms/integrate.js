@@ -7,18 +7,15 @@
  * then the 2 intensity are summed and the mass is proportionally averaged.
  * We should take care that the resulting mass could theoretically be still closest to another peak
  * and we could have to repeat this averaging (but this can only happen once)
+ * @param {Chromatogram} chrom
  * @param {number} from - From retention time
  * @param {number} to - To retention time
- * @return {{rt: <number>, ms: <Array<Array<number>>>}}
+ * @return {{fromIndex: number, toIndex: number, ms: Array}}
  */
-
-// TODO this method should use 'getClosestTime'
-
-function integrate(from, to) {
-    var fromIndex = this.getClosestTime(from).safeIndexBefore;
-    var toIndex = this.getClosestTime(to).safeIndexAfter;
+function integrate(chrom, from, to) {
+    var fromIndex = chrom.getClosestTime(from).safeIndexBefore;
+    var toIndex = chrom.getClosestTime(to).safeIndexAfter;
     var ms = [];
-
 
     return {
         fromIndex,

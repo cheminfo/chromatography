@@ -193,12 +193,20 @@ class Chromatogram {
     getKovatsRescale(options) {
         return require('./getKovatsRescale')(this, options);
     }
+
+    /**
+     * Returns information for the closest time
+     * @param {number} time - Retention time
+     * @return {{index: number, timeBefore: number, timeAfter: number, timeClosest: number, safeIndexBefore: number, safeIndexAfter: number}}
+     */
+    getClosestTime(time) {
+        return require('./util/getClosestTime')(time, this.getTimes());
+    }
 }
 
 
 Chromatogram.prototype.applyLockMass = require('./ms/applyLockMass');
 Chromatogram.prototype.toJSON = require('./to/json');
-Chromatogram.prototype.getClosestTime = require('./util/getClosestTime');
 Chromatogram.prototype.getClosestData = require('./util/getClosestData');
 
 module.exports = Chromatogram;
