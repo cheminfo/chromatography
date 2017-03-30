@@ -46,7 +46,7 @@ function applyLockMass(mf, options) {
         // calculate the difference between theory and experimental (the smallest)
         let difference = Number.MAX_VALUE;
         for (let j = 0; j < referenceMass.length; j++) {
-            for (let k = 0; k<ms[referenceIndex][0].length; k++) {
+            for (let k = 0; k < ms[referenceIndex][0].length; k++) {
                 if (Math.abs(difference) > Math.abs(referenceMass[j] - ms[referenceIndex][0][k])) {
                     difference = referenceMass[j] - ms[referenceIndex][0][k];
                 }

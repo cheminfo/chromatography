@@ -1,57 +1,52 @@
 'use strict';
 
+const binarySearch = require('binary-search');
+const ascValue = (a, b) => (a - b);
 
 /**
  * Returns information for the closest time
- * @param {number} rt - Retention time
- * @return {{index: <number>, timeBefore: <number>, timeAfter: <number>, timeClosest: <number>, safeIndexBefore: <number>
- *     safeIndexAfter: <number>}}
+ * @param {number} time - Retention time
+ * @param {Array<number>} times - Time array
+ * @return {{index: number, timeBefore: number, timeAfter: number, timeClosest: number, safeIndexBefore: number, safeIndexAfter: number}}
  */
-function getClosestTime(time) {
+function getClosestTime(time, times) {
+    let position = binarySearch(times, time, ascValue);
 
-    let times = this.getTimes();
-    let timeBefore = Number.MIN_VALUE;
-    let timeAfter = Number.MAX_VALUE;
-    let timeClosest = Number.MAX_VALUE;
-    let safeIndexBefore = 0;
-    let safeIndexAfter = this.length - 1;
-    let index = 0;
-    let currentDifference = Number.MAX_VALUE;
+    if (position < 0) {
+        // the value doesn't exists in the array
+        position = -position - 1;
 
-    for (let i = 0; i < this.length; i++) {
-        let difference = times[i] - time;
-        if (Math.abs(difference) < currentDifference) {
-            currentDifference = Math.abs(difference);
-            timeClosest = times[i];
-            index = i;
-            if (difference > 0) {
-                if (i > 0) {
-                    timeBefore = times[i - 1];
-                    safeIndexBefore = i - 1;
-                }
-                timeAfter = times[i];
-                safeIndexAfter = i;
-            } else if (difference < 0) {
-                timeBefore = times[i];
-                safeIndexBefore = i;
-                if (i < this.length - 1) {
-                    timeAfter = times[i + 1];
-                    safeIndexAfter = i + 1;
-                } else {
-                    timeAfter = Number.MAX_VALUE;
-                    safeIndexAfter = this.length - 1;
-                }
-            } else {
-                timeBefore = times[i];
-                timeAfter = times[i];
-                safeIndexBefore = i;
-                safeIndexAfter = i;
-            }
+        let safeIndexBefore = position === 0 ? 0 : position - 1;
+        if (position > (times.length - 1)) {
+            position = times.length - 1;
+            safeIndexBefore = times.length - 1;
         }
+        const safeIndexAfter = position;
+
+        let difference = times[position] - time;
+        if (difference > 0.5) {
+            position = safeIndexBefore;
+        }
+
+        return {
+            index: position,
+            timeBefore: times[safeIndexBefore],
+            timeAfter: times[safeIndexAfter],
+            timeClosest: times[position],
+            safeIndexBefore: safeIndexBefore,
+            safeIndexAfter: safeIndexAfter
+        };
+    } else {
+        // the value exists in the array
+        return {
+            index: position,
+            timeBefore: times[position],
+            timeAfter: times[position],
+            timeClosest: times[position],
+            safeIndexBefore: position,
+            safeIndexAfter: position
+        };
     }
-
-
-    return {index, timeBefore, timeAfter, timeClosest, safeIndexBefore, safeIndexAfter};
 }
 
 module.exports = getClosestTime;

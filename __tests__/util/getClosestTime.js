@@ -1,13 +1,11 @@
 let chromatogram = require('../data/examples.js').simple4;
 
-
-
 test('Get closest time', () => {
     // time : [1, 2, 3, 4]
 
     expect(chromatogram.getClosestTime(0.5)).toEqual({
         index: 0,
-        timeBefore: Number.MIN_VALUE,
+        timeBefore: 1,
         timeAfter: 1,
         timeClosest: 1,
         safeIndexBefore: 0,
@@ -26,7 +24,7 @@ test('Get closest time', () => {
     expect(chromatogram.getClosestTime(4.5)).toEqual({
         index: 3,
         timeBefore: 4,
-        timeAfter: Number.MAX_VALUE,
+        timeAfter: 4,
         timeClosest: 4,
         safeIndexBefore: 3,
         safeIndexAfter: 3
