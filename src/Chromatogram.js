@@ -3,6 +3,7 @@
 const rescaleTime = require('./rescaleTime');
 const filter = require('./util/filter');
 const serieFromArray = require('./serieFromArray');
+const fromJSON = require('./from/json');
 
 /**
  * Class allowing to store time / ms (ms) series
@@ -201,6 +202,14 @@ class Chromatogram {
      */
     getClosestTime(time) {
         return require('./util/getClosestTime')(time, this.getTimes());
+    }
+
+    /**
+     * Return a copy of the chromatogram
+     * @return {Chromatogram}
+     */
+    copy() {
+        return fromJSON(this.toJSON);
     }
 }
 

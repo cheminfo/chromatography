@@ -5,9 +5,16 @@
  * The callback will take a time
  * @param {Chromatogram} chromatogram - GC/MS chromatogram where make the peak picking
  * @param {function(number, number)} callback
+ * @param {object} [options] - options object
+ * @param {boolean} [options.copy = false] - return a copy of the original object
  * @return {Chromatogram} - Modified chromatogram
  */
-function filter(chromatogram, callback) {
+function filter(chromatogram, callback, options = {}) {
+    const {copy = false} = options;
+    if (copy) {
+        chromatogram = chromatogram.copy();
+    }
+
     let times = chromatogram.getTimes();
     let newTimes = [];
     let indexToKeep = [];
