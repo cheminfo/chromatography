@@ -23,7 +23,7 @@
   },
   "author": "Michaël Zasso",
   "contributors": [
-    "Miguel Asencio <maasencioh@gmail.com> (https://github.com/maasencioh)"
+    "Miguel Asencio <maasencioh@gmail.com>"
   ],
   "license": "MIT",
   "bugs": {
@@ -34,7 +34,7 @@
     "bluebird": "^3.3.4",
     "cheminfo-tools": "^1.9.0",
     "codecov": "^1.0.1",
-    "documentation": "^4.0.0-beta.18",
+    "documentation": "^4.0.0-rc.1",
     "eslint": "^3.4.0",
     "eslint-config-cheminfo": "^1.2.0",
     "eslint-plugin-no-only-tests": "^1.1.0",
@@ -44,9 +44,9 @@
   },
   "dependencies": {
     "binary-search": "^1.3.2",
-    "chemcalc": "^3.3.2",
+    "chemcalc": "^3.3.3",
     "jcampconverter": "^2.3.0",
     "ml-gsd": "^2.0.1",
-    "ml-regression": "^4.1.1"
+    "ml-regression": "^4.2.1"
   }
 }
