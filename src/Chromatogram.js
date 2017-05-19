@@ -195,6 +195,16 @@ class Chromatogram {
     }
 
     /**
+     * Retuns an object with the result of the integrations
+     * @param zones : [from, to] or [ [from1, to1], [from2, to2], ...]
+     * @param options
+     * @return { serieName: [] }
+     */
+    getIntegrations(zones, options) {
+        return require('./util/integrate')(this, zones, options);
+    }
+
+    /**
      * Returns information for the closest time
      * @param {number} time - Retention time
      * @return {{index: number, timeBefore: number, timeAfter: number, timeClosest: number, safeIndexBefore: number, safeIndexAfter: number}}

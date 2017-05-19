@@ -19,7 +19,7 @@ const defaultOptions = {
  * @param {number} fromTo - [from, to] or [ [from1, to1], [from2, to2], ...]
  * @param {object} [options = {}] - Options object
  * @param {number} [options.slot = 2] - Define when 2 peaks will be combined
- * @return { [{fromIndex: number, toIndex: number, from, to, ms: array}] }
+ * @return { serieName: [] }
  */
 function integrate(chromatogram, fromTos, options) {
     options = Object.assign({}, defaultOptions, options);
