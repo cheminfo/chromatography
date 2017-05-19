@@ -19,7 +19,7 @@ const defaultOptions = {
  * @param {number} fromTo - [from, to] or [ [from1, to1], [from2, to2], ...]
  * @param {object} [options = {}] - Options object
  * @param {number} [options.slot = 2] - Define when 2 peaks will be combined
- * @return {{fromIndex: number, toIndex: number, ms: Array}}
+ * @return { [{fromIndex: number, toIndex: number, from, to, ms: array}] }
  */
 function integrate(chromatogram, fromTos, options) {
     options = Object.assign({}, defaultOptions, options);
@@ -27,31 +27,31 @@ function integrate(chromatogram, fromTos, options) {
     if (! Array.isArray(fromTos)) throw new Error('fromTo must be an array of type [from,to]');
     if (! Array.isArray(fromTos[0])) fromTos=[fromTos];
 
-
     const time = chromatogram.getTimes();
-    let results=[];
+
+    // by default we integrate all the series
+    var serieNames=chromatogram.getSerieNames()
+
+    let results={};
+
+    serieNames.forEach( name => results[name] = []);
+
 
     for (let fromTo of fromTos) {
         let from = fromTo[0];
         let to = fromTo[1];
         let fromIndex = getClosestTime(from, time).safeIndexBefore;
         let toIndex = getClosestTime(to, time).safeIndexAfter;
-        // by default we integrate all the series
-        let result = {
-            fromIndex,
-            toIndex,
-            from,
-            to
-        };
-        results.push(result);
-        for (let serieName of chromatogram.getSerieNames()) {
+
+
+        for (let serieName of serieNames) {
             let serie = chromatogram.series[serieName];
             switch (serie.dimension) {
                 case 1:
-                    result.data = integrate1D(time, serie, from, to, fromIndex, toIndex, options);
+                    results[serieName].push(integrate1D(time, serie, from, to, fromIndex, toIndex, options));
                     break;
                 case 2:
-                    result.data = integrate2D(time, serie, from, to, fromIndex, toIndex, options);
+                    results[serieName].push(integrate2D(time, serie, from, to, fromIndex, toIndex, options));
                     break;
             }
         }
