@@ -7,15 +7,19 @@ function integrate1D(time, serie, from, to, fromIndex, toIndex) {
     let total=0;
     for (let i = fromIndex; i < toIndex; i++) {
         let timeStart=time[i];
-        if (i===fromIndex) { // need to check the exact starting point
-            timeStart=from;
-        }
         let timeEnd=time[i+1];
-        if (i===toIndex-1) {
-            timeEnd=to;
+        let heightStart=serie.data[i];
+        if (i===fromIndex) { // need to check the exact starting point
+            heightStart=serie.data[i]+(serie.data[i+1]-serie.data[i])*(from-timeStart)/(timeEnd-timeStart);
+            timeStart=from;;
         }
 
-        total+=(timeEnd - timeStart) * (serie.data[i] + serie.data[i+1]) / 2;
+        let heightEnd=serie.data[i+1];
+        if (i===toIndex-1) {
+            heightEnd=serie.data[i]+(serie.data[i+1]-serie.data[i])*(timeEnd-to)/(timeEnd-timeStart);
+            timeEnd=to;
+        }
+        total+=(timeEnd - timeStart) * (heightStart + heightEnd) / 2;
     }
     return total;
 }
