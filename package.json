@@ -50,6 +50,6 @@
     "jcampconverter": "^2.3.0",
     "ml-gsd": "^2.0.1",
     "ml-regression": "^4.1.1",
-    "xy-parser": "^1.2.0"
+    "xy-parser": "^1.5.0"
   }
 }

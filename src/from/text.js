@@ -8,9 +8,9 @@ const parserXY = require('xy-parser');
  * @param {string} text - String containing the data as CSV or TSV
  * @return {Chromatogram} - New class element with the given data
  */
-function fromText(text) {
-
-    const data = parserXY.parse(text, {arrayType:'xxyy'});
+function fromText(text, options) {
+    var options = Object.assign({}, options, {arrayType:'xxyy'});
+    const data = parserXY.parse(text, options);
 
 
     const time = data[0];
