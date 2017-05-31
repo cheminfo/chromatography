@@ -10578,9 +10578,9 @@ const parserXY = __webpack_require__(127);
  * @param {string} text - String containing the data as CSV or TSV
  * @return {Chromatogram} - New class element with the given data
  */
-function fromText(text) {
-
-    const data = parserXY.parse(text, { arrayType: 'xxyy' });
+function fromText(text, options) {
+    var options = Object.assign({}, options, { arrayType: 'xxyy' });
+    const data = parserXY.parse(text, options);
 
     const time = data[0];
     let series = {
@@ -21698,23 +21698,40 @@ module.exports = g;
 "use strict";
 
 
-var uniqueX = __webpack_require__(68);
+var uniqueXFunction = __webpack_require__(68);
 
 /**
  *
  * @param text
  * @param options
+ * @param options.arrayType xxyy or xyxy
+ * @param {boolean} options.normalize=false
+ * @param {boolean} options.uniqueX
+ * @param {number} [options.xColumn=0] - A number that specifies the xColumn
+ * @param {number} [options.yColumn=1] - A number that specifies the yColumn
+ * @param {number} [options.maxNumberColumns=(Math.max(xColumn, yColumn)+1 || 2)] - A number that specifies the yColumn
+ * @param {number} [options.minNumberColumns=(Math.max(xColumn, yColumn)+1 || 2)] - A number that specifies the yColumn
  * @returns {*[]|Array}
  */
 
-function parseXY (text, options) {
-    var options = options || {};
+function parseXY (text, options={}) {
+    let {
+        normalize=false,
+        uniqueX=false,
+        arrayType='xyxy',
+        xColumn=0,
+        yColumn=1,
+        maxNumberColumns,
+        minNumberColumns
+    } = options;
+    if (!maxNumberColumns) maxNumberColumns=(Math.max(xColumn, yColumn)+1) || 2;
+    if (!minNumberColumns) minNumberColumns=(Math.max(xColumn, yColumn)+1) || 2;
     var lines = text.split(/[\r\n]+/);
 
     var maxY = Number.MIN_VALUE;
 
     var counter=0;
-    var xxyy= (options.arrayType==='xxyy') ? true : false;
+    var xxyy= (arrayType==='xxyy') ? true : false;
     if (xxyy) {
         var result = [
             new Array(lines.length),
@@ -21723,16 +21740,15 @@ function parseXY (text, options) {
     } else {
         var result = new Array(lines.length);
     }
-
     for (var i = 0; i < lines.length; i++) {
         var line = lines[i];
         // we will consider only lines that contains only numbers
         if (line.match(/[0-9]+/) && line.match(/^[0-9eE,;\. \t-]+$/)) {
             line=line.trim();
             var fields = line.split(/[,; \t]+/);
-            if (fields && fields.length == 2) {
-                var x = parseFloat(fields[0]);
-                var y = parseFloat(fields[1]);
+            if (fields && fields.length >= minNumberColumns && fields.length <= maxNumberColumns) {
+                let x = parseFloat(fields[xColumn]);
+                let y = parseFloat(fields[yColumn]);
 
                 if (y > maxY) maxY = y;
                 if (xxyy) {
@@ -21752,7 +21768,7 @@ function parseXY (text, options) {
         result.length=counter;
     }
 
-    if (options.normalize) {
+    if (normalize) {
         if (xxyy) {
             for (var i = 0; i < counter; i++) {
                 result[1][i] /= maxY;
@@ -21765,9 +21781,9 @@ function parseXY (text, options) {
 
     }
 
-    if (options.uniqueX) {
+    if (uniqueX) {
         if (! xxyy) throw new Error('Can only make unique X for xxyy format');
-        uniqueX(result[0], result[1])
+        uniqueXFunction(result[0], result[1])
     }
 
     return result;
