@@ -1,5 +1,12 @@
 const {Chromatogram} = require('../..');
 
+let chromato = new Chromatogram(
+    [1, 2, 3, 5, 6],
+    {
+        tic: [10, 20, 30, 40, 50]
+    }
+);
+
 let simple = new Chromatogram(
     [1, 2], {
         ms: [
@@ -52,5 +59,6 @@ module.exports = {
     simple,
     simpleStringified,
     simple4,
-    getSimulatedSpectrum
+    getSimulatedSpectrum,
+    chromato
 };

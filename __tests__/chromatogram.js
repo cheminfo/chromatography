@@ -39,3 +39,14 @@ test('deleteSerie', () => {
     chromatogram.deleteSerie('tic');
     expect(chromatogram.hasSerie('tic')).toEqual(false);
 });
+
+
+
+
+
+test('Integrate a tic', () => {
+    const chromato = require('./data/examples').chromato;
+    var result = chromato.getIntegrations([1.5, 5.5]);
+    expect(result).toEqual({"tic": [125]});
+
+});
