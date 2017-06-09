@@ -1,5 +1,3 @@
-'use strict';
-
 const rescaleTime = require('./rescaleTime');
 const filter = require('./util/filter');
 const serieFromArray = require('./serieFromArray');
@@ -11,7 +9,7 @@ const fromJSON = require('./from/json');
  * @class Chromatogram
  * @param {object|Array<number>} data - A GC/MS data format object or a time serie
  */
-class Chromatogram {
+export class Chromatogram {
     constructor(times, series) {
         this.series = {};
         this.times = [];
@@ -227,6 +225,4 @@ class Chromatogram {
 Chromatogram.prototype.applyLockMass = require('./ms/applyLockMass');
 Chromatogram.prototype.toJSON = require('./to/json');
 Chromatogram.prototype.getClosestData = require('./util/getClosestData');
-
-module.exports = Chromatogram;
 

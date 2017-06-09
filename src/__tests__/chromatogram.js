@@ -1,4 +1,5 @@
-const Chromatogram = require('../src/Chromatogram');
+import {Chromatogram} from '..';
+import {chromato} from './data/examples';
 
 test('Constructor errors', () => {
     expect(() => {
@@ -18,12 +19,11 @@ test('get first and last time', () => {
 test('addSerie errors', () => {
     let chromatogram = new Chromatogram(
         [1, 2],
-        {'tic': [1, 2]}
+        {tic: [1, 2]}
     );
     expect(() => chromatogram.addSerie('abc', 1234)).toThrow('The array size is not the same as the time size');
     expect(() => chromatogram.addSerie('abc', {a: 1, b: 2})).toThrow('The array size is not the same as the time size');
     expect(() => chromatogram.addSerie('tic', [2, 3, 4])).toThrow('A serie with name "tic" already exists');
-
 });
 
 
@@ -41,12 +41,7 @@ test('deleteSerie', () => {
 });
 
 
-
-
-
 test('Integrate a tic', () => {
-    const chromato = require('./data/examples').chromato;
     var result = chromato.getIntegrations([1.5, 5.5]);
-    expect(result).toEqual({"tic": [125]});
-
+    expect(result).toEqual({tic: [125]});
 });

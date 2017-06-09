@@ -1,5 +1,3 @@
-'use strict';
-
 const Chromatogram = require('../Chromatogram');
 const converter = require('jcampconverter').convert;
 
@@ -8,7 +6,7 @@ const converter = require('jcampconverter').convert;
  * @param {string} jcamp - String containing the JCAMP data
  * @return {Chromatogram} - New class element with the given data
  */
-function fromJcamp(jcamp) {
+export function fromJcamp(jcamp) {
     const data = converter(jcamp, {newGCMS: true}).gcms;
 
     const time = data.times;
@@ -19,5 +17,3 @@ function fromJcamp(jcamp) {
 
     return new Chromatogram(time, series);
 }
-
-module.exports = fromJcamp;

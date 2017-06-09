@@ -1,5 +1,3 @@
-'use strict';
-
 const Chromatogram = require('../Chromatogram');
 const parserXY = require('xy-parser');
 
@@ -8,8 +6,8 @@ const parserXY = require('xy-parser');
  * @param {string} text - String containing the data as CSV or TSV
  * @return {Chromatogram} - New class element with the given data
  */
-function fromText(text, options) {
-    var options = Object.assign({}, options, {arrayType:'xxyy'});
+export function fromText(text, options) {
+    var options = Object.assign({}, options, {arrayType: 'xxyy'});
     const data = parserXY.parse(text, options);
 
 
@@ -20,5 +18,3 @@ function fromText(text, options) {
 
     return new Chromatogram(time, series);
 }
-
-module.exports = fromText;

@@ -1,6 +1,5 @@
-const fs = require('fs');
-const integrate = require('../../src/util/integrate');
-const chromato = require('../data/examples').chromato;
+import {integrate} from '../..';
+import {chromato} from '../data/examples';
 
 
 test('Integrate a tic', () => {
@@ -13,8 +12,8 @@ test('Integrate a tic', () => {
     // var result = integrate(chromato, [1.5, 5.5] );
     // expect(result).toEqual( {"tic": [125] } );
 
-    var result = integrate(chromato, [1.8, 5.5] );
-    expect(result).toEqual( {"tic": [120.05] } );
+    var result = integrate(chromato, [1.8, 5.5]);
+    expect(result).toEqual({tic: [120.05]});
 
     //
     // var result = integrate(chromato, [2, 5] );

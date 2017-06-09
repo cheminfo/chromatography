@@ -1,6 +1,4 @@
-'use strict';
-
-const Regression = require('ml-regression').NLR.PolynomialRegression;
+import Regression from 'ml-regression-polynomial';
 
 /**
  * Aligns the time of the sample based on the regression with his reference value
@@ -15,7 +13,7 @@ const Regression = require('ml-regression').NLR.PolynomialRegression;
  * * `r2`: R2 quality number
  * * `error`: Vector of the difference between the spected value and the actual shift value
  */
-function scaleAlignment(reference, sample, options = {}) {
+export function scaleAlignment(reference, sample, options = {}) {
     const {computeQuality = false, polynomialDegree = 3} = options;
     let referenceTime = reference.map((val) => val.x);
     let sampleTime = sample.map((val) => val.x);
@@ -37,5 +35,3 @@ function scaleAlignment(reference, sample, options = {}) {
     }
     return ans;
 }
-
-module.exports = scaleAlignment;

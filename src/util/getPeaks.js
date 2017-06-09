@@ -1,6 +1,4 @@
-'use strict';
-
-const gsd = require('ml-gsd').gsd;
+import gsd from 'ml-gsd';
 
 /**
  * Apply the GSD peak picking algorithm

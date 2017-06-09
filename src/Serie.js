@@ -1,9 +1,7 @@
-'use strict';
-
 /**
  * Class allowing to manage a Serie
  */
-class Serie {
+export class Serie {
     constructor(array, dimension, options = {}) {
         let {
             meta = {}
@@ -37,5 +35,3 @@ class Serie {
 
 
 }
-
-module.exports = Serie;

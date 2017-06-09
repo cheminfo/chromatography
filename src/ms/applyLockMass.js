@@ -1,6 +1,4 @@
-'use strict';
-
-const analyseMF = require('chemcalc').analyseMF;
+import analyseMF from 'chemcalc';
 
 const defaultOptions = {
     oddReference: true
@@ -13,7 +11,7 @@ const defaultOptions = {
  * @param {boolean} [options.oddReference=true] - Mass reference it's in the odd position
  * @return {object} this
  */
-function applyLockMass(mf, options) {
+export function applyLockMass(mf, options) {
     options = Object.assign({}, defaultOptions, options);
 
     // allows mf as string or array
@@ -63,5 +61,3 @@ function applyLockMass(mf, options) {
 
     return this;
 }
-
-module.exports = applyLockMass;
