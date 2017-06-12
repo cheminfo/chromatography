@@ -1,4 +1,4 @@
-let chromatogram = require('../data/examples.js').simple4;
+import {simple4 as chromatogram} from '../data/examples.js';
 
 test('Get closest time', () => {
     // time : [1, 2, 3, 4]

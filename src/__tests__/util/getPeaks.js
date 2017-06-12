@@ -1,7 +1,7 @@
-const fs = require('fs');
-const {join} = require('path');
-const {Chromatogram, fromJcamp} = require('../..');
-const getSimulatedSpectrum = require('../data/examples').getSimulatedSpectrum;
+import fs from 'fs';
+import {join} from 'path';
+import {Chromatogram, fromJcamp} from '../..';
+import {getSimulatedSpectrum} from '../data/examples';
 
 
 test('from a Diesel chromatogram', () => {
@@ -29,5 +29,5 @@ test('throws when not send a tic serie', () => {
     }
     let chromatogram = new Chromatogram(times);
 
-    expect(() => chromatogram.getPeaks(), '\'tic\' serie not founded');
+    expect(() => chromatogram.getPeaks()).toThrow('\'tic\' serie not founded');
 });
