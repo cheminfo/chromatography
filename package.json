@@ -9,7 +9,7 @@
     "src"
   ],
   "scripts": {
-    "build": "cheminfo build --no-uglify --root Chromatography",
+    "build": "cheminfo build --root Chromatography",
     "build-doc": "cheminfo doc",
     "publish-doc": "cheminfo doc --publish",
     "eslint": "eslint src",
@@ -39,7 +39,8 @@
     "babel-jest": "^20.0.3",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
     "codecov": "^2.2.0",
-    "eslint": "^3.19.0",
+    "documentation": "^4.0.0-rc.1",
+    "eslint": "^4.0.0",
     "eslint-config-cheminfo": "^1.8.0",
     "eslint-plugin-no-only-tests": "^1.1.0",
     "jest": "^20.0.4",

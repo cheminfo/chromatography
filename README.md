@@ -12,42 +12,9 @@ Tools for storing, search and analyze GC/MS spectra.
 
 ## Usage
 
-### As an ES module
-
 ```js
-import {
-    fromJcamp,
-    fromJSON,
-    getKovatsTable,
-    kovatsConversionFunction,
-    rescaleTime,
-    getPeaks,
-    similarity
-} from 'chromatography';
-
-let gcms = fromJcamp(jcampReferenceMixture);
-let kovatsConversionTable = getKovatsTable(gcms); // [{time, value}]
-let conversionFunction = kovatsConversionFunction(kovatsConversionTable, {});
-
-let diesel = fromJcamp(jcampOfDiesel);
-let times = rescaleTime(diesel.getTimes(), conversionFunction);
-diesel.setTimes(times);
-// diesel.rescaleTime(conversionFunction);
-
-let peaks = getPeaks(diesel, options);
-let dieselJSON = diesel.toJSON(options); // [{time:12, height:12, width: 3, mass: [{mass, intensity}]}]
-let gcms2 = fromJSON(anotherDieselJSON);
-let similarityCalc = similarity(gcms, gcms2, options);
-
-// get a spectrum in another reference model
-let revertConversionFunction = kovatsConversionFunction(kovatsConversionTable, {revert: true});
-let mySpectrumInAnotherReference = revertConversionFunction(mySpectrum);
-```
-
-### As a CommonJS modulesimilarity
-
-```js
-const GCMS = require('chromatography');
+import * as GCMS from 'chromatography';
+// const GCMS = require('chromatography');
 let gcms = GCMS.fromJcamp(jcampReferenceMixture);
 
 let kovatsConversionTable = GCMS.getKovatsTable(gcms); // [{time, value}]
