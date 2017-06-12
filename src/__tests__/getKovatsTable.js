@@ -1,10 +1,5 @@
-|
-const {Chromatogram, getKovatsTable} = require('..');
-
-// https://en.wikipedia.org/wiki/Cauchy_distribution
-function lorentzian(x, x0 = 0, gamma = 1) {
-    return (gamma * gamma) / (Math.PI * gamma * (gamma * gamma + (x - x0) * (x - x0)));
-}
+import {Chromatogram, getKovatsTable} from '../..';
+import {lorentzian} from './data/examples';
 
 test('triplet', () => {
     const size = 30;
@@ -29,7 +24,7 @@ test('triplet', () => {
     };
 
     let table = getKovatsTable(chrom, options);
-    expect(table.length).toEqual(1);
-    expect(table[0].time).toEqual(15);
-    expect(table[0].value).toEqual(800);
+    expect(table.kovatsIndexes.length).toEqual(1);
+    expect(table.kovatsIndexes[0].time).toEqual(15);
+    expect(table.kovatsIndexes[0].value).toEqual(800);
 });

@@ -1,7 +1,7 @@
 const fs = require('fs');
 const Promise = require('bluebird');
 const {join} = require('path');
-const {kovatsConversionFunction, rescaleTime, fromJcamp} = require('..');
+const {kovatsConversionFunction, rescaleTime, fromJcamp} = require('../../lib/index');
 
 const readFileAsync = Promise.promisify(fs.readFile);
 

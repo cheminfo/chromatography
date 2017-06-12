@@ -1,19 +1,11 @@
-|
-const fs = require('fs');
-const Promise = require('bluebird');
-const {join} = require('path');
-const {Chromatogram, massInPeaks, getPeaks, fromJcamp} = require('..');
-
-const readFileAsync = Promise.promisify(fs.readFile);
-
-// https://en.wikipedia.org/wiki/Cauchy_distribution
-function lorentzian(x, x0 = 0, gamma = 1) {
-    return (gamma * gamma) / (Math.PI * gamma * (gamma * gamma + (x - x0) * (x - x0)));
-}
+import {readFileSync} from 'fs';
+import {join} from 'path';
+import {Chromatogram, massInPeaks, getPeaks, fromJcamp} from '../..';
+import {lorentzian} from './data/examples';
 
 test('from a Diesel chromatogram', async () => {
     const path = join(__dirname, 'data/jcamp/P064.JDX');
-    const jcamp = await readFileAsync(path, 'utf8');
+    const jcamp = readFileSync(path, 'utf8');
     const chrom = fromJcamp(jcamp);
     expect(chrom.length).toEqual(6992);
 
@@ -21,7 +13,7 @@ test('from a Diesel chromatogram', async () => {
     expect(peakList.length).toEqual(312);
 
     let sampleMS = chrom.getSerie('ms').data;
-    t.not(sampleMS.length, 0);
+    expect(sampleMS.length).not.toBe(0);
     let integratedList = massInPeaks(peakList, sampleMS);
     expect(peakList.length).toEqual(integratedList.length);
 });
@@ -45,7 +37,7 @@ test('triplet', () => {
     expect(peaks.length).toEqual(1);
 
     let sampleMS = chrom.getSerie('ms').data;
-    t.not(sampleMS.length, 0);
+    expect(sampleMS.length).not.toBe(0);
     let integratedList = massInPeaks(peaks, sampleMS);
     expect(peaks.length).toEqual(integratedList.length);
 });
@@ -56,11 +48,11 @@ test('simple case', () => {
         right: {index: 2}
     }];
 
-    t.deepEqual(massInPeaks(peaks, [
+    expect(massInPeaks(peaks, [
         [[1, 2], [1, 1]],
         [[1, 2, 5], [1, 1, 1]],
         [[3, 4], [1, 1]]
-    ]), [{
+    ])).toEqual([{
         left: {index: 0},
         right: {index: 2},
         ms: {
@@ -81,7 +73,7 @@ test('thresholdFactor', () => {
         [[2, 4], [1, 1]]
     ];
 
-    t.deepEqual(massInPeaks(peaks, mass, {thresholdFactor: 0.5}), [{
+    expect(massInPeaks(peaks, mass, {thresholdFactor: 0.5})).toEqual([{
         left: {index: 0},
         right: {index: 2},
         ms: {
@@ -102,7 +94,7 @@ test('maxNumberPeaks', () => {
         [[2, 4], [1, 2]]
     ];
 
-    t.deepEqual(massInPeaks(peaks, mass, {maxNumberPeaks: 3}), [{
+    expect(massInPeaks(peaks, mass, {maxNumberPeaks: 3})).toEqual([{
         left: {index: 0},
         right: {index: 2},
         ms: {

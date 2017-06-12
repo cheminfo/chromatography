@@ -1,5 +1,4 @@
-|
-const {massFilter, massInPeaks, vectorify} = require('..');
+import {massFilter, massInPeaks, vectorify} from '../..';
 
 test('thresholdFactor', () => {
     let mass = {
@@ -7,7 +6,7 @@ test('thresholdFactor', () => {
         y: [2, 3, 2, 1]
     };
 
-    t.deepEqual(massFilter(mass, {thresholdFactor: 0.5}), {
+    expect(massFilter(mass, {thresholdFactor: 0.5})).toEqual({
         x: [1, 2, 4],
         y: [2, 3, 2]
     });
@@ -19,7 +18,7 @@ test('maxNumberPeaks', () => {
         y: [2, 3, 2, 1, 3]
     };
 
-    t.deepEqual(massFilter(mass, {maxNumberPeaks: 2}), {
+    expect(massFilter(mass, {maxNumberPeaks: 2})).toEqual({
         x: [2, 5],
         y: [3, 3]
     });
@@ -31,7 +30,7 @@ test('groupWidth', () => {
         y: [4, 5, 4, 3, 1]
     };
 
-    t.deepEqual(massFilter(mass, {groupWidth: 2}), {
+    expect(massFilter(mass, {groupWidth: 2})).toEqual({
         x: [2, 5],
         y: [5, 3]
     });
@@ -49,7 +48,7 @@ test('from massInPeaks', () => {
     ];
 
     peaks = massInPeaks(peaks, mass, {thresholdFactor: 0.5});
-    t.deepEqual(peaks, [{
+    expect(peaks).toEqual([{
         left: {index: 0},
         right: {index: 2},
         ms: {
@@ -68,7 +67,7 @@ test('from vectorify', () => {
     ];
     let vector = vectorify(peaks, {thresholdFactor: 0.5, massPower: 1});
 
-    t.deepEqual(vector, [{
+    expect(vector).toEqual([{
         x: [2, 3],
         y: [2, 3]
     }]);

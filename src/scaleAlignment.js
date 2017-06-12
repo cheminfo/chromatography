@@ -14,11 +14,14 @@ import Regression from 'ml-regression-polynomial';
  * * `error`: Vector of the difference between the spected value and the actual shift value
  */
 export function scaleAlignment(reference, sample, options = {}) {
-    const {computeQuality = false, polynomialDegree = 3} = options;
+    const {
+        computeQuality = false,
+        polynomialDegree = 3
+    } = options;
     let referenceTime = reference.map((val) => val.x);
     let sampleTime = sample.map((val) => val.x);
 
-    const regression = new Regression(sampleTime, referenceTime, polynomialDegree, {computeQuality: computeQuality});
+    const regression = new Regression(sampleTime, referenceTime, polynomialDegree);
 
     let error = new Array(sample.length);
     for (var i = 0; i < sample.length; i++) {
@@ -30,7 +33,8 @@ export function scaleAlignment(reference, sample, options = {}) {
     };
 
     if (computeQuality) {
-        ans.r2 = regression.quality.r2;
+        let score = regression.score(sampleTime, referenceTime);
+        ans.r2 = score.r2;
         ans.error = error;
     }
     return ans;

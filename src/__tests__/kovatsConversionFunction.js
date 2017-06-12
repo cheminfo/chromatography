@@ -1,4 +1,5 @@
-const {kovatsConversionFunction} = require('..');
+
+const {kovatsConversionFunction} = require('../../lib/index');
 
 const conversionTable = [
     {time: 10, value: 800},

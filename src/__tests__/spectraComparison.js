@@ -1,10 +1,5 @@
-|
-const {Chromatogram, spectraComparison} = require('..');
-
-// https://en.wikipedia.org/wiki/Cauchy_distribution
-function lorentzian(x, x0 = 0, gamma = 1) {
-    return (gamma * gamma) / (Math.PI * gamma * (gamma * gamma + (x - x0) * (x - x0)));
-}
+import {Chromatogram, spectraComparison} from '../..';
+import {lorentzian} from './data/examples';
 
 test('Simple case', () => {
     const size = 70;
@@ -35,9 +30,9 @@ test('Simple case', () => {
     chrom2.addSerie('ms', ms2);
 
     let compared = spectraComparison(chrom1, chrom2, options);
-    expect(compared.peaksSimilarity, [1, 1, 1, 1).toEqual(1]);
-    expect(compared.peaksFirst.map((val) => val.x), [10, 20, 30, 40).toEqual(50]);
-    expect(compared.peaksSecond.map((val) => val.x), [20, 30, 40, 50).toEqual(60]);
+    expect(compared.peaksSimilarity).toEqual([1, 1, 1, 1, 1]);
+    expect(compared.peaksFirst.map((val) => val.x)).toEqual([10, 20, 30, 40, 50]);
+    expect(compared.peaksSecond.map((val) => val.x)).toEqual([20, 30, 40, 50, 60]);
 });
 
 test('Shifted peaks', () => {
@@ -69,9 +64,9 @@ test('Shifted peaks', () => {
     chrom2.addSerie('ms', ms2);
 
     let compared = spectraComparison(chrom1, chrom2, options);
-    expect(compared.peaksSimilarity, [1, 1, 1).toEqual(1]);
-    expect(compared.peaksFirst.map((val) => val.x), [20, 30, 40).toEqual(50]);
-    expect(compared.peaksSecond.map((val) => val.x), [20, 30, 40).toEqual(50]);
+    expect(compared.peaksSimilarity).toEqual([1, 1, 1, 1]);
+    expect(compared.peaksFirst.map((val) => val.x)).toEqual([20, 30, 40, 50]);
+    expect(compared.peaksSecond.map((val) => val.x)).toEqual([20, 30, 40, 50]);
 });
 
 test('Remove similar peaks in the similarity matrix column', () => {
@@ -108,7 +103,7 @@ test('Remove similar peaks in the similarity matrix column', () => {
     chrom2.addSerie('ms', ms2);
 
     let compared = spectraComparison(chrom1, chrom2, options);
-    expect(compared.peaksSimilarity, [1).toEqual(1]);
-    expect(compared.peaksFirst.map((val) => val.x), [40).toEqual(50]);
-    expect(compared.peaksSecond.map((val) => val.x), [50).toEqual(60]);
+    expect(compared.peaksSimilarity).toEqual([1, 1]);
+    expect(compared.peaksFirst.map((val) => val.x)).toEqual([40, 50]);
+    expect(compared.peaksSecond.map((val) => val.x)).toEqual([50, 60]);
 });

@@ -1,10 +1,5 @@
-|
-const {Chromatogram, spectraComparison, scaleAlignment} = require('..');
-
-// https://en.wikipedia.org/wiki/Cauchy_distribution
-function lorentzian(x, x0 = 0, gamma = 1) {
-    return (gamma * gamma) / (Math.PI * gamma * (gamma * gamma + (x - x0) * (x - x0)));
-}
+import {Chromatogram, spectraComparison, scaleAlignment} from '../..';
+import {lorentzian} from './data/examples';
 
 test('Simple case', async () => {
     const size = 70;
@@ -35,9 +30,9 @@ test('Simple case', async () => {
     chrom2.addSerie('ms', ms2);
 
     let compared = spectraComparison(chrom1, chrom2, options);
-    should(compared.peaksSimilarity).deepEqual([1, 1, 1, 1, 1]);
-    expect(compared.peaksFirst.map((val) => val.x), [10, 20, 30, 40).toEqual(50]);
-    expect(compared.peaksSecond.map((val) => val.x), [20, 30, 40, 50).toEqual(60]);
+    expect(compared.peaksSimilarity).toEqual([1, 1, 1, 1, 1]);
+    expect(compared.peaksFirst.map((val) => val.x)).toEqual([10, 20, 30, 40, 50]);
+    expect(compared.peaksSecond.map((val) => val.x)).toEqual([20, 30, 40, 50, 60]);
 
     let aligned = scaleAlignment(compared.peaksFirst, compared.peaksSecond);
     expect(Math.abs(aligned.scaleRegression.predict(30) - 20) < 1e-4).toEqual(true);
@@ -72,9 +67,9 @@ test('Quality and string', async () => {
     chrom2.addSerie('ms', ms2);
 
     let compared = spectraComparison(chrom1, chrom2, options);
-    expect(compared.peaksSimilarity, [1, 1, 1, 1).toEqual(1]);
-    expect(compared.peaksFirst.map((val) => val.x), [10, 20, 30, 40).toEqual(50]);
-    expect(compared.peaksSecond.map((val) => val.x), [20, 30, 40, 50).toEqual(60]);
+    expect(compared.peaksSimilarity).toEqual([1, 1, 1, 1, 1]);
+    expect(compared.peaksFirst.map((val) => val.x)).toEqual([10, 20, 30, 40, 50]);
+    expect(compared.peaksSecond.map((val) => val.x)).toEqual([20, 30, 40, 50, 60]);
 
     let aligned = scaleAlignment(compared.peaksFirst, compared.peaksSecond, {computeQuality: true, stringFormula: 3});
     expect(Math.abs(aligned.scaleRegression.predict(30) - 20) < 1e-4).toEqual(true);
