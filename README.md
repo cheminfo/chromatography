@@ -4,7 +4,7 @@
   [![build status][travis-image]][travis-url]
   [![npm download][download-image]][download-url]
 
-Tools for storing, search and analize GC/MS spectra.
+Tools for storing, search and analyze GC/MS spectra.
 
 ## Installation
 
@@ -12,11 +12,60 @@ Tools for storing, search and analize GC/MS spectra.
 
 ## Usage
 
-```js
-import library from 'chromatography';
+### As an ES module
 
-const result = library(args);
-// result is ...
+```js
+import {
+    fromJcamp,
+    fromJSON,
+    getKovatsTable,
+    kovatsConversionFunction,
+    rescaleTime,
+    getPeaks,
+    similarity
+} from 'chromatography';
+
+let gcms = fromJcamp(jcampReferenceMixture);
+let kovatsConversionTable = getKovatsTable(gcms); // [{time, value}]
+let conversionFunction = kovatsConversionFunction(kovatsConversionTable, {});
+
+let diesel = fromJcamp(jcampOfDiesel);
+let times = rescaleTime(diesel.getTimes(), conversionFunction);
+diesel.setTimes(times);
+// diesel.rescaleTime(conversionFunction);
+
+let peaks = getPeaks(diesel, options);
+let dieselJSON = diesel.toJSON(options); // [{time:12, height:12, width: 3, mass: [{mass, intensity}]}]
+let gcms2 = fromJSON(anotherDieselJSON);
+let similarityCalc = similarity(gcms, gcms2, options);
+
+// get a spectrum in another reference model
+let revertConversionFunction = kovatsConversionFunction(kovatsConversionTable, {revert: true});
+let mySpectrumInAnotherReference = revertConversionFunction(mySpectrum);
+```
+
+### As a CommonJS modulesimilarity
+
+```js
+const GCMS = require('chromatography');
+let gcms = GCMS.fromJcamp(jcampReferenceMixture);
+
+let kovatsConversionTable = GCMS.getKovatsTable(gcms); // [{time, value}]
+let conversionFunction = GCMS.kovatsConversionFunction(kovatsConversionTable, {});
+
+let diesel = GCMS.fromJcamp(jcampOfDiesel);
+let times = GCMS.rescaleTime(diesel.getTimes(), conversionFunction);
+diesel.setTimes(times);
+// diesel.rescaleTime(conversionFunction);
+
+let peaks = GCMS.getPeaks(diesel, options);
+let dieselJSON = diesel.toJSON(options); // [{time:12, height:12, width: 3, mass: [{mass, intensity}]}]
+let gcms2 = GCMS.fromJSON(anotherDieselJSON);
+let similarity = GCMS.similarity(gcms, gcms2, options);
+
+// get a spectrum in another reference model
+let revertConversionFunction = GCMS.kovatsConversionFunction(kovatsConversionTable, {revert: true});
+let mySpectrumInAnotherReference = revertConversionFunction(mySpectrum);
 ```
 
 ## [API Documentation](https://cheminfo-js.github.io/chromatography/)
