@@ -1,4 +1,4 @@
-import {Chromatogram, spectraComparison} from '../..';
+import {Chromatogram, spectraComparison} from '..';
 import {lorentzian} from './data/examples';
 
 test('Simple case', () => {

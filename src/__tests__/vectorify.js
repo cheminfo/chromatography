@@ -1,6 +1,6 @@
 import {readFileSync} from 'fs';
 import {join} from 'path';
-import {Chromatogram, massInPeaks, getPeaks, vectorify, fromJcamp} from '../..';
+import {Chromatogram, massInPeaks, getPeaks, vectorify, fromJcamp} from '..';
 import {lorentzian} from './data/examples';
 
 test('from a Diesel chromatogram', async () => {

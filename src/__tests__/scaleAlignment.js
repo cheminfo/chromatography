@@ -1,4 +1,4 @@
-import {Chromatogram, spectraComparison, scaleAlignment} from '../..';
+import {Chromatogram, spectraComparison, scaleAlignment} from '..';
 import {lorentzian} from './data/examples';
 
 test('Simple case', async () => {

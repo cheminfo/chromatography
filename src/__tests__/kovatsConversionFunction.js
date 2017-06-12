@@ -1,4 +1,4 @@
-import {kovatsConversionFunction} from '../../';
+import {kovatsConversionFunction} from '..';
 
 const conversionTable = [
     {time: 10, value: 800},

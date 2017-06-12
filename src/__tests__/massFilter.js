@@ -1,4 +1,4 @@
-import {massFilter, massInPeaks, vectorify} from '../..';
+import {massFilter, massInPeaks, vectorify} from '..';
 
 test('thresholdFactor', () => {
     let mass = {

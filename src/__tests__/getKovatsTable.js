@@ -1,4 +1,4 @@
-import {Chromatogram, getKovatsTable} from '../..';
+import {Chromatogram, getKovatsTable} from '..';
 import {lorentzian} from './data/examples';
 
 test('triplet', () => {
