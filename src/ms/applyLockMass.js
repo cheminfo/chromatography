@@ -1,4 +1,4 @@
-import analyseMF from 'chemcalc';
+import {analyseMF} from 'chemcalc';
 
 const defaultOptions = {
     oddReference: true

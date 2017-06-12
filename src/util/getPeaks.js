@@ -1,4 +1,4 @@
-import gsd from 'ml-gsd';
+import {gsd} from 'ml-gsd';
 
 /**
  * Apply the GSD peak picking algorithm
@@ -7,7 +7,7 @@ import gsd from 'ml-gsd';
  * @param {object} [options.heightFilter = 2] - Filter all objects that are bellow `heightFilter` times the median of the height
  * @return {Array<object>} - List of GSD objects
  */
-function getPeaks(chromatogram, options = {}) {
+export function getPeaks(chromatogram, options = {}) {
     const {heightFilter = 2} = options;
 
     let tic = chromatogram.getSerie('tic');
@@ -56,5 +56,3 @@ function getPeaks(chromatogram, options = {}) {
 
     return peakList;
 }
-
-module.exports = getPeaks;

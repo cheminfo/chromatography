@@ -1,7 +1,7 @@
-const getPeaks = require('./util/getPeaks');
-const massInPeaks = require('./massInPeaks');
-const vectorify = require('./vectorify');
-const cosine = require('./filter/cosine');
+import {getPeaks} from './util/getPeaks';
+import {massInPeaks} from './massInPeaks';
+import {vectorify} from './vectorify';
+import {cosine} from './filter/cosine';
 
 /**
  * Preprocessing task over the signals

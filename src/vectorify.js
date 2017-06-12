@@ -1,4 +1,4 @@
-const massFilter = require('./massFilter');
+import {massFilter} from './massFilter';
 
 /**
  * Given a list of GSD objects returns the weighted mass times abundance

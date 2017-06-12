@@ -1,4 +1,4 @@
-const Chromatogram = require('./../Chromatogram');
+import {Chromatogram} from '../Chromatogram';
 
 /**
  * Parse from a JSON element to a new Chromatogram

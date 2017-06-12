@@ -1,6 +1,5 @@
-const Serie1D = require('./Serie1D');
-const Serie2D = require('./Serie2D');
-
+import {Serie1D} from './Serie1D';
+import {Serie2D} from './Serie2D';
 
 export function serieFromArray(array) {
     // need to check if it is a 1D or 2D array (or 3D ?)

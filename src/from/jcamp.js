@@ -1,5 +1,5 @@
-const Chromatogram = require('../Chromatogram');
-const converter = require('jcampconverter').convert;
+import {Chromatogram} from '../Chromatogram';
+import {convert as converter} from 'jcampconverter';
 
 /**
  * Creates a new Chromatogram element based in a JCAMP string

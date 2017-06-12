@@ -1,4 +1,4 @@
-const Serie = require('./Serie');
+import {Serie} from './Serie';
 
 /**
  * Class allowing to manage a 2D Serie

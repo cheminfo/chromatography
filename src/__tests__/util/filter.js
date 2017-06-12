@@ -1,12 +1,11 @@
-var chromatogram;
+import {simple4 as chromatogram} from '../data/examples';
 
 describe('filter', () => {
     beforeEach(() => {
         jest.resetModules();
-        chromatogram = require('../data/examples.js').simple4;
     });
 
-    test('Filter: keep the odd', () => {
+    test('Keep the odd', () => {
         chromatogram.filter((index) => index % 2);
         expect(chromatogram.getTimes().length).toEqual(2);
         expect(chromatogram.getSerie('ms').data.length).toEqual(2);
@@ -17,13 +16,12 @@ describe('filter', () => {
         ]);
     });
 
-    test('Filter: keep time under a value', () => {
+    test('Keep time under a value', () => {
         chromatogram.filter((index, time) => time < 3);
-        expect(chromatogram.getTimes().length).toEqual(2);
-        expect(chromatogram.getSerie('ms').data.length).toEqual(2);
-        expect(chromatogram.getTimes()).toEqual([1, 2]);
+        expect(chromatogram.getTimes().length).toEqual(1);
+        expect(chromatogram.getSerie('ms').data.length).toEqual(1);
+        expect(chromatogram.getTimes()).toEqual([2]);
         expect(chromatogram.getSerie('ms').data).toEqual([
-            [[101, 201, 301], [11, 21, 31]],
             [[102, 202, 302], [12, 22, 32]]
         ]);
     });

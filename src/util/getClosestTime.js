@@ -1,4 +1,4 @@
-const binarySearch = require('binary-search');
+import binarySearch from 'binary-search';
 const ascValue = (a, b) => (a - b);
 
 /**

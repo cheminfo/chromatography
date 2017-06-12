@@ -53,3 +53,7 @@ export function getSimulatedSpectrum(options) {
         ms: ms
     });
 }
+
+test('This is not a test', () => {
+    expect(true).toBe(true);
+});

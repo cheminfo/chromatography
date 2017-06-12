@@ -1,6 +1,6 @@
-const kovats = require('./kovats');
-const getPeaks = require('./util/getPeaks');
-const massInPeaks = require('./massInPeaks');
+import {kovats} from './kovats';
+import {getPeaks} from './util/getPeaks';
+import {massInPeaks} from './massInPeaks';
 
 /**
  * Calculates the table of Kovats indexes for the reference spectra

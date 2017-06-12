@@ -1,5 +1,5 @@
-const getKovatsTable = require('./getKovatsTable');
-const kovatsConversionFunction = require('./kovatsConversionFunction');
+import {getKovatsTable} from './getKovatsTable';
+import {kovatsConversionFunction} from './kovatsConversionFunction';
 
 /**
  * Calculates the table of Kovats indexes for the reference spectra

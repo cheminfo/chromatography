@@ -1,5 +1,5 @@
-const Chromatogram = require('../Chromatogram');
-const parserXY = require('xy-parser');
+import {Chromatogram} from '../Chromatogram';
+import parserXY from 'xy-parser';
 
 /**
  * Creates a new Chromatogram element based in a Txt string
