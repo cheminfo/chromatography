@@ -1,7 +1,6 @@
 import {integrate} from '../..';
 import {chromato} from '../data/examples';
 
-
 test('Integrate a tic', () => {
 
     /*
@@ -31,7 +30,8 @@ test('Integrate a tic', () => {
     // chromato.addSerie('tac', [100,200,300,400,500]);
     // var result = integrate(chromato, [ [2, 3], [3, 5] ] );
     // expect(result).toEqual( {"tic": [25,70], "tac": [250,700] } );
-
-
 });
 
+test('Errors', () => {
+    expect(() => integrate(chromato, 123)).toThrow('fromTo must be an array of type [from,to]');
+});

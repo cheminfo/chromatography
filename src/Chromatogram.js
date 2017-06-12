@@ -27,6 +27,8 @@ export class Chromatogram {
                 throw new TypeError('Times must be an array');
             }
             this.times = times;
+        } else {
+            throw new Error('The time serie is mandatory');
         }
         if (series) {
             this.addSeries(series);
@@ -158,12 +160,13 @@ export class Chromatogram {
     /**
      * Will filter the entries based on the time
      * You can either use the index of the actual time
-     * @param {function(index, time)} callback
+     * @param {function(number, number)} callback
+     * @param {object} [options] - options object
+     * @param {boolean} [options.copy = false] - return a copy of the original object
      * @return {Chromatogram}
      */
-    filter(callback) {
-        filter(this, callback);
-        return this;
+    filter(callback, options) {
+        return filter(this, callback, options);
     }
 
     /**
@@ -227,7 +230,8 @@ export class Chromatogram {
      * @return {Chromatogram}
      */
     copy() {
-        return fromJSON(this.toJSON);
+        const json = JSON.parse(JSON.stringify(this));
+        return fromJSON(json);
     }
 }
 

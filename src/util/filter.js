@@ -9,11 +9,14 @@
  */
 export function filter(chromatogram, callback, options = {}) {
     const {copy = false} = options;
+    let chrom;
     if (copy) {
-        chromatogram = chromatogram.copy();
+        chrom = chromatogram.copy();
+    } else {
+        chrom = chromatogram;
     }
 
-    let times = chromatogram.getTimes();
+    let times = chrom.getTimes();
     let newTimes = [];
     let indexToKeep = [];
     for (let i = 0; i < times.length; i++) {
@@ -22,12 +25,12 @@ export function filter(chromatogram, callback, options = {}) {
             newTimes.push(times[i]);
         }
     }
-    chromatogram.setTimes(newTimes);
+    chrom.setTimes(newTimes);
 
-    for (let key of chromatogram.getSerieNames()) {
-        let serie = chromatogram.getSerie(key);
+    for (let key of chrom.getSerieNames()) {
+        let serie = chrom.getSerie(key);
         serie.keep(indexToKeep);
     }
 
-    return chromatogram;
+    return chrom;
 }
