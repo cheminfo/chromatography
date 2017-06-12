@@ -15,6 +15,7 @@ Tools for storing, search and analyze GC/MS spectra.
 ```js
 import * as GCMS from 'chromatography';
 // const GCMS = require('chromatography');
+
 let gcms = GCMS.fromJcamp(jcampReferenceMixture);
 
 let kovatsConversionTable = GCMS.getKovatsTable(gcms); // [{time, value}]
@@ -36,6 +37,8 @@ let mySpectrumInAnotherReference = revertConversionFunction(mySpectrum);
 ```
 
 ## [API Documentation](https://cheminfo-js.github.io/chromatography/)
+
+[API discussion](https://docs.google.com/document/d/1Jg2l6wKjFCYBSqdVWBSujSkqMhsEV6ZMyxeI9RSLhn0/edit#heading=h.8gjgl6jygt0s)
 
 ## License
 
