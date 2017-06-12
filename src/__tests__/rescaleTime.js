@@ -98,7 +98,6 @@ test('In place', async () => {
     chrom.rescaleTime(time2kovats);
     const internalTime = chrom.getTimes();
     for (let i = 0; i < internalTime.length; i++) {
-        //expect(internalTime[i] > 800).toEqual(true);
         expect(internalTime[i] < 3100).toEqual(true);
     }
 });
