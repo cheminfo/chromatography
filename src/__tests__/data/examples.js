@@ -35,7 +35,7 @@ export function lorentzian(x, x0 = 0, gamma = 1) {
     return (gamma * gamma) / (Math.PI * gamma * (gamma * gamma + (x - x0) * (x - x0)));
 }
 
-export function getSimulatedSpectrum(options) {
+export function getSimulatedSpectrum(options = {}) {
     const {
         size = 30
     } = options;
