@@ -2,6 +2,7 @@
 
   [![NPM version][npm-image]][npm-url]
   [![build status][travis-image]][travis-url]
+  [![Test coverage][codecov-image]][codecov-url]
   [![npm download][download-image]][download-url]
 
 Tools for storing, search and analyze GC/MS spectra.
@@ -48,5 +49,7 @@ let mySpectrumInAnotherReference = revertConversionFunction(mySpectrum);
 [npm-url]: https://npmjs.org/package/chromatography
 [travis-image]: https://img.shields.io/travis/cheminfo-js/chromatography/master.svg?style=flat-square
 [travis-url]: https://travis-ci.org/cheminfo-js/chromatography
+[codecov-image]: https://codecov.io/github/cheminfo-js/chromatography/coverage.svg?branch=master&style=flat-square
+[codecov-url]: https://codecov.io/github/cheminfo-js/chromatography
 [download-image]: https://img.shields.io/npm/dm/chromatography.svg?style=flat-square
 [download-url]: https://npmjs.org/package/chromatography
