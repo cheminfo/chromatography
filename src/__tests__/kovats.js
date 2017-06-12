@@ -1,4 +1,4 @@
-import {kovats} from '../..';
+import {kovats} from '..';
 
 test('Simple case', () => {
     expect(kovats({
