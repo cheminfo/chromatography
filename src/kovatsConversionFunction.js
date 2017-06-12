@@ -1,6 +1,4 @@
-'use strict';
-
-const binarySearch = require('binary-search');
+import binarySearch from 'binary-search';
 const ascValue = (a, b) => (a.value - b.value);
 const ascTime = (a, b) => (a.time - b.time);
 
@@ -11,7 +9,7 @@ const ascTime = (a, b) => (a.time - b.time);
  * @param {boolean} [options.revert = false] - True for convert from Kovats to time, false otherwise
  * @return {function(number)} - One parameter function that convert to one dimension to the other
  */
-function kovatsConversionFunction(kovatsConversionTable, options = {}) {
+export function kovatsConversionFunction(kovatsConversionTable, options = {}) {
     const {revert = false} = options;
 
     if (revert) {
@@ -60,5 +58,3 @@ function kovatsConversionFunction(kovatsConversionTable, options = {}) {
         };
     }
 }
-
-module.exports = kovatsConversionFunction;

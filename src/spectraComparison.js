@@ -1,9 +1,7 @@
-'use strict';
-
-const getPeaks = require('./util/getPeaks');
-const massInPeaks = require('./massInPeaks');
-const vectorify = require('./vectorify');
-const cosine = require('./filter/cosine');
+import {getPeaks} from './util/getPeaks';
+import {massInPeaks} from './massInPeaks';
+import {vectorify} from './vectorify';
+import {cosine} from './filter/cosine';
 
 /**
  * Preprocessing task over the signals
@@ -56,7 +54,7 @@ const defaultOption = {
  * * `peaksSecond`: Array of peaks, integrated mass spectra and weighted mass spectra for the second chromatogram
  * * `peaksSimilarity`: Array of similarities (number)
  */
-function spectraComparison(chrom1, chrom2, options) {
+export function spectraComparison(chrom1, chrom2, options) {
     options = Object.assign({}, defaultOption, options);
 
     // peak picking
@@ -125,5 +123,3 @@ function spectraComparison(chrom1, chrom2, options) {
         peaksSimilarity: peaksSimilarity,
     };
 }
-
-module.exports = spectraComparison;

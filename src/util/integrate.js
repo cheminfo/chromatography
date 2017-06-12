@@ -1,8 +1,6 @@
-'use strict';
-
-const getClosestTime = require('./getClosestTime');
-const integrate1D = require('./integrate1D');
-const integrate2D = require('./integrate2D');
+import {getClosestTime} from './getClosestTime';
+import {integrate1D} from './integrate1D';
+import {integrate2D} from './integrate2D';
 
 const defaultOptions = {
     slot: 1
@@ -16,25 +14,25 @@ const defaultOptions = {
  * We should take care that the resulting mass could theoretically be still closest to another peak
  * and we could have to repeat this averaging (but this can only happen once)
  * @param {Chromatogram} chromatogram
- * @param {number} fromTo - [from, to] or [ [from1, to1], [from2, to2], ...]
+ * @param {number|Array<number>} fromTos - [from, to] or [ [from1, to1], [from2, to2], ...]
  * @param {object} [options = {}] - Options object
  * @param {number} [options.slot = 2] - Define when 2 peaks will be combined
- * @return { serieName: [] }
+ * @return {{serieName: []}}
  */
-function integrate(chromatogram, fromTos, options) {
+export function integrate(chromatogram, fromTos, options) {
     options = Object.assign({}, defaultOptions, options);
 
-    if (! Array.isArray(fromTos)) throw new Error('fromTo must be an array of type [from,to]');
-    if (! Array.isArray(fromTos[0])) fromTos=[fromTos];
+    if (!Array.isArray(fromTos)) throw new Error('fromTo must be an array of type [from,to]');
+    if (!Array.isArray(fromTos[0])) fromTos = [fromTos];
 
     const time = chromatogram.getTimes();
 
     // by default we integrate all the series
-    var serieNames=chromatogram.getSerieNames()
+    var serieNames = chromatogram.getSerieNames();
 
-    let results={};
+    let results = {};
 
-    serieNames.forEach( name => results[name] = []);
+    serieNames.forEach(name => results[name] = []);
 
 
     for (let fromTo of fromTos) {
@@ -53,11 +51,11 @@ function integrate(chromatogram, fromTos, options) {
                 case 2:
                     results[serieName].push(integrate2D(time, serie, from, to, fromIndex, toIndex, options));
                     break;
+                default:
+                    throw new Error('Serie dimension unrecognized');
             }
         }
     }
 
     return results;
 }
-
-module.exports = integrate;

@@ -1,11 +1,8 @@
-'use strict';
+export function integrate2D(time, serie, from, to, fromIndex, toIndex) {
+    if (serie.dimension !== 1) throw new Error('The serie is not of dimension 2');
+    if (!serie.data) return [];
 
-
-function integrate2D(time, serie, from, to, fromIndex, toIndex) {
-    if (serie.dimension!==1) throw new Error(`The serie is not of dimension 2`);
-    if (! serie.data) return [];
-
-    let data=[];
+    let data = [];
     for (let i = fromIndex; i <= toIndex; i++) {
 
         // TODO
@@ -27,5 +24,3 @@ function integrate2D(time, serie, from, to, fromIndex, toIndex) {
     }
     return data;
 }
-
-module.exports = integrate2D;

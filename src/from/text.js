@@ -1,17 +1,15 @@
-'use strict';
-
-const Chromatogram = require('../Chromatogram');
-const parserXY = require('xy-parser');
+import {Chromatogram} from '../Chromatogram';
+import parserXY from 'xy-parser';
 
 /**
  * Creates a new Chromatogram element based in a Txt string
  * @param {string} text - String containing the data as CSV or TSV
+ * @param {object} [options] - Options object for the parser
  * @return {Chromatogram} - New class element with the given data
  */
-function fromText(text, options) {
-    var options = Object.assign({}, options, {arrayType:'xxyy'});
+export function fromText(text, options) {
+    options = Object.assign({}, options, {arrayType: 'xxyy'});
     const data = parserXY.parse(text, options);
-
 
     const time = data[0];
     let series = {
@@ -20,5 +18,3 @@ function fromText(text, options) {
 
     return new Chromatogram(time, series);
 }
-
-module.exports = fromText;

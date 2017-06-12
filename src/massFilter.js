@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Filters based in groupWidth
  * @ignore
@@ -8,7 +6,7 @@
  * @param {number} groupWidth - When find a max can't be another max in a radius of this size
  * @return {Array<object>} - List of XY-objects filtered
  */
-function moreDistinct(list, maxNumberPeaks, groupWidth) {
+export function moreDistinct(list, maxNumberPeaks, groupWidth) {
     let len = 0;
     if (maxNumberPeaks > list.length) {
         maxNumberPeaks = list.length;
@@ -40,7 +38,7 @@ function moreDistinct(list, maxNumberPeaks, groupWidth) {
  * @param {number} [options.groupWidth = 0] - When find a max can't be another max in a radius of this size
  * @return {object} - Object with filtered x and y data
  */
-function massFilter(massXYObject, options = {}) {
+export function massFilter(massXYObject, options = {}) {
     const {thresholdFactor = 0, maxNumberPeaks = Number.MAX_VALUE, groupWidth = 0} = options;
 
     let max = -1;
@@ -81,5 +79,3 @@ function massFilter(massXYObject, options = {}) {
 
     return ans;
 }
-
-module.exports = massFilter;

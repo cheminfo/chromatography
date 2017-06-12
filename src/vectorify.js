@@ -1,6 +1,4 @@
-'use strict';
-
-const massFilter = require('./massFilter');
+import {massFilter} from './massFilter';
 
 /**
  * Given a list of GSD objects returns the weighted mass times abundance
@@ -13,7 +11,7 @@ const massFilter = require('./massFilter');
  * @param {number} [options.groupWidth = 0] - When find a max can't be another max in a radius of this size
  * @return {Array<object>} - List of mass and weighted mass times abundance objects
  */
-function vectorify(peakList, options = {}) {
+export function vectorify(peakList, options = {}) {
     const {massPower = 3, intPower = 0.6} = options;
     let filter = (options.thresholdFactor || options.maxNumberPeaks || options.groupWidth);
 
@@ -52,5 +50,3 @@ function vectorify(peakList, options = {}) {
 
     return vector;
 }
-
-module.exports = vectorify;

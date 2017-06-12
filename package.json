@@ -2,30 +2,33 @@
   "name": "chromatography",
   "version": "2.0.6",
   "description": "Tools for storing, search and analize GC/MS spectra",
-  "main": "src/index.js",
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "files": [
+    "lib",
+    "src"
+  ],
   "scripts": {
-    "build": "cheminfo build --no-uglify --root Chromatography",
+    "build": "cheminfo build --root Chromatography",
     "build-doc": "cheminfo doc",
     "publish-doc": "cheminfo doc --publish",
     "eslint": "eslint src",
     "eslint-fix": "npm run eslint -- --fix",
-    "test": "jest",
-    "watch": "npm run test -- --watch",
-    "test-travis": "npm run test-ava && npm run eslint && npm run report-coverage",
-    "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov"
+    "prepublish": "rollup -c",
+    "test": "run-s testonly eslint",
+    "testonly": "jest",
+    "test-travis": "jest --coverage && codecov"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cheminfo-js/chromatography.git"
   },
   "jest": {
-    "testPathIgnorePatterns": [
-      "<rootDir>/__tests__/data/.*"
-    ]
+    "testEnvironment": "node"
   },
   "author": "Michaël Zasso",
   "contributors": [
-    "Miguel Asencio <maasencioh@gmail.com> (https://github.com/maasencioh)"
+    "Miguel Asencio <maasencioh@gmail.com>"
   ],
   "license": "MIT",
   "bugs": {
@@ -33,23 +36,23 @@
   },
   "homepage": "https://github.com/cheminfo-js/chromatography#readme",
   "devDependencies": {
-    "bluebird": "^3.3.4",
-    "cheminfo-tools": "^1.9.0",
-    "codecov": "^1.0.1",
-    "documentation": "^4.0.0-beta.18",
-    "eslint": "^3.4.0",
-    "eslint-config-cheminfo": "^1.2.0",
+    "babel-jest": "^20.0.3",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "codecov": "^2.2.0",
+    "documentation": "^4.0.0-rc.1",
+    "eslint": "^4.0.0",
+    "eslint-config-cheminfo": "^1.8.0",
     "eslint-plugin-no-only-tests": "^1.1.0",
-    "jest": "^19.0.2",
-    "nyc": "^8.3.0",
-    "should": "^11.2.1"
+    "jest": "^20.0.4",
+    "npm-run-all": "^4.0.2",
+    "rollup": "^0.42.0"
   },
   "dependencies": {
     "binary-search": "^1.3.2",
-    "chemcalc": "^3.3.2",
+    "chemcalc": "^3.3.3",
     "jcampconverter": "^2.3.0",
     "ml-gsd": "^2.0.1",
-    "ml-regression": "^4.1.1",
+    "ml-regression-polynomial": "^1.0.2",
     "xy-parser": "^1.5.0"
   }
 }

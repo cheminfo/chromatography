@@ -1,6 +1,4 @@
-'use strict';
-
-const binarySearch = require('binary-search');
+import binarySearch from 'binary-search';
 const ascValue = (a, b) => (a - b);
 
 /**
@@ -9,7 +7,7 @@ const ascValue = (a, b) => (a - b);
  * @param {Array<number>} times - Time array
  * @return {{index: number, timeBefore: number, timeAfter: number, timeClosest: number, safeIndexBefore: number, safeIndexAfter: number}}
  */
-function getClosestTime(time, times) {
+export function getClosestTime(time, times) {
     let position = binarySearch(times, time, ascValue);
 
     if (position < 0) {
@@ -48,5 +46,3 @@ function getClosestTime(time, times) {
         };
     }
 }
-
-module.exports = getClosestTime;
