@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Filter the chromatogram based on a callback
  * The callback will take a time
@@ -9,7 +7,7 @@
  * @param {boolean} [options.copy = false] - return a copy of the original object
  * @return {Chromatogram} - Modified chromatogram
  */
-function filter(chromatogram, callback, options = {}) {
+export function filter(chromatogram, callback, options = {}) {
     const {copy = false} = options;
     if (copy) {
         chromatogram = chromatogram.copy();
@@ -33,5 +31,3 @@ function filter(chromatogram, callback, options = {}) {
 
     return chromatogram;
 }
-
-module.exports = filter;

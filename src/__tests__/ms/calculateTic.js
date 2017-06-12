@@ -1,5 +1,4 @@
-const {calculateTic} = require('../../src/index.js');
-const {simple} = require('../data/examples.js');
+import {simple} from '../data/examples.js';
 
 test('simple case', () => {
     simple.calculateTic();

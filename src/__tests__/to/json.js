@@ -1,4 +1,4 @@
-const {simple} = require('../data/examples.js');
+import {simple} from '../data/examples.js';
 
 test('Create a JSON', () => {
     let json = JSON.stringify(simple);

@@ -1,6 +1,4 @@
-'use strict';
-
-const massFilter = require('./massFilter');
+import {massFilter} from './massFilter';
 
 /**
  * Integrate MS spectra of a peak list
@@ -12,7 +10,7 @@ const massFilter = require('./massFilter');
  * @param {number} [options.groupWidth = 0] - When find a max can't be another max in a radius of this size
  * @return {Array<object>} - List of GSD objects with an extra 'ms' field with the integrated MS spectra
  */
-function massInPeaks(peakList, sampleMS, options = {}) {
+export function massInPeaks(peakList, sampleMS, options = {}) {
     // integrate MS
     for (let i = 0; i < peakList.length; ++i) {
         let massDictionary = {};
@@ -53,5 +51,3 @@ function massInPeaks(peakList, sampleMS, options = {}) {
 
     return peakList;
 }
-
-module.exports = massInPeaks;

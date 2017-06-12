@@ -1,7 +1,5 @@
-'use strict';
-
-const getKovatsTable = require('./getKovatsTable');
-const kovatsConversionFunction = require('./kovatsConversionFunction');
+import {getKovatsTable} from './getKovatsTable';
+import {kovatsConversionFunction} from './kovatsConversionFunction';
 
 /**
  * Calculates the table of Kovats indexes for the reference spectra
@@ -14,7 +12,7 @@ const kovatsConversionFunction = require('./kovatsConversionFunction');
  * @param {boolean} [options.revert = false] - True for convert from Kovats to time, false otherwise
  * @return {{conversionFunction:function(number),kovatsIndexes:Array<object>,peaks:Array<object>}} - Time and value for the Kovats index
  */
-function getKovatsRescale(reference, options) {
+export function getKovatsRescale(reference, options) {
     let kovatsTable = getKovatsTable(reference, options);
     let conversionFunction = kovatsConversionFunction(kovatsTable.kovatsIndexes, {revert: options.revert});
 
@@ -24,6 +22,4 @@ function getKovatsRescale(reference, options) {
         peaks: kovatsTable.peaks
     };
 }
-
-module.exports = getKovatsRescale;
 

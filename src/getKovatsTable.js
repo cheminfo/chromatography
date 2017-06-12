@@ -1,8 +1,6 @@
-'use strict';
-
-const kovats = require('./kovats');
-const getPeaks = require('./util/getPeaks');
-const massInPeaks = require('./massInPeaks');
+import {kovats} from './kovats';
+import {getPeaks} from './util/getPeaks';
+import {massInPeaks} from './massInPeaks';
 
 /**
  * Calculates the table of Kovats indexes for the reference spectra
@@ -14,7 +12,7 @@ const massInPeaks = require('./massInPeaks');
  * @param {number} [options.groupWidth = 5] - When find a max can't be another max in a radius of this size
  * @return {{kovatsIndexes:Array<object>,peaks:Array<object>}} - Time and value for the Kovats index
  */
-function getKovatsTable(reference, options = {}) {
+export function getKovatsTable(reference, options = {}) {
     const {
         heightFilter = 100,
         thresholdFactor = 0.005,
@@ -44,5 +42,3 @@ function getKovatsTable(reference, options = {}) {
         peaks
     };
 }
-
-module.exports = getKovatsTable;

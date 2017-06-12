@@ -1,13 +1,13 @@
-const {Chromatogram} = require('../..');
+import {Chromatogram} from '../..';
 
-let chromato = new Chromatogram(
+export let chromato = new Chromatogram(
     [1, 2, 3, 5, 6],
     {
         tic: [10, 20, 30, 40, 50]
     }
 );
 
-let simple = new Chromatogram(
+export let simple = new Chromatogram(
     [1, 2], {
         ms: [
             [[100, 200, 300], [10, 20, 30]],
@@ -16,9 +16,9 @@ let simple = new Chromatogram(
     }
 );
 
-let simpleStringified = '{"times":[1,2],"series":{"ms":{"data":[[[100,200,300],[10,20,30]],[[101,201,301],[11,21,31]]],"meta":{}}}}';
+export let simpleStringified = '{"times":[1,2],"series":{"ms":{"data":[[[100,200,300],[10,20,30]],[[101,201,301],[11,21,31]]],"meta":{}}}}';
 
-let simple4 = new Chromatogram(
+export let simple4 = new Chromatogram(
     [1, 2, 3, 4], {
         ms: [
             [[101, 201, 301], [11, 21, 31]],
@@ -31,11 +31,11 @@ let simple4 = new Chromatogram(
 
 
 // https://en.wikipedia.org/wiki/Cauchy_distribution
-function lorentzian(x, x0 = 0, gamma = 1) {
+export function lorentzian(x, x0 = 0, gamma = 1) {
     return (gamma * gamma) / (Math.PI * gamma * (gamma * gamma + (x - x0) * (x - x0)));
 }
 
-function getSimulatedSpectrum(options) {
+export function getSimulatedSpectrum(options) {
     const {
         size = 30
     } = options;
@@ -49,16 +49,11 @@ function getSimulatedSpectrum(options) {
         ms[i] = [[1, 2, 3], [1, 1, 1]];
     }
     return new Chromatogram(times, {
-        'tic': tic,
-        'ms': ms
+        tic: tic,
+        ms: ms
     });
 }
 
-
-module.exports = {
-    simple,
-    simpleStringified,
-    simple4,
-    getSimulatedSpectrum,
-    chromato
-};
+test('This is not a test', () => {
+    expect(true).toBe(true);
+});

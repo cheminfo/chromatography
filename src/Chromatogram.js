@@ -1,17 +1,24 @@
-'use strict';
-
-const rescaleTime = require('./rescaleTime');
-const filter = require('./util/filter');
-const serieFromArray = require('./serieFromArray');
-const fromJSON = require('./from/json');
+import {rescaleTime} from './rescaleTime';
+import {filter} from './util/filter';
+import {serieFromArray} from './serieFromArray';
+import {fromJSON} from './from/json';
+import {getPeaks} from './util/getPeaks';
+import {calculateTic} from './ms/calculateTic';
+import {integrate} from './util/integrate';
+import {getKovatsRescale} from './getKovatsRescale';
+import {getClosestTime} from './util/getClosestTime';
+import {applyLockMass} from './ms/applyLockMass';
+import {toJSON} from './to/json';
+import {getClosestData} from './util/getClosestData';
 
 /**
  * Class allowing to store time / ms (ms) series
  * It allows also to store simple time a trace
  * @class Chromatogram
- * @param {object|Array<number>} data - A GC/MS data format object or a time serie
+ * @param {Array<number>} times - Time serie
+ * @param {object} series - A map of series with name and the Serie object
  */
-class Chromatogram {
+export class Chromatogram {
     constructor(times, series) {
         this.series = {};
         this.times = [];
@@ -166,7 +173,7 @@ class Chromatogram {
      * @return {Array<object>} - List of GSD objects
      */
     getPeaks(options) {
-        return require('./util/getPeaks')(this, options);
+        return getPeaks(this, options);
     }
 
     /**
@@ -176,7 +183,7 @@ class Chromatogram {
      */
     calculateTic(options = {}) {
         if (!this.getSerie('tic') || options.force) {
-            let tic = require('./ms/calculateTic')(this);
+            let tic = calculateTic(this);
             this.addSerie('tic', tic);
         }
     }
@@ -192,17 +199,18 @@ class Chromatogram {
      * @return {{conversionFunction:function(number),kovatsIndexes:Array<object>,peaks:Array<object>}} - Time and value for the Kovats index
      */
     getKovatsRescale(options) {
-        return require('./getKovatsRescale')(this, options);
+        return getKovatsRescale(this, options);
     }
 
     /**
      * Retuns an object with the result of the integrations
-     * @param zones : [from, to] or [ [from1, to1], [from2, to2], ...]
-     * @param options
-     * @return { serieName: [] }
+     * @param {number|Array<number>} zones - [from, to] or [ [from1, to1], [from2, to2], ...]
+     * @param {object} [options = {}] - Options object
+     * @param {number} [options.slot = 2] - Define when 2 peaks will be combined
+     * @return {{serieName: []}}
      */
     getIntegrations(zones, options) {
-        return require('./util/integrate')(this, zones, options);
+        return integrate(this, zones, options);
     }
 
     /**
@@ -211,7 +219,7 @@ class Chromatogram {
      * @return {{index: number, timeBefore: number, timeAfter: number, timeClosest: number, safeIndexBefore: number, safeIndexAfter: number}}
      */
     getClosestTime(time) {
-        return require('./util/getClosestTime')(time, this.getTimes());
+        return getClosestTime(time, this.getTimes());
     }
 
     /**
@@ -223,10 +231,7 @@ class Chromatogram {
     }
 }
 
-
-Chromatogram.prototype.applyLockMass = require('./ms/applyLockMass');
-Chromatogram.prototype.toJSON = require('./to/json');
-Chromatogram.prototype.getClosestData = require('./util/getClosestData');
-
-module.exports = Chromatogram;
+Chromatogram.prototype.applyLockMass = applyLockMass;
+Chromatogram.prototype.toJSON = toJSON;
+Chromatogram.prototype.getClosestData = getClosestData;
 

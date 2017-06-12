@@ -1,10 +1,7 @@
-'use strict';
+import {Serie1D} from './Serie1D';
+import {Serie2D} from './Serie2D';
 
-const Serie1D = require('./Serie1D');
-const Serie2D = require('./Serie2D');
-
-
-function serieFromArray(array) {
+export function serieFromArray(array) {
     // need to check if it is a 1D or 2D array (or 3D ?)
     if (!Array.isArray(array)) {
         throw new TypeError('Serie.fromArray requires as parameter an array of numbers or array');
@@ -22,6 +19,3 @@ function serieFromArray(array) {
 
     return new Serie2D(array);
 }
-
-
-module.exports = serieFromArray;

@@ -1,7 +1,8 @@
 language: node_js
 node_js:
-  - stable
-  - v6
-sudo: false
-script: 'npm run test-travis'
-after_success: 'npm install coveralls@2 && ./node_modules/.bin/nyc report --reporter=text-lcov | coveralls'
+  - 8
+  - 6
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -e TRAVIS_NODE_VERSION
+script:
+  - npm run test-travis

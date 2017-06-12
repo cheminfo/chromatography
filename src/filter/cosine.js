@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Cosine similarity between two MS spectra
  * @param {Array<number>} ms1x - Array of mass values for the first spectra
@@ -8,7 +6,7 @@
  * @param {Array<number>} ms2y - Array of weighted abundance values for the second spectra
  * @return {number} - Similarity between two MS spectra
  */
-function cosine(ms1x, ms1y, ms2x, ms2y) {
+export function cosine(ms1x, ms1y, ms2x, ms2y) {
     let index1 = 0;
     let index2 = 0;
 
@@ -41,5 +39,3 @@ function cosine(ms1x, ms1y, ms2x, ms2y) {
         return (product * product) / (norm1Norm2);
     }
 }
-
-module.exports = cosine;
