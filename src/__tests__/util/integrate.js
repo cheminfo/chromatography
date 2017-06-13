@@ -35,3 +35,8 @@ test('Integrate a tic', () => {
 test('Errors', () => {
     expect(() => integrate(chromato, 123)).toThrow('fromTo must be an array of type [from,to]');
 });
+
+test('Integrate tic only', () => {
+    var result = integrate(chromato, [1.8, 5.5], {name: 'tic'});
+    expect(result).toEqual({tic: [120.05]});
+});
