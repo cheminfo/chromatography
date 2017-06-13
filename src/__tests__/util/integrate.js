@@ -1,5 +1,5 @@
 import {integrate} from '../..';
-import {chromato} from '../data/examples';
+import {chromato, simple4} from '../data/examples';
 
 test('Integrate a tic', () => {
 
@@ -37,6 +37,7 @@ test('Errors', () => {
 });
 
 test('Integrate tic only', () => {
-    var result = integrate(chromato, [1.8, 5.5], {name: 'tic'});
-    expect(result).toEqual({tic: [120.05]});
+    simple4.calculateTic();
+    var result = integrate(simple4, [1.8, 3.5], {name: 'tic'});
+    expect(result).toEqual({tic: [115.515]});
 });
