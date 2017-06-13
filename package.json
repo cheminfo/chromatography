@@ -37,7 +37,9 @@
   "homepage": "https://github.com/cheminfo-js/chromatography#readme",
   "devDependencies": {
     "babel-jest": "^20.0.3",
+    "babel-loader": "^7.0.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "babel-preset-env": "^1.5.2",
     "codecov": "^2.2.0",
     "documentation": "^4.0.0-rc.1",
     "eslint": "^4.0.0",

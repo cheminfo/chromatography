@@ -14,28 +14,25 @@ const defaultOptions = {
  * We should take care that the resulting mass could theoretically be still closest to another peak
  * and we could have to repeat this averaging (but this can only happen once)
  * @param {Chromatogram} chromatogram
- * @param {number|Array<number>} fromTos - [from, to] or [ [from1, to1], [from2, to2], ...]
+ * @param {number|Array<number>} ranges - [from, to] or [ [from1, to1], [from2, to2], ...]
  * @param {object} [options = {}] - Options object
  * @param {number} [options.slot = 2] - Define when 2 peaks will be combined
  * @return {{serieName: []}}
  */
-export function integrate(chromatogram, fromTos, options) {
+export function integrate(chromatogram, ranges, options) {
     options = Object.assign({}, defaultOptions, options);
 
-    if (!Array.isArray(fromTos)) throw new Error('fromTo must be an array of type [from,to]');
-    if (!Array.isArray(fromTos[0])) fromTos = [fromTos];
+    if (!Array.isArray(ranges)) throw new Error('fromTo must be an array of type [from,to]');
+    if (!Array.isArray(ranges[0])) ranges = [ranges];
 
     const time = chromatogram.getTimes();
 
     // by default we integrate all the series
     var serieNames = chromatogram.getSerieNames();
-
     let results = {};
-
     serieNames.forEach(name => results[name] = []);
 
-
-    for (let fromTo of fromTos) {
+    for (let fromTo of ranges) {
         let from = fromTo[0];
         let to = fromTo[1];
         let fromIndex = getClosestTime(from, time).safeIndexBefore;
