@@ -14,12 +14,14 @@ import {integrate2D} from './integrate2D';
  * @param {object} [options = {}] - Options object
  * @param {number} [options.slot = 2] - Define when 2 peaks will be combined
  * @param {string} [options.name] - Name of the serie to integrate, by default all the series are integrated
+ * @param {boolean} [options.baseline] - Applies baseline correction
  * @return {{serieName: []}}
  */
 export function integrate(chromatogram, ranges, options = {}) {
     const {
         slot = 1,
-        name = false
+        name = false,
+        baseline = false
     } = options;
 
     if (!Array.isArray(ranges)) throw new Error('fromTo must be an array of type [from,to]');
@@ -47,7 +49,7 @@ export function integrate(chromatogram, ranges, options = {}) {
             let serie = chromatogram.series[serieName];
             switch (serie.dimension) {
                 case 1:
-                    results[serieName].push(integrate1D(time, serie, from, to, fromIndex, toIndex, {slot}));
+                    results[serieName].push(integrate1D(time, serie, from, to, fromIndex, toIndex, baseline));
                     break;
                 case 2:
                     results[serieName].push(integrate2D(time, serie, from, to, fromIndex, toIndex, {slot}));
