@@ -41,3 +41,9 @@ test('Integrate tic only', () => {
     var result = integrate(simple4, [1.8, 3.5], {name: 'tic'});
     expect(result).toEqual({tic: [115.515]});
 });
+
+test('Applies baseline correction', () => {
+    simple4.calculateTic();
+    var result = integrate(simple4, [1.8, 3.5], {name: 'tic', baseline: true});
+    expect(result).toEqual({tic: [115.515]});
+});
