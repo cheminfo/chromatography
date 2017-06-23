@@ -4,6 +4,7 @@ import {serieFromArray} from './serieFromArray';
 import {fromJSON} from './from/json';
 import {getPeaks} from './util/getPeaks';
 import {calculateTic} from './ms/calculateTic';
+import {calculateBpc} from './ms/calculateBpc';
 import {integrate} from './util/integrate';
 import {getKovatsRescale} from './getKovatsRescale';
 import {getClosestTime} from './util/getClosestTime';
@@ -188,6 +189,18 @@ export class Chromatogram {
         if (!this.getSerie('tic') || options.force) {
             let tic = calculateTic(this);
             this.addSerie('tic', tic);
+        }
+    }
+
+    /**
+     * Calculate bpc
+     * @param {object} [options = {}] - Options object
+     * @param {boolean} [options.force = false] - Force the calculation it it exists
+     */
+    calculateBpc(options = {}) {
+        if (!this.getSerie('bpc') || options.force) {
+            let bpc = calculateBpc(this);
+            this.addSerie('bpc', bpc);
         }
     }
 
