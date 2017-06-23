@@ -1,3 +1,5 @@
+import max from 'ml-array-max';
+
 /**
  * Calculate bpc
  * @param {Chromatogram} chrom - GC/MS chromatogram where make the peak picking
@@ -11,7 +13,7 @@ export function calculateBpc(chrom) {
     var massSpectra = ms.data;
     var bpc = [];
     for (var massSpectrum of massSpectra) {
-        bpc.push(Math.max(...massSpectrum[1]));
+        bpc.push(max(massSpectrum[1]));
     }
 
     return bpc;

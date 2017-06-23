@@ -54,6 +54,7 @@
     "binary-search": "^1.3.2",
     "chemcalc": "^3.3.3",
     "jcampconverter": "^2.3.0",
+    "ml-array-max": "^1.0.0",
     "ml-gsd": "^2.0.1",
     "ml-regression-polynomial": "^1.0.2",
     "xy-parser": "^1.5.0"
