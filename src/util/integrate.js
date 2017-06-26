@@ -14,7 +14,7 @@ import {integrate2D} from './integrate2D';
  * @param {object} [options = {}] - Options object
  * @param {number} [options.slot = 2] - Define when 2 peaks will be combined
  * @param {string} [options.name] - Name of the serie to integrate, by default all the series are integrated
- * @param {boolean} [options.baseline] - Applies baseline correction
+ * @param {string|boolean} [options.baseline] - Applies baseline correction
  * @return {{serieName: []}}
  */
 export function integrate(chromatogram, ranges, options = {}) {

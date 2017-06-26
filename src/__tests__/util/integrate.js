@@ -1,5 +1,7 @@
-import {integrate} from '../..';
-import {chromato, simple4} from '../data/examples';
+import {integrate, Chromatogram} from '../..';
+import {chromato} from '../data/examples';
+
+var chrom = new Chromatogram([1, 2, 3, 4], {tic: [2, 4, 6, 8]});
 
 test('Integrate a tic', () => {
 
@@ -36,14 +38,27 @@ test('Errors', () => {
     expect(() => integrate(chromato, 123)).toThrow('fromTo must be an array of type [from,to]');
 });
 
-test('Integrate tic only', () => {
-    simple4.calculateTic();
-    var result = integrate(simple4, [1.8, 3.5], {name: 'tic'});
-    expect(result).toEqual({tic: [115.515]});
-});
+describe('Applies baseline correction', () => {
+    it('without baseline', () => {
+        var result = integrate(chrom, [1, 3], {name: 'tic', baseline: false});
+        expect(result).toEqual({tic: [8]});
+    });
 
-test('Applies baseline correction', () => {
-    simple4.calculateTic();
-    var result = integrate(simple4, [1.8, 3.5], {name: 'tic', baseline: true});
-    expect(result).toEqual({tic: [115.515]});
+    it('trapezoid baseline', () => {
+        var result = integrate(chrom, [1, 3], {name: 'tic', baseline: 'trapezoid'});
+        expect(result).toEqual({tic: [0]});
+    });
+
+    it('min baseline', () => {
+        var result = integrate(chrom, [1, 3], {name: 'tic', baseline: 'min'});
+        expect(result).toEqual({tic: [4]});
+
+        var other = new Chromatogram([1, 2, 3], {tic: [6, 4, 2]});
+        result = integrate(other, [1, 3], {name: 'tic', baseline: 'min'});
+        expect(result).toEqual({tic: [4]});
+    });
+
+    it('error', () => {
+        expect(() => integrate(chrom, [1, 3], {name: 'tic', baseline: 'bla'})).toThrow('Unknown baseline method "bla"');
+    });
 });
