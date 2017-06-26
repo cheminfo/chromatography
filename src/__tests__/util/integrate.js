@@ -14,7 +14,13 @@ test('Integrate a tic', () => {
     // expect(result).toEqual( {"tic": [125] } );
 
     var result = integrate(chromato, [1.8, 5.5]);
-    expect(result).toEqual({tic: [{integral: 120.05}]});
+    expect(result).toEqual({tic: [{
+        integral: 120.05,
+        base: {
+            start: {height: 0, time: 1.8},
+            end: {height: 0, time: 5.5}
+        }
+    }]});
 
     //
     // var result = integrate(chromato, [2, 5] );
@@ -41,7 +47,13 @@ test('Errors', () => {
 describe('Applies baseline correction', () => {
     it('without baseline', () => {
         var result = integrate(chrom, [1, 3], {name: 'tic', baseline: false});
-        expect(result).toEqual({tic: [{integral: 8}]});
+        expect(result).toEqual({tic: [{
+            integral: 8,
+            base: {
+                start: {height: 0, time: 1},
+                end: {height: 0, time: 3}
+            }
+        }]});
     });
 
     it('trapezoid baseline', () => {
