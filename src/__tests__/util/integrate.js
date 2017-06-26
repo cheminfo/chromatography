@@ -14,7 +14,7 @@ test('Integrate a tic', () => {
     // expect(result).toEqual( {"tic": [125] } );
 
     var result = integrate(chromato, [1.8, 5.5]);
-    expect(result).toEqual({tic: [120.05]});
+    expect(result).toEqual({tic: [{integral: 120.05}]});
 
     //
     // var result = integrate(chromato, [2, 5] );
@@ -41,21 +41,39 @@ test('Errors', () => {
 describe('Applies baseline correction', () => {
     it('without baseline', () => {
         var result = integrate(chrom, [1, 3], {name: 'tic', baseline: false});
-        expect(result).toEqual({tic: [8]});
+        expect(result).toEqual({tic: [{integral: 8}]});
     });
 
     it('trapezoid baseline', () => {
         var result = integrate(chrom, [1, 3], {name: 'tic', baseline: 'trapezoid'});
-        expect(result).toEqual({tic: [0]});
+        expect(result).toEqual({tic: [{
+            integral: 0,
+            base: {
+                start: {height: 2, time: 1},
+                end: {height: 6, time: 3}
+            }
+        }]});
     });
 
     it('min baseline', () => {
         var result = integrate(chrom, [1, 3], {name: 'tic', baseline: 'min'});
-        expect(result).toEqual({tic: [4]});
+        expect(result).toEqual({tic: [{
+            integral: 4,
+            base: {
+                start: {height: 2, time: 1},
+                end: {height: 2, time: 3}
+            }
+        }]});
 
         var other = new Chromatogram([1, 2, 3], {tic: [6, 4, 2]});
         result = integrate(other, [1, 3], {name: 'tic', baseline: 'min'});
-        expect(result).toEqual({tic: [4]});
+        expect(result).toEqual({tic: [{
+            integral: 4,
+            base: {
+                start: {height: 2, time: 1},
+                end: {height: 2, time: 3}
+            }
+        }]});
     });
 
     it('error', () => {

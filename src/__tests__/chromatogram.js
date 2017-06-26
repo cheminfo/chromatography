@@ -56,5 +56,5 @@ describe('General methods', () => {
 
 test('Integrate a tic', () => {
     var result = chromato.getIntegrations([1.5, 5.5]);
-    expect(result).toEqual({tic: [125]});
+    expect(result).toEqual({tic: [{integral: 125}]});
 });

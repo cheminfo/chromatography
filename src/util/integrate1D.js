@@ -28,6 +28,6 @@ export function integrate1D(time, serie, from, to, fromIndex, toIndex, baseline)
     if (baseline) {
         return baselineCorrection(total, base, baseline);
     } else {
-        return total;
+        return {integral: total};
     }
 }
