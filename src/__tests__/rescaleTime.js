@@ -25,7 +25,7 @@ test('Simple case', () => {
     }
 });
 
-test('Non-in place', async () => {
+test('Non-in place', () => {
     const path = join(__dirname, 'data/jcamp/P064.JDX');
     const jcamp = readFileSync(path, 'utf8');
     const chrom = fromJcamp(jcamp);
@@ -64,7 +64,7 @@ test('Non-in place', async () => {
     }
 });
 
-test('In place', async () => {
+test('In place', () => {
     const path = join(__dirname, 'data/jcamp/P064.JDX');
     const jcamp = readFileSync(path, 'utf8');
     const chrom = fromJcamp(jcamp);
