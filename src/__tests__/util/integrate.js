@@ -62,3 +62,9 @@ describe('Applies baseline correction', () => {
         expect(() => integrate(chrom, [1, 3], {name: 'tic', baseline: 'bla'})).toThrow('Unknown baseline method "bla"');
     });
 });
+
+test('Applies baseline correction', () => {
+    simple4.calculateTic();
+    var result = integrate(simple4, [1.8, 3.5], {name: 'tic', baseline: true});
+    expect(result).toEqual({tic: [115.515]});
+});
