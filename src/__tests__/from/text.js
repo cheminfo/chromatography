@@ -27,6 +27,6 @@ test('Parse a text with options', () => {
     });
     expect(newChromatogram.getSerie('intensity').data.length).toEqual(3);
     expect(newChromatogram.times.length).toEqual(3);
-    expect(newChromatogram.times).toEqual([2,3,4]);
+    expect(newChromatogram.times).toEqual([2, 3, 4]);
     expect(newChromatogram.getSerieNames()).toEqual(['intensity']);
 });

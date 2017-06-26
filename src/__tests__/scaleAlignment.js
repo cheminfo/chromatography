@@ -1,7 +1,7 @@
 import {Chromatogram, spectraComparison, scaleAlignment} from '..';
 import {lorentzian} from './data/examples';
 
-test('Simple case', async () => {
+test('Simple case', () => {
     const size = 70;
     const peakX = 10;
     let times = new Array(size);
@@ -38,7 +38,7 @@ test('Simple case', async () => {
     expect(Math.abs(aligned.scaleRegression.predict(30) - 20) < 1e-4).toEqual(true);
 });
 
-test('Quality and string', async () => {
+test('Quality and string', () => {
     const size = 70;
     const peakX = 10;
     let times = new Array(size);
