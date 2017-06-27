@@ -1,18 +1,16 @@
 import {analyseMF} from 'chemcalc';
 
-const defaultOptions = {
-    oddReference: true
-};
-
 /**
  * Recalculates series for GC/MS with lock mass
  * @param {string|Array<string>} mf - Reference molecular formula(s)
- * @param {object} [options={}] - Options object
- * @param {boolean} [options.oddReference=true] - Mass reference it's in the odd position
+ * @param {object} [options = {}] - Options object
+ * @param {boolean} [options.oddReference = true] - Mass reference it's in the odd position
  * @return {object} this
  */
-export function applyLockMass(mf, options) {
-    options = Object.assign({}, defaultOptions, options);
+export function applyLockMass(mf, options = {}) {
+    const {
+        oddReference = true
+    } = options;
 
     // allows mf as string or array
     if (typeof mf === 'string') {
@@ -29,8 +27,8 @@ export function applyLockMass(mf, options) {
     ms = ms.data;
 
     // check where is the reference values
-    let referenceIndexShift = Number(options.oddReference);
-    let msIndexShift = Number(!options.oddReference);
+    let referenceIndexShift = Number(oddReference);
+    let msIndexShift = Number(!oddReference);
 
     if (ms.length % 2 !== 0) {
         throw new Error('The series must have an even size');
@@ -56,7 +54,7 @@ export function applyLockMass(mf, options) {
         }
     }
 
-    // we remove the time and the mass spectra that containss the reference
+    // remove the time and the mass spectra that contains the reference
     this.filter((index) => index % 2 !== referenceIndexShift);
 
     return this;
