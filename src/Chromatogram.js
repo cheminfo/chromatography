@@ -188,7 +188,7 @@ export class Chromatogram {
     calculateTic(options = {}) {
         if (!this.getSerie('tic') || options.force) {
             let tic = calculateTic(this);
-            this.addSerie('tic', tic);
+            this.addSerie('tic', tic, options);
         }
     }
 
@@ -200,7 +200,7 @@ export class Chromatogram {
     calculateBpc(options = {}) {
         if (!this.getSerie('bpc') || options.force) {
             let bpc = calculateBpc(this);
-            this.addSerie('bpc', bpc);
+            this.addSerie('bpc', bpc, options);
         }
     }
 
