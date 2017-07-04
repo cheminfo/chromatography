@@ -25,7 +25,7 @@ test('Low resolution', () => {
     ]});
 
     expect(integrate(lowResolution, [1, 2], {
-        roundFactor: 2
+        slot: 0.01
     })).toEqual({ms: [
         [100.00, 200.01, 200.02, 300.00],
         [21, 21, 20, 61]

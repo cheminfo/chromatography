@@ -1,7 +1,6 @@
-import roundTo from 'round-to';
 import {asc} from 'num-sort';
 
-export function integrate2D(serie, fromIndex, toIndex, roundFactor) {
+export function integrate2D(serie, fromIndex, toIndex, slot) {
     if (serie.dimension !== 2) throw new Error('The serie is not of dimension 2');
     if (!serie.data) return [];
 
@@ -10,7 +9,8 @@ export function integrate2D(serie, fromIndex, toIndex, roundFactor) {
     for (var i = fromIndex; i <= toIndex; i++) {
         for (var j = 0; j < serie.data[i][0].length; j++) {
             // round the mass value
-            let mass = roundTo(serie.data[i][0][j], roundFactor);
+            var x = serie.data[i][0][j];
+            let mass = x + slot / 2 - (x + slot / 2) % slot;
 
             // add the mass value to the dictionary
             if (massDictionary[mass]) {

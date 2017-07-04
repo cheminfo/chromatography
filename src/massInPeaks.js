@@ -15,7 +15,7 @@ export function massInPeaks(peakList, sampleMS, options = {}) {
     // integrate MS
     for (let i = 0; i < peakList.length; ++i) {
         var serie = {dimension: 2, data: sampleMS};
-        var integral = integrate2D(serie, peakList[i].left.index, peakList[i].right.index, 0);
+        var integral = integrate2D(serie, peakList[i].left.index, peakList[i].right.index, 1);
         var msSum = {
             x: integral[0],
             y: integral[1]
