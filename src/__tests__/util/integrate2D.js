@@ -1,7 +1,8 @@
 import {integrate, Chromatogram} from '../..';
+import {integrate2D} from '../../util/integrate2D';
 import {simple} from '../data/examples';
 
-const lowResolution = new Chromatogram(
+const highResolution = new Chromatogram(
     [1, 2], {
         ms: [
             [[100.002, 200.02, 300.0002], [10, 20, 30]],
@@ -10,7 +11,7 @@ const lowResolution = new Chromatogram(
     }
 );
 
-test('High resolution', () => {
+test('Low resolution', () => {
     var result = integrate(simple, [1, 2]);
     expect(result).toEqual({ms: [
         [100, 101, 200, 201, 300, 301],
@@ -18,16 +19,21 @@ test('High resolution', () => {
     ]});
 });
 
-test('Low resolution', () => {
-    expect(integrate(lowResolution, [1, 2])).toEqual({ms: [
+test('High resolution', () => {
+    expect(integrate(highResolution, [1, 2])).toEqual({ms: [
         [100, 200, 300],
         [21, 41, 61]
     ]});
 
-    expect(integrate(lowResolution, [1, 2], {
+    expect(integrate(highResolution, [1, 2], {
         slot: 0.01
     })).toEqual({ms: [
         [100.00, 200.01, 200.02, 300.00],
         [21, 21, 20, 61]
     ]});
+});
+
+test('Errors', () => {
+    expect(() => integrate2D([])).toThrow('The serie is not of dimension 2');
+    expect(integrate2D({dimension: 2})).toEqual([]);
 });

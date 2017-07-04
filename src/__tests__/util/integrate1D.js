@@ -1,4 +1,5 @@
 import {integrate, Chromatogram} from '../..';
+import {integrate1D} from '../../util/integrate1D';
 import {chromato} from '../data/examples';
 
 var chrom = new Chromatogram([1, 2, 3, 4], {tic: [2, 4, 6, 8]});
@@ -16,6 +17,8 @@ test('Integrate a tic', () => {
 
 test('Errors', () => {
     expect(() => integrate(chromato, 123)).toThrow('fromTo must be an array of type [from,to]');
+    expect(() => integrate1D([0], [])).toThrow('The serie is not of dimension 1');
+    expect(integrate1D([0], {dimension: 1})).toBe(0);
 });
 
 describe('Applies baseline correction', () => {
