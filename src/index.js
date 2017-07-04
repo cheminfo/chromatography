@@ -16,6 +16,7 @@ export {fromJcamp} from './from/jcamp';
 export {fromJSON} from './from/json';
 export {fromText} from './from/text';
 export {fromNetCDF} from './from/netcdf';
+export {fromMzML} from './from/mzml';
 
 export {integrate} from './util/integrate';
 export {getPeaks} from './util/getPeaks';
