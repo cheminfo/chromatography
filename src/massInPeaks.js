@@ -14,7 +14,6 @@ export function massInPeaks(peakList, sampleMS, options = {}) {
     // integrate MS
     for (let i = 0; i < peakList.length; ++i) {
         let massDictionary = {};
-        let max = -1;
         for (let j = peakList[i].left.index; j <= peakList[i].right.index; ++j) {
             for (let k = 0; k < sampleMS[j][0].length; ++k) {
                 // round the mass value
@@ -25,10 +24,6 @@ export function massInPeaks(peakList, sampleMS, options = {}) {
                     massDictionary[mass] += sampleMS[j][1][k];
                 } else {
                     massDictionary[mass] = sampleMS[j][1][k];
-                }
-
-                if (massDictionary[mass] > max) {
-                    max = massDictionary[mass];
                 }
             }
         }
