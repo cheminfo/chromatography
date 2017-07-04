@@ -4613,6 +4613,12 @@ npmlog@^4.0.2:
     gauge "~2.7.3"
     set-blocking "~2.0.0"
 
+num-sort@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/num-sort/-/num-sort-1.0.0.tgz#cabec1fd5f4da4aca995af90b7a0f379944e1dbd"
+  dependencies:
+    number-is-nan "^1.0.0"
+
 number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
@@ -5476,6 +5482,10 @@ rollup@^0.42.0:
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.42.0.tgz#56e791b3a2f3dd7190bbb80a375675f2fe0f9b23"
   dependencies:
     source-map-support "^0.4.0"
+
+round-to@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/round-to/-/round-to-2.0.0.tgz#bcef4f2bcafd9480902c2142150b28c897f03e37"
 
 run-async@^2.0.0, run-async@^2.2.0:
   version "2.3.0"

@@ -12,14 +12,14 @@ import {integrate2D} from './integrate2D';
  * @param {Chromatogram} chromatogram
  * @param {number|Array<number>} ranges - [from, to] or [ [from1, to1], [from2, to2], ...]
  * @param {object} [options = {}] - Options object
- * @param {number} [options.slot = 2] - Define when 2 peaks will be combined
+ * @param {number} [options.roundFactor = 0]
  * @param {string} [options.name] - Name of the serie to integrate, by default all the series are integrated
  * @param {string|boolean} [options.baseline] - Applies baseline correction
  * @return {{serieName: []}}
  */
 export function integrate(chromatogram, ranges, options = {}) {
     const {
-        slot = 1,
+        roundFactor = 0,
         name = false,
         baseline = false
     } = options;
@@ -52,7 +52,7 @@ export function integrate(chromatogram, ranges, options = {}) {
                     results[serieName].push(integrate1D(time, serie, from, to, fromIndex, toIndex, baseline));
                     break;
                 case 2:
-                    results[serieName].push(integrate2D(time, serie, from, to, fromIndex, toIndex, {slot}));
+                    results[serieName] = integrate2D(serie, fromIndex, toIndex, roundFactor);
                     break;
                 default:
                     throw new Error('Serie dimension unrecognized');

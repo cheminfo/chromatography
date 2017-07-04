@@ -1,26 +1,35 @@
-export function integrate2D(time, serie, from, to, fromIndex, toIndex) {
-    if (serie.dimension !== 1) throw new Error('The serie is not of dimension 2');
+import roundTo from 'round-to';
+import {asc} from 'num-sort';
+
+export function integrate2D(serie, fromIndex, toIndex, roundFactor) {
+    if (serie.dimension !== 2) throw new Error('The serie is not of dimension 2');
     if (!serie.data) return [];
 
-    let data = [];
-    for (let i = fromIndex; i <= toIndex; i++) {
+    let massDictionary = {};
 
-        // TODO
-        /*
-        for (var j = 0; j < ms[i][0].length; j++) {
-            // search possible position
-            var position = {
-                index: -1,
-                distance: Number.MAX_VALUE
-            };
-            for (var k = 0; k < masses.length; k++) {
-                // TODO work in progress
+    for (var i = fromIndex; i <= toIndex; i++) {
+        for (var j = 0; j < serie.data[i][0].length; j++) {
+            // round the mass value
+            let mass = roundTo(serie.data[i][0][j], roundFactor);
+
+            // add the mass value to the dictionary
+            if (massDictionary[mass]) {
+                massDictionary[mass] += serie.data[i][1][j];
+            } else {
+                massDictionary[mass] = serie.data[i][1][j];
             }
-
-            // check if merge needed
         }
-        */
-
     }
-    return data;
+
+    const massList = Object.keys(massDictionary).map((val) => Number(val)).sort(asc);
+    let integral = [
+        new Array(massList.length),
+        new Array(massList.length)
+    ];
+
+    for (var k = 0; k < massList.length; k++) {
+        integral[0][k] = Number(massList[k]);
+        integral[1][k] = massDictionary[massList[k]];
+    }
+    return integral;
 }
