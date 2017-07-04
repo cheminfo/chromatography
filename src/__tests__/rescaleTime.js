@@ -26,7 +26,7 @@ test('Simple case', () => {
 });
 
 test('Non-in place', () => {
-    const path = join(__dirname, 'data/jcamp/P064.JDX');
+    const path = join(__dirname, '../../testFiles/jcamp/P064.JDX');
     const jcamp = readFileSync(path, 'utf8');
     const chrom = fromJcamp(jcamp);
 
@@ -65,7 +65,7 @@ test('Non-in place', () => {
 });
 
 test('In place', () => {
-    const path = join(__dirname, 'data/jcamp/P064.JDX');
+    const path = join(__dirname, '../../testFiles/jcamp/P064.JDX');
     const jcamp = readFileSync(path, 'utf8');
     const chrom = fromJcamp(jcamp);
 

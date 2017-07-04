@@ -4,7 +4,7 @@ import {Chromatogram, massInPeaks, getPeaks, vectorify, fromJcamp} from '..';
 import {lorentzian} from './data/examples';
 
 test('from a Diesel chromatogram', () => {
-    const path = join(__dirname, 'data/jcamp/P064.JDX');
+    const path = join(__dirname, '../../testFiles/jcamp/P064.JDX');
     const jcamp = readFileSync(path, 'utf8');
     const chrom = fromJcamp(jcamp);
     expect(chrom.length).toEqual(6992);
