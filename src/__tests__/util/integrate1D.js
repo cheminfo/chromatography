@@ -1,18 +1,10 @@
 import {integrate, Chromatogram} from '../..';
+import {integrate1D} from '../../util/integrate1D';
 import {chromato} from '../data/examples';
 
 var chrom = new Chromatogram([1, 2, 3, 4], {tic: [2, 4, 6, 8]});
 
 test('Integrate a tic', () => {
-
-    /*
-        time: [1, 2, 3, 5, 6],
-        tic: [10, 20, 30, 40, 50]
-    */
-
-    // var result = integrate(chromato, [1.5, 5.5] );
-    // expect(result).toEqual( {"tic": [125] } );
-
     var result = integrate(chromato, [1.8, 5.5]);
     expect(result).toEqual({tic: [{
         integral: 120.05,
@@ -21,27 +13,12 @@ test('Integrate a tic', () => {
             end: {height: 0, time: 5.5}
         }
     }]});
-
-    //
-    // var result = integrate(chromato, [2, 5] );
-    // expect(result).toEqual( {"tic": [95] } );
-    //
-    // var result = integrate(chromato, [3, 3] );
-    // expect(result).toEqual( {"tic": [0] } );
-    //
-    // var result = integrate(chromato, [2.5, 2.5] );
-    // expect(result).toEqual( {"tic": [0] } );
-    //
-    // var result = integrate(chromato, [ [2.5, 2.5], [3.5, 3.5] ] );
-    // expect(result).toEqual( {"tic": [0,0] } );
-    //
-    // chromato.addSerie('tac', [100,200,300,400,500]);
-    // var result = integrate(chromato, [ [2, 3], [3, 5] ] );
-    // expect(result).toEqual( {"tic": [25,70], "tac": [250,700] } );
 });
 
 test('Errors', () => {
     expect(() => integrate(chromato, 123)).toThrow('fromTo must be an array of type [from,to]');
+    expect(() => integrate1D([0], [])).toThrow('The serie is not of dimension 1');
+    expect(integrate1D([0], {dimension: 1})).toBe(0);
 });
 
 describe('Applies baseline correction', () => {

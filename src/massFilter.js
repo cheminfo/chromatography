@@ -1,33 +1,4 @@
 /**
- * Filters based in groupWidth
- * @ignore
- * @param {Array<object>} list - Sorted list of XY-objects to be filtered
- * @param {number} maxNumberPeaks - Maximum number of peaks for each mass spectra
- * @param {number} groupWidth - When find a max can't be another max in a radius of this size
- * @return {Array<object>} - List of XY-objects filtered
- */
-export function moreDistinct(list, maxNumberPeaks, groupWidth) {
-    let len = 0;
-    if (maxNumberPeaks > list.length) {
-        maxNumberPeaks = list.length;
-    }
-    let filteredList = new Array(maxNumberPeaks);
-
-    for (let i = 0; (i < list.length) && (len < maxNumberPeaks); ++i) {
-        let outRange = true;
-        for (let j = 0; j < len && outRange; ++j) {
-            outRange = outRange && !((list[i].x > (filteredList[j].x - groupWidth)) && (list[i].x < (filteredList[j].x + groupWidth)));
-        }
-        if (outRange) {
-            filteredList[len++] = list[i];
-        }
-    }
-    filteredList.length = len;
-
-    return filteredList;
-}
-
-/**
  * Filters a mass object
  * @param {object} massXYObject - Object with x and y data
  * @param {Array<number>} massXYObject.x - Array of mass values
@@ -78,4 +49,33 @@ export function massFilter(massXYObject, options = {}) {
     }
 
     return ans;
+}
+
+/**
+ * Filters based in groupWidth
+ * @ignore
+ * @param {Array<object>} list - Sorted list of XY-objects to be filtered
+ * @param {number} maxNumberPeaks - Maximum number of peaks for each mass spectra
+ * @param {number} groupWidth - When find a max can't be another max in a radius of this size
+ * @return {Array<object>} - List of XY-objects filtered
+ */
+export function moreDistinct(list, maxNumberPeaks, groupWidth) {
+    let len = 0;
+    if (maxNumberPeaks > list.length) {
+        maxNumberPeaks = list.length;
+    }
+    let filteredList = new Array(maxNumberPeaks);
+
+    for (let i = 0; (i < list.length) && (len < maxNumberPeaks); ++i) {
+        let outRange = true;
+        for (let j = 0; j < len && outRange; ++j) {
+            outRange = outRange && !((list[i].x > (filteredList[j].x - groupWidth)) && (list[i].x < (filteredList[j].x + groupWidth)));
+        }
+        if (outRange) {
+            filteredList[len++] = list[i];
+        }
+    }
+    filteredList.length = len;
+
+    return filteredList;
 }

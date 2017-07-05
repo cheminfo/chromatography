@@ -1,7 +1,7 @@
 import {baselineCorrection} from './baselineCorrection';
 
 export function integrate1D(time, serie, from, to, fromIndex, toIndex, baseline) {
-    if (serie.dimension !== 1) throw new Error('The serie name is not of dimension 1');
+    if (serie.dimension !== 1) throw new Error('The serie is not of dimension 1');
     if (!serie.data) return 0;
 
     let total = 0;

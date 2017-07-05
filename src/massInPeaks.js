@@ -1,4 +1,5 @@
 import {massFilter} from './massFilter';
+import {integrate2D} from './util/integrate2D';
 
 /**
  * Integrate MS spectra of a peak list
@@ -13,35 +14,12 @@ import {massFilter} from './massFilter';
 export function massInPeaks(peakList, sampleMS, options = {}) {
     // integrate MS
     for (let i = 0; i < peakList.length; ++i) {
-        let massDictionary = {};
-        let max = -1;
-        for (let j = peakList[i].left.index; j <= peakList[i].right.index; ++j) {
-            for (let k = 0; k < sampleMS[j][0].length; ++k) {
-                // round the mass value
-                let mass = Math.round(sampleMS[j][0][k]);
-
-                // add the mass value to the dictionary
-                if (massDictionary[mass]) {
-                    massDictionary[mass] += sampleMS[j][1][k];
-                } else {
-                    massDictionary[mass] = sampleMS[j][1][k];
-                }
-
-                if (massDictionary[mass] > max) {
-                    max = massDictionary[mass];
-                }
-            }
-        }
-        const massList = Object.keys(massDictionary);
-        let msSum = {
-            x: new Array(massList.length),
-            y: new Array(massList.length)
+        var serie = {dimension: 2, data: sampleMS};
+        var integral = integrate2D(serie, peakList[i].left.index, peakList[i].right.index, 1);
+        var msSum = {
+            x: integral[0],
+            y: integral[1]
         };
-
-        for (let j = 0; j < massList.length; ++j) {
-            msSum.x[j] = Number(massList[j]);
-            msSum.y[j] = massDictionary[massList[j]];
-        }
 
         if (options.maxNumberPeaks || options.thresholdFactor || options.groupWidth) {
             msSum = massFilter(msSum, options);

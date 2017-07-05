@@ -6,8 +6,6 @@ export function serieFromArray(array) {
     if (!Array.isArray(array)) {
         throw new TypeError('Serie.fromArray requires as parameter an array of numbers or array');
     }
-    // TODO we could really check if all the elements are either number of array and
-    // at one specific level of the same kind !
 
     if (array.length === 0 || typeof array[0] === 'number') {
         return new Serie1D(array);
