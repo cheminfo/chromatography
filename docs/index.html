@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='utf-8' />
-  <title>chromatography 2.0.1 | Documentation</title>
+  <title>chromatography 2.1.1 | Documentation</title>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' type='text/css' rel='stylesheet' />
   <link href='assets/style.css' type='text/css' rel='stylesheet' />
@@ -14,7 +14,7 @@
       <div class='fixed xs-hide fix-3 overflow-auto max-height-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>chromatography</h3>
-          <div class='mb1'><code>2.0.1</code></div>
+          <div class='mb1'><code>2.1.1</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -28,6 +28,16 @@
                   href='#applylockmass'
                   class="">
                   applyLockMass
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#calculatebpc'
+                  class="">
+                  calculateBpc
                   
                 </a>
                 
@@ -58,15 +68,51 @@
                       <li class='h5'><span>Instance members</span></li>
                       
                       <li><a
+                        href='#Chromatogram#filter'
+                        class='regular pre-open'>
+                        #filter
+                      </a></li>
+                      
+                      <li><a
                         href='#Chromatogram#getClosestTime'
                         class='regular pre-open'>
                         #getClosestTime
                       </a></li>
                       
                       <li><a
+                        href='#Chromatogram#addSeries'
+                        class='regular pre-open'>
+                        #addSeries
+                      </a></li>
+                      
+                      <li><a
+                        href='#Chromatogram#getIntegrations'
+                        class='regular pre-open'>
+                        #getIntegrations
+                      </a></li>
+                      
+                      <li><a
+                        href='#Chromatogram#deleteSerie'
+                        class='regular pre-open'>
+                        #deleteSerie
+                      </a></li>
+                      
+                      <li><a
+                        href='#Chromatogram#addSerie'
+                        class='regular pre-open'>
+                        #addSerie
+                      </a></li>
+                      
+                      <li><a
                         href='#Chromatogram#getKovatsRescale'
                         class='regular pre-open'>
                         #getKovatsRescale
+                      </a></li>
+                      
+                      <li><a
+                        href='#Chromatogram#calculateBpc'
+                        class='regular pre-open'>
+                        #calculateBpc
                       </a></li>
                       
                       <li><a
@@ -82,9 +128,9 @@
                       </a></li>
                       
                       <li><a
-                        href='#Chromatogram#filter'
+                        href='#Chromatogram#getSerie'
                         class='regular pre-open'>
-                        #filter
+                        #getSerie
                       </a></li>
                       
                       <li><a
@@ -106,33 +152,15 @@
                       </a></li>
                       
                       <li><a
-                        href='#Chromatogram#addSeries'
+                        href='#Chromatogram#lastTime'
                         class='regular pre-open'>
-                        #addSeries
+                        #lastTime
                       </a></li>
                       
                       <li><a
-                        href='#Chromatogram#addSerie'
+                        href='#Chromatogram#copy'
                         class='regular pre-open'>
-                        #addSerie
-                      </a></li>
-                      
-                      <li><a
-                        href='#Chromatogram#hasSerie'
-                        class='regular pre-open'>
-                        #hasSerie
-                      </a></li>
-                      
-                      <li><a
-                        href='#Chromatogram#requiresSerie'
-                        class='regular pre-open'>
-                        #requiresSerie
-                      </a></li>
-                      
-                      <li><a
-                        href='#Chromatogram#getIntegrations'
-                        class='regular pre-open'>
-                        #getIntegrations
+                        #copy
                       </a></li>
                       
                       <li><a
@@ -142,21 +170,15 @@
                       </a></li>
                       
                       <li><a
-                        href='#Chromatogram#deleteSerie'
+                        href='#Chromatogram#requiresSerie'
                         class='regular pre-open'>
-                        #deleteSerie
+                        #requiresSerie
                       </a></li>
                       
                       <li><a
-                        href='#Chromatogram#lastTime'
+                        href='#Chromatogram#hasSerie'
                         class='regular pre-open'>
-                        #lastTime
-                      </a></li>
-                      
-                      <li><a
-                        href='#Chromatogram#getSerie'
-                        class='regular pre-open'>
-                        #getSerie
+                        #hasSerie
                       </a></li>
                       
                     </ul>
@@ -435,8 +457,8 @@
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/ms/applyLockMass.js#L16-L65'>
-      <span>src/ms/applyLockMass.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L743-L794'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -538,13 +560,86 @@
   
   <div class='clearfix'>
     
+    <h3 class='fl m0' id='calculatebpc'>
+      calculateBpc
+    </h3>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L243-L255'>
+      <span>lib/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Calculate bpc</p>
+
+
+  <div class='pre p1 fill-light mt0'>calculateBpc(chrom: <a href="#chromatogram">Chromatogram</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>chrom</span> <code class='quiet'>(<a href="#chromatogram">Chromatogram</a>)</code>
+	    GC/MS chromatogram where make the peak picking
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></code>:
+        Calculated bpc
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
     <h3 class='fl m0' id='calculatetic'>
       calculateTic
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/ms/calculateTic.js#L9-L21'>
-      <span>src/ms/calculateTic.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L224-L236'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -616,8 +711,8 @@
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Chromatogram.js#L13-L215'>
-      <span>src/Chromatogram.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L830-L1057'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -627,7 +722,7 @@
 It allows also to store simple time a trace</p>
 
 
-  <div class='pre p1 fill-light mt0'>new Chromatogram(times: any, series: any, data: (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>))</div>
+  <div class='pre p1 fill-light mt0'>new Chromatogram(times: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>, series: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</div>
   
   
 
@@ -644,24 +739,17 @@ It allows also to store simple time a trace</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>times</span> <code class='quiet'>(any)</code>
-	    
+            <span class='code bold'>times</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>)</code>
+	    Time serie
+
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>series</span> <code class='quiet'>(any)</code>
-	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>data</span> <code class='quiet'>((<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>))</code>
-	    A GC/MS data format object or a time serie
+            <span class='code bold'>series</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>
+	    A map of series with name and the Serie object
 
           </div>
           
@@ -684,6 +772,117 @@ It allows also to store simple time a trace</p>
     <div class='py1 quiet mt1 prose-big'>Instance Members</div>
     <div class="clearfix">
   
+    <div class='border-bottom' id='Chromatogram#filter'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>filter(callback, options?)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L977-L979'>
+      <span>lib/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Will filter the entries based on the time
+You can either use the index of the actual time</p>
+
+
+  <div class='pre p1 fill-light mt0'>filter(callback: function (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>), options: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>?): <a href="#chromatogram">Chromatogram</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>callback</span> <code class='quiet'>(function (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>))</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>?)</code>
+	    options object
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+                  <td class='break-word'><span class='code bold'>options.copy</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></code>
+                  
+                    (default <code>false</code>)
+                  </td>
+                  <td class='break-word'><span>return a copy of the original object
+</span></td>
+                </tr>
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#chromatogram">Chromatogram</a></code>:
+        
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
     <div class='border-bottom' id='Chromatogram#getClosestTime'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
@@ -698,8 +897,8 @@ It allows also to store simple time a trace</p>
   <div class='clearfix'>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Chromatogram.js#L212-L214'>
-      <span>src/Chromatogram.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L1045-L1047'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -761,6 +960,390 @@ It allows also to store simple time a trace</p>
       </div>
     </div>
   
+    <div class='border-bottom' id='Chromatogram#addSeries'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>addSeries(series, options)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L882-L889'>
+      <span>lib/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Add new series</p>
+
+
+  <div class='pre p1 fill-light mt0'>addSeries(series: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>, options: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>series</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>
+	    Object with an array of data, dimensions of the elements in the array and name of the serie
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+            = <code>{}</code>)</code>
+	    Object with an array of data, dimensions of the elements in the array and name of the serie
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='Chromatogram#getIntegrations'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getIntegrations(zones, options)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L1036-L1038'>
+      <span>lib/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Retuns an object with the result of the integrations</p>
+
+
+  <div class='pre p1 fill-light mt0'>getIntegrations(zones: (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>), options: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): {serieName: []}</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>zones</span> <code class='quiet'>((<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>))</code>
+	    [
+from, to
+]
+ or [ 
+[
+from1, to1
+]
+, 
+[
+from2, to2
+]
+, ...]
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+            = <code>{}</code>)</code>
+	    Options object
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+                  <td class='break-word'><span class='code bold'>options.slot</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>
+                  
+                    (default <code>2</code>)
+                  </td>
+                  <td class='break-word'><span>Define when 2 peaks will be combined
+</span></td>
+                </tr>
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>{serieName: []}</code>:
+        
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='Chromatogram#deleteSerie'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>deleteSerie(name)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L869-L875'>
+      <span>lib/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Delete a serie</p>
+
+
+  <div class='pre p1 fill-light mt0'>deleteSerie(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>name</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    Name of the serie
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='Chromatogram#addSerie'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>addSerie(name, array, options)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L898-L906'>
+      <span>lib/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Add a new serie</p>
+
+
+  <div class='pre p1 fill-light mt0'>addSerie(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, array: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>, options: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>name</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    Name of the serie to add
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>array</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>)</code>
+	    Object with an array of data, dimensions of the elements in the array and name of the serie
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+            = <code>{}</code>)</code>
+	    Options object
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+                  <td class='break-word'><span class='code bold'>options.force</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></code>
+                  
+                    (default <code>false</code>)
+                  </td>
+                  <td class='break-word'><span>Force replacement of existing serie
+</span></td>
+                </tr>
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
     <div class='border-bottom' id='Chromatogram#getKovatsRescale'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
@@ -775,8 +1358,8 @@ It allows also to store simple time a trace</p>
   <div class='clearfix'>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Chromatogram.js#L193-L195'>
-      <span>src/Chromatogram.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L1025-L1027'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -900,6 +1483,101 @@ It allows also to store simple time a trace</p>
       </div>
     </div>
   
+    <div class='border-bottom' id='Chromatogram#calculateBpc'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>calculateBpc(options)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L1008-L1013'>
+      <span>lib/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Calculate bpc</p>
+
+
+  <div class='pre p1 fill-light mt0'>calculateBpc(options: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+            = <code>{}</code>)</code>
+	    Options object
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+                  <td class='break-word'><span class='code bold'>options.force</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></code>
+                  
+                    (default <code>false</code>)
+                  </td>
+                  <td class='break-word'><span>Force the calculation it it exists
+</span></td>
+                </tr>
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
     <div class='border-bottom' id='Chromatogram#calculateTic'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
@@ -914,8 +1592,8 @@ It allows also to store simple time a trace</p>
   <div class='clearfix'>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Chromatogram.js#L176-L181'>
-      <span>src/Chromatogram.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L996-L1001'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -1009,8 +1687,8 @@ It allows also to store simple time a trace</p>
   <div class='clearfix'>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Chromatogram.js#L167-L169'>
-      <span>src/Chromatogram.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L987-L989'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -1099,11 +1777,11 @@ It allows also to store simple time a trace</p>
       </div>
     </div>
   
-    <div class='border-bottom' id='Chromatogram#filter'>
+    <div class='border-bottom' id='Chromatogram#getSerie'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>filter(callback)</span>
+            <span class='code strong strong truncate'>getSerie(name)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -1113,18 +1791,17 @@ It allows also to store simple time a trace</p>
   <div class='clearfix'>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Chromatogram.js#L156-L159'>
-      <span>src/Chromatogram.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L857-L859'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
   
 
-  <p>Will filter the entries based on the time
-You can either use the index of the actual time</p>
+  <p>Find the serie giving the name</p>
 
 
-  <div class='pre p1 fill-light mt0'>filter(callback: function (index, time)): <a href="#chromatogram">Chromatogram</a></div>
+  <div class='pre p1 fill-light mt0'>getSerie(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
   
   
 
@@ -1141,8 +1818,9 @@ You can either use the index of the actual time</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>callback</span> <code class='quiet'>(function (index, time))</code>
-	    
+            <span class='code bold'>name</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    name of the serie
+
           </div>
           
         </div>
@@ -1155,8 +1833,8 @@ You can either use the index of the actual time</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="#chromatogram">Chromatogram</a></code>:
-        
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
+        Object with an array of data, dimensions of the elements in the array and name of the serie
 
       
     
@@ -1190,8 +1868,8 @@ You can either use the index of the actual time</p>
   <div class='clearfix'>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Chromatogram.js#L145-L148'>
-      <span>src/Chromatogram.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L964-L967'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -1266,8 +1944,8 @@ You can either use the index of the actual time</p>
   <div class='clearfix'>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Chromatogram.js#L136-L138'>
-      <span>src/Chromatogram.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L955-L957'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -1335,8 +2013,8 @@ You can either use the index of the actual time</p>
   <div class='clearfix'>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Chromatogram.js#L128-L130'>
-      <span>src/Chromatogram.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L947-L949'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -1384,11 +2062,11 @@ You can either use the index of the actual time</p>
       </div>
     </div>
   
-    <div class='border-bottom' id='Chromatogram#addSeries'>
+    <div class='border-bottom' id='Chromatogram#lastTime'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>addSeries(series, options)</span>
+            <span class='code strong strong truncate'>lastTime</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -1398,55 +2076,39 @@ You can either use the index of the actual time</p>
   <div class='clearfix'>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Chromatogram.js#L63-L70'>
-      <span>src/Chromatogram.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L939-L941'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
   
 
-  <p>Add new series</p>
+  <p>Returns the last time value</p>
 
 
-  <div class='pre p1 fill-light mt0'>addSeries(series: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>, options: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</div>
-  
-  
-
-  
-  
-  
-  
+  <div class='pre p1 fill-light mt0'>lastTime</div>
   
   
 
   
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
+        Last time value
+
       
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>series</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>
-	    Object with an array of data, dimensions of the elements in the array and name of the serie
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
-            = <code>{}</code>)</code>
-	    Object with an array of data, dimensions of the elements in the array and name of the serie
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
+    
   
 
   
@@ -1463,11 +2125,11 @@ You can either use the index of the actual time</p>
       </div>
     </div>
   
-    <div class='border-bottom' id='Chromatogram#addSerie'>
+    <div class='border-bottom' id='Chromatogram#copy'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>addSerie(name, array, options)</span>
+            <span class='code strong strong truncate'>copy()</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -1477,17 +2139,143 @@ You can either use the index of the actual time</p>
   <div class='clearfix'>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Chromatogram.js#L79-L87'>
-      <span>src/Chromatogram.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L1053-L1056'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
   
 
-  <p>Add a new serie</p>
+  <p>Return a copy of the chromatogram</p>
 
 
-  <div class='pre p1 fill-light mt0'>addSerie(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, array: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>, options: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</div>
+  <div class='pre p1 fill-light mt0'>copy(): <a href="#chromatogram">Chromatogram</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#chromatogram">Chromatogram</a></code>:
+        
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='Chromatogram#firstTime'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>firstTime</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L931-L933'>
+      <span>lib/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Returns the first time value</p>
+
+
+  <div class='pre p1 fill-light mt0'>firstTime</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
+        First time value
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='Chromatogram#requiresSerie'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>requiresSerie(name)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L921-L925'>
+      <span>lib/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Throws if the serie does not exists</p>
+
+
+  <div class='pre p1 fill-light mt0'>requiresSerie(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
   
   
 
@@ -1505,53 +2293,9 @@ You can either use the index of the actual time</p>
         <div class='space-bottom0'>
           <div>
             <span class='code bold'>name</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    Name of the serie to add
+	    Name of the serie to check
 
           </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>array</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>)</code>
-	    Object with an array of data, dimensions of the elements in the array and name of the serie
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
-            = <code>{}</code>)</code>
-	    Options object
-
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-                  <td class='break-word'><span class='code bold'>options.force</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></code>
-                  
-                    (default <code>false</code>)
-                  </td>
-                  <td class='break-word'><span>Force replacement of existing serie
-</span></td>
-                </tr>
-              
-            </tbody>
-          </table>
           
         </div>
       
@@ -1590,8 +2334,8 @@ You can either use the index of the actual time</p>
   <div class='clearfix'>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Chromatogram.js#L94-L96'>
-      <span>src/Chromatogram.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L913-L915'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -1653,436 +2397,6 @@ You can either use the index of the actual time</p>
       </div>
     </div>
   
-    <div class='border-bottom' id='Chromatogram#requiresSerie'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>requiresSerie(name)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Chromatogram.js#L102-L106'>
-      <span>src/Chromatogram.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Throws if the serie does not exists</p>
-
-
-  <div class='pre p1 fill-light mt0'>requiresSerie(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>name</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    Name of the serie to check
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='Chromatogram#getIntegrations'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>getIntegrations(zones, options)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Chromatogram.js#L203-L205'>
-      <span>src/Chromatogram.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Retuns an object with the result of the integrations</p>
-
-
-  <div class='pre p1 fill-light mt0'>getIntegrations(zones: any, options: any)</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>zones</span> <code class='quiet'>(any)</code>
-	    : 
-[
-from, to
-]
- or [ 
-[
-from1, to1
-]
-, 
-[
-from2, to2
-]
-, ...]
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>options</span> <code class='quiet'>(any)</code>
-	    
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='Chromatogram#firstTime'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>firstTime</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Chromatogram.js#L112-L114'>
-      <span>src/Chromatogram.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Returns the first time value</p>
-
-
-  <div class='pre p1 fill-light mt0'>firstTime</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        First time value
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='Chromatogram#deleteSerie'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>deleteSerie(name)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Chromatogram.js#L50-L56'>
-      <span>src/Chromatogram.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Delete a serie</p>
-
-
-  <div class='pre p1 fill-light mt0'>deleteSerie(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>name</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    Name of the serie
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='Chromatogram#lastTime'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>lastTime</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Chromatogram.js#L120-L122'>
-      <span>src/Chromatogram.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Returns the last time value</p>
-
-
-  <div class='pre p1 fill-light mt0'>lastTime</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        Last time value
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='Chromatogram#getSerie'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>getSerie(name)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Chromatogram.js#L38-L40'>
-      <span>src/Chromatogram.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Find the serie giving the name</p>
-
-
-  <div class='pre p1 fill-light mt0'>getSerie(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>name</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    name of the serie
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
-        Object with an array of data, dimensions of the elements in the array and name of the serie
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
 </div>
 
   
@@ -2103,8 +2417,8 @@ from2, to2
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/filter/cosine.js#L11-L43'>
-      <span>src/filter/cosine.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L1122-L1154'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -2203,8 +2517,8 @@ from2, to2
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/util/filter.js#L10-L28'>
-      <span>src/util/filter.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L37-L63'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -2214,7 +2528,7 @@ from2, to2
 The callback will take a time</p>
 
 
-  <div class='pre p1 fill-light mt0'>filter(chromatogram: <a href="#chromatogram">Chromatogram</a>, callback: function (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)): <a href="#chromatogram">Chromatogram</a></div>
+  <div class='pre p1 fill-light mt0'>filter(chromatogram: <a href="#chromatogram">Chromatogram</a>, callback: function (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>), options: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>?): <a href="#chromatogram">Chromatogram</a></div>
   
   
 
@@ -2243,6 +2557,41 @@ The callback will take a time</p>
             <span class='code bold'>callback</span> <code class='quiet'>(function (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>))</code>
 	    
           </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>?
+            = <code>{}</code>)</code>
+	    options object
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+                  <td class='break-word'><span class='code bold'>options.copy</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></code>
+                  
+                    (default <code>false</code>)
+                  </td>
+                  <td class='break-word'><span>return a copy of the original object
+</span></td>
+                </tr>
+              
+            </tbody>
+          </table>
           
         </div>
       
@@ -2285,8 +2634,8 @@ The callback will take a time</p>
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/from/jcamp.js#L11-L21'>
-      <span>src/from/jcamp.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L1322-L1332'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -2358,8 +2707,8 @@ The callback will take a time</p>
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/from/json.js#L10-L27'>
-      <span>src/from/json.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L143-L160'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -2431,8 +2780,8 @@ The callback will take a time</p>
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/from/text.js#L11-L22'>
-      <span>src/from/text.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L1340-L1350'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -2441,7 +2790,7 @@ The callback will take a time</p>
   <p>Creates a new Chromatogram element based in a Txt string</p>
 
 
-  <div class='pre p1 fill-light mt0'>fromText(text: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="#chromatogram">Chromatogram</a></div>
+  <div class='pre p1 fill-light mt0'>fromText(text: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, options: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>?): <a href="#chromatogram">Chromatogram</a></div>
   
   
 
@@ -2460,6 +2809,15 @@ The callback will take a time</p>
           <div>
             <span class='code bold'>text</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
 	    String containing the data as CSV or TSV
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>?)</code>
+	    Options object for the parser
 
           </div>
           
@@ -2504,8 +2862,8 @@ The callback will take a time</p>
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/util/getClosestData.js#L9-L17'>
-      <span>src/util/getClosestData.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L813-L821'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -2586,8 +2944,8 @@ The callback will take a time</p>
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/util/getClosestTime.js#L12-L50'>
-      <span>src/util/getClosestTime.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L265-L303'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -2668,8 +3026,8 @@ The callback will take a time</p>
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/getKovatsRescale.js#L17-L26'>
-      <span>src/getKovatsRescale.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L725-L734'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -2812,8 +3170,8 @@ The callback will take a time</p>
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/getKovatsTable.js#L17-L46'>
-      <span>src/getKovatsTable.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L623-L652'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -2947,8 +3305,8 @@ The callback will take a time</p>
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/util/getPeaks.js#L12-L60'>
-      <span>src/util/getPeaks.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L169-L217'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -3057,8 +3415,8 @@ The callback will take a time</p>
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/util/integrate.js#L24-L61'>
-      <span>src/util/integrate.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L418-L462'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -3072,7 +3430,7 @@ We should take care that the resulting mass could theoretically be still closest
 and we could have to repeat this averaging (but this can only happen once)</p>
 
 
-  <div class='pre p1 fill-light mt0'>integrate(chromatogram: <a href="#chromatogram">Chromatogram</a>, fromTos: any, options: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>, fromTo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</div>
+  <div class='pre p1 fill-light mt0'>integrate(chromatogram: <a href="#chromatogram">Chromatogram</a>, ranges: (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>), options: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): {serieName: []}</div>
   
   
 
@@ -3097,8 +3455,20 @@ and we could have to repeat this averaging (but this can only happen once)</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>fromTos</span> <code class='quiet'>(any)</code>
-	    
+            <span class='code bold'>ranges</span> <code class='quiet'>((<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>))</code>
+	    [
+from, to
+]
+ or [ 
+[
+from1, to1
+]
+, 
+[
+from2, to2
+]
+, ...]
+
           </div>
           
         </div>
@@ -3127,9 +3497,22 @@ and we could have to repeat this averaging (but this can only happen once)</p>
                 <tr>
                   <td class='break-word'><span class='code bold'>options.slot</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>
                   
-                    (default <code>2</code>)
+                    (default <code>1</code>)
                   </td>
-                  <td class='break-word'><span>Define when 2 peaks will be combined
+                  <td class='break-word'><span></span></td>
+                </tr>
+              
+                <tr>
+                  <td class='break-word'><span class='code bold'>options.name</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+                  </td>
+                  <td class='break-word'><span>Name of the serie to integrate, by default all the series are integrated
+</span></td>
+                </tr>
+              
+                <tr>
+                  <td class='break-word'><span class='code bold'>options.baseline</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)?</code>
+                  </td>
+                  <td class='break-word'><span>Applies baseline correction
 </span></td>
                 </tr>
               
@@ -3138,31 +3521,19 @@ and we could have to repeat this averaging (but this can only happen once)</p>
           
         </div>
       
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>fromTo</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    [
-from, to
-]
- or [ 
-[
-from1, to1
-]
-, 
-[
-from2, to2
-]
-, ...]
-
-          </div>
-          
-        </div>
-      
     </div>
   
 
   
 
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>{serieName: []}</code>:
+        
+
+      
+    
   
 
   
@@ -3189,8 +3560,8 @@ from2, to2
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/kovats.js#L10-L39'>
-      <span>src/kovats.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L471-L500'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -3292,8 +3663,8 @@ from2, to2
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/kovatsConversionFunction.js#L14-L62'>
-      <span>src/kovatsConversionFunction.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L664-L712'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -3400,8 +3771,8 @@ from2, to2
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/massFilter.js#L43-L83'>
-      <span>src/massFilter.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L513-L553'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -3556,8 +3927,8 @@ from2, to2
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/massInPeaks.js#L15-L55'>
-      <span>src/massInPeaks.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L594-L611'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -3691,8 +4062,8 @@ from2, to2
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/rescaleTime.js#L9-L11'>
-      <span>src/rescaleTime.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L24-L26'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -3773,8 +4144,8 @@ from2, to2
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/scaleAlignment.js#L18-L39'>
-      <span>src/scaleAlignment.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L1290-L1315'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -3905,8 +4276,8 @@ from2, to2
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Serie.js#L6-L39'>
-      <span>src/Serie.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L68-L101'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -3986,8 +4357,8 @@ from2, to2
   <div class='clearfix'>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Serie.js#L30-L36'>
-      <span>src/Serie.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L92-L98'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -4060,8 +4431,8 @@ from2, to2
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Serie1D.js#L8-L12'>
-      <span>src/Serie1D.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L106-L110'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -4131,8 +4502,8 @@ from2, to2
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/Serie2D.js#L8-L12'>
-      <span>src/Serie2D.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L115-L119'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -4202,8 +4573,8 @@ from2, to2
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/spectraComparison.js#L59-L127'>
-      <span>src/spectraComparison.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L1207-L1275'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -4379,8 +4750,8 @@ from2, to2
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/to/json.js#L7-L12'>
-      <span>src/to/json.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L800-L805'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
@@ -4438,8 +4809,8 @@ from2, to2
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/5f4799b71095bf2a05482dcaab430fb434f16b27/src/vectorify.js#L16-L54'>
-      <span>src/vectorify.js</span>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/chromatography/blob/e61857d4a7c4823bdbd0e3e2318d4f34c0c930d2/lib/index.js#L1074-L1112'>
+      <span>lib/index.js</span>
       </a>
     
   </div>
