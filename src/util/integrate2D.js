@@ -1,9 +1,18 @@
 import {asc} from 'num-sort';
 
-export function integrate2D(serie, fromIndex, toIndex, slot) {
+export function integrate2D(serie, fromIndex, toIndex, slot, method) {
     if (serie.dimension !== 2) throw new Error('The serie is not of dimension 2');
     if (!serie.data) return [];
 
+    switch (method) {
+        case 'combine':
+            return combine(fromIndex, toIndex, serie, slot);
+        default:
+            throw new Error(`Unknown method "${method}"`);
+    }
+}
+
+function combine(fromIndex, toIndex, serie, slot) {
     let massDictionary = {};
 
     for (var i = fromIndex; i <= toIndex; i++) {
