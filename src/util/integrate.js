@@ -19,6 +19,7 @@ export function integrate(chromatogram, name, ranges, options = {}) {
         throw new Error('ranges must be an array of type [[from,to]]');
     }
 
+    chromatogram.requiresSerie(name);
     let serie = chromatogram.series[name];
     if (serie.dimension !== 1) {
         throw new Error('The serie is not of dimension 1');
@@ -62,13 +63,32 @@ function _integrate(time, serie, from, to, fromIndex, toIndex, baseline) {
     }
 
     if (baseline) {
-        return baselineCorrection(total, base, baseline);
+        var ans = baselineCorrection(total, base, baseline);
+        return {
+            integral: ans.integral,
+            from: {
+                time: from,
+                index: fromIndex,
+                baseline: ans.base.start.height
+            },
+            to: {
+                time: to,
+                index: toIndex,
+                baseline: ans.base.end.height
+            }
+        };
     } else {
         return {
             integral: total,
-            base: {
-                start: {height: 0, time: from},
-                end: {height: 0, time: to}
+            from: {
+                time: from,
+                index: fromIndex,
+                baseline: 0
+            },
+            to: {
+                time: to,
+                index: toIndex,
+                baseline: 0
             }
         };
     }

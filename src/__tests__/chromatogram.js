@@ -58,9 +58,15 @@ test('Integrate a tic', () => {
     var result = chromato.integrate('tic', [[1.5, 5.5]]);
     expect(result).toEqual([{
         integral: 125,
-        base: {
-            start: {height: 0, time: 1.5},
-            end: {height: 0, time: 5.5}
+        from: {
+            baseline: 0,
+            index: 0,
+            time: 1.5
+        },
+        to: {
+            baseline: 0,
+            index: 4,
+            time: 5.5
         }
     }]);
 });

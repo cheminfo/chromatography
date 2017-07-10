@@ -7,9 +7,15 @@ test('Integrate a tic', () => {
     var result = integrate(chromato, 'tic', [[1.8, 5.5]]);
     expect(result).toEqual([{
         integral: 120.05,
-        base: {
-            start: {height: 0, time: 1.8},
-            end: {height: 0, time: 5.5}
+        from: {
+            time: 1.8,
+            index: 0,
+            baseline: 0
+        },
+        to: {
+            time: 5.5,
+            index: 4,
+            baseline: 0
         }
     }]);
 });
@@ -28,9 +34,15 @@ describe('Applies baseline correction', () => {
         var result = integrate(chrom, 'tic', [[1, 3]], {baseline: false});
         expect(result).toEqual([{
             integral: 8,
-            base: {
-                start: {height: 0, time: 1},
-                end: {height: 0, time: 3}
+            from: {
+                time: 1,
+                index: 0,
+                baseline: 0
+            },
+            to: {
+                time: 3,
+                index: 2,
+                baseline: 0
             }
         }]);
     });
@@ -39,9 +51,15 @@ describe('Applies baseline correction', () => {
         var result = integrate(chrom, 'tic', [[1, 3]], {baseline: 'trapezoid'});
         expect(result).toEqual([{
             integral: 0,
-            base: {
-                start: {height: 2, time: 1},
-                end: {height: 6, time: 3}
+            from: {
+                time: 1,
+                index: 0,
+                baseline: 2
+            },
+            to: {
+                time: 3,
+                index: 2,
+                baseline: 6
             }
         }]);
     });
@@ -50,9 +68,15 @@ describe('Applies baseline correction', () => {
         var result = integrate(chrom, 'tic', [[1, 3]], {baseline: 'min'});
         expect(result).toEqual([{
             integral: 4,
-            base: {
-                start: {height: 2, time: 1},
-                end: {height: 2, time: 3}
+            from: {
+                time: 1,
+                index: 0,
+                baseline: 2
+            },
+            to: {
+                time: 3,
+                index: 2,
+                baseline: 2
             }
         }]);
 
@@ -60,9 +84,15 @@ describe('Applies baseline correction', () => {
         result = integrate(other, 'tic', [[1, 3]], {baseline: 'min'});
         expect(result).toEqual([{
             integral: 4,
-            base: {
-                start: {height: 2, time: 1},
-                end: {height: 2, time: 3}
+            from: {
+                time: 1,
+                index: 0,
+                baseline: 2
+            },
+            to: {
+                time: 3,
+                index: 2,
+                baseline: 2
             }
         }]);
     });
