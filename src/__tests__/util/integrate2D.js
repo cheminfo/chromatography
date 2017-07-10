@@ -39,10 +39,10 @@ test('Errors', () => {
     expect(integrate2D({dimension: 2})).toEqual([]);
 });
 
-describe('range integration', () => {
+describe('centroid integration', () => {
     test('symmetric case', () => {
         const integral = integrate(highResolution, [1, 2], {
-            method: 'range',
+            method: 'centroid',
             slot: 0.01
         }).ms;
 
@@ -65,7 +65,7 @@ describe('range integration', () => {
                 ]
             }
         ), [1, 2], {
-            method: 'range',
+            method: 'centroid',
             slot: 0.01
         }).ms;
 
@@ -90,7 +90,7 @@ describe('range integration', () => {
                 ]
             }
         ), [1, 2], {
-            method: 'range',
+            method: 'centroid',
             slot: 0.01
         }).ms;
 
@@ -104,5 +104,61 @@ describe('range integration', () => {
             expect(integral[0][i]).toBeCloseTo(result[i], 5);
         }
         expect(integral[1]).toEqual([21, 20, 93, 40]);
+    });
+});
+
+describe('centroid edge cases', () => {
+    test('single spectra', () => {
+        const integral = integrate(new Chromatogram(
+            [1], {
+                ms: [
+                    [[300.001, 300.010, 300.019], [10, 20, 30]]
+                ]
+            }
+        ), [1], {
+            method: 'centroid',
+            slot: 0.01
+        }).ms;
+
+        const result = (300.001 * 10 + 300.010 * 20 + 300.019 * 30) / 60;
+        expect(integral[0][0]).toBeCloseTo(result, 5);
+        expect(integral[1][0]).toBe(60);
+    });
+
+    test('two spectra', () => {
+        const integral = integrate(new Chromatogram(
+            [1, 2], {
+                ms: [
+                    [[300.001, 300.019], [10, 30]],
+                    [[300.010], [20]]
+                ]
+            }
+        ), [1, 2], {
+            method: 'centroid',
+            slot: 0.01
+        }).ms;
+
+        const result = (300.001 * 10 + 300.010 * 20 + 300.019 * 30) / 60;
+        expect(integral[0][0]).toBeCloseTo(result, 5);
+        expect(integral[1][0]).toBe(60);
+    });
+
+    test('three spectra', () => {
+        const integral = integrate(new Chromatogram(
+            [1, 2, 3], {
+                ms: [
+                    [[300.001], [10]],
+                    [[300.019], [30]],
+                    [[300.010], [20]]
+                ]
+            }
+        ), [1, 3], {
+            method: 'centroid',
+            slot: 0.01
+        }).ms;
+
+        const result = (300.001 * 10 + 300.010 * 20 + 300.019 * 30) / 60;
+        expect(integral[0][0]).toBeCloseTo(result, 5);
+        expect(integral[1][0]).toBe(60);
     });
 });

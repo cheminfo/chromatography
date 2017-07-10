@@ -7,8 +7,8 @@ export function integrate2D(serie, fromIndex, toIndex, slot, method) {
     switch (method) {
         case 'slot':
             return _slot(fromIndex, toIndex, serie, slot);
-        case 'range':
-            return range(fromIndex, toIndex, serie, slot);
+        case 'centroid':
+            return centroid(fromIndex, toIndex, serie, slot);
         default:
             throw new Error(`Unknown method "${method}"`);
     }
@@ -45,13 +45,10 @@ function _slot(fromIndex, toIndex, serie, slot) {
     return integral;
 }
 
-function range(fromIndex, toIndex, serie, slot) {
-    var integral = [
-        serie.data[fromIndex][0].slice(),
-        serie.data[fromIndex][1].slice()
-    ];
+function centroid(fromIndex, toIndex, serie, slot) {
+    var integral = [[], []];
 
-    for (var i = fromIndex + 1; i <= toIndex; i++) {
+    for (var i = fromIndex; i <= toIndex; i++) {
         integral = merge(integral, serie.data[i], slot);
     }
     return integral;
