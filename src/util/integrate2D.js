@@ -5,14 +5,16 @@ export function integrate2D(serie, fromIndex, toIndex, slot, method) {
     if (!serie.data) return [];
 
     switch (method) {
-        case 'combine':
-            return combine(fromIndex, toIndex, serie, slot);
+        case 'slot':
+            return _slot(fromIndex, toIndex, serie, slot);
+        case 'range':
+            return range(fromIndex, toIndex, serie, slot);
         default:
             throw new Error(`Unknown method "${method}"`);
     }
 }
 
-function combine(fromIndex, toIndex, serie, slot) {
+function _slot(fromIndex, toIndex, serie, slot) {
     let massDictionary = {};
 
     for (var i = fromIndex; i <= toIndex; i++) {
@@ -41,4 +43,73 @@ function combine(fromIndex, toIndex, serie, slot) {
         integral[1][k] = massDictionary[massList[k]];
     }
     return integral;
+}
+
+function range(fromIndex, toIndex, serie, slot) {
+    var integral = [
+        serie.data[fromIndex][0].slice(),
+        serie.data[fromIndex][1].slice()
+    ];
+
+    for (var i = fromIndex + 1; i <= toIndex; i++) {
+        integral = merge(integral, serie.data[i], slot);
+    }
+    return integral;
+}
+
+function merge(previous, data, slot) {
+    var leftIndex = 0;
+    var rightIndex = 0;
+    var merged = [[], []];
+    var size = 0;
+
+    while ((leftIndex < previous[0].length) && (rightIndex < data[0].length)) {
+        if (previous[0][leftIndex] <= data[0][rightIndex]) {
+            // append first(left) to result
+            if ((size === 0) || (previous[0][leftIndex] - merged[0][size - 1] > slot)) {
+                merged[0].push(previous[0][leftIndex]);
+                merged[1].push(previous[1][leftIndex++]);
+                size++;
+            } else {
+                merged[0][size - 1] = (previous[0][leftIndex] + merged[0][size - 1]) / 2;
+                merged[1][size - 1] = previous[1][leftIndex++] + merged[1][size - 1];
+            }
+        } else {
+            // append first(right) to result
+            if ((size === 0) || (data[0][rightIndex] - merged[0][size - 1] > slot)) {
+                merged[0].push(data[0][rightIndex]);
+                merged[1].push(data[1][rightIndex++]);
+                size++;
+            } else {
+                merged[0][size - 1] = (data[0][rightIndex] + merged[0][size - 1]) / 2;
+                merged[1][size - 1] = data[1][rightIndex++] + merged[1][size - 1];
+            }
+        }
+    }
+
+    while (leftIndex < previous[0].length) {
+        // append first(left) to result
+        if ((size === 0) || (previous[0][leftIndex] - merged[0][size - 1] > slot)) {
+            merged[0].push(previous[0][leftIndex]);
+            merged[1].push(previous[1][leftIndex++]);
+            size++;
+        } else {
+            merged[0][size - 1] = (previous[0][leftIndex] + merged[0][size - 1]) / 2;
+            merged[1][size - 1] = previous[1][leftIndex++] + merged[1][size - 1];
+        }
+    }
+
+    while (rightIndex < data[0].length) {
+        // append first(right) to result
+        if ((size === 0) || (data[0][rightIndex] - merged[0][size - 1] > slot)) {
+            merged[0].push(data[0][rightIndex]);
+            merged[1].push(data[1][rightIndex++]);
+            size++;
+        } else {
+            merged[0][size - 1] = (data[0][rightIndex] + merged[0][size - 1]) / 2;
+            merged[1][size - 1] = data[1][rightIndex++] + merged[1][size - 1];
+        }
+    }
+
+    return merged;
 }

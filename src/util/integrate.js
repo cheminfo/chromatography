@@ -13,7 +13,7 @@ import {integrate2D} from './integrate2D';
  * @param {number|Array<number>} ranges - [from, to] or [ [from1, to1], [from2, to2], ...]
  * @param {object} [options = {}] - Options object
  * @param {number} [options.slot = 1]
- * @param {number} [options.method = 'combine'] - Mass combination method
+ * @param {number} [options.method = 'slot'] - Mass combination method
  * @param {string} [options.name] - Name of the serie to integrate, by default all the series are integrated
  * @param {string|boolean} [options.baseline] - Applies baseline correction
  * @return {{serieName: []}}
@@ -21,7 +21,7 @@ import {integrate2D} from './integrate2D';
 export function integrate(chromatogram, ranges, options = {}) {
     const {
         slot = 1,
-        method = 'combine',
+        method = 'slot',
         name = false,
         baseline = false
     } = options;

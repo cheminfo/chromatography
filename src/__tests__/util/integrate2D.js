@@ -37,3 +37,16 @@ test('Errors', () => {
     expect(() => integrate2D([])).toThrow('The serie is not of dimension 2');
     expect(integrate2D({dimension: 2})).toEqual([]);
 });
+
+test('range integration', () => {
+    const integral = integrate(highResolution, [1, 2], {
+        method: 'range',
+        slot: 0.01
+    }).ms;
+
+    const result = [100.0015, 200.01, 200.02, 300.00015];
+    for (var i = 0; i < result.length; i++) {
+        expect(integral[0][i]).toBeCloseTo(result[i], 5);
+    }
+    expect(integral[1]).toEqual([21, 21, 20, 61]);
+});
