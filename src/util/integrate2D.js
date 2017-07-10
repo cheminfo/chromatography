@@ -61,28 +61,37 @@ function merge(previous, data, slot) {
     var leftIndex = 0;
     var rightIndex = 0;
     var merged = [[], []];
+    var weightedMass = [[], []];
     var size = 0;
 
     while ((leftIndex < previous[0].length) && (rightIndex < data[0].length)) {
         if (previous[0][leftIndex] <= data[0][rightIndex]) {
             // append first(left) to result
             if ((size === 0) || (previous[0][leftIndex] - merged[0][size - 1] > slot)) {
+                weightedMass[0].push(previous[0][leftIndex] * previous[1][leftIndex]);
+                weightedMass[1].push(previous[1][leftIndex]);
                 merged[0].push(previous[0][leftIndex]);
                 merged[1].push(previous[1][leftIndex++]);
                 size++;
             } else {
-                merged[0][size - 1] = (previous[0][leftIndex] + merged[0][size - 1]) / 2;
-                merged[1][size - 1] = previous[1][leftIndex++] + merged[1][size - 1];
+                weightedMass[0][size - 1] += previous[0][leftIndex] * previous[1][leftIndex];
+                weightedMass[1][size - 1] += previous[1][leftIndex];
+                merged[0][size - 1] = previous[0][leftIndex];
+                merged[1][size - 1] += previous[1][leftIndex++];
             }
         } else {
             // append first(right) to result
             if ((size === 0) || (data[0][rightIndex] - merged[0][size - 1] > slot)) {
+                weightedMass[0].push(data[0][rightIndex] * data[1][rightIndex]);
+                weightedMass[1].push(data[1][rightIndex]);
                 merged[0].push(data[0][rightIndex]);
                 merged[1].push(data[1][rightIndex++]);
                 size++;
             } else {
-                merged[0][size - 1] = (data[0][rightIndex] + merged[0][size - 1]) / 2;
-                merged[1][size - 1] = data[1][rightIndex++] + merged[1][size - 1];
+                weightedMass[0][size - 1] += data[0][rightIndex] * data[1][rightIndex];
+                weightedMass[1][size - 1] += data[1][rightIndex];
+                merged[0][size - 1] = data[0][rightIndex];
+                merged[1][size - 1] += data[1][rightIndex++];
             }
         }
     }
@@ -90,25 +99,37 @@ function merge(previous, data, slot) {
     while (leftIndex < previous[0].length) {
         // append first(left) to result
         if ((size === 0) || (previous[0][leftIndex] - merged[0][size - 1] > slot)) {
+            weightedMass[0].push(previous[0][leftIndex] * previous[1][leftIndex]);
+            weightedMass[1].push(previous[1][leftIndex]);
             merged[0].push(previous[0][leftIndex]);
             merged[1].push(previous[1][leftIndex++]);
             size++;
         } else {
-            merged[0][size - 1] = (previous[0][leftIndex] + merged[0][size - 1]) / 2;
-            merged[1][size - 1] = previous[1][leftIndex++] + merged[1][size - 1];
+            weightedMass[0][size - 1] += previous[0][leftIndex] * previous[1][leftIndex];
+            weightedMass[1][size - 1] += previous[1][leftIndex];
+            merged[0][size - 1] = previous[0][leftIndex];
+            merged[1][size - 1] += previous[1][leftIndex++];
         }
     }
 
     while (rightIndex < data[0].length) {
         // append first(right) to result
         if ((size === 0) || (data[0][rightIndex] - merged[0][size - 1] > slot)) {
+            weightedMass[0].push(data[0][rightIndex] * data[1][rightIndex]);
+            weightedMass[1].push(data[1][rightIndex]);
             merged[0].push(data[0][rightIndex]);
             merged[1].push(data[1][rightIndex++]);
             size++;
         } else {
-            merged[0][size - 1] = (data[0][rightIndex] + merged[0][size - 1]) / 2;
-            merged[1][size - 1] = data[1][rightIndex++] + merged[1][size - 1];
+            weightedMass[0][size - 1] += data[0][rightIndex] * data[1][rightIndex];
+            weightedMass[1][size - 1] += data[1][rightIndex];
+            merged[0][size - 1] = data[0][rightIndex];
+            merged[1][size - 1] += data[1][rightIndex++];
         }
+    }
+
+    for (var i = 0; i < merged[0].length; i++) {
+        merged[0][i] = weightedMass[0][i] / weightedMass[1][i];
     }
 
     return merged;
