@@ -19,4 +19,5 @@ export {fromNetCDF} from './from/netcdf';
 export {fromMzML} from './from/mzml';
 
 export {integrate} from './util/integrate';
+export {merge} from './util/merge';
 export {getPeaks} from './util/getPeaks';

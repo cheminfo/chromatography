@@ -1,5 +1,5 @@
 import {massFilter} from './massFilter';
-import {integrate2D} from './util/integrate2D';
+import {_merge} from './util/merge';
 
 /**
  * Integrate MS spectra of a peak list
@@ -25,7 +25,7 @@ export function massInPeaks(peakList, sampleMS, options = {}) {
     // integrate MS
     for (let i = 0; i < peakList.length; ++i) {
         var serie = {dimension: 2, data: sampleMS};
-        var integral = integrate2D(serie, peakList[i].left.index, peakList[i].right.index, slot, method);
+        var integral = _merge(serie, peakList[i].left.index, peakList[i].right.index, slot, method);
         var msSum = {
             x: integral[0],
             y: integral[1]

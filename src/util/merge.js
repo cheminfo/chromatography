@@ -1,20 +1,60 @@
 import {asc} from 'num-sort';
+import {getClosestTime} from './getClosestTime';
 
-export function integrate2D(serie, fromIndex, toIndex, slot, method) {
-    if (serie.dimension !== 2) throw new Error('The serie is not of dimension 2');
-    if (!serie.data) return [];
+/**
+ * Returns a mass spectrum that is the integration of all the spectra in a specific range of time
+ * @param {Chromatogram} chromatogram
+ * @param {string} name - Name of the serie to integrate
+ * @param {Array<Array<number>>} ranges - [[from1, to1], [from2, to2], ...]
+ * @param {object} [options = {}] - Options object
+ * @param {object} [options.algorithm = 'slot'] - Decision for merging the peaks
+ * @param {object} [options.delta = 1] - Parameter for merging the peaks
+ * @return {[]}
+ */
+export function merge(chromatogram, name, ranges, options = {}) {
+    const {
+        algorithm = 'slot',
+        delta = 1
+    } = options;
 
-    switch (method) {
+    if (!Array.isArray(ranges) || !Array.isArray(ranges[0])) {
+        throw new Error('ranges must be an array of type [[from,to]]');
+    }
+
+    let serie = chromatogram.series[name];
+    if (serie.dimension !== 2) {
+        throw new Error('The serie is not of dimension 2');
+    }
+
+    const time = chromatogram.getTimes();
+    let results = [];
+
+    for (let fromTo of ranges) {
+        let from = fromTo[0];
+        let to = fromTo[1];
+        let fromIndex = getClosestTime(from, time).safeIndexBefore;
+        let toIndex = getClosestTime(to, time).safeIndexAfter;
+
+        results.push({
+            serie: _merge(serie, fromIndex, toIndex, delta, algorithm)
+        });
+    }
+
+    return results;
+}
+
+export function _merge(serie, fromIndex, toIndex, delta, algorithm) {
+    switch (algorithm) {
         case 'slot':
-            return _slot(fromIndex, toIndex, serie, slot);
+            return slot(fromIndex, toIndex, serie, delta);
         case 'centroid':
-            return centroid(fromIndex, toIndex, serie, slot);
+            return centroid(fromIndex, toIndex, serie, delta);
         default:
-            throw new Error(`Unknown method "${method}"`);
+            throw new Error(`Unknown algorithm "${algorithm}"`);
     }
 }
 
-function _slot(fromIndex, toIndex, serie, slot) {
+function slot(fromIndex, toIndex, serie, slot) {
     let massDictionary = {};
 
     for (var i = fromIndex; i <= toIndex; i++) {
@@ -49,12 +89,12 @@ function centroid(fromIndex, toIndex, serie, slot) {
     var integral = [[], []];
 
     for (var i = fromIndex; i <= toIndex; i++) {
-        integral = merge(integral, serie.data[i], slot);
+        integral = mergeCentroids(integral, serie.data[i], slot);
     }
     return integral;
 }
 
-function merge(previous, data, slot) {
+function mergeCentroids(previous, data, slot) {
     var leftIndex = 0;
     var rightIndex = 0;
     var merged = [[], []];
