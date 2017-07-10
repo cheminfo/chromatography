@@ -12,24 +12,54 @@ const highResolution = new Chromatogram(
 
 test('Low resolution', () => {
     var result = merge(simple, 'ms', [[1, 2]]);
-    expect(result).toEqual([{serie: [
-        [100, 101, 200, 201, 300, 301],
-        [10, 11, 20, 21, 30, 31]
-    ]}]);
+    expect(result).toEqual([{
+        serie: [
+            [100, 101, 200, 201, 300, 301],
+            [10, 11, 20, 21, 30, 31]
+        ],
+        from: {
+            time: 1,
+            index: 0
+        },
+        to: {
+            time: 2,
+            index: 1
+        }
+    }]);
 });
 
 test('High resolution', () => {
-    expect(merge(highResolution, 'ms', [[1, 2]])).toEqual([{serie: [
-        [100, 200, 300],
-        [21, 41, 61]
-    ]}]);
+    expect(merge(highResolution, 'ms', [[1, 2]])).toEqual([{
+        serie: [
+            [100, 200, 300],
+            [21, 41, 61]
+        ],
+        from: {
+            time: 1,
+            index: 0
+        },
+        to: {
+            time: 2,
+            index: 1
+        }
+    }]);
 
     expect(merge(highResolution, 'ms', [[1, 2]], {
         delta: 0.01
-    })).toEqual([{serie: [
-        [100.00, 200.01, 200.02, 300.00],
-        [21, 21, 20, 61]
-    ]}]);
+    })).toEqual([{
+        serie: [
+            [100.00, 200.01, 200.02, 300.00],
+            [21, 21, 20, 61]
+        ],
+        from: {
+            time: 1,
+            index: 0
+        },
+        to: {
+            time: 2,
+            index: 1
+        }
+    }]);
 });
 
 test('Errors', () => {

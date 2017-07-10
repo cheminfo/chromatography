@@ -21,6 +21,7 @@ export function merge(chromatogram, name, ranges, options = {}) {
         throw new Error('ranges must be an array of type [[from,to]]');
     }
 
+    chromatogram.requiresSerie(name);
     let serie = chromatogram.series[name];
     if (serie.dimension !== 2) {
         throw new Error('The serie is not of dimension 2');
@@ -36,7 +37,15 @@ export function merge(chromatogram, name, ranges, options = {}) {
         let toIndex = getClosestTime(to, time).safeIndexAfter;
 
         results.push({
-            serie: _merge(serie, fromIndex, toIndex, delta, algorithm)
+            serie: _merge(serie, fromIndex, toIndex, delta, algorithm),
+            from: {
+                time: from,
+                index: fromIndex
+            },
+            to: {
+                time: to,
+                index: toIndex
+            }
         });
     }
 
