@@ -1,45 +1,32 @@
 import {getClosestTime} from './getClosestTime';
-import {integrate1D} from './integrate1D';
-import {integrate2D} from './integrate2D';
+import {baselineCorrection} from './baselineCorrection';
 
 /**
  * Returns a mass spectrum that is the integration of all the spectra in a specific range of time
- * When we combine 2 mass spectra we need to deal with the x axis (containing m/z)
- * If the mass is closest than 'slot' to an existing mass in the new integrated spectrum
- * then the 2 intensity are summed and the mass is proportionally averaged.
- * We should take care that the resulting mass could theoretically be still closest to another peak
- * and we could have to repeat this averaging (but this can only happen once)
  * @param {Chromatogram} chromatogram
- * @param {number|Array<number>} ranges - [from, to] or [ [from1, to1], [from2, to2], ...]
+ * @param {string} name - Name of the serie to integrate
+ * @param {Array<Array<number>>} ranges - [[from1, to1], [from2, to2], ...]
  * @param {object} [options = {}] - Options object
- * @param {number} [options.slot = 1]
- * @param {number} [options.method = 'slot'] - Mass combination method
- * @param {string} [options.name] - Name of the serie to integrate, by default all the series are integrated
  * @param {string|boolean} [options.baseline] - Applies baseline correction
- * @return {{serieName: []}}
+ * @return {[]}
  */
-export function integrate(chromatogram, ranges, options = {}) {
+export function integrate(chromatogram, name, ranges, options = {}) {
     const {
-        slot = 1,
-        method = 'slot',
-        name = false,
         baseline = false
     } = options;
 
-    if (!Array.isArray(ranges)) throw new Error('fromTo must be an array of type [from,to]');
-    if (!Array.isArray(ranges[0])) ranges = [ranges];
+    if (!Array.isArray(ranges) || !Array.isArray(ranges[0])) {
+        throw new Error('ranges must be an array of type [[from,to]]');
+    }
+
+    chromatogram.requiresSerie(name);
+    let serie = chromatogram.series[name];
+    if (serie.dimension !== 1) {
+        throw new Error('The serie is not of dimension 1');
+    }
 
     const time = chromatogram.getTimes();
-
-    // by default we integrate all the series
-    let serieNames;
-    if (name) {
-        serieNames = [name];
-    } else {
-        serieNames = chromatogram.getSerieNames();
-    }
-    let results = {};
-    serieNames.forEach(name => results[name] = []);
+    let results = [];
 
     for (let fromTo of ranges) {
         let from = fromTo[0];
@@ -47,20 +34,62 @@ export function integrate(chromatogram, ranges, options = {}) {
         let fromIndex = getClosestTime(from, time).safeIndexBefore;
         let toIndex = getClosestTime(to, time).safeIndexAfter;
 
-        for (let serieName of serieNames) {
-            let serie = chromatogram.series[serieName];
-            switch (serie.dimension) {
-                case 1:
-                    results[serieName].push(integrate1D(time, serie, from, to, fromIndex, toIndex, baseline));
-                    break;
-                case 2:
-                    results[serieName] = integrate2D(serie, fromIndex, toIndex, slot, method);
-                    break;
-                default:
-                    throw new Error('Serie dimension unrecognized');
-            }
-        }
+        results.push(_integrate(time, serie, from, to, fromIndex, toIndex, baseline));
     }
 
     return results;
+}
+
+function _integrate(time, serie, from, to, fromIndex, toIndex, baseline) {
+    let total = 0;
+    let base = {};
+    for (let i = fromIndex; i < toIndex; i++) {
+        let timeStart = time[i];
+        let timeEnd = time[i + 1];
+        let heightStart = serie.data[i];
+        if (i === fromIndex) { // need to check the exact starting point
+            heightStart = serie.data[i] + (serie.data[i + 1] - serie.data[i]) * (from - timeStart) / (timeEnd - timeStart);
+            base.start = {height: heightStart, time: from};
+            timeStart = from;
+        }
+
+        let heightEnd = serie.data[i + 1];
+        if (i === toIndex - 1) {
+            heightEnd = serie.data[i] + (serie.data[i + 1] - serie.data[i]) * (to - timeStart) / (timeEnd - timeStart);
+            base.end = {height: heightEnd, time: to};
+            timeEnd = to;
+        }
+        total += (timeEnd - timeStart) * (heightStart + heightEnd) / 2;
+    }
+
+    if (baseline) {
+        var ans = baselineCorrection(total, base, baseline);
+        return {
+            integral: ans.integral,
+            from: {
+                time: from,
+                index: fromIndex,
+                baseline: ans.base.start.height
+            },
+            to: {
+                time: to,
+                index: toIndex,
+                baseline: ans.base.end.height
+            }
+        };
+    } else {
+        return {
+            integral: total,
+            from: {
+                time: from,
+                index: fromIndex,
+                baseline: 0
+            },
+            to: {
+                time: to,
+                index: toIndex,
+                baseline: 0
+            }
+        };
+    }
 }

@@ -1,5 +1,5 @@
 import {Chromatogram} from '..';
-import {chromato} from './data/examples';
+import {chromato, simple} from './data/examples';
 
 describe('General methods', () => {
     test('Constructor errors', () => {
@@ -54,13 +54,39 @@ describe('General methods', () => {
     });
 });
 
-test('Integrate a tic', () => {
-    var result = chromato.getIntegrations([1.5, 5.5]);
-    expect(result).toEqual({tic: [{
-        integral: 125,
-        base: {
-            start: {height: 0, time: 1.5},
-            end: {height: 0, time: 5.5}
-        }
-    }]});
+describe('Integrations', () => {
+    test('Integrate a tic', () => {
+        var result = chromato.integrate('tic', [[1.5, 5.5]]);
+        expect(result).toEqual([{
+            integral: 125,
+            from: {
+                baseline: 0,
+                index: 0,
+                time: 1.5
+            },
+            to: {
+                baseline: 0,
+                index: 4,
+                time: 5.5
+            }
+        }]);
+    });
+
+    test('Integrate a ms', () => {
+        var result = simple.merge('ms', [[1, 2]]);
+        expect(result).toEqual([{
+            serie: [
+                [100, 101, 200, 201, 300, 301],
+                [10, 11, 20, 21, 30, 31]
+            ],
+            from: {
+                time: 1,
+                index: 0
+            },
+            to: {
+                time: 2,
+                index: 1
+            }
+        }]);
+    });
 });

@@ -6,6 +6,7 @@ import {getPeaks} from './util/getPeaks';
 import {calculateTic} from './ms/calculateTic';
 import {calculateBpc} from './ms/calculateBpc';
 import {integrate} from './util/integrate';
+import {merge} from './util/merge';
 import {getKovatsRescale} from './getKovatsRescale';
 import {getClosestTime} from './util/getClosestTime';
 import {applyLockMass} from './ms/applyLockMass';
@@ -220,13 +221,27 @@ export class Chromatogram {
 
     /**
      * Retuns an object with the result of the integrations
-     * @param {number|Array<number>} zones - [from, to] or [ [from1, to1], [from2, to2], ...]
+     * @param {string} name - Name of the serie to integrate
+     * @param {Array<Array<number>>} ranges - [[from1, to1], [from2, to2], ...]
      * @param {object} [options = {}] - Options object
-     * @param {number} [options.slot = 2] - Define when 2 peaks will be combined
-     * @return {{serieName: []}}
+     * @param {string|boolean} [options.baseline] - Applies baseline correction
+     * @return {[]}
      */
-    getIntegrations(zones, options) {
-        return integrate(this, zones, options);
+    integrate(name, ranges, options) {
+        return integrate(this, name, ranges, options);
+    }
+
+    /**
+     * Retuns an object with the result of the integrations
+     * @param {string} name - Name of the serie to integrate
+     * @param {Array<Array<number>>} ranges - [[from1, to1], [from2, to2], ...]
+     * @param {object} [options = {}] - Options object
+     * @param {object} [options.algorithm = 'slot'] - Decision for merging the peaks
+     * @param {object} [options.delta = 1] - Parameter for merging the peaks
+     * @return {[]}
+     */
+    merge(name, ranges, options) {
+        return merge(this, name, ranges, options);
     }
 
     /**
