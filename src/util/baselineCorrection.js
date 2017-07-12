@@ -1,4 +1,13 @@
 export function baselineCorrection(total, base, kind) {
+    if (total === 0) {
+        return {
+            integral: 0,
+            base: {
+                start: {height: 0},
+                end: {height: 0}
+            }
+        };
+    }
     switch (kind) {
         case 'trapezoid':
             return {
