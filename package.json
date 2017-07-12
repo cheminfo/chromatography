@@ -1,6 +1,6 @@
 {
   "name": "chromatography",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Tools for storing, search and analize GC/MS spectra",
   "main": "lib/index.js",
   "module": "src/index.js",
