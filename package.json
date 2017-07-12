@@ -55,6 +55,7 @@
     "chemcalc": "^3.3.3",
     "jcampconverter": "^2.3.0",
     "ml-array-max": "^1.0.0",
+    "ml-array-mean": "^1.0.0",
     "ml-gsd": "^2.0.1",
     "ml-regression-polynomial": "^1.0.2",
     "mzmjs": "^0.2.0",

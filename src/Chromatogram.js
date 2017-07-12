@@ -10,6 +10,7 @@ import {merge} from './util/merge';
 import {getKovatsRescale} from './getKovatsRescale';
 import {getClosestTime} from './util/getClosestTime';
 import {applyLockMass} from './ms/applyLockMass';
+import {meanFilter} from './ms/meanFilter';
 import {toJSON} from './to/json';
 import {getClosestData} from './util/getClosestData';
 
@@ -260,6 +261,11 @@ export class Chromatogram {
     copy() {
         const json = JSON.parse(JSON.stringify(this));
         return fromJSON(json);
+    }
+
+    meanFilter(serieName, options) {
+        var serie = meanFilter(this, serieName, options);
+        this.series[serieName] = serieFromArray(serie);
     }
 }
 
