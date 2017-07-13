@@ -12,26 +12,51 @@ test('simple case', () => {
     );
 
     let ms = meanFilter(chromatogram, 'ms');
-    expect(ms).toEqual([
+    expect(ms.data).toEqual([
         [[300], [300]],
         [[], []]
     ]);
 });
 
-test('inplace', () => {
-    let chromatogram = new Chromatogram(
-        [1, 2], {
-            ms: [
-                [[100, 200, 300], [10, 20, 300]],
-                [[600], [274]]
-            ]
-        }
-    );
+describe('inplace', () => {
+    it('default behavior', () => {
+        let chromatogram = new Chromatogram(
+            [1, 2], {
+                ms: [
+                    [[100, 200, 300], [10, 20, 300]],
+                    [[600], [274]]
+                ]
+            }
+        );
+        chromatogram.meanFilter('ms');
+        expect(chromatogram.series.msMedian.data).toEqual([
+            [[300], [300]],
+            [[], []]
+        ]);
+        expect(chromatogram.series.ms.data).toEqual([
+            [[100, 200, 300], [10, 20, 300]],
+            [[600], [274]]
+        ]);
+    });
 
-    chromatogram.meanFilter('ms');
-    expect(chromatogram.series.ms.data).toEqual([
-        [[300], [300]],
-        [[], []]
-    ]);
+    it('input name', () => {
+        let chromatogram = new Chromatogram(
+            [1, 2], {
+                ms: [
+                    [[100, 200, 300], [10, 20, 300]],
+                    [[600], [274]]
+                ]
+            }
+        );
+        chromatogram.meanFilter('ms', {serieName: 'filtered'});
+        expect(chromatogram.series.filtered.data).toEqual([
+            [[300], [300]],
+            [[], []]
+        ]);
+        expect(chromatogram.series.ms.data).toEqual([
+            [[100, 200, 300], [10, 20, 300]],
+            [[600], [274]]
+        ]);
+    });
 });
 

@@ -263,9 +263,20 @@ export class Chromatogram {
         return fromJSON(json);
     }
 
-    meanFilter(serieName, options) {
+    /**
+     * Filter the given serie2D based on it's median value
+     * @param {string} serieName
+     * @param {object} [options]
+     * @param {string} [options.serieName = 'msMedian'] - Name of the new serie
+     * @param {number} [options.factor = 2] - The values under the median times this factor are removed
+     */
+    meanFilter(serieName, options = {}) {
         var serie = meanFilter(this, serieName, options);
-        this.series[serieName] = serieFromArray(serie);
+        if (options.serieName) {
+            this.series[options.serieName] = serie;
+        } else {
+            this.series.msMedian = serie;
+        }
     }
 }
 
