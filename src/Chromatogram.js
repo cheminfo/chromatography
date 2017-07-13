@@ -10,6 +10,7 @@ import {merge} from './util/merge';
 import {getKovatsRescale} from './getKovatsRescale';
 import {getClosestTime} from './util/getClosestTime';
 import {applyLockMass} from './ms/applyLockMass';
+import {meanFilter} from './ms/meanFilter';
 import {toJSON} from './to/json';
 import {getClosestData} from './util/getClosestData';
 
@@ -260,6 +261,22 @@ export class Chromatogram {
     copy() {
         const json = JSON.parse(JSON.stringify(this));
         return fromJSON(json);
+    }
+
+    /**
+     * Filter the given serie2D based on it's median value
+     * @param {string} serieName
+     * @param {object} [options]
+     * @param {string} [options.serieName = 'msMedian'] - Name of the new serie
+     * @param {number} [options.factor = 2] - The values under the median times this factor are removed
+     */
+    meanFilter(serieName, options = {}) {
+        var serie = meanFilter(this, serieName, options);
+        if (options.serieName) {
+            this.series[options.serieName] = serie;
+        } else {
+            this.series.msMedian = serie;
+        }
     }
 }
 

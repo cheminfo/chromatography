@@ -4352,6 +4352,10 @@ ml-array-max@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ml-array-max/-/ml-array-max-1.0.0.tgz#c2ee7d984dddb8cb77e6a1e29714a6f271a17a48"
 
+ml-array-mean@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ml-array-mean/-/ml-array-mean-1.0.0.tgz#0f51113f1fbaba7262c843a945234228fe87b157"
+
 ml-array-utils@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/ml-array-utils/-/ml-array-utils-0.3.0.tgz#c0cc5afdc1cb051f5a83b1ce71641c243672f649"
@@ -5482,10 +5486,6 @@ rollup@^0.42.0:
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.42.0.tgz#56e791b3a2f3dd7190bbb80a375675f2fe0f9b23"
   dependencies:
     source-map-support "^0.4.0"
-
-round-to@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/round-to/-/round-to-2.0.0.tgz#bcef4f2bcafd9480902c2142150b28c897f03e37"
 
 run-async@^2.0.0, run-async@^2.2.0:
   version "2.3.0"
