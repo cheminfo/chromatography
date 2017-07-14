@@ -29,5 +29,5 @@ test('throws when not send a tic serie', () => {
     }
     let chromatogram = new Chromatogram(times);
 
-    expect(() => chromatogram.getPeaks()).toThrow('\'tic\' serie not founded');
+    expect(() => chromatogram.getPeaks()).toThrow('"tic" serie not founded');
 });

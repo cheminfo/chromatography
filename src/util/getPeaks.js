@@ -5,20 +5,24 @@ import {gsd} from 'ml-gsd';
  * @param {Chromatogram} chromatogram - GC/MS chromatogram where make the peak picking
  * @param {object} [options] - Options object
  * @param {object} [options.heightFilter = 2] - Filter all objects that are bellow `heightFilter` times the median of the height
+ * @param {object} [options.serieName = 'tic'] - Serie to do the peak picking
  * @return {Array<object>} - List of GSD objects
  */
 export function getPeaks(chromatogram, options = {}) {
-    const {heightFilter = 2} = options;
+    const {
+        heightFilter = 2,
+        serieName = 'tic'
+    } = options;
 
-    let tic = chromatogram.getSerie('tic');
-    if (!tic) {
-        throw new Error('\'tic\' serie not founded');
+    let serie = chromatogram.getSerie(serieName);
+    if (!serie) {
+        throw new Error(`"${serieName}" serie not founded`);
     }
-    tic = tic.data;
+    serie = serie.data;
     let times = chromatogram.getTimes();
 
     // first peak selection
-    let peakList = gsd(times, tic, {
+    let peakList = gsd(times, serie, {
         noiseLevel: 0,
         realTopDetection: false,
         smoothY: true,
@@ -40,7 +44,7 @@ export function getPeaks(chromatogram, options = {}) {
     }
 
     // second peak selection
-    peakList = gsd(times, tic, {
+    peakList = gsd(times, serie, {
         noiseLevel: 0,
         realTopDetection: false,
         smoothY: true,
