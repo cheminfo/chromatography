@@ -17,7 +17,12 @@ export function percentageFilter(chromatogram, serieName, options = {}) {
 }
 
 function applyFilter(serie, percentage) {
-    var basePeak = arrayMax(serie[1]);
+    var basePeak;
+    try {
+        basePeak = arrayMax(serie[1]);
+    } catch (e) {
+        basePeak = 0;
+    }
     var filtered = [[], []];
     for (var i = 0; i < serie[0].length; i++) {
         if (serie[1][i] > percentage * basePeak) {
