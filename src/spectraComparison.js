@@ -1,7 +1,7 @@
 import {getPeaks} from './util/getPeaks';
 import {massInPeaks} from './massInPeaks';
 import {vectorify} from './vectorify';
-import {cosine} from './filter/cosine';
+import {cosine} from './ms/cosine';
 
 /**
  * Preprocessing task over the signals
