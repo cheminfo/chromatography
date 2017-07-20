@@ -11,6 +11,7 @@ import {getKovatsRescale} from './getKovatsRescale';
 import {getClosestTime} from './util/getClosestTime';
 import {applyLockMass} from './ms/applyLockMass';
 import {meanFilter} from './filter/meanFilter';
+import {percentageFilter} from './filter/percentageFilter';
 import {toJSON} from './to/json';
 import {getClosestData} from './util/getClosestData';
 
@@ -276,6 +277,22 @@ export class Chromatogram {
             this.series[options.serieName] = serie;
         } else {
             this.series.msMedian = serie;
+        }
+    }
+
+    /**
+     * Filter the given serie2D based on the percentage of the highest value
+     * @param {string} serieName
+     * @param {object} [options]
+     * @param {string} [options.serieName = 'msPercentage'] - Name of the new serie
+     * @param {number} [options.percentage = 0.1] - The values under the median times this factor are removed
+     */
+    percentageFilter(serieName, options = {}) {
+        var serie = percentageFilter(this, serieName, options);
+        if (options.serieName) {
+            this.series[options.serieName] = serie;
+        } else {
+            this.series.msPercentage = serie;
         }
     }
 }
