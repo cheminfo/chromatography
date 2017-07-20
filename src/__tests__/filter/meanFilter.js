@@ -1,5 +1,5 @@
-import {Chromatogram} from '../..';
-import {meanFilter} from '../../ms/meanFilter';
+import {Chromatogram} from '../../index';
+import {meanFilter} from '../../filter/meanFilter';
 
 test('simple case', () => {
     let chromatogram = new Chromatogram(

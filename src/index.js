@@ -2,7 +2,7 @@ export {Chromatogram} from './Chromatogram';
 
 export {massInPeaks} from './massInPeaks';
 export {vectorify} from './vectorify';
-export {cosine} from './filter/cosine';
+export {cosine} from './ms/cosine';
 export {massFilter} from './massFilter';
 export {spectraComparison} from './spectraComparison';
 export {scaleAlignment} from './scaleAlignment';

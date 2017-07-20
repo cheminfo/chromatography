@@ -10,7 +10,7 @@ import {merge} from './util/merge';
 import {getKovatsRescale} from './getKovatsRescale';
 import {getClosestTime} from './util/getClosestTime';
 import {applyLockMass} from './ms/applyLockMass';
-import {meanFilter} from './ms/meanFilter';
+import {meanFilter} from './filter/meanFilter';
 import {toJSON} from './to/json';
 import {getClosestData} from './util/getClosestData';
 
