@@ -9,16 +9,16 @@ test('from a Diesel chromatogram', () => {
     const jcamp = fs.readFileSync(path, 'utf8');
 
     const chrom = fromJcamp(jcamp);
-    expect(chrom.length).toEqual(6992);
+    expect(chrom.length).toBe(6992);
 
     let peakList = chrom.getPeaks();
-    expect(peakList.length).toEqual(312);
+    expect(peakList.length).toBe(312);
 });
 
 test('triplet', () => {
     let chromatogram = getSimulatedSpectrum({size: 60});
     let peaks = chromatogram.getPeaks();
-    expect(peaks.length).toEqual(1);
+    expect(peaks.length).toBe(1);
 });
 
 test('throws when not send a tic serie', () => {

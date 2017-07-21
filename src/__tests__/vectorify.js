@@ -7,18 +7,18 @@ test('from a Diesel chromatogram', () => {
     const path = join(__dirname, '../../testFiles/jcamp/P064.JDX');
     const jcamp = readFileSync(path, 'utf8');
     const chrom = fromJcamp(jcamp);
-    expect(chrom.length).toEqual(6992);
+    expect(chrom.length).toBe(6992);
 
     let peakList = getPeaks(chrom);
-    expect(peakList.length).toEqual(312);
+    expect(peakList.length).toBe(312);
 
     let sampleMS = chrom.getSerie('ms').data;
     expect(sampleMS.length).not.toBe(0);
     let integratedList = massInPeaks(peakList, sampleMS);
-    expect(peakList.length).toEqual(integratedList.length);
+    expect(peakList.length).toBe(integratedList.length);
 
     let vector = vectorify(integratedList);
-    expect(vector.length).toEqual(peakList.length);
+    expect(vector.length).toBe(peakList.length);
 });
 
 test('triplet', () => {
@@ -37,15 +37,15 @@ test('triplet', () => {
     chrom.addSerie('ms', ms);
 
     let peakList = getPeaks(chrom);
-    expect(peakList.length).toEqual(1);
+    expect(peakList.length).toBe(1);
 
     let sampleMS = chrom.getSerie('ms').data;
     expect(sampleMS.length).not.toBe(0);
     let integratedList = massInPeaks(peakList, sampleMS);
-    expect(peakList.length).toEqual(integratedList.length);
+    expect(peakList.length).toBe(integratedList.length);
 
     let vector = vectorify(integratedList);
-    expect(vector.length).toEqual(peakList.length);
+    expect(vector.length).toBe(peakList.length);
 });
 
 test('simple case', () => {

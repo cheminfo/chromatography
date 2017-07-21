@@ -6,5 +6,5 @@ test('load NetCDF', () => {
     const path = join(__dirname, '../../../testFiles/netcdf/test.cdf');
     const netcdf = readFileSync(path);
     const chrom = fromNetCDF(netcdf);
-    expect(chrom.length).toEqual(4513);
+    expect(chrom.length).toBe(4513);
 });

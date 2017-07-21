@@ -24,9 +24,7 @@ test('triplet', () => {
     };
 
     let table = getKovatsTable(chrom, options);
-    expect(table.kovatsIndexes.length).toEqual(1);
-    expect(table.kovatsIndexes[0].time).toEqual(15);
-    expect(table.kovatsIndexes[0].value).toEqual(800);
+    expect(table.kovatsIndexes).toEqual([{time: 15, value: 800}]);
 });
 
 test('default', () => {

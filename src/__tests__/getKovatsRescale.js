@@ -12,8 +12,6 @@ test('triplet', () => {
     };
 
     let kovatsRescale = getKovatsRescale(chrom, options);
-    expect(kovatsRescale.kovatsIndexes.length).toEqual(1);
-    expect(kovatsRescale.kovatsIndexes[0].time).toEqual(15);
-    expect(kovatsRescale.kovatsIndexes[0].value).toEqual(0);
+    expect(kovatsRescale.kovatsIndexes).toEqual([{time: 15, value: 0}]);
     expect(kovatsRescale.peaks.length).toEqual(1);
 });

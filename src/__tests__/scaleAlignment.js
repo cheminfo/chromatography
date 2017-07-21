@@ -35,7 +35,7 @@ test('Simple case', () => {
     expect(compared.peaksSecond.map((val) => val.x)).toEqual([20, 30, 40, 50, 60]);
 
     let aligned = scaleAlignment(compared.peaksFirst, compared.peaksSecond);
-    expect(Math.abs(aligned.scaleRegression.predict(30) - 20) < 1e-4).toEqual(true);
+    expect(aligned.scaleRegression.predict(30)).toBeCloseTo(20, 4);
 });
 
 test('Quality and string', () => {
@@ -72,7 +72,7 @@ test('Quality and string', () => {
     expect(compared.peaksSecond.map((val) => val.x)).toEqual([20, 30, 40, 50, 60]);
 
     let aligned = scaleAlignment(compared.peaksFirst, compared.peaksSecond, {computeQuality: true, stringFormula: 3});
-    expect(Math.abs(aligned.scaleRegression.predict(30) - 20) < 1e-4).toEqual(true);
+    expect(aligned.scaleRegression.predict(30)).toBeCloseTo(20, 4);
     expect(aligned.scaleRegression.toString(3)).toEqual('f(x) = 9.95e-17 * x^3 - 1.22e-14 * x^2 + 1.00 * x - 10.0');
-    expect(Math.abs(aligned.r2 - 1) < 1e-4).toEqual(true);
+    expect(aligned.r2).toBeCloseTo(1, 4);
 });
