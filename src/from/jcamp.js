@@ -1,5 +1,5 @@
-import {Chromatogram} from '../Chromatogram';
 import {convert as converter} from 'jcampconverter';
+import {fromJSON} from './json';
 
 /**
  * Creates a new Chromatogram element based in a JCAMP string
@@ -7,13 +7,6 @@ import {convert as converter} from 'jcampconverter';
  * @return {Chromatogram} - New class element with the given data
  */
 export function fromJcamp(jcamp) {
-    const data = converter(jcamp, {newGCMS: true}).gcms;
-
-    const time = data.times;
-    let series = {};
-    for (var i = 0; i < data.series.length; i++) {
-        series[data.series[i].name] = data.series[i].data;
-    }
-
-    return new Chromatogram(time, series);
+    const data = converter(jcamp, {chromatogram: true}).chromatogram;
+    return fromJSON(data);
 }

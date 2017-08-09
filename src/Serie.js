@@ -32,6 +32,4 @@ export class Serie {
         }
         this.data = newData;
     }
-
-
 }
