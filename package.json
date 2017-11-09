@@ -9,7 +9,7 @@
     "src"
   ],
   "scripts": {
-    "build": "rollup -c && cheminfo build --root Chromatography",
+    "build": "rollup -c && cheminfo build --root Chromatography --no-uglify",
     "build-doc": "cheminfo doc",
     "publish-doc": "cheminfo doc --publish",
     "eslint": "eslint src",
