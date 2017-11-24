@@ -30,10 +30,6 @@ export function applyLockMass(mf, options = {}) {
     let referenceIndexShift = Number(oddReference);
     let msIndexShift = Number(!oddReference);
 
-    if (ms.length % 2 !== 0) {
-        throw new Error('The series must have an even size');
-    }
-
     // applying the changes for all the spectra
     for (let i = 0; i < ms.length >> 1; i++) {
         let massIndex = 2 * i + msIndexShift;

@@ -83,7 +83,4 @@ test('different references', () => {
 test('check exceptions', () => {
     let chromatogram = new Chromatogram([1]);
     expect(() => chromatogram.applyLockMass('C12H19F12N3O6P3')).toThrow('The "ms" serie must be defined');
-
-    chromatogram.addSerie('ms', [[[622.024747], [274]]]);
-    expect(() => chromatogram.applyLockMass('C12H19F12N3O6P3')).toThrow('The series must have an even size');
 });
