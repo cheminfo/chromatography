@@ -13,7 +13,11 @@ export function calculateBpc(chrom) {
     var massSpectra = ms.data;
     var bpc = [];
     for (var massSpectrum of massSpectra) {
-        bpc.push(max(massSpectrum[1]));
+        if (massSpectrum[1].length > 0) {
+            bpc.push(max(massSpectrum[1]));
+        } else {
+            bpc.push(0);
+        }
     }
 
     return bpc;
