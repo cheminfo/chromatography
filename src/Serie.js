@@ -14,6 +14,14 @@ export class Serie {
         this.meta = meta;
     }
 
+    is1D() {
+        return this.dimension === 1;
+    }
+
+    is2D() {
+        return this.dimension === 2;
+    }
+
     toJSON() {
         return {
             data: this.data,

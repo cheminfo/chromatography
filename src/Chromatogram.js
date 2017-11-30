@@ -4,6 +4,7 @@ import {serieFromArray} from './serieFromArray';
 import {fromJSON} from './from/json';
 import {getPeaks} from './util/getPeaks';
 import {calculateTic} from './ms/calculateTic';
+import {calculateLength} from './ms/calculateLength';
 import {calculateBpc} from './ms/calculateBpc';
 import {integrate} from './util/integrate';
 import {merge} from './util/merge';
@@ -192,6 +193,18 @@ export class Chromatogram {
         if (!this.getSerie('tic') || options.force) {
             let tic = calculateTic(this);
             this.addSerie('tic', tic, options);
+        }
+    }
+
+    /**
+     * Calculate length and save it in the 'length' serie
+     * @param {object} [options = {}] - Options object
+     * @param {boolean} [options.force = false] - Force the calculation it it exists
+     */
+    calculateLength(serieName, options = {}) {
+        if (!this.getSerie('length') || options.force) {
+            let length = calculateLength(this, serieName);
+            this.addSerie('length', length, options);
         }
     }
 

@@ -1,7 +1,7 @@
 import {readFileSync} from 'fs';
 import {join} from 'path';
 import {Chromatogram, massInPeaks, getPeaks, vectorify, fromJcamp} from '..';
-import {lorentzian} from './data/examples';
+import {lorentzian} from './examples';
 
 test('from a Diesel chromatogram', () => {
     const path = join(__dirname, '../../testFiles/jcamp/P064.JDX');

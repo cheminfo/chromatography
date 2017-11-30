@@ -1,5 +1,5 @@
 import {Chromatogram} from '..';
-import {chromato, simple} from './data/examples';
+import {chromato, simple} from './examples';
 
 describe('General methods', () => {
     test('Constructor errors', () => {

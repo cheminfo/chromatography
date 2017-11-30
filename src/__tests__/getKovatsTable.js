@@ -1,5 +1,5 @@
 import {Chromatogram, getKovatsTable} from '..';
-import {lorentzian} from './data/examples';
+import {lorentzian} from './examples';
 
 test('triplet', () => {
     const size = 30;
