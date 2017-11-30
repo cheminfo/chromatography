@@ -73,7 +73,9 @@ test('different references', () => {
         C100: 0,
         C12H19F12N3O6P3: 1,
         C10H20O3: 1,
-        total: 3
+        total: 3,
+        percent: 66.66666666666666,
+        totalFound: 2
     });
 
     expect(chromatogram.getTimes().length).toEqual(newLength);

@@ -62,11 +62,13 @@ export function applyLockMass(mf, options = {}) {
     }
 
     var referenceUsed = {
-        total: newSize
+        total: newSize,
+        totalFound: referencesCount.reduce((prev, current) => current += prev, 0)
     };
     for (var r = 0; r < referenceMass.length; r++) {
         referenceUsed[mf[r]] = referencesCount[r];
     }
+    referenceUsed.percent = referenceUsed.totalFound / referenceUsed.total * 100;
 
     // remove the time and the mass spectra that contains the reference
     this.filter((index) => index % 2 !== referenceIndexShift);
