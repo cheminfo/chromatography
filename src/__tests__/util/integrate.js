@@ -20,13 +20,13 @@ test('Integrate a tic', () => {
     }]);
 });
 
-test('Errors', () => {
+test.only('Errors', () => {
     expect(() => integrate(chromato, 'tic', 123)).toThrow('ranges must be an array of type [[from,to]]');
 
     var ms = new Chromatogram([1], {ms: [
         [[300.001, 300.010, 300.019], [10, 20, 30]]
     ]});
-    expect(() => integrate(ms, 'ms', [[1]])).toThrow('The serie is not of dimension 1');
+    expect(() => integrate(ms, 'ms', [[1]])).toThrow('ranges must be an array of type [[from,to]]');
 });
 
 describe('Applies baseline correction', () => {

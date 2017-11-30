@@ -15,14 +15,21 @@ export function integrate(chromatogram, name, ranges, options = {}) {
         baseline = false
     } = options;
 
-    if (!Array.isArray(ranges) || !Array.isArray(ranges[0])) {
+    if (!Array.isArray(ranges)) {
+        throw new Error('ranges must be an array of type [[from,to]]');
+    }
+    if (ranges.length === 0) {
+        return;
+    }
+
+    if (!Array.isArray(ranges[0]) || ranges[0].length !== 2) {
         throw new Error('ranges must be an array of type [[from,to]]');
     }
 
     chromatogram.requiresSerie(name);
     let serie = chromatogram.series[name];
     if (serie.dimension !== 1) {
-        throw new Error('The serie is not of dimension 1');
+        throw new Error('the serie is not of dimension 1');
     }
 
     const time = chromatogram.getTimes();
