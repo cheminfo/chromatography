@@ -52,32 +52,35 @@ test('array of mf', () => {
 
 test('different references', () => {
     let chromatogram = new Chromatogram(
-        [1, 2, 3, 4], {
+        [1, 2, 3, 4, 5, 6], {
             ms: [
                 [[10, 622.024747, 100, 200], [10, 274, 40, 50]],
                 [[100, 200, 300], [10, 20, 30]],
                 [[188.136240], [272]],
+                [[100, 200, 300], [10, 20, 30]],
+                [[10], [10]],
                 [[100, 200, 300], [10, 20, 30]],
             ]
         }
     );
 
     let newLength = chromatogram.getTimes().length / 2;
-    const {referenceUsed} = chromatogram.applyLockMass(['C12H19F12N3O6P3', 'C10H20O3'], {
+    const {referenceUsed} = chromatogram.applyLockMass(['C12H19F12N3O6P3', 'C10H20O3', 'C100'], {
         oddReference: false
     }); // em: 622.02951
 
     expect(referenceUsed).toEqual({
+        C100: 0,
         C12H19F12N3O6P3: 1,
         C10H20O3: 1,
-        total: 2
+        total: 3
     });
 
     expect(chromatogram.getTimes().length).toEqual(newLength);
     expect(chromatogram.length).toEqual(newLength);
     expect(chromatogram.getSerie('ms').data.length).toEqual(newLength);
 
-    expect(chromatogram.getTimes()).toEqual([2, 4]);
+    expect(chromatogram.getTimes()).toEqual([2, 4, 6]);
     expect(chromatogram.getSerie('ms').data[0][1]).toEqual([10, 20, 30]);
     expect(chromatogram.getSerie('ms').data[1][1]).toEqual([10, 20, 30]);
 

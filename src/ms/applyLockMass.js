@@ -5,11 +5,13 @@ import {analyseMF} from 'chemcalc';
  * @param {string|Array<string>} mf - Reference molecular formula(s)
  * @param {object} [options = {}] - Options object
  * @param {boolean} [options.oddReference = true] - Mass reference it's in the odd position
+ * @param {number} [options.maxShift = 0.1] - Maximum allowed shift
  * @return {object} this
  */
 export function applyLockMass(mf, options = {}) {
     const {
-        oddReference = true
+        oddReference = true,
+        maxShift = 0.1
     } = options;
 
     // allows mf as string or array
@@ -48,13 +50,14 @@ export function applyLockMass(mf, options = {}) {
                 }
             }
         }
-
         // apply identified lock mass
-        if (closestIndex !== -1) {
-            referencesCount[closestIndex] += 1;
-        }
-        for (var m = 0; m < ms[massIndex][0].length; m++) {
-            ms[massIndex][0][m] += difference;
+        if (Math.abs(difference) < maxShift) {
+            if (closestIndex !== -1) {
+                referencesCount[closestIndex] += 1;
+            }
+            for (var m = 0; m < ms[massIndex][0].length; m++) {
+                ms[massIndex][0][m] += difference;
+            }
         }
     }
 
