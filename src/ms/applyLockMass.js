@@ -6,12 +6,14 @@ import {analyseMF} from 'chemcalc';
  * @param {object} [options = {}] - Options object
  * @param {boolean} [options.oddReference = true] - Mass reference it's in the odd position
  * @param {number} [options.maxShift = 0.1] - Maximum allowed shift
+ * @param {boolean} [options.usePreviousIfNotFound = true] - If not found we use the previous value
  * @return {object} this
  */
 export function applyLockMass(mf, options = {}) {
     const {
         oddReference = true,
-        maxShift = 0.1
+        maxShift = 0.1,
+        usePreviousIfNotFound
     } = options;
 
     // allows mf as string or array
@@ -35,6 +37,8 @@ export function applyLockMass(mf, options = {}) {
     var referencesCount = new Array(referenceMass.length).fill(0);
 
     // applying the changes for all the spectra
+    let previousValidDifference = Number.MAX_VALUE;
+    let usingPreviousValidDifference = false;
     for (var i = 0; i < newSize; i++) {
         var massIndex = 2 * i + msIndexShift;
         var referenceIndex = 2 * i + referenceIndexShift;
@@ -50,10 +54,19 @@ export function applyLockMass(mf, options = {}) {
                 }
             }
         }
+        if (Math.abs(difference) > maxShift && Math.abs(previousValidDifference) < maxShift) {
+            difference = previousValidDifference;
+            usingPreviousValidDifference = true;
+        } else {
+            usingPreviousValidDifference = false;
+        }
         // apply identified lock mass
         if (Math.abs(difference) < maxShift) {
-            if (closestIndex !== -1) {
-                referencesCount[closestIndex] += 1;
+            previousValidDifference = difference;
+            if (!usingPreviousValidDifference) {
+                if (closestIndex !== -1) {
+                    referencesCount[closestIndex] += 1;
+                }
             }
             for (var m = 0; m < ms[massIndex][0].length; m++) {
                 ms[massIndex][0][m] += difference;

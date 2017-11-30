@@ -50,7 +50,7 @@ test('array of mf', () => {
     expect(chromatogram.getSerie('ms').data[0][0]).toBeDeepCloseTo(expectedMass, 3);
 });
 
-test('different references', () => {
+test.only('different references', () => {
     let chromatogram = new Chromatogram(
         [1, 2, 3, 4, 5, 6], {
             ms: [
