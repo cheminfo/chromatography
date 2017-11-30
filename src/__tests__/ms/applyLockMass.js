@@ -63,9 +63,15 @@ test('different references', () => {
     );
 
     let newLength = chromatogram.getTimes().length / 2;
-    chromatogram.applyLockMass(['C12H19F12N3O6P3', 'C10H20O3'], {
+    const {referenceUsed} = chromatogram.applyLockMass(['C12H19F12N3O6P3', 'C10H20O3'], {
         oddReference: false
     }); // em: 622.02951
+
+    expect(referenceUsed).toEqual({
+        C12H19F12N3O6P3: 1,
+        C10H20O3: 1,
+        total: 2
+    });
 
     expect(chromatogram.getTimes().length).toEqual(newLength);
     expect(chromatogram.length).toEqual(newLength);
