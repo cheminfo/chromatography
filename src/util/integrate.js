@@ -7,7 +7,7 @@ import {baselineCorrection} from './baselineCorrection';
  * @param {string} name - Name of the serie to integrate
  * @param {Array<Array<number>>} ranges - [[from1, to1], [from2, to2], ...]
  * @param {object} [options = {}] - Options object
- * @param {string|boolean} [options.baseline] - Applies baseline correction
+ * @param {string|boolean} [options.baseline] - Applies baseline correction (trapezoid, min)
  * @return {[]}
  */
 export function integrate(chromatogram, name, ranges, options = {}) {
