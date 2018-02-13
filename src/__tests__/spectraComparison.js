@@ -1,4 +1,5 @@
 import { Chromatogram, spectraComparison } from '..';
+
 import { lorentzian } from './examples';
 
 test('Simple case', () => {

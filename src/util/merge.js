@@ -1,4 +1,5 @@
 import { asc } from 'num-sort';
+
 import { getClosestTime } from './getClosestTime';
 
 /**

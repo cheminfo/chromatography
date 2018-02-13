@@ -1,13 +1,13 @@
 import { Chromatogram } from '../..';
 
-export let chromato = new Chromatogram(
+export const chromato = new Chromatogram(
   [1, 2, 3, 5, 6],
   {
     tic: [10, 20, 30, 40, 50]
   }
 );
 
-export let simple = new Chromatogram(
+export const simple = new Chromatogram(
   [1, 2], {
     ms: [
       [[100, 200, 300], [10, 20, 30]],
@@ -16,9 +16,9 @@ export let simple = new Chromatogram(
   }
 );
 
-export let simpleStringified = '{"times":[1,2],"series":{"ms":{"data":[[[100,200,300],[10,20,30]],[[101,201,301],[11,21,31]]],"meta":{}}}}';
+export const simpleStringified = '{"times":[1,2],"series":{"ms":{"data":[[[100,200,300],[10,20,30]],[[101,201,301],[11,21,31]]],"meta":{}}}}';
 
-export let simple4 = new Chromatogram(
+export const simple4 = new Chromatogram(
   [1, 2, 3, 4], {
     ms: [
       [[101, 201, 301], [11, 21, 31]],

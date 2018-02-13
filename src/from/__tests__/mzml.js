@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
+
 import { fromMzML } from '../..';
 
 describe('mzML data files', () => {

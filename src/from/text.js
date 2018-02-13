@@ -1,5 +1,6 @@
-import { Chromatogram } from '../Chromatogram';
 import parserXY from 'xy-parser';
+
+import { Chromatogram } from '../Chromatogram';
 
 /**
  * Creates a new Chromatogram element based in a Txt string

@@ -1,5 +1,6 @@
-import { fromJSON } from './json';
 import { mzData } from 'mzmjs';
+
+import { fromJSON } from './json';
 
 export function fromMzML(xml, kind = 'mzData') {
   switch (kind) {

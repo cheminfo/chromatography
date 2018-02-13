@@ -12,11 +12,10 @@ import { analyseMF } from 'chemcalc';
 export function applyLockMass(mf, options = {}) {
   const {
     oddReference = true,
-    maxShift = 0.1,
-    usePreviousIfNotFound
+    maxShift = 0.1
   } = options;
 
-    // allows mf as string or array
+  // allows mf as string or array
   if (typeof mf === 'string') {
     mf = [mf];
   }
@@ -76,7 +75,7 @@ export function applyLockMass(mf, options = {}) {
 
   var referenceUsed = {
     total: newSize,
-    totalFound: referencesCount.reduce((prev, current) => current += prev, 0)
+    totalFound: referencesCount.reduce((prev, current) => current + prev, 0)
   };
   for (var r = 0; r < referenceMass.length; r++) {
     referenceUsed[mf[r]] = referencesCount[r];

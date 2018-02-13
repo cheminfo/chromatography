@@ -1,4 +1,5 @@
 import arrayMean from 'ml-array-mean';
+
 import { serieFromArray } from '../serieFromArray';
 
 export function meanFilter(chromatogram, serieName, options = {}) {

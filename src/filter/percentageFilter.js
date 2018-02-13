@@ -1,4 +1,5 @@
 import arrayMax from 'ml-array-max';
+
 import { serieFromArray } from '../serieFromArray';
 
 export function percentageFilter(chromatogram, serieName, options = {}) {

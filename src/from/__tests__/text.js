@@ -1,4 +1,4 @@
-const { fromText } = require('../..');
+import { fromText } from '../..';
 
 test('Parse a text', () => {
   const text = `

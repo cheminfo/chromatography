@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
+
 import { kovatsConversionFunction, rescaleTime, fromJcamp } from '..';
 
 test('Simple case', () => {

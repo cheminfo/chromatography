@@ -19,7 +19,7 @@ export function integrate(chromatogram, name, ranges, options = {}) {
     throw new Error('ranges must be an array of type [[from,to]]');
   }
   if (ranges.length === 0) {
-    return;
+    return undefined;
   }
 
   if (!Array.isArray(ranges[0]) || ranges[0].length !== 2) {

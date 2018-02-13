@@ -20,12 +20,14 @@ test('Integrate a tic', () => {
   }]);
 });
 
-test.only('Errors', () => {
+test('Errors', () => {
   expect(() => integrate(chromato, 'tic', 123)).toThrow('ranges must be an array of type [[from,to]]');
 
-  var ms = new Chromatogram([1], { ms: [
-    [[300.001, 300.010, 300.019], [10, 20, 30]]
-  ] });
+  var ms = new Chromatogram([1], {
+    ms: [
+      [[300.001, 300.010, 300.019], [10, 20, 30]]
+    ]
+  });
   expect(() => integrate(ms, 'ms', [[1]])).toThrow('ranges must be an array of type [[from,to]]');
 });
 

@@ -1,4 +1,5 @@
 import { getKovatsRescale } from '..';
+
 import { getSimulatedSpectrum } from './examples';
 
 test('triplet', () => {

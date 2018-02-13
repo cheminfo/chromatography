@@ -1,5 +1,6 @@
-import { Chromatogram } from '../..';
 import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to';
+
+import { Chromatogram } from '../..';
 
 expect.extend({ toBeDeepCloseTo });
 
@@ -51,7 +52,7 @@ test('array of mf', () => {
   expect(chromatogram.getSerie('ms').data[0][0]).toBeDeepCloseTo(expectedMass, 3);
 });
 
-test.only('different references', () => {
+test('different references', () => {
   let chromatogram = new Chromatogram(
     [1, 2, 3, 4, 5, 6], {
       ms: [

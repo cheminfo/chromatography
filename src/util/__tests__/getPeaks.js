@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { join } from 'path';
+
 import { Chromatogram, fromJcamp } from '../..';
 import { getSimulatedSpectrum } from '../../__tests__/examples';
 

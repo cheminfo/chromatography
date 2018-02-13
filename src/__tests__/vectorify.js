@@ -1,6 +1,8 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
+
 import { Chromatogram, massInPeaks, getPeaks, vectorify, fromJcamp } from '..';
+
 import { lorentzian } from './examples';
 
 test('from a Diesel chromatogram', () => {
@@ -50,10 +52,12 @@ test('triplet', () => {
 
 test('simple case', () => {
   let peaks = [
-    { ms: {
-      x: [1, 2, 3],
-      y: [1, 1, 1]
-    } }
+    {
+      ms: {
+        x: [1, 2, 3],
+        y: [1, 1, 1]
+      }
+    }
   ];
 
   expect(vectorify(peaks, { massPower: 1 })).toEqual([{

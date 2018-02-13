@@ -198,6 +198,7 @@ export class Chromatogram {
 
   /**
      * Calculate length and save it in the 'length' serie
+     * @param {string} serieName - Name of the serie to make calculation
      * @param {object} [options = {}] - Options object
      * @param {boolean} [options.force = false] - Force the calculation it it exists
      */

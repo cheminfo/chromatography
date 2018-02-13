@@ -1,4 +1,5 @@
 import { convert as converter } from 'jcampconverter';
+
 import { fromJSON } from './json';
 
 /**

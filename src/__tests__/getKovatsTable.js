@@ -1,4 +1,5 @@
 import { Chromatogram, getKovatsTable } from '..';
+
 import { lorentzian } from './examples';
 
 test('triplet', () => {
