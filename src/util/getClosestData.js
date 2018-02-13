@@ -5,11 +5,11 @@
  * @return {{rt: number, index: number, data: Array}}
  */
 export function getClosestData(name, rt) {
-    this.requiresSerie(name);
-    let closest = this.getClosestTime(rt);
-    return {
-        rt: closest.timeClosest,
-        index: closest.index,
-        data: this.getSerie(name).data[closest.index]
-    };
+  this.requiresSerie(name);
+  let closest = this.getClosestTime(rt);
+  return {
+    rt: closest.timeClosest,
+    index: closest.index,
+    data: this.getSerie(name).data[closest.index]
+  };
 }

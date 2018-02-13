@@ -1,4 +1,4 @@
-import {massFilter} from './massFilter';
+import { massFilter } from './massFilter';
 
 /**
  * Given a list of GSD objects returns the weighted mass times abundance
@@ -12,41 +12,41 @@ import {massFilter} from './massFilter';
  * @return {Array<object>} - List of mass and weighted mass times abundance objects
  */
 export function vectorify(peakList, options = {}) {
-    const {massPower = 3, intPower = 0.6} = options;
-    let filter = (options.thresholdFactor || options.maxNumberPeaks || options.groupWidth);
+  const { massPower = 3, intPower = 0.6 } = options;
+  let filter = (options.thresholdFactor || options.maxNumberPeaks || options.groupWidth);
 
-    let vector = new Array(peakList.length);
-    if (filter) {
-        const filterOptions = {
-            thresholdFactor: options.thresholdFactor,
-            maxNumberPeaks: options.maxNumberPeaks,
-            groupWidth: options.groupWidth
-        };
+  let vector = new Array(peakList.length);
+  if (filter) {
+    const filterOptions = {
+      thresholdFactor: options.thresholdFactor,
+      maxNumberPeaks: options.maxNumberPeaks,
+      groupWidth: options.groupWidth
+    };
 
-        for (let i = 0; i < peakList.length; ++i) {
-            let len = peakList[i].ms.x.length;
-            vector[i] = {
-                x: peakList[i].ms.x,
-                y: new Array(len)
-            };
-            for (let j = 0; j < len; ++j) {
-                vector[i].y[j] = Math.pow(peakList[i].ms.x[j], massPower) * Math.pow(peakList[i].ms.y[j], intPower);
-            }
+    for (let i = 0; i < peakList.length; ++i) {
+      let len = peakList[i].ms.x.length;
+      vector[i] = {
+        x: peakList[i].ms.x,
+        y: new Array(len)
+      };
+      for (let j = 0; j < len; ++j) {
+        vector[i].y[j] = Math.pow(peakList[i].ms.x[j], massPower) * Math.pow(peakList[i].ms.y[j], intPower);
+      }
 
-            vector[i] = massFilter(vector[i], filterOptions);
-        }
-    } else {
-        for (let i = 0; i < peakList.length; ++i) {
-            let len = peakList[i].ms.x.length;
-            vector[i] = {
-                x: peakList[i].ms.x,
-                y: new Array(len)
-            };
-            for (let j = 0; j < len; ++j) {
-                vector[i].y[j] = Math.pow(peakList[i].ms.x[j], massPower) * Math.pow(peakList[i].ms.y[j], intPower);
-            }
-        }
+      vector[i] = massFilter(vector[i], filterOptions);
     }
+  } else {
+    for (let i = 0; i < peakList.length; ++i) {
+      let len = peakList[i].ms.x.length;
+      vector[i] = {
+        x: peakList[i].ms.x,
+        y: new Array(len)
+      };
+      for (let j = 0; j < len; ++j) {
+        vector[i].y[j] = Math.pow(peakList[i].ms.x[j], massPower) * Math.pow(peakList[i].ms.y[j], intPower);
+      }
+    }
+  }
 
-    return vector;
+  return vector;
 }

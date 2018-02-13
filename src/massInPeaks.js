@@ -1,5 +1,5 @@
-import {massFilter} from './massFilter';
-import {_merge} from './util/merge';
+import { massFilter } from './massFilter';
+import { _merge } from './util/merge';
 
 /**
  * Integrate MS spectra of a peak list
@@ -14,28 +14,28 @@ import {_merge} from './util/merge';
  * @return {Array<object>} - List of GSD objects with an extra 'ms' field with the integrated MS spectra
  */
 export function massInPeaks(peakList, sampleMS, options = {}) {
-    const {
-        thresholdFactor = 0,
-        maxNumberPeaks = Number.MAX_VALUE,
-        groupWidth = 0,
-        slot = 1,
-        method = 'slot'
-    } = options;
+  const {
+    thresholdFactor = 0,
+    maxNumberPeaks = Number.MAX_VALUE,
+    groupWidth = 0,
+    slot = 1,
+    method = 'slot'
+  } = options;
 
     // integrate MS
-    for (let i = 0; i < peakList.length; ++i) {
-        var serie = {dimension: 2, data: sampleMS};
-        var integral = _merge(serie, peakList[i].left.index, peakList[i].right.index, slot, method);
-        var msSum = {
-            x: integral[0],
-            y: integral[1]
-        };
+  for (let i = 0; i < peakList.length; ++i) {
+    var serie = { dimension: 2, data: sampleMS };
+    var integral = _merge(serie, peakList[i].left.index, peakList[i].right.index, slot, method);
+    var msSum = {
+      x: integral[0],
+      y: integral[1]
+    };
 
-        if (maxNumberPeaks || thresholdFactor || groupWidth) {
-            msSum = massFilter(msSum, {maxNumberPeaks, thresholdFactor, groupWidth});
-        }
-        peakList[i].ms = msSum;
+    if (maxNumberPeaks || thresholdFactor || groupWidth) {
+      msSum = massFilter(msSum, { maxNumberPeaks, thresholdFactor, groupWidth });
     }
+    peakList[i].ms = msSum;
+  }
 
-    return peakList;
+  return peakList;
 }

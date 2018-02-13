@@ -1,4 +1,4 @@
-import {Chromatogram} from '../Chromatogram';
+import { Chromatogram } from '../Chromatogram';
 import parserXY from 'xy-parser';
 
 /**
@@ -8,13 +8,13 @@ import parserXY from 'xy-parser';
  * @return {Chromatogram} - New class element with the given data
  */
 export function fromText(text, options) {
-    options = Object.assign({}, options, {arrayType: 'xxyy'});
-    const data = parserXY.parse(text, options);
+  options = Object.assign({}, options, { arrayType: 'xxyy' });
+  const data = parserXY.parse(text, options);
 
-    const time = data[0];
-    let series = {
-        intensity: data[1]
-    };
+  const time = data[0];
+  let series = {
+    intensity: data[1]
+  };
 
-    return new Chromatogram(time, series);
+  return new Chromatogram(time, series);
 }

@@ -5,5 +5,5 @@
  * @return {Array<number>} - Modified list of time values
  */
 export function rescaleTime(originalTime, conversionFunction) {
-    return originalTime.map(conversionFunction);
+  return originalTime.map(conversionFunction);
 }

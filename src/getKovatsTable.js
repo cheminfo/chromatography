@@ -1,6 +1,6 @@
-import {kovats} from './kovats';
-import {getPeaks} from './util/getPeaks';
-import {massInPeaks} from './massInPeaks';
+import { kovats } from './kovats';
+import { getPeaks } from './util/getPeaks';
+import { massInPeaks } from './massInPeaks';
 
 /**
  * Calculates the table of Kovats indexes for the reference spectra
@@ -13,32 +13,32 @@ import {massInPeaks} from './massInPeaks';
  * @return {{kovatsIndexes:Array<object>,peaks:Array<object>}} - Time and value for the Kovats index
  */
 export function getKovatsTable(reference, options = {}) {
-    const {
-        heightFilter = 100,
-        thresholdFactor = 0.005,
-        maxNumberPeaks = 40,
-        groupWidth = 5
-    } = options;
+  const {
+    heightFilter = 100,
+    thresholdFactor = 0.005,
+    maxNumberPeaks = 40,
+    groupWidth = 5
+  } = options;
 
     // Peak picking
-    let peaks = getPeaks(reference, {heightFilter});
-    /* istanbul ignore next */
-    peaks = peaks.sort((a, b) => a.index - b.index);
+  let peaks = getPeaks(reference, { heightFilter });
+  /* istanbul ignore next */
+  peaks = peaks.sort((a, b) => a.index - b.index);
 
-    // integrate mass in the peaks
-    let ms = reference.getSerie('ms').data;
-    let integratedMs = massInPeaks(peaks, ms, {thresholdFactor, maxNumberPeaks, groupWidth});
+  // integrate mass in the peaks
+  let ms = reference.getSerie('ms').data;
+  let integratedMs = massInPeaks(peaks, ms, { thresholdFactor, maxNumberPeaks, groupWidth });
 
-    var kovatsIndexes = new Array(integratedMs.length);
-    for (var i = 0; i < integratedMs.length; i++) {
-        kovatsIndexes[i] = {
-            time: integratedMs[i].x,
-            value: kovats(integratedMs[i].ms)
-        };
-    }
-
-    return {
-        kovatsIndexes,
-        peaks
+  var kovatsIndexes = new Array(integratedMs.length);
+  for (var i = 0; i < integratedMs.length; i++) {
+    kovatsIndexes[i] = {
+      time: integratedMs[i].x,
+      value: kovats(integratedMs[i].ms)
     };
+  }
+
+  return {
+    kovatsIndexes,
+    peaks
+  };
 }

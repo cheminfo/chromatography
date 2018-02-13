@@ -1,5 +1,5 @@
-import {getKovatsTable} from './getKovatsTable';
-import {kovatsConversionFunction} from './kovatsConversionFunction';
+import { getKovatsTable } from './getKovatsTable';
+import { kovatsConversionFunction } from './kovatsConversionFunction';
 
 /**
  * Calculates the table of Kovats indexes for the reference spectra
@@ -13,13 +13,13 @@ import {kovatsConversionFunction} from './kovatsConversionFunction';
  * @return {{conversionFunction:function(number),kovatsIndexes:Array<object>,peaks:Array<object>}} - Time and value for the Kovats index
  */
 export function getKovatsRescale(reference, options) {
-    let kovatsTable = getKovatsTable(reference, options);
-    let conversionFunction = kovatsConversionFunction(kovatsTable.kovatsIndexes, {revert: options.revert});
+  let kovatsTable = getKovatsTable(reference, options);
+  let conversionFunction = kovatsConversionFunction(kovatsTable.kovatsIndexes, { revert: options.revert });
 
-    return {
-        conversionFunction: conversionFunction,
-        kovatsIndexes: kovatsTable.kovatsIndexes,
-        peaks: kovatsTable.peaks
-    };
+  return {
+    conversionFunction: conversionFunction,
+    kovatsIndexes: kovatsTable.kovatsIndexes,
+    peaks: kovatsTable.peaks
+  };
 }
 

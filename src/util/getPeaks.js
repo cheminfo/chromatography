@@ -1,4 +1,4 @@
-import {gsd} from 'ml-gsd';
+import { gsd } from 'ml-gsd';
 
 /**
  * Apply the GSD peak picking algorithm
@@ -9,54 +9,54 @@ import {gsd} from 'ml-gsd';
  * @return {Array<object>} - List of GSD objects
  */
 export function getPeaks(chromatogram, options = {}) {
-    const {
-        heightFilter = 2,
-        serieName = 'tic'
-    } = options;
+  const {
+    heightFilter = 2,
+    serieName = 'tic'
+  } = options;
 
-    let serie = chromatogram.getSerie(serieName);
-    if (!serie) {
-        throw new Error(`"${serieName}" serie not founded`);
-    }
-    serie = serie.data;
-    let times = chromatogram.getTimes();
+  let serie = chromatogram.getSerie(serieName);
+  if (!serie) {
+    throw new Error(`"${serieName}" serie not founded`);
+  }
+  serie = serie.data;
+  let times = chromatogram.getTimes();
 
-    // first peak selection
-    let peakList = gsd(times, serie, {
-        noiseLevel: 0,
-        realTopDetection: false,
-        smoothY: true,
-        sgOptions: {windowSize: 5, polynomial: 2},
-        heightFactor: 2,
-        boundaries: true
-    });
+  // first peak selection
+  let peakList = gsd(times, serie, {
+    noiseLevel: 0,
+    realTopDetection: false,
+    smoothY: true,
+    sgOptions: { windowSize: 5, polynomial: 2 },
+    heightFactor: 2,
+    boundaries: true
+  });
 
-    peakList.sort((a, b) => (a.right.index - a.left.index) - (b.right.index - b.left.index));
-    let medianDotsWidth = peakList[Math.floor((peakList.length - 1) / 2)];
-    medianDotsWidth = medianDotsWidth.right.index - medianDotsWidth.left.index;
+  peakList.sort((a, b) => (a.right.index - a.left.index) - (b.right.index - b.left.index));
+  let medianDotsWidth = peakList[Math.floor((peakList.length - 1) / 2)];
+  medianDotsWidth = medianDotsWidth.right.index - medianDotsWidth.left.index;
 
-    // reset parameters
-    if (medianDotsWidth < 5) {
-        medianDotsWidth = 5;
-    }
-    if (medianDotsWidth % 2 === 0) {
-        medianDotsWidth -= 1;
-    }
+  // reset parameters
+  if (medianDotsWidth < 5) {
+    medianDotsWidth = 5;
+  }
+  if (medianDotsWidth % 2 === 0) {
+    medianDotsWidth -= 1;
+  }
 
-    // second peak selection
-    peakList = gsd(times, serie, {
-        noiseLevel: 0,
-        realTopDetection: false,
-        smoothY: true,
-        sgOptions: {windowSize: medianDotsWidth, polynomial: 2},
-        heightFactor: 2,
-        boundaries: true
-    });
-    peakList.sort((a, b) => a.height - b.height);
+  // second peak selection
+  peakList = gsd(times, serie, {
+    noiseLevel: 0,
+    realTopDetection: false,
+    smoothY: true,
+    sgOptions: { windowSize: medianDotsWidth, polynomial: 2 },
+    heightFactor: 2,
+    boundaries: true
+  });
+  peakList.sort((a, b) => a.height - b.height);
 
-    // filter height by factor
-    let medianHeight = peakList[Math.floor((peakList.length - 1) / 2)].height;
-    peakList = peakList.filter((val) => val.height > medianHeight * heightFilter);
+  // filter height by factor
+  let medianHeight = peakList[Math.floor((peakList.length - 1) / 2)].height;
+  peakList = peakList.filter((val) => val.height > medianHeight * heightFilter);
 
-    return peakList;
+  return peakList;
 }

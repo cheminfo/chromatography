@@ -4,15 +4,15 @@
  * @return {Array} - Calculated tic
  */
 export function calculateTic(chrom) {
-    let ms = chrom.getSerie('ms');
-    if (!ms) {
-        throw new Error('The mass serie must be defined');
-    }
-    var massSpectra = ms.data;
-    var tic = [];
-    for (var massSpectrum of massSpectra) {
-        tic.push(massSpectrum[1].reduce((a, b) => (a + b), 0));
-    }
+  let ms = chrom.getSerie('ms');
+  if (!ms) {
+    throw new Error('The mass serie must be defined');
+  }
+  var massSpectra = ms.data;
+  var tic = [];
+  for (var massSpectrum of massSpectra) {
+    tic.push(massSpectrum[1].reduce((a, b) => (a + b), 0));
+  }
 
-    return tic;
+  return tic;
 }

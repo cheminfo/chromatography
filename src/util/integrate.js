@@ -1,5 +1,5 @@
-import {getClosestTime} from './getClosestTime';
-import {baselineCorrection} from './baselineCorrection';
+import { getClosestTime } from './getClosestTime';
+import { baselineCorrection } from './baselineCorrection';
 
 /**
  * Returns a mass spectrum that is the integration of all the spectra in a specific range of time
@@ -11,92 +11,92 @@ import {baselineCorrection} from './baselineCorrection';
  * @return {[]}
  */
 export function integrate(chromatogram, name, ranges, options = {}) {
-    const {
-        baseline = false
-    } = options;
+  const {
+    baseline = false
+  } = options;
 
-    if (!Array.isArray(ranges)) {
-        throw new Error('ranges must be an array of type [[from,to]]');
-    }
-    if (ranges.length === 0) {
-        return;
-    }
+  if (!Array.isArray(ranges)) {
+    throw new Error('ranges must be an array of type [[from,to]]');
+  }
+  if (ranges.length === 0) {
+    return;
+  }
 
-    if (!Array.isArray(ranges[0]) || ranges[0].length !== 2) {
-        throw new Error('ranges must be an array of type [[from,to]]');
-    }
+  if (!Array.isArray(ranges[0]) || ranges[0].length !== 2) {
+    throw new Error('ranges must be an array of type [[from,to]]');
+  }
 
-    chromatogram.requiresSerie(name);
-    let serie = chromatogram.series[name];
-    if (serie.dimension !== 1) {
-        throw new Error('the serie is not of dimension 1');
-    }
+  chromatogram.requiresSerie(name);
+  let serie = chromatogram.series[name];
+  if (serie.dimension !== 1) {
+    throw new Error('the serie is not of dimension 1');
+  }
 
-    const time = chromatogram.getTimes();
-    let results = [];
+  const time = chromatogram.getTimes();
+  let results = [];
 
-    for (let fromTo of ranges) {
-        let from = fromTo[0];
-        let to = fromTo[1];
-        let fromIndex = getClosestTime(from, time).safeIndexBefore;
-        let toIndex = getClosestTime(to, time).safeIndexAfter;
+  for (let fromTo of ranges) {
+    let from = fromTo[0];
+    let to = fromTo[1];
+    let fromIndex = getClosestTime(from, time).safeIndexBefore;
+    let toIndex = getClosestTime(to, time).safeIndexAfter;
 
-        results.push(_integrate(time, serie, from, to, fromIndex, toIndex, baseline));
-    }
+    results.push(_integrate(time, serie, from, to, fromIndex, toIndex, baseline));
+  }
 
-    return results;
+  return results;
 }
 
 function _integrate(time, serie, from, to, fromIndex, toIndex, baseline) {
-    let total = 0;
-    let base = {};
-    for (let i = fromIndex; i < toIndex; i++) {
-        let timeStart = time[i];
-        let timeEnd = time[i + 1];
-        let heightStart = serie.data[i];
-        if (i === fromIndex) { // need to check the exact starting point
-            heightStart = serie.data[i] + (serie.data[i + 1] - serie.data[i]) * (from - timeStart) / (timeEnd - timeStart);
-            base.start = {height: heightStart, time: from};
-            timeStart = from;
-        }
-
-        let heightEnd = serie.data[i + 1];
-        if (i === toIndex - 1) {
-            heightEnd = serie.data[i] + (serie.data[i + 1] - serie.data[i]) * (to - timeStart) / (timeEnd - timeStart);
-            base.end = {height: heightEnd, time: to};
-            timeEnd = to;
-        }
-        total += (timeEnd - timeStart) * (heightStart + heightEnd) / 2;
+  let total = 0;
+  let base = {};
+  for (let i = fromIndex; i < toIndex; i++) {
+    let timeStart = time[i];
+    let timeEnd = time[i + 1];
+    let heightStart = serie.data[i];
+    if (i === fromIndex) { // need to check the exact starting point
+      heightStart = serie.data[i] + (serie.data[i + 1] - serie.data[i]) * (from - timeStart) / (timeEnd - timeStart);
+      base.start = { height: heightStart, time: from };
+      timeStart = from;
     }
 
-    if (baseline) {
-        var ans = baselineCorrection(total, base, baseline);
-        return {
-            integral: ans.integral,
-            from: {
-                time: from,
-                index: fromIndex,
-                baseline: ans.base.start.height
-            },
-            to: {
-                time: to,
-                index: toIndex,
-                baseline: ans.base.end.height
-            }
-        };
-    } else {
-        return {
-            integral: total,
-            from: {
-                time: from,
-                index: fromIndex,
-                baseline: 0
-            },
-            to: {
-                time: to,
-                index: toIndex,
-                baseline: 0
-            }
-        };
+    let heightEnd = serie.data[i + 1];
+    if (i === toIndex - 1) {
+      heightEnd = serie.data[i] + (serie.data[i + 1] - serie.data[i]) * (to - timeStart) / (timeEnd - timeStart);
+      base.end = { height: heightEnd, time: to };
+      timeEnd = to;
     }
+    total += (timeEnd - timeStart) * (heightStart + heightEnd) / 2;
+  }
+
+  if (baseline) {
+    var ans = baselineCorrection(total, base, baseline);
+    return {
+      integral: ans.integral,
+      from: {
+        time: from,
+        index: fromIndex,
+        baseline: ans.base.start.height
+      },
+      to: {
+        time: to,
+        index: toIndex,
+        baseline: ans.base.end.height
+      }
+    };
+  } else {
+    return {
+      integral: total,
+      from: {
+        time: from,
+        index: fromIndex,
+        baseline: 0
+      },
+      to: {
+        time: to,
+        index: toIndex,
+        baseline: 0
+      }
+    };
+  }
 }

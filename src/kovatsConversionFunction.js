@@ -1,4 +1,5 @@
 import binarySearch from 'binary-search';
+
 const ascValue = (a, b) => (a.value - b.value);
 const ascTime = (a, b) => (a.time - b.time);
 
@@ -10,51 +11,51 @@ const ascTime = (a, b) => (a.time - b.time);
  * @return {function(number)} - One parameter function that convert to one dimension to the other
  */
 export function kovatsConversionFunction(kovatsConversionTable, options = {}) {
-    const {revert = false} = options;
+  const { revert = false } = options;
 
-    if (revert) {
-        const values = kovatsConversionTable.sort(ascValue);
+  if (revert) {
+    const values = kovatsConversionTable.sort(ascValue);
 
-        return (index) => {
-            let position = binarySearch(values, {value: index}, ascValue);
+    return (index) => {
+      let position = binarySearch(values, { value: index }, ascValue);
 
-            if (position < 0) {
-                position = ~position;
+      if (position < 0) {
+        position = ~position;
 
-                // handle extreme cases
-                if (position === 0 || position === values.length) {
-                    return 0;
-                }
+        // handle extreme cases
+        if (position === 0 || position === values.length) {
+          return 0;
+        }
 
-                let smallerAlcane = values[position - 1].time;
-                let largerAlcane = values[position].time;
-                return (index - values[position - 1].value) * (largerAlcane - smallerAlcane) / 100
+        let smallerAlcane = values[position - 1].time;
+        let largerAlcane = values[position].time;
+        return (index - values[position - 1].value) * (largerAlcane - smallerAlcane) / 100
                     + smallerAlcane;
-            } else {
-                return values[position].time;
-            }
-        };
-    } else {
-        const times = kovatsConversionTable.sort(ascTime);
+      } else {
+        return values[position].time;
+      }
+    };
+  } else {
+    const times = kovatsConversionTable.sort(ascTime);
 
-        return (time) => {
-            let position = binarySearch(times, {time}, ascTime);
+    return (time) => {
+      let position = binarySearch(times, { time }, ascTime);
 
-            if (position < 0) {
-                position = ~position;
+      if (position < 0) {
+        position = ~position;
 
-                // handle extreme cases
-                if (position === 0 || position === times.length) {
-                    return 0;
-                }
+        // handle extreme cases
+        if (position === 0 || position === times.length) {
+          return 0;
+        }
 
-                let smallerAlcane = times[position - 1].time;
-                let largerAlcane = times[position].time;
-                return 100 * (time - smallerAlcane) / (largerAlcane - smallerAlcane)
+        let smallerAlcane = times[position - 1].time;
+        let largerAlcane = times[position].time;
+        return 100 * (time - smallerAlcane) / (largerAlcane - smallerAlcane)
                     + times[position - 1].value;
-            } else {
-                return times[position].value;
-            }
-        };
-    }
+      } else {
+        return times[position].value;
+      }
+    };
+  }
 }

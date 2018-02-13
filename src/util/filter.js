@@ -8,29 +8,29 @@
  * @return {Chromatogram} - Modified chromatogram
  */
 export function filter(chromatogram, callback, options = {}) {
-    const {copy = false} = options;
-    let chrom;
-    if (copy) {
-        chrom = chromatogram.copy();
-    } else {
-        chrom = chromatogram;
-    }
+  const { copy = false } = options;
+  let chrom;
+  if (copy) {
+    chrom = chromatogram.copy();
+  } else {
+    chrom = chromatogram;
+  }
 
-    let times = chrom.getTimes();
-    let newTimes = [];
-    let indexToKeep = [];
-    for (let i = 0; i < times.length; i++) {
-        if (callback(i, times[i])) {
-            indexToKeep.push(i);
-            newTimes.push(times[i]);
-        }
+  let times = chrom.getTimes();
+  let newTimes = [];
+  let indexToKeep = [];
+  for (let i = 0; i < times.length; i++) {
+    if (callback(i, times[i])) {
+      indexToKeep.push(i);
+      newTimes.push(times[i]);
     }
-    chrom.setTimes(newTimes);
+  }
+  chrom.setTimes(newTimes);
 
-    for (let key of chrom.getSerieNames()) {
-        let serie = chrom.getSerie(key);
-        serie.keep(indexToKeep);
-    }
+  for (let key of chrom.getSerieNames()) {
+    let serie = chrom.getSerie(key);
+    serie.keep(indexToKeep);
+  }
 
-    return chrom;
+  return chrom;
 }

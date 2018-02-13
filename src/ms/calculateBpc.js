@@ -6,19 +6,19 @@ import max from 'ml-array-max';
  * @return {Array} - Calculated bpc
  */
 export function calculateBpc(chrom) {
-    let ms = chrom.getSerie('ms');
-    if (!ms) {
-        throw new Error('The mass serie must be defined');
+  let ms = chrom.getSerie('ms');
+  if (!ms) {
+    throw new Error('The mass serie must be defined');
+  }
+  var massSpectra = ms.data;
+  var bpc = [];
+  for (var massSpectrum of massSpectra) {
+    if (massSpectrum[1].length > 0) {
+      bpc.push(max(massSpectrum[1]));
+    } else {
+      bpc.push(0);
     }
-    var massSpectra = ms.data;
-    var bpc = [];
-    for (var massSpectrum of massSpectra) {
-        if (massSpectrum[1].length > 0) {
-            bpc.push(max(massSpectrum[1]));
-        } else {
-            bpc.push(0);
-        }
-    }
+  }
 
-    return bpc;
+  return bpc;
 }
