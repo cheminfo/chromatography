@@ -45,63 +45,75 @@ test('triplet', () => {
 });
 
 test('simple case', () => {
-  let peaks = [{
-    left: { index: 0 },
-    right: { index: 2 }
-  }];
+  let peaks = [
+    {
+      left: { index: 0 },
+      right: { index: 2 }
+    }
+  ];
 
   expect(massInPeaks(peaks, [
     [[1, 2], [1, 1]],
     [[1, 2, 5], [1, 1, 1]],
     [[3, 4], [1, 1]]
-  ])).toEqual([{
-    left: { index: 0 },
-    right: { index: 2 },
-    ms: {
-      x: [1, 2, 3, 4, 5],
-      y: [2, 2, 1, 1, 1]
+  ])).toEqual([
+    {
+      left: { index: 0 },
+      right: { index: 2 },
+      ms: {
+        x: [1, 2, 3, 4, 5],
+        y: [2, 2, 1, 1, 1]
+      }
     }
-  }]);
+  ]);
 });
 
 test('thresholdFactor', () => {
-  let peaks = [{
-    left: { index: 0 },
-    right: { index: 2 }
-  }];
+  let peaks = [
+    {
+      left: { index: 0 },
+      right: { index: 2 }
+    }
+  ];
   let mass = [
     [[1, 2], [1, 1]],
     [[1, 2, 5], [1, 1, 1]],
     [[2, 4], [1, 1]]
   ];
 
-  expect(massInPeaks(peaks, mass, { thresholdFactor: 0.5 })).toEqual([{
-    left: { index: 0 },
-    right: { index: 2 },
-    ms: {
-      x: [1, 2],
-      y: [2, 3]
+  expect(massInPeaks(peaks, mass, { thresholdFactor: 0.5 })).toEqual([
+    {
+      left: { index: 0 },
+      right: { index: 2 },
+      ms: {
+        x: [1, 2],
+        y: [2, 3]
+      }
     }
-  }]);
+  ]);
 });
 
 test('maxNumberPeaks', () => {
-  let peaks = [{
-    left: { index: 0 },
-    right: { index: 2 }
-  }];
+  let peaks = [
+    {
+      left: { index: 0 },
+      right: { index: 2 }
+    }
+  ];
   let mass = [
     [[1, 2], [1, 1]],
     [[1, 2, 5], [1, 1, 1]],
     [[2, 4], [1, 2]]
   ];
 
-  expect(massInPeaks(peaks, mass, { maxNumberPeaks: 3 })).toEqual([{
-    left: { index: 0 },
-    right: { index: 2 },
-    ms: {
-      x: [1, 2, 4],
-      y: [2, 3, 2]
+  expect(massInPeaks(peaks, mass, { maxNumberPeaks: 3 })).toEqual([
+    {
+      left: { index: 0 },
+      right: { index: 2 },
+      ms: {
+        x: [1, 2, 4],
+        y: [2, 3, 2]
+      }
     }
-  }]);
+  ]);
 });

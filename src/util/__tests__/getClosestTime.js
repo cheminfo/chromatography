@@ -47,7 +47,5 @@ test('Get closest time', () => {
     safeIndexBefore: 0,
     safeIndexAfter: 1
   });
-
-
 });
 

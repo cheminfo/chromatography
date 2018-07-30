@@ -12,54 +12,60 @@ const highResolution = new Chromatogram(
 
 test('Low resolution', () => {
   var result = merge(simple, 'ms', [[1, 2]]);
-  expect(result).toEqual([{
-    serie: [
-      [100, 101, 200, 201, 300, 301],
-      [10, 11, 20, 21, 30, 31]
-    ],
-    from: {
-      time: 1,
-      index: 0
-    },
-    to: {
-      time: 2,
-      index: 1
+  expect(result).toEqual([
+    {
+      serie: [
+        [100, 101, 200, 201, 300, 301],
+        [10, 11, 20, 21, 30, 31]
+      ],
+      from: {
+        time: 1,
+        index: 0
+      },
+      to: {
+        time: 2,
+        index: 1
+      }
     }
-  }]);
+  ]);
 });
 
 test('High resolution', () => {
-  expect(merge(highResolution, 'ms', [[1, 2]])).toEqual([{
-    serie: [
-      [100, 200, 300],
-      [21, 41, 61]
-    ],
-    from: {
-      time: 1,
-      index: 0
-    },
-    to: {
-      time: 2,
-      index: 1
+  expect(merge(highResolution, 'ms', [[1, 2]])).toEqual([
+    {
+      serie: [
+        [100, 200, 300],
+        [21, 41, 61]
+      ],
+      from: {
+        time: 1,
+        index: 0
+      },
+      to: {
+        time: 2,
+        index: 1
+      }
     }
-  }]);
+  ]);
 
   expect(merge(highResolution, 'ms', [[1, 2]], {
     delta: 0.01
-  })).toEqual([{
-    serie: [
-      [100.00, 200.01, 200.02, 300.00],
-      [21, 21, 20, 61]
-    ],
-    from: {
-      time: 1,
-      index: 0
-    },
-    to: {
-      time: 2,
-      index: 1
+  })).toEqual([
+    {
+      serie: [
+        [100.00, 200.01, 200.02, 300.00],
+        [21, 21, 20, 61]
+      ],
+      from: {
+        time: 1,
+        index: 0
+      },
+      to: {
+        time: 2,
+        index: 1
+      }
     }
-  }]);
+  ]);
 });
 
 test('Errors', () => {
@@ -80,7 +86,8 @@ describe('centroid integration', () => {
     const result = [
       (100.002 * 10 + 100.001 * 11) / 21,
       200.01, 200.02,
-      (300.0002 * 30 + 300.0001 * 31) / 61];
+      (300.0002 * 30 + 300.0001 * 31) / 61
+    ];
     for (var i = 0; i < result.length; i++) {
       expect(integral[0][i]).toBeCloseTo(result[i], 5);
     }
@@ -142,9 +149,7 @@ describe('centroid edge cases', () => {
   test('single spectra', () => {
     const integral = merge(new Chromatogram(
       [1], {
-        ms: [
-          [[300.001, 300.010, 300.019], [10, 20, 30]]
-        ]
+        ms: [[[300.001, 300.010, 300.019], [10, 20, 30]]]
       }
     ), 'ms', [[1]], {
       algorithm: 'centroid',

@@ -15,7 +15,7 @@ export function applyLockMass(mf, options = {}) {
     maxShift = 0.1
   } = options;
 
-  // allows mf as string or array
+    // allows mf as string or array
   if (typeof mf === 'string') {
     mf = [mf];
   }

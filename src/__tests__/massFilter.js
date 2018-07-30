@@ -37,10 +37,12 @@ test('groupWidth', () => {
 });
 
 test('from massInPeaks', () => {
-  let peaks = [{
-    left: { index: 0 },
-    right: { index: 2 }
-  }];
+  let peaks = [
+    {
+      left: { index: 0 },
+      right: { index: 2 }
+    }
+  ];
   let mass = [
     [[1, 2], [1, 1]],
     [[1, 2, 5], [1, 1, 1]],
@@ -48,14 +50,16 @@ test('from massInPeaks', () => {
   ];
 
   peaks = massInPeaks(peaks, mass, { thresholdFactor: 0.5 });
-  expect(peaks).toEqual([{
-    left: { index: 0 },
-    right: { index: 2 },
-    ms: {
-      x: [1, 2],
-      y: [2, 3]
+  expect(peaks).toEqual([
+    {
+      left: { index: 0 },
+      right: { index: 2 },
+      ms: {
+        x: [1, 2],
+        y: [2, 3]
+      }
     }
-  }]);
+  ]);
 });
 
 test('from vectorify', () => {
@@ -67,8 +71,10 @@ test('from vectorify', () => {
   ];
   let vector = vectorify(peaks, { thresholdFactor: 0.5, massPower: 1 });
 
-  expect(vector).toEqual([{
-    x: [2, 3],
-    y: [2, 3]
-  }]);
+  expect(vector).toEqual([
+    {
+      x: [2, 3],
+      y: [2, 3]
+    }
+  ]);
 });
