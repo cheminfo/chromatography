@@ -59,7 +59,7 @@
     "jcampconverter": "^2.9.2",
     "ml-array-max": "^1.0.0",
     "ml-array-mean": "^1.0.0",
-    "ml-gsd": "^2.0.1",
+    "ml-gsd": "^2.0.2",
     "ml-regression-polynomial": "^1.0.2",
     "mzmjs": "^0.2.0",
     "netcdf-gcms": "^1.1.0",
