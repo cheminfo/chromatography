@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "binary-search": "^1.3.3",
-    "chemcalc": "^3.4.1",
+    "emdb": "^0.6.2",
     "jcampconverter": "^2.9.2",
     "ml-array-max": "^1.0.0",
     "ml-array-mean": "^1.0.0",

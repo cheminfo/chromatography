@@ -3,11 +3,11 @@ import { simple } from '../../__tests__/examples';
 
 test('calculateForMass: simple case', () => {
   simple.calculateForMass(200);
-  expect(simple.getSerieNames()).toContain('ms200');
-  expect(simple.getSerie('ms200').data).toEqual([20, 0]);
-  simple.calculateForMass(200, { error: 1, force: true });
-  expect(simple.getSerieNames()).toContain('ms200');
-  expect(simple.getSerie('ms200').data).toEqual([20, 21]);
+  expect(simple.getSerieNames()).toContain('ms200-0.5');
+  expect(simple.getSerie('ms200-0.5').data).toEqual([20, 0]);
+  simple.calculateForMass(200, { error: 1 });
+  expect(simple.getSerieNames()).toContain('ms200-1');
+  expect(simple.getSerie('ms200-1').data).toEqual([20, 21]);
 });
 
 test('Errors', () => {

@@ -230,7 +230,7 @@ export class Chromatogram {
    * @param {number} [error.error=0.5] - Allowed error around the targetMass
    */
   calculateForMass(targetMass, options = {}) {
-    const { serieName = `ms${targetMass}` } = options;
+    const { serieName = `ms${targetMass}-${options.error || 0.5}` } = options;
     let result = calculateForMass(this, targetMass, options);
     this.addSerie(serieName, result, options);
   }

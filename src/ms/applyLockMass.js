@@ -1,4 +1,4 @@
-import { analyseMF } from 'chemcalc';
+import { Util } from 'emdb';
 
 /**
  * Recalculates series for GC/MS with lock mass
@@ -10,18 +10,18 @@ import { analyseMF } from 'chemcalc';
  * @return {object} this
  */
 export function applyLockMass(mf, options = {}) {
-  const {
-    oddReference = true,
-    maxShift = 0.1
-  } = options;
+  const { oddReference = true, maxShift = 0.1 } = options;
 
-    // allows mf as string or array
+  // allows mf as string or array
   if (typeof mf === 'string') {
     mf = [mf];
   }
 
   // calculate the mass reference values
-  const referenceMass = mf.map((mf) => analyseMF(mf).em);
+  const referenceMass = mf.map((mf) => {
+    let info = new Util.MF(mf).getInfo();
+    return info.observedMonoisotopicMass || info.monoisotopicMass;
+  });
 
   var ms = this.getSerie('ms');
   if (!ms) {
@@ -47,13 +47,19 @@ export function applyLockMass(mf, options = {}) {
     var closestIndex = -1;
     for (var j = 0; j < referenceMass.length; j++) {
       for (var k = 0; k < ms[referenceIndex][0].length; k++) {
-        if (Math.abs(difference) > Math.abs(referenceMass[j] - ms[referenceIndex][0][k])) {
+        if (
+          Math.abs(difference) >
+          Math.abs(referenceMass[j] - ms[referenceIndex][0][k])
+        ) {
           difference = referenceMass[j] - ms[referenceIndex][0][k];
           closestIndex = j;
         }
       }
     }
-    if (Math.abs(difference) > maxShift && Math.abs(previousValidDifference) < maxShift) {
+    if (
+      Math.abs(difference) > maxShift &&
+      Math.abs(previousValidDifference) < maxShift
+    ) {
       difference = previousValidDifference;
       usingPreviousValidDifference = true;
     } else {
@@ -80,7 +86,8 @@ export function applyLockMass(mf, options = {}) {
   for (var r = 0; r < referenceMass.length; r++) {
     referenceUsed[mf[r]] = referencesCount[r];
   }
-  referenceUsed.percent = referenceUsed.totalFound / referenceUsed.total * 100;
+  referenceUsed.percent =
+    (referenceUsed.totalFound / referenceUsed.total) * 100;
 
   // remove the time and the mass spectra that contains the reference
   this.filter((index) => index % 2 !== referenceIndexShift);
