@@ -246,7 +246,10 @@ export class Chromatogram {
    * @param {number} [options.ionizations='H+'] - List of allowed ionisation
    */
   calculateForMF(targetMF, options = {}) {
-    const { serieName = `ms${targetMF}-${options.error || 0.5}` } = options;
+    const {
+      serieName = `ms${targetMF}-${options.ionizations ||
+        'H+'}-${options.error || 0.5}`
+    } = options;
     let result = calculateForMF(this, targetMF, options);
     this.addSerie(serieName, result, options);
   }
