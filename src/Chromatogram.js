@@ -7,6 +7,7 @@ import { calculateTic } from './ms/calculateTic';
 import { calculateLength } from './ms/calculateLength';
 import { calculateBpc } from './ms/calculateBpc';
 import { calculateForMass } from './ms/calculateForMass';
+import { calculateForMF } from './ms/calculateForMF';
 import { integrate } from './util/integrate';
 import { merge } from './util/merge';
 import { getKovatsRescale } from './getKovatsRescale';
@@ -222,16 +223,31 @@ export class Chromatogram {
   }
 
   /**
-   * Calculate bpc
+   * Calculate mass spectrum by filtering for a specific mass
    * @param {number} targetMass - mass for which to extract the spectrum
    * @param {object} [options = {}] - Options object
    * @param {string} [options.serieName='ms'+targetMass] - Name of the serie to make calculation
    * @param {boolean} [options.force = false] - Force replacement of existing serie
-   * @param {number} [error.error=0.5] - Allowed error around the targetMass
+   * @param {number} [options.error=0.5] - Allowed error around the targetMass
    */
   calculateForMass(targetMass, options = {}) {
     const { serieName = `ms${targetMass}-${options.error || 0.5}` } = options;
     let result = calculateForMass(this, targetMass, options);
+    this.addSerie(serieName, result, options);
+  }
+
+  /**
+   * Calculate mass spectrum by filtering for a specific mass
+   * @param {string} targetMF - mass for which to extract the spectrum
+   * @param {object} [options = {}] - Options object
+   * @param {string} [options.serieName='ms'+targetMass] - Name of the serie to make calculation
+   * @param {boolean} [options.force = false] - Force replacement of existing serie
+   * @param {number} [options.error=0.5] - Allowed error around the targetMass
+   * @param {number} [options.ionizations='H+'] - List of allowed ionisation
+   */
+  calculateForMF(targetMF, options = {}) {
+    const { serieName = `ms${targetMF}-${options.error || 0.5}` } = options;
+    let result = calculateForMF(this, targetMF, options);
     this.addSerie(serieName, result, options);
   }
 
