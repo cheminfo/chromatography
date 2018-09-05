@@ -227,13 +227,19 @@ export class Chromatogram {
    * @param {number} targetMass - mass for which to extract the spectrum
    * @param {object} [options = {}] - Options object
    * @param {string} [options.serieName='ms'+targetMass] - Name of the serie to make calculation
+   * @param {boolean} [options.cache = false] - Retrieve from cache if exists
    * @param {boolean} [options.force = false] - Force replacement of existing serie
    * @param {number} [options.error=0.5] - Allowed error around the targetMass
    */
   calculateForMass(targetMass, options = {}) {
-    const { serieName = `ms${targetMass}-${options.error || 0.5}` } = options;
+    const {
+      serieName = `ms${targetMass}-${options.error || 0.5}`,
+      cache = false
+    } = options;
+    if (cache && this.hasSerie(serieName)) return this.getSerie(serieName);
     let result = calculateForMass(this, targetMass, options);
     this.addSerie(serieName, result, options);
+    return this.getSerie(serieName);
   }
 
   /**
@@ -242,16 +248,20 @@ export class Chromatogram {
    * @param {object} [options = {}] - Options object
    * @param {string} [options.serieName='ms'+targetMass] - Name of the serie to make calculation
    * @param {boolean} [options.force = false] - Force replacement of existing serie
+   * @param {boolean} [options.cache = false] - Retrieve from cache if exists
    * @param {number} [options.error=0.5] - Allowed error around the targetMass
    * @param {number} [options.ionizations='H+'] - List of allowed ionisation
    */
   calculateForMF(targetMF, options = {}) {
     const {
       serieName = `ms${targetMF}-${options.ionizations ||
-        'H+'}-${options.error || 0.5}`
+        'H+'}-${options.error || 0.5}`,
+      cache = false
     } = options;
+    if (cache && this.hasSerie(serieName)) return this.getSerie(serieName);
     let result = calculateForMF(this, targetMF, options);
     this.addSerie(serieName, result, options);
+    return this.getSerie(serieName);
   }
 
   /**
