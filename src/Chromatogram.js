@@ -100,6 +100,7 @@ export class Chromatogram {
       throw new Error('The array size is not the same as the time size');
     }
     this.series[name] = serieFromArray(array);
+    this.series[name].name = name;
   }
 
   /**
@@ -230,6 +231,7 @@ export class Chromatogram {
    * @param {boolean} [options.cache = false] - Retrieve from cache if exists
    * @param {boolean} [options.force = false] - Force replacement of existing serie
    * @param {number} [options.error=0.5] - Allowed error around the targetMass
+   * @return {Serie}
    */
   calculateForMass(targetMass, options = {}) {
     const {
@@ -251,6 +253,7 @@ export class Chromatogram {
    * @param {boolean} [options.cache = false] - Retrieve from cache if exists
    * @param {number} [options.error=0.5] - Allowed error around the targetMass
    * @param {number} [options.ionizations='H+'] - List of allowed ionisation
+   * @return {Serie}
    */
   calculateForMF(targetMF, options = {}) {
     const {
