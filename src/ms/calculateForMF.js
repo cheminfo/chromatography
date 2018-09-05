@@ -20,7 +20,9 @@ export function calculateForMF(chromatogram, targetMF, options = {}) {
     throw Error('calculateForMF: the mass serie must be defined');
   }
 
-  var masses = new Util.IsotopicDistribution(targetMF, options)
+  var masses = new Util.IsotopicDistribution(targetMF, {
+    ionizations: options.ionizations.replace(/ /g, '')
+  })
     .getParts()
     .map((entry) => entry.ms.em);
 
