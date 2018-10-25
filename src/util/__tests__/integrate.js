@@ -1,5 +1,5 @@
 import { integrate, Chromatogram } from '../..';
-import { chromato } from '../../__tests__/examples';
+import { chromato } from '../../../testFiles/examples';
 
 var chrom = new Chromatogram([1, 2, 3, 4], { tic: [2, 4, 6, 8] });
 
@@ -23,12 +23,16 @@ test('Integrate a tic', () => {
 });
 
 test('Errors', () => {
-  expect(() => integrate(chromato, 'tic', 123)).toThrow('ranges must be an array of type [[from,to]]');
+  expect(() => integrate(chromato, 'tic', 123)).toThrow(
+    'ranges must be an array of type [[from,to]]'
+  );
 
   var ms = new Chromatogram([1], {
-    ms: [[[300.001, 300.010, 300.019], [10, 20, 30]]]
+    ms: [[[300.001, 300.01, 300.019], [10, 20, 30]]]
   });
-  expect(() => integrate(ms, 'ms', [[1]])).toThrow('ranges must be an array of type [[from,to]]');
+  expect(() => integrate(ms, 'ms', [[1]])).toThrow(
+    'ranges must be an array of type [[from,to]]'
+  );
 });
 
 describe('Applies baseline correction', () => {
@@ -108,6 +112,8 @@ describe('Applies baseline correction', () => {
   });
 
   it('error', () => {
-    expect(() => integrate(chrom, 'tic', [[1, 3]], { baseline: 'bla' })).toThrow('Unknown baseline method "bla"');
+    expect(() =>
+      integrate(chrom, 'tic', [[1, 3]], { baseline: 'bla' })
+    ).toThrow('Unknown baseline method "bla"');
   });
 });

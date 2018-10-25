@@ -3,7 +3,7 @@ import { join } from 'path';
 
 import { Chromatogram, massInPeaks, getPeaks, vectorify, fromJcamp } from '..';
 
-import { lorentzian } from './examples';
+import { lorentzian } from '../../testFiles/examples';
 
 test('from a Diesel chromatogram', () => {
   const path = join(__dirname, '../../testFiles/jcamp/P064.JDX');
@@ -31,7 +31,10 @@ test('triplet', () => {
   let ms = new Array(size);
   for (let i = 0; i < size; ++i) {
     times[i] = i;
-    tic[i] = lorentzian(i, fourth) + 2 * lorentzian(i, 2 * fourth) + lorentzian(i, 3 * fourth);
+    tic[i] =
+      lorentzian(i, fourth) +
+      2 * lorentzian(i, 2 * fourth) +
+      lorentzian(i, 3 * fourth);
     ms[i] = [[1, 2, 3], [1, 1, 1]];
   }
   let chrom = new Chromatogram(times);

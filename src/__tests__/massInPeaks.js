@@ -3,7 +3,7 @@ import { join } from 'path';
 
 import { Chromatogram, massInPeaks, getPeaks, fromJcamp } from '..';
 
-import { lorentzian } from './examples';
+import { lorentzian } from '../../testFiles/examples';
 
 test('from a Diesel chromatogram', () => {
   const path = join(__dirname, '../../testFiles/jcamp/P064.JDX');
@@ -28,7 +28,10 @@ test('triplet', () => {
   let ms = new Array(size);
   for (let i = 0; i < size; ++i) {
     times[i] = i;
-    tic[i] = lorentzian(i, fourth) + 2 * lorentzian(i, 2 * fourth) + lorentzian(i, 3 * fourth);
+    tic[i] =
+      lorentzian(i, fourth) +
+      2 * lorentzian(i, 2 * fourth) +
+      lorentzian(i, 3 * fourth);
     ms[i] = [[1.6, 2.1, 3], [1, 1, 1]];
   }
   let chrom = new Chromatogram(times);
@@ -52,11 +55,13 @@ test('simple case', () => {
     }
   ];
 
-  expect(massInPeaks(peaks, [
-    [[1, 2], [1, 1]],
-    [[1, 2, 5], [1, 1, 1]],
-    [[3, 4], [1, 1]]
-  ])).toEqual([
+  expect(
+    massInPeaks(peaks, [
+      [[1, 2], [1, 1]],
+      [[1, 2, 5], [1, 1, 1]],
+      [[3, 4], [1, 1]]
+    ])
+  ).toEqual([
     {
       left: { index: 0 },
       right: { index: 2 },
@@ -75,11 +80,7 @@ test('thresholdFactor', () => {
       right: { index: 2 }
     }
   ];
-  let mass = [
-    [[1, 2], [1, 1]],
-    [[1, 2, 5], [1, 1, 1]],
-    [[2, 4], [1, 1]]
-  ];
+  let mass = [[[1, 2], [1, 1]], [[1, 2, 5], [1, 1, 1]], [[2, 4], [1, 1]]];
 
   expect(massInPeaks(peaks, mass, { thresholdFactor: 0.5 })).toEqual([
     {
@@ -100,11 +101,7 @@ test('maxNumberPeaks', () => {
       right: { index: 2 }
     }
   ];
-  let mass = [
-    [[1, 2], [1, 1]],
-    [[1, 2, 5], [1, 1, 1]],
-    [[2, 4], [1, 2]]
-  ];
+  let mass = [[[1, 2], [1, 1]], [[1, 2, 5], [1, 1, 1]], [[2, 4], [1, 2]]];
 
   expect(massInPeaks(peaks, mass, { maxNumberPeaks: 3 })).toEqual([
     {

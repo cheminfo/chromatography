@@ -1,4 +1,4 @@
-import { simple4 as chromatogram } from '../../__tests__/examples';
+import { simple4 as chromatogram } from '../../../testFiles/examples';
 
 test('Get closest data', () => {
   // time : [1, 2, 3, 4]
@@ -9,4 +9,3 @@ test('Get closest data', () => {
     data: [[102, 202, 302], [12, 22, 32]]
   });
 });
-

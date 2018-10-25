@@ -1,5 +1,5 @@
 import { Chromatogram } from '../..';
-import { simple } from '../../__tests__/examples';
+import { simple } from '../../../testFiles/examples';
 
 test('calculateForMF: simple case', () => {
   simple.calculateForMF('C10.C16H7', { ionizations: 'H+,Na+,K+' });

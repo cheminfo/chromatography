@@ -2,8 +2,7 @@ import fs from 'fs';
 import { join } from 'path';
 
 import { Chromatogram, fromJcamp } from '../..';
-import { getSimulatedSpectrum } from '../../__tests__/examples';
-
+import { getSimulatedSpectrum } from '../../../testFiles/examples';
 
 test('from a Diesel chromatogram', () => {
   const path = join(__dirname, '../../../testFiles/jcamp/P064.JDX');

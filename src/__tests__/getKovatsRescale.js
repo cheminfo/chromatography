@@ -1,6 +1,6 @@
 import { getKovatsRescale } from '..';
 
-import { getSimulatedSpectrum } from './examples';
+import { getSimulatedSpectrum } from '../../testFiles/examples';
 
 test('triplet', () => {
   let chrom = getSimulatedSpectrum();

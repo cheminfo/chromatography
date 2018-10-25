@@ -1,6 +1,6 @@
 import { Chromatogram } from '..';
 
-import { chromato, simple } from './examples';
+import { chromato, simple } from '../../testFiles/examples';
 
 describe('General methods', () => {
   test('Constructor errors', () => {
@@ -23,17 +23,27 @@ describe('General methods', () => {
 
   test('addSerie errors', () => {
     let chromatogram = new Chromatogram([1, 2], { tic: [1, 2] });
-    expect(() => chromatogram.addSerie('abc', 1234)).toThrow('The array size is not the same as the time size');
-    expect(() => chromatogram.addSerie('abc', { a: 1, b: 2 })).toThrow('The array size is not the same as the time size');
-    expect(() => chromatogram.addSerie('tic', [2, 3, 4])).toThrow('A serie with name "tic" already exists');
+    expect(() => chromatogram.addSerie('abc', 1234)).toThrow(
+      'The array size is not the same as the time size'
+    );
+    expect(() => chromatogram.addSerie('abc', { a: 1, b: 2 })).toThrow(
+      'The array size is not the same as the time size'
+    );
+    expect(() => chromatogram.addSerie('tic', [2, 3, 4])).toThrow(
+      'A serie with name "tic" already exists'
+    );
 
-    expect(() => chromatogram.addSeries(1)).toThrow('data must be an object containing arrays of series');
+    expect(() => chromatogram.addSeries(1)).toThrow(
+      'data must be an object containing arrays of series'
+    );
   });
 
   test('deleteSerie', () => {
     let chromatogram = new Chromatogram([1, 2], { tic: [1, 2] });
     expect(chromatogram.hasSerie('tic')).toEqual(true);
-    expect(() => chromatogram.deleteSerie('ms')).toThrow('The serie "ms" does not exist');
+    expect(() => chromatogram.deleteSerie('ms')).toThrow(
+      'The serie "ms" does not exist'
+    );
     chromatogram.deleteSerie('tic');
     expect(chromatogram.hasSerie('tic')).toEqual(false);
   });
@@ -50,8 +60,12 @@ describe('General methods', () => {
 
   test('Require serie', () => {
     let chromatogram = new Chromatogram([1, 2], { tic: [1, 2] });
-    expect(() => chromatogram.requiresSerie('ms')).toThrow('The serie "ms" does not exist');
-    expect(() => chromatogram.requiresSerie('tic')).not.toThrow('The serie "tic" does not exist');
+    expect(() => chromatogram.requiresSerie('ms')).toThrow(
+      'The serie "ms" does not exist'
+    );
+    expect(() => chromatogram.requiresSerie('tic')).not.toThrow(
+      'The serie "tic" does not exist'
+    );
   });
 });
 
@@ -79,10 +93,7 @@ describe('Integrations', () => {
     var result = simple.merge('ms', [[1, 2]]);
     expect(result).toEqual([
       {
-        serie: [
-          [100, 101, 200, 201, 300, 301],
-          [10, 11, 20, 21, 30, 31]
-        ],
+        serie: [[100, 101, 200, 201, 300, 301], [10, 11, 20, 21, 30, 31]],
         from: {
           time: 1,
           index: 0

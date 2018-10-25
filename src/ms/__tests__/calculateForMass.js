@@ -1,5 +1,5 @@
 import { Chromatogram } from '../..';
-import { simple } from '../../__tests__/examples';
+import { simple } from '../../../testFiles/examples';
 
 test('calculateForMass: simple case', () => {
   simple.calculateForMass(200);
