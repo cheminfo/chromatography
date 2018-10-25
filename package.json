@@ -42,8 +42,8 @@
     "babel-preset-env": "^1.6.1",
     "cheminfo-tools": "^1.20.2",
     "codecov": "^3.0.0",
-    "documentation": "^5.4.0",
-    "eslint": "^4.17.0",
+    "documentation": "^8.1.2",
+    "eslint": "^5.7.0",
     "eslint-config-cheminfo": "^1.15.1",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jest": "^21.12.1",
@@ -64,6 +64,6 @@
     "mzdata": "^1.1.0",
     "netcdf-gcms": "^1.1.0",
     "num-sort": "^1.0.0",
-    "xy-parser": "^1.5.0"
+    "xy-parser": "^2.2.0"
   }
 }
