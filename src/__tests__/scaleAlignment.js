@@ -1,6 +1,6 @@
 import { Chromatogram, spectraComparison, scaleAlignment } from '..';
 
-import { lorentzian } from './examples';
+import { lorentzian } from '../../testFiles/examples';
 
 test('Simple case', () => {
   const size = 70;
@@ -12,9 +12,19 @@ test('Simple case', () => {
   let ms2 = new Array(size);
   for (let i = 0; i < size; ++i) {
     times[i] = i;
-    tic1[i] = lorentzian(i, peakX) + 2 * lorentzian(i, 2 * peakX) + 3 * lorentzian(i, 3 * peakX) + lorentzian(i, 4 * peakX) + 2 * lorentzian(i, 5 * peakX);
-    tic2[i] = lorentzian(i, 2 * peakX) + 2 * lorentzian(i, 3 * peakX) + lorentzian(i, 4 * peakX) + 2 * lorentzian(i, 5 * peakX) + lorentzian(i, 6 * peakX);
-    ms1[i] = [[(i + 10), 2 * (i + 10), 3 * (i + 10)], [1, 1, 1]];
+    tic1[i] =
+      lorentzian(i, peakX) +
+      2 * lorentzian(i, 2 * peakX) +
+      3 * lorentzian(i, 3 * peakX) +
+      lorentzian(i, 4 * peakX) +
+      2 * lorentzian(i, 5 * peakX);
+    tic2[i] =
+      lorentzian(i, 2 * peakX) +
+      2 * lorentzian(i, 3 * peakX) +
+      lorentzian(i, 4 * peakX) +
+      2 * lorentzian(i, 5 * peakX) +
+      lorentzian(i, 6 * peakX);
+    ms1[i] = [[i + 10, 2 * (i + 10), 3 * (i + 10)], [1, 1, 1]];
     ms2[i] = [[i, 2 * i, 3 * i], [1, 1, 1]];
   }
 
@@ -49,9 +59,19 @@ test('Quality and string', () => {
   let ms2 = new Array(size);
   for (let i = 0; i < size; ++i) {
     times[i] = i;
-    tic1[i] = lorentzian(i, peakX) + 2 * lorentzian(i, 2 * peakX) + 3 * lorentzian(i, 3 * peakX) + lorentzian(i, 4 * peakX) + 2 * lorentzian(i, 5 * peakX);
-    tic2[i] = lorentzian(i, 2 * peakX) + 2 * lorentzian(i, 3 * peakX) + lorentzian(i, 4 * peakX) + 2 * lorentzian(i, 5 * peakX) + lorentzian(i, 6 * peakX);
-    ms1[i] = [[(i + 10), 2 * (i + 10), 3 * (i + 10)], [1, 1, 1]];
+    tic1[i] =
+      lorentzian(i, peakX) +
+      2 * lorentzian(i, 2 * peakX) +
+      3 * lorentzian(i, 3 * peakX) +
+      lorentzian(i, 4 * peakX) +
+      2 * lorentzian(i, 5 * peakX);
+    tic2[i] =
+      lorentzian(i, 2 * peakX) +
+      2 * lorentzian(i, 3 * peakX) +
+      lorentzian(i, 4 * peakX) +
+      2 * lorentzian(i, 5 * peakX) +
+      lorentzian(i, 6 * peakX);
+    ms1[i] = [[i + 10, 2 * (i + 10), 3 * (i + 10)], [1, 1, 1]];
     ms2[i] = [[i, 2 * i, 3 * i], [1, 1, 1]];
   }
 
@@ -72,8 +92,13 @@ test('Quality and string', () => {
   expect(compared.peaksFirst.map((val) => val.x)).toEqual([10, 20, 30, 40, 50]);
   expect(compared.peaksSecond.map((val) => val.x)).toEqual([20, 30, 40, 50, 60]);
 
-  let aligned = scaleAlignment(compared.peaksFirst, compared.peaksSecond, { computeQuality: true, stringFormula: 3 });
+  let aligned = scaleAlignment(compared.peaksFirst, compared.peaksSecond, {
+    computeQuality: true,
+    stringFormula: 3
+  });
   expect(aligned.scaleRegression.predict(30)).toBeCloseTo(20, 4);
-  expect(aligned.scaleRegression.toString(3)).toEqual('f(x) = 9.95e-17 * x^3 - 1.22e-14 * x^2 + 1.00 * x - 10.0');
+  expect(aligned.scaleRegression.toString(3)).toEqual(
+    'f(x) = 9.95e-17 * x^3 - 1.22e-14 * x^2 + 1.00 * x - 10.0'
+  );
   expect(aligned.r2).toBeCloseTo(1, 4);
 });

@@ -1,4 +1,4 @@
-import { simple4 } from '../../__tests__/examples';
+import { simple4 } from '../../../testFiles/examples';
 
 let chromatogram;
 

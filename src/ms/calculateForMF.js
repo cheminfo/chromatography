@@ -1,4 +1,4 @@
-import { Util } from 'emdb';
+import IsotopicDistribution from 'isotopic-distribution';
 
 /**
  * Calculate tic
@@ -20,7 +20,7 @@ export function calculateForMF(chromatogram, targetMF, options = {}) {
     throw Error('calculateForMF: the mass serie must be defined');
   }
 
-  var masses = new Util.IsotopicDistribution(targetMF, {
+  var masses = new IsotopicDistribution(targetMF, {
     ionizations: options.ionizations.replace(/ /g, '')
   })
     .getParts()

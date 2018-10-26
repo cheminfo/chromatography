@@ -1,6 +1,6 @@
 import { Chromatogram, spectraComparison } from '..';
 
-import { lorentzian } from './examples';
+import { lorentzian } from '../../testFiles/examples';
 
 test('Simple case', () => {
   const size = 70;
@@ -12,9 +12,19 @@ test('Simple case', () => {
   let ms2 = new Array(size);
   for (let i = 0; i < size; ++i) {
     times[i] = i;
-    tic1[i] = lorentzian(i, peakX) + 2 * lorentzian(i, 2 * peakX) + 3 * lorentzian(i, 3 * peakX) + lorentzian(i, 4 * peakX) + 2 * lorentzian(i, 5 * peakX);
-    tic2[i] = lorentzian(i, 2 * peakX) + 2 * lorentzian(i, 3 * peakX) + lorentzian(i, 4 * peakX) + 2 * lorentzian(i, 5 * peakX) + lorentzian(i, 6 * peakX);
-    ms1[i] = [[(i + 10), 2 * (i + 10), 3 * (i + 10)], [1, 1, 1]];
+    tic1[i] =
+      lorentzian(i, peakX) +
+      2 * lorentzian(i, 2 * peakX) +
+      3 * lorentzian(i, 3 * peakX) +
+      lorentzian(i, 4 * peakX) +
+      2 * lorentzian(i, 5 * peakX);
+    tic2[i] =
+      lorentzian(i, 2 * peakX) +
+      2 * lorentzian(i, 3 * peakX) +
+      lorentzian(i, 4 * peakX) +
+      2 * lorentzian(i, 5 * peakX) +
+      lorentzian(i, 6 * peakX);
+    ms1[i] = [[i + 10, 2 * (i + 10), 3 * (i + 10)], [1, 1, 1]];
     ms2[i] = [[i, 2 * i, 3 * i], [1, 1, 1]];
   }
 
@@ -46,8 +56,18 @@ test('Shifted peaks', () => {
   let ms2 = new Array(size);
   for (let i = 0; i < size; ++i) {
     times[i] = i;
-    tic1[i] = lorentzian(i, peakX) + 2 * lorentzian(i, 2 * peakX) + 3 * lorentzian(i, 3 * peakX) + lorentzian(i, 4 * peakX) + 2 * lorentzian(i, 5 * peakX);
-    tic2[i] = lorentzian(i, 2 * peakX) + 2 * lorentzian(i, 3 * peakX) + lorentzian(i, 4 * peakX) + 2 * lorentzian(i, 5 * peakX) + lorentzian(i, 6 * peakX);
+    tic1[i] =
+      lorentzian(i, peakX) +
+      2 * lorentzian(i, 2 * peakX) +
+      3 * lorentzian(i, 3 * peakX) +
+      lorentzian(i, 4 * peakX) +
+      2 * lorentzian(i, 5 * peakX);
+    tic2[i] =
+      lorentzian(i, 2 * peakX) +
+      2 * lorentzian(i, 3 * peakX) +
+      lorentzian(i, 4 * peakX) +
+      2 * lorentzian(i, 5 * peakX) +
+      lorentzian(i, 6 * peakX);
     ms1[i] = [[i, 2 * i, 3 * i], [1, 1, 1]];
     ms2[i] = [[i, 2 * i, 3 * i], [1, 1, 1]];
   }
@@ -80,12 +100,25 @@ test('Remove similar peaks in the similarity matrix column', () => {
   let ms2 = new Array(size);
   for (let i = 0; i < size; ++i) {
     times[i] = i;
-    tic1[i] = lorentzian(i, peakX) + 2 * lorentzian(i, 2 * peakX) + 3 * lorentzian(i, 3 * peakX) + lorentzian(i, 4 * peakX) + 2 * lorentzian(i, 5 * peakX);
-    tic2[i] = lorentzian(i, 2 * peakX) + 2 * lorentzian(i, 3 * peakX) + lorentzian(i, 4 * peakX) + 2 * lorentzian(i, 5 * peakX) + lorentzian(i, 6 * peakX);
+    tic1[i] =
+      lorentzian(i, peakX) +
+      2 * lorentzian(i, 2 * peakX) +
+      3 * lorentzian(i, 3 * peakX) +
+      lorentzian(i, 4 * peakX) +
+      2 * lorentzian(i, 5 * peakX);
+    tic2[i] =
+      lorentzian(i, 2 * peakX) +
+      2 * lorentzian(i, 3 * peakX) +
+      lorentzian(i, 4 * peakX) +
+      2 * lorentzian(i, 5 * peakX) +
+      lorentzian(i, 6 * peakX);
 
-    ms1[i] = [[(i + 10), 2 * (i + 10), 3 * (i + 10)], [1, 1, 1]];
+    ms1[i] = [[i + 10, 2 * (i + 10), 3 * (i + 10)], [1, 1, 1]];
     if (i < 45) {
-      ms2[i] = [[28, 29, 30, 31, 32, 56, 58, 60, 62, 64, 84, 87, 90, 93, 96], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]];
+      ms2[i] = [
+        [28, 29, 30, 31, 32, 56, 58, 60, 62, 64, 84, 87, 90, 93, 96],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+      ];
     } else {
       ms2[i] = [[i, 2 * i, 3 * i], [1, 1, 1]];
     }

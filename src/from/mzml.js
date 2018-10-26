@@ -1,4 +1,4 @@
-import { mzData } from 'mzmjs';
+import mzData from 'mzdata';
 
 import { fromJSON } from './json';
 
