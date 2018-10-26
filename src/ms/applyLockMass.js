@@ -1,4 +1,4 @@
-import { Util } from 'emdb';
+import { MF } from 'mf-parser';
 
 /**
  * Recalculates series for GC/MS with lock mass
@@ -19,7 +19,7 @@ export function applyLockMass(mf, options = {}) {
 
   // calculate the mass reference values
   const referenceMass = mf.map((mf) => {
-    let info = new Util.MF(mf).getInfo();
+    let info = new MF(mf).getInfo();
     return info.observedMonoisotopicMass || info.monoisotopicMass;
   });
 
