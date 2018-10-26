@@ -17,7 +17,7 @@ import { meanFilter } from './filter/meanFilter';
 import { percentageFilter } from './filter/percentageFilter';
 import { toJSON } from './to/json';
 import { getClosestData } from './util/getClosestData';
-
+import { isArray } from './util/isArray';
 /**
  * Class allowing to store time / ms (ms) series
  * It allows also to store simple time a trace
@@ -30,7 +30,7 @@ export class Chromatogram {
     this.series = {};
     this.times = [];
     if (times) {
-      if (!Array.isArray(times)) {
+      if (!isArray(times)) {
         throw new TypeError('Times must be an array');
       }
       this.times = times;
