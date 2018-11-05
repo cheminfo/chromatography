@@ -1,6 +1,6 @@
 import { Chromatogram, getKovatsTable } from '..';
 
-import { lorentzian } from './examples';
+import { lorentzian } from '../../testFiles/examples';
 
 test('triplet', () => {
   const size = 30;
@@ -10,7 +10,10 @@ test('triplet', () => {
   let ms = new Array(size);
   for (let i = 0; i < size; ++i) {
     times[i] = i;
-    tic[i] = lorentzian(i, fourth) + 2 * lorentzian(i, 2 * fourth) + lorentzian(i, 3 * fourth);
+    tic[i] =
+      lorentzian(i, fourth) +
+      2 * lorentzian(i, 2 * fourth) +
+      lorentzian(i, 3 * fourth);
     ms[i] = [[29, 43, 57, 71, 85, 114], [1, 1, 1, 1, 1, 1]];
   }
   let chrom = new Chromatogram(times);
@@ -36,7 +39,10 @@ test('default', () => {
   let ms = new Array(size);
   for (let i = 0; i < size; ++i) {
     times[i] = i;
-    tic[i] = lorentzian(i, fourth) + 2 * lorentzian(i, 2 * fourth) + lorentzian(i, 3 * fourth);
+    tic[i] =
+      lorentzian(i, fourth) +
+      2 * lorentzian(i, 2 * fourth) +
+      lorentzian(i, 3 * fourth);
     ms[i] = [[29, 43, 57, 71, 85, 114], [1, 1, 1, 1, 1, 1]];
   }
   let chrom = new Chromatogram(times);

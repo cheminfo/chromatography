@@ -1,6 +1,7 @@
-import parserXY from 'xy-parser';
+import { parseXY } from 'xy-parser';
 
 import { Chromatogram } from '../Chromatogram';
+
 
 /**
  * Creates a new Chromatogram element based in a Txt string
@@ -10,7 +11,7 @@ import { Chromatogram } from '../Chromatogram';
  */
 export function fromText(text, options) {
   options = Object.assign({}, options, { arrayType: 'xxyy' });
-  const data = parserXY.parse(text, options);
+  const data = parseXY(text, options);
 
   const time = data[0];
   let series = {

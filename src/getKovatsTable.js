@@ -20,7 +20,7 @@ export function getKovatsTable(reference, options = {}) {
     groupWidth = 5
   } = options;
 
-    // Peak picking
+  // Peak picking
   let peaks = getPeaks(reference, { heightFilter });
   /* istanbul ignore next */
   peaks = peaks.sort((a, b) => a.index - b.index);

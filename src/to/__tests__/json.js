@@ -1,4 +1,4 @@
-import { simple } from '../../__tests__/examples.js';
+import { simple } from '../../../testFiles/examples.js';
 
 test('Create a JSON', () => {
   let json = JSON.stringify(simple);

@@ -22,7 +22,7 @@ export function massInPeaks(peakList, sampleMS, options = {}) {
     method = 'slot'
   } = options;
 
-    // integrate MS
+  // integrate MS
   for (let i = 0; i < peakList.length; ++i) {
     var serie = { dimension: 2, data: sampleMS };
     var integral = _merge(serie, peakList[i].left.index, peakList[i].right.index, slot, method);

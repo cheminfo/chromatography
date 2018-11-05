@@ -1,5 +1,5 @@
 import { Chromatogram } from '../..';
-import { simple } from '../../__tests__/examples';
+import { simple } from '../../../testFiles/examples.js';
 
 test('simple case', () => {
   simple.calculateTic();
