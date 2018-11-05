@@ -59,6 +59,10 @@ export class Chromatogram {
     return Object.keys(this.series);
   }
 
+  hasMass() {
+    return this.hasSerie('ms');
+  }
+
   /**
    * Delete a serie
    * @param {string} name - Name of the serie
