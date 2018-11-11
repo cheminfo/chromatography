@@ -63,7 +63,7 @@
     "ml-gsd": "^2.0.2",
     "ml-regression-polynomial": "^1.0.2",
     "mzdata": "^1.1.0",
-    "netcdf-gcms": "^1.1.0",
+    "netcdf-gcms": "^1.2.3",
     "num-sort": "^1.0.0",
     "xy-parser": "^2.2.0"
   }
