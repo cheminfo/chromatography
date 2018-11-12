@@ -3,9 +3,7 @@ import arrayMean from 'ml-array-mean';
 import { serieFromArray } from '../serieFromArray';
 
 export function meanFilter(chromatogram, serieName, options = {}) {
-  const {
-    factor = 2
-  } = options;
+  const { factor = 2 } = options;
 
   var serie = chromatogram.getSerie(serieName);
   var filtered = [];
@@ -17,8 +15,9 @@ export function meanFilter(chromatogram, serieName, options = {}) {
 }
 
 function applyFilter(serie, factor) {
-  const meanIntensity = factor * arrayMean(serie[1]);
   var filtered = [[], []];
+  if (serie[1].length === 0) return filtered;
+  const meanIntensity = factor * arrayMean(serie[1]);
   for (var i = 0; i < serie[0].length; i++) {
     if (serie[1][i] > meanIntensity) {
       filtered[0].push(serie[0][i]);
