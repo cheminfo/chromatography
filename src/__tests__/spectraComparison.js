@@ -41,9 +41,9 @@ test('Simple case', () => {
   chrom2.addSerie('ms', ms2);
 
   let compared = spectraComparison(chrom1, chrom2, options);
-  expect(compared.peaksSimilarity).toEqual([1, 1, 1, 1, 1]);
-  expect(compared.peaksFirst.map((val) => val.x)).toEqual([10, 20, 30, 40, 50]);
-  expect(compared.peaksSecond.map((val) => val.x)).toEqual([20, 30, 40, 50, 60]);
+  expect(compared.peaksSimilarity).toStrictEqual([1, 1, 1, 1, 1]);
+  expect(compared.peaksFirst.map((val) => val.x)).toStrictEqual([10, 20, 30, 40, 50]);
+  expect(compared.peaksSecond.map((val) => val.x)).toStrictEqual([20, 30, 40, 50, 60]);
 });
 
 test('Shifted peaks', () => {
@@ -85,9 +85,9 @@ test('Shifted peaks', () => {
   chrom2.addSerie('ms', ms2);
 
   let compared = spectraComparison(chrom1, chrom2, options);
-  expect(compared.peaksSimilarity).toEqual([1, 1, 1, 1]);
-  expect(compared.peaksFirst.map((val) => val.x)).toEqual([20, 30, 40, 50]);
-  expect(compared.peaksSecond.map((val) => val.x)).toEqual([20, 30, 40, 50]);
+  expect(compared.peaksSimilarity).toStrictEqual([1, 1, 1, 1]);
+  expect(compared.peaksFirst.map((val) => val.x)).toStrictEqual([20, 30, 40, 50]);
+  expect(compared.peaksSecond.map((val) => val.x)).toStrictEqual([20, 30, 40, 50]);
 });
 
 test('Remove similar peaks in the similarity matrix column', () => {
@@ -137,7 +137,7 @@ test('Remove similar peaks in the similarity matrix column', () => {
   chrom2.addSerie('ms', ms2);
 
   let compared = spectraComparison(chrom1, chrom2, options);
-  expect(compared.peaksSimilarity).toEqual([1, 1]);
-  expect(compared.peaksFirst.map((val) => val.x)).toEqual([40, 50]);
-  expect(compared.peaksSecond.map((val) => val.x)).toEqual([50, 60]);
+  expect(compared.peaksSimilarity).toStrictEqual([1, 1]);
+  expect(compared.peaksFirst.map((val) => val.x)).toStrictEqual([40, 50]);
+  expect(compared.peaksSecond.map((val) => val.x)).toStrictEqual([50, 60]);
 });

@@ -3,7 +3,7 @@ import { Chromatogram } from '..';
 import { chromato, simple } from '../../testFiles/examples';
 
 describe('General methods', () => {
-  test('Constructor errors', () => {
+  it('Constructor errors', () => {
     expect(() => {
       new Chromatogram({ a: 1 }); // eslint-disable-line
     }).toThrow('Times must be an array');
@@ -15,23 +15,23 @@ describe('General methods', () => {
     }).toThrow('The time serie is mandatory');
   });
 
-  test('get first and last time', () => {
+  it('get first and last time', () => {
     let chrom = new Chromatogram([1, 2, 3]);
-    expect(chrom.firstTime).toEqual(1);
-    expect(chrom.lastTime).toEqual(3);
+    expect(chrom.firstTime).toStrictEqual(1);
+    expect(chrom.lastTime).toStrictEqual(3);
   });
 
-  test('get first and last time of typed array', () => {
+  it('get first and last time of typed array', () => {
     let array = new Uint16Array(3);
     array[0] = 1;
     array[1] = 2;
     array[2] = 3;
     let chrom = new Chromatogram(array);
-    expect(chrom.firstTime).toEqual(1);
-    expect(chrom.lastTime).toEqual(3);
+    expect(chrom.firstTime).toStrictEqual(1);
+    expect(chrom.lastTime).toStrictEqual(3);
   });
 
-  test('addSerie errors', () => {
+  it('addSerie errors', () => {
     let chromatogram = new Chromatogram([1, 2], { tic: [1, 2] });
     expect(() => chromatogram.addSerie('abc', 1234)).toThrow(
       'The array size is not the same as the time size'
@@ -48,27 +48,27 @@ describe('General methods', () => {
     );
   });
 
-  test('deleteSerie', () => {
+  it('deleteSerie', () => {
     let chromatogram = new Chromatogram([1, 2], { tic: [1, 2] });
-    expect(chromatogram.hasSerie('tic')).toEqual(true);
+    expect(chromatogram.hasSerie('tic')).toStrictEqual(true);
     expect(() => chromatogram.deleteSerie('ms')).toThrow(
       'The serie "ms" does not exist'
     );
     chromatogram.deleteSerie('tic');
-    expect(chromatogram.hasSerie('tic')).toEqual(false);
+    expect(chromatogram.hasSerie('tic')).toStrictEqual(false);
   });
 
-  test('Copy chromatogram', () => {
+  it('Copy chromatogram', () => {
     let chromatogram = new Chromatogram([1, 2], { tic: [1, 2] });
-    expect(chromatogram.hasSerie('tic')).toEqual(true);
+    expect(chromatogram.hasSerie('tic')).toStrictEqual(true);
     let copy = chromatogram.copy();
-    expect(copy.hasSerie('tic')).toEqual(true);
+    expect(copy.hasSerie('tic')).toStrictEqual(true);
     copy.deleteSerie('tic');
-    expect(copy.hasSerie('tic')).toEqual(false);
-    expect(chromatogram.hasSerie('tic')).toEqual(true);
+    expect(copy.hasSerie('tic')).toStrictEqual(false);
+    expect(chromatogram.hasSerie('tic')).toStrictEqual(true);
   });
 
-  test('Require serie', () => {
+  it('Require serie', () => {
     let chromatogram = new Chromatogram([1, 2], { tic: [1, 2] });
     expect(() => chromatogram.requiresSerie('ms')).toThrow(
       'The serie "ms" does not exist'
@@ -80,9 +80,9 @@ describe('General methods', () => {
 });
 
 describe('Integrations', () => {
-  test('Integrate a tic', () => {
+  it('Integrate a tic', () => {
     var result = chromato.integrate('tic', [[1.5, 5.5]]);
-    expect(result).toEqual([
+    expect(result).toStrictEqual([
       {
         integral: 125,
         from: {
@@ -99,9 +99,9 @@ describe('Integrations', () => {
     ]);
   });
 
-  test('Integrate a ms', () => {
+  it('Integrate a ms', () => {
     var result = simple.merge('ms', [[1, 2]]);
-    expect(result).toEqual([
+    expect(result).toStrictEqual([
       {
         serie: [[100, 101, 200, 201, 300, 301], [10, 11, 20, 21, 30, 31]],
         from: {

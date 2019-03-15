@@ -6,7 +6,7 @@ test('thresholdFactor', () => {
     y: [2, 3, 2, 1]
   };
 
-  expect(massFilter(mass, { thresholdFactor: 0.5 })).toEqual({
+  expect(massFilter(mass, { thresholdFactor: 0.5 })).toStrictEqual({
     x: [1, 2, 4],
     y: [2, 3, 2]
   });
@@ -18,7 +18,7 @@ test('maxNumberPeaks', () => {
     y: [2, 3, 2, 1, 3]
   };
 
-  expect(massFilter(mass, { maxNumberPeaks: 2 })).toEqual({
+  expect(massFilter(mass, { maxNumberPeaks: 2 })).toStrictEqual({
     x: [2, 5],
     y: [3, 3]
   });
@@ -30,7 +30,7 @@ test('groupWidth', () => {
     y: [4, 5, 4, 3, 1]
   };
 
-  expect(massFilter(mass, { groupWidth: 2 })).toEqual({
+  expect(massFilter(mass, { groupWidth: 2 })).toStrictEqual({
     x: [2, 5],
     y: [5, 3]
   });
@@ -50,7 +50,7 @@ test('from massInPeaks', () => {
   ];
 
   peaks = massInPeaks(peaks, mass, { thresholdFactor: 0.5 });
-  expect(peaks).toEqual([
+  expect(peaks).toStrictEqual([
     {
       left: { index: 0 },
       right: { index: 2 },
@@ -71,7 +71,7 @@ test('from vectorify', () => {
   ];
   let vector = vectorify(peaks, { thresholdFactor: 0.5, massPower: 1 });
 
-  expect(vector).toEqual([
+  expect(vector).toStrictEqual([
     {
       x: [2, 3],
       y: [2, 3]

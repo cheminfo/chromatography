@@ -22,7 +22,7 @@ test('Simple case', () => {
 
   const newTime = rescaleTime(time, time2kovats);
   for (let j = 0; j < newTime.length; j++) {
-    expect(newTime[j]).toEqual(time2kovats(time[j]));
+    expect(newTime[j]).toStrictEqual(time2kovats(time[j]));
   }
 });
 
@@ -61,7 +61,7 @@ test('Non-in place', () => {
   chrom.setTimes(newTime);
   const internalTime = chrom.getTimes();
   for (let i = 0; i < newTime.length; i++) {
-    expect(internalTime[i]).toEqual(newTime[i]);
+    expect(internalTime[i]).toStrictEqual(newTime[i]);
   }
 });
 
@@ -99,6 +99,6 @@ test('In place', () => {
   chrom.rescaleTime(time2kovats);
   const internalTime = chrom.getTimes();
   for (let i = 0; i < internalTime.length; i++) {
-    expect(internalTime[i] < 3100).toEqual(true);
+    expect(internalTime[i] < 3100).toStrictEqual(true);
   }
 });

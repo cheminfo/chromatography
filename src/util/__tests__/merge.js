@@ -10,7 +10,7 @@ const highResolution = new Chromatogram([1, 2], {
 
 test('Low resolution', () => {
   var result = merge(simple, 'ms', [[1, 2]]);
-  expect(result).toEqual([
+  expect(result).toStrictEqual([
     {
       serie: [[100, 101, 200, 201, 300, 301], [10, 11, 20, 21, 30, 31]],
       from: {
@@ -26,7 +26,7 @@ test('Low resolution', () => {
 });
 
 test('High resolution', () => {
-  expect(merge(highResolution, 'ms', [[1, 2]])).toEqual([
+  expect(merge(highResolution, 'ms', [[1, 2]])).toStrictEqual([
     {
       serie: [[100, 200, 300], [21, 41, 61]],
       from: {
@@ -44,7 +44,7 @@ test('High resolution', () => {
     merge(highResolution, 'ms', [[1, 2]], {
       delta: 0.01
     })
-  ).toEqual([
+  ).toStrictEqual([
     {
       serie: [[100.0, 200.01, 200.02, 300.0], [21, 21, 20, 61]],
       from: {
@@ -74,7 +74,7 @@ test('Errors', () => {
 });
 
 describe('centroid integration', () => {
-  test('symmetric case', () => {
+  it('symmetric case', () => {
     const integral = merge(highResolution, 'ms', [[1, 2]], {
       algorithm: 'centroid',
       delta: 0.01
@@ -89,10 +89,10 @@ describe('centroid integration', () => {
     for (var i = 0; i < result.length; i++) {
       expect(integral[0][i]).toBeCloseTo(result[i], 5);
     }
-    expect(integral[1]).toEqual([21, 21, 20, 61]);
+    expect(integral[1]).toStrictEqual([21, 21, 20, 61]);
   });
 
-  test('asymmetric to right', () => {
+  it('asymmetric to right', () => {
     const integral = merge(
       new Chromatogram([1, 2], {
         ms: [
@@ -117,10 +117,10 @@ describe('centroid integration', () => {
     for (var i = 0; i < result.length; i++) {
       expect(integral[0][i]).toBeCloseTo(result[i], 5);
     }
-    expect(integral[1]).toEqual([21, 21, 93, 40]);
+    expect(integral[1]).toStrictEqual([21, 21, 93, 40]);
   });
 
-  test('asymmetric to left', () => {
+  it('asymmetric to left', () => {
     const integral = merge(
       new Chromatogram([1, 2], {
         ms: [
@@ -145,12 +145,12 @@ describe('centroid integration', () => {
     for (var i = 0; i < result.length; i++) {
       expect(integral[0][i]).toBeCloseTo(result[i], 5);
     }
-    expect(integral[1]).toEqual([21, 20, 93, 40]);
+    expect(integral[1]).toStrictEqual([21, 20, 93, 40]);
   });
 });
 
 describe('centroid edge cases', () => {
-  test('single spectra', () => {
+  it('single spectra', () => {
     const integral = merge(
       new Chromatogram([1], {
         ms: [[[300.001, 300.01, 300.019], [10, 20, 30]]]
@@ -168,7 +168,7 @@ describe('centroid edge cases', () => {
     expect(integral[1][0]).toBe(60);
   });
 
-  test('two spectra', () => {
+  it('two spectra', () => {
     const integral = merge(
       new Chromatogram([1, 2], {
         ms: [[[300.001, 300.019], [10, 30]], [[300.01], [20]]]
@@ -186,7 +186,7 @@ describe('centroid edge cases', () => {
     expect(integral[1][0]).toBe(60);
   });
 
-  test('three spectra', () => {
+  it('three spectra', () => {
     const integral = merge(
       new Chromatogram([1, 2, 3], {
         ms: [[[300.001], [10]], [[300.019], [30]], [[300.01], [20]]]

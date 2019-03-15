@@ -21,8 +21,8 @@ test('simple case', () => {
   expect(chromatogram).toHaveLength(newLength);
   expect(chromatogram.getSerie('ms').data).toHaveLength(newLength);
 
-  expect(chromatogram.getTimes()).toEqual([1]);
-  expect(chromatogram.getSerie('ms').data[0][1]).toEqual([10, 20, 30]);
+  expect(chromatogram.getTimes()).toStrictEqual([1]);
+  expect(chromatogram.getSerie('ms').data[0][1]).toStrictEqual([10, 20, 30]);
 
   const expectedMass = [100.005, 200.005, 300.005];
   expect(chromatogram.getSerie('ms').data[0][0]).toBeDeepCloseTo(expectedMass, 3);
@@ -45,8 +45,8 @@ test('array of mf', () => {
   expect(chromatogram).toHaveLength(newLength);
   expect(chromatogram.getSerie('ms').data).toHaveLength(newLength);
 
-  expect(chromatogram.getTimes()).toEqual([1]);
-  expect(chromatogram.getSerie('ms').data[0][1]).toEqual([10, 20, 30]);
+  expect(chromatogram.getTimes()).toStrictEqual([1]);
+  expect(chromatogram.getSerie('ms').data[0][1]).toStrictEqual([10, 20, 30]);
 
   const expectedMass = [100.005, 200.005, 300.005];
   expect(chromatogram.getSerie('ms').data[0][0]).toBeDeepCloseTo(expectedMass, 3);
@@ -71,7 +71,7 @@ test('different references', () => {
     oddReference: false
   }); // em: 622.02951
 
-  expect(referenceUsed).toEqual({
+  expect(referenceUsed).toStrictEqual({
     C100: 0,
     C12H19F12N3O6P3: 1,
     C10H20O3: 1,
@@ -84,9 +84,9 @@ test('different references', () => {
   expect(chromatogram).toHaveLength(newLength);
   expect(chromatogram.getSerie('ms').data).toHaveLength(newLength);
 
-  expect(chromatogram.getTimes()).toEqual([2, 4, 6]);
-  expect(chromatogram.getSerie('ms').data[0][1]).toEqual([10, 20, 30]);
-  expect(chromatogram.getSerie('ms').data[1][1]).toEqual([10, 20, 30]);
+  expect(chromatogram.getTimes()).toStrictEqual([2, 4, 6]);
+  expect(chromatogram.getSerie('ms').data[0][1]).toStrictEqual([10, 20, 30]);
+  expect(chromatogram.getSerie('ms').data[1][1]).toStrictEqual([10, 20, 30]);
 
   const expectedMass = [100.005, 200.005, 300.005];
   expect(chromatogram.getSerie('ms').data[0][0]).toBeDeepCloseTo(expectedMass, 3);

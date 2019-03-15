@@ -4,7 +4,7 @@ import { simple } from '../../../testFiles/examples.js';
 test('simple case', () => {
   simple.calculateTic();
   expect(simple.getSerieNames()).toContain('tic');
-  expect(simple.getSerie('tic').data).toEqual([60, 63]);
+  expect(simple.getSerie('tic').data).toStrictEqual([60, 63]);
 });
 
 test('Errors', () => {

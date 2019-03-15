@@ -4,7 +4,7 @@ import { simple } from '../../../testFiles/examples';
 test('simple case', () => {
   simple.calculateBpc();
   expect(simple.getSerieNames()).toContain('bpc');
-  expect(simple.getSerie('bpc').data).toEqual([30, 31]);
+  expect(simple.getSerie('bpc').data).toStrictEqual([30, 31]);
 });
 
 test('empty mass', () => {
@@ -18,7 +18,7 @@ test('empty mass', () => {
   );
   example.calculateBpc();
   expect(example.getSerieNames()).toContain('bpc');
-  expect(example.getSerie('bpc').data).toEqual([0, 31]);
+  expect(example.getSerie('bpc').data).toStrictEqual([0, 31]);
 });
 
 test('Errors', () => {

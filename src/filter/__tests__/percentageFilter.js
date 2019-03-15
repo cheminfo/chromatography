@@ -1,5 +1,5 @@
 import { Chromatogram } from '../../index';
-import { percentageFilter } from '../../filter/percentageFilter';
+import { percentageFilter } from '../percentageFilter';
 
 test('simple case', () => {
   let chromatogram = new Chromatogram(
@@ -12,7 +12,7 @@ test('simple case', () => {
   );
 
   let ms = percentageFilter(chromatogram, 'ms');
-  expect(ms.data).toEqual([
+  expect(ms.data).toStrictEqual([
     [[200, 300], [40, 300]],
     [[600], [274]]
   ]);
@@ -29,11 +29,11 @@ describe('inplace', () => {
       }
     );
     chromatogram.percentageFilter('ms');
-    expect(chromatogram.series.msPercentage.data).toEqual([
+    expect(chromatogram.series.msPercentage.data).toStrictEqual([
       [[200, 300], [40, 300]],
       [[600], [274]]
     ]);
-    expect(chromatogram.series.ms.data).toEqual([
+    expect(chromatogram.series.ms.data).toStrictEqual([
       [[100, 200, 300], [10, 40, 300]],
       [[600], [274]]
     ]);
@@ -49,11 +49,11 @@ describe('inplace', () => {
       }
     );
     chromatogram.percentageFilter('ms', { serieName: 'filtered' });
-    expect(chromatogram.series.filtered.data).toEqual([
+    expect(chromatogram.series.filtered.data).toStrictEqual([
       [[200, 300], [40, 300]],
       [[600], [274]]
     ]);
-    expect(chromatogram.series.ms.data).toEqual([
+    expect(chromatogram.series.ms.data).toStrictEqual([
       [[100, 200, 300], [10, 40, 300]],
       [[600], [274]]
     ]);

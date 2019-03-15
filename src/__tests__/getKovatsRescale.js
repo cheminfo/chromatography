@@ -13,7 +13,7 @@ test('triplet', () => {
   };
 
   let kovatsRescale = getKovatsRescale(chrom, options);
-  expect(kovatsRescale.kovatsIndexes).toEqual([{ time: 15, value: 0 }]);
+  expect(kovatsRescale.kovatsIndexes).toStrictEqual([{ time: 15, value: 0 }]);
   expect(kovatsRescale.peaks).toHaveLength(1);
 });
 
@@ -28,6 +28,6 @@ test('inplace', () => {
   };
 
   let kovatsRescale = chrom.getKovatsRescale(options);
-  expect(kovatsRescale.kovatsIndexes).toEqual([{ time: 15, value: 0 }]);
+  expect(kovatsRescale.kovatsIndexes).toStrictEqual([{ time: 15, value: 0 }]);
   expect(kovatsRescale.peaks).toHaveLength(1);
 });

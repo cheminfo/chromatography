@@ -5,7 +5,7 @@ var chrom = new Chromatogram([1, 2, 3, 4], { tic: [2, 4, 6, 8] });
 
 test('Integrate a tic', () => {
   var result = integrate(chromato, 'tic', [[1.8, 5.5]]);
-  expect(result).toEqual([
+  expect(result).toStrictEqual([
     {
       integral: 120.05,
       from: {
@@ -38,7 +38,7 @@ test('Errors', () => {
 describe('Applies baseline correction', () => {
   it('without baseline', () => {
     var result = integrate(chrom, 'tic', [[1, 3]], { baseline: false });
-    expect(result).toEqual([
+    expect(result).toStrictEqual([
       {
         integral: 8,
         from: {
@@ -57,7 +57,7 @@ describe('Applies baseline correction', () => {
 
   it('trapezoid baseline', () => {
     var result = integrate(chrom, 'tic', [[1, 3]], { baseline: 'trapezoid' });
-    expect(result).toEqual([
+    expect(result).toStrictEqual([
       {
         integral: 0,
         from: {
@@ -76,7 +76,7 @@ describe('Applies baseline correction', () => {
 
   it('min baseline', () => {
     var result = integrate(chrom, 'tic', [[1, 3]], { baseline: 'min' });
-    expect(result).toEqual([
+    expect(result).toStrictEqual([
       {
         integral: 4,
         from: {
@@ -94,7 +94,7 @@ describe('Applies baseline correction', () => {
 
     var other = new Chromatogram([1, 2, 3], { tic: [6, 4, 2] });
     result = integrate(other, 'tic', [[1, 3]], { baseline: 'min' });
-    expect(result).toEqual([
+    expect(result).toStrictEqual([
       {
         integral: 4,
         from: {

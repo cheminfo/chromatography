@@ -63,14 +63,14 @@ test('simple case', () => {
     }
   ];
 
-  expect(vectorify(peaks, { massPower: 1 })).toEqual([
+  expect(vectorify(peaks, { massPower: 1 })).toStrictEqual([
     {
       x: [1, 2, 3],
       y: [1, 2, 3]
     }
   ]);
 
-  expect(vectorify(peaks)).toEqual([
+  expect(vectorify(peaks)).toStrictEqual([
     {
       x: [1, 2, 3],
       y: [1, 8, 27]

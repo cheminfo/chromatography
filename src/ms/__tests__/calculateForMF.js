@@ -3,9 +3,9 @@ import { simple } from '../../../testFiles/examples';
 
 test('calculateForMF: simple case', () => {
   simple.calculateForMF('C10.C16H7', { ionizations: 'H+,Na+,K+' });
-  expect(simple.getSerie('msC10.C16H7-H+,Na+,K+-0.5').data).toEqual([20, 0]);
+  expect(simple.getSerie('msC10.C16H7-H+,Na+,K+-0.5').data).toStrictEqual([20, 0]);
   simple.calculateForMF('C16H7', { error: 1, ionizations: 'H+,Na+,K+' });
-  expect(simple.getSerie('msC16H7-H+,Na+,K+-1').data).toEqual([20, 21]);
+  expect(simple.getSerie('msC16H7-H+,Na+,K+-1').data).toStrictEqual([20, 21]);
 });
 
 test('Errors', () => {

@@ -5,7 +5,7 @@ test('Parse a JSON', () => {
   let newChromatogram = fromJSON(JSON.parse(simpleStringified));
   expect(newChromatogram.getSerie('ms').data).toHaveLength(2);
   expect(newChromatogram.times).toHaveLength(2);
-  expect(newChromatogram.getSerieNames()).toEqual(['ms']);
+  expect(newChromatogram.getSerieNames()).toStrictEqual(['ms']);
 });
 
 test('Serie as an array', () => {
@@ -16,5 +16,5 @@ test('Serie as an array', () => {
   let newChromatogram = fromJSON({ times: [0, 1], series });
   expect(newChromatogram.getSerie('ms').data).toHaveLength(2);
   expect(newChromatogram.times).toHaveLength(2);
-  expect(newChromatogram.getSerieNames()).toEqual(['ms', 'tic']);
+  expect(newChromatogram.getSerieNames()).toStrictEqual(['ms', 'tic']);
 });

@@ -10,8 +10,8 @@ test('Parse a text', () => {
   let newChromatogram = fromText(text);
   expect(newChromatogram.getSerie('intensity').data).toHaveLength(3);
   expect(newChromatogram.times).toHaveLength(3);
-  expect(newChromatogram.times).toEqual([1, 2, 3]);
-  expect(newChromatogram.getSerieNames()).toEqual(['intensity']);
+  expect(newChromatogram.times).toStrictEqual([1, 2, 3]);
+  expect(newChromatogram.getSerieNames()).toStrictEqual(['intensity']);
 });
 
 test('Parse a text with options', () => {
@@ -27,6 +27,6 @@ test('Parse a text with options', () => {
   });
   expect(newChromatogram.getSerie('intensity').data).toHaveLength(3);
   expect(newChromatogram.times).toHaveLength(3);
-  expect(newChromatogram.times).toEqual([2, 3, 4]);
-  expect(newChromatogram.getSerieNames()).toEqual(['intensity']);
+  expect(newChromatogram.times).toStrictEqual([2, 3, 4]);
+  expect(newChromatogram.getSerieNames()).toStrictEqual(['intensity']);
 });

@@ -1,51 +1,51 @@
 import { Chromatogram } from '../../index';
-import { meanFilter } from '../../filter/meanFilter';
+import { meanFilter } from '../meanFilter';
 
 describe('meanFilter', () => {
-  test('simple case', () => {
+  it('simple case', () => {
     let chromatogram = new Chromatogram([1, 2], {
       ms: [[[100, 200, 300], [10, 20, 300]], [[600], [274]]]
     });
 
     let ms = meanFilter(chromatogram, 'ms');
-    expect(ms.data).toEqual([[[300], [300]], [[], []]]);
+    expect(ms.data).toStrictEqual([[[300], [300]], [[], []]]);
   });
-  test('test with empty array', () => {
+  it('test with empty array', () => {
     let chromatogram = new Chromatogram([1, 2], {
       ms: [[[100, 200, 300], [10, 20, 300]], [[], []]]
     });
 
     let ms = meanFilter(chromatogram, 'ms');
-    expect(ms.data).toEqual([[[300], [300]], [[], []]]);
+    expect(ms.data).toStrictEqual([[[300], [300]], [[], []]]);
   });
 });
 
 describe('meanFilter inplace', () => {
-  test('default behavior', () => {
+  it('default behavior', () => {
     let chromatogram = new Chromatogram([1, 2], {
       ms: [[[100, 200, 300], [10, 20, 300]], [[600], [274]]]
     });
     chromatogram.meanFilter('ms');
-    expect(chromatogram.series.msMedian.data).toEqual([
+    expect(chromatogram.series.msMedian.data).toStrictEqual([
       [[300], [300]],
       [[], []]
     ]);
-    expect(chromatogram.series.ms.data).toEqual([
+    expect(chromatogram.series.ms.data).toStrictEqual([
       [[100, 200, 300], [10, 20, 300]],
       [[600], [274]]
     ]);
   });
 
-  test('input name', () => {
+  it('input name', () => {
     let chromatogram = new Chromatogram([1, 2], {
       ms: [[[100, 200, 300], [10, 20, 300]], [[600], [274]]]
     });
     chromatogram.meanFilter('ms', { serieName: 'filtered' });
-    expect(chromatogram.series.filtered.data).toEqual([
+    expect(chromatogram.series.filtered.data).toStrictEqual([
       [[300], [300]],
       [[], []]
     ]);
-    expect(chromatogram.series.ms.data).toEqual([
+    expect(chromatogram.series.ms.data).toStrictEqual([
       [[100, 200, 300], [10, 20, 300]],
       [[600], [274]]
     ]);

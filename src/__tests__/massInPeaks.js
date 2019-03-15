@@ -61,7 +61,7 @@ test('simple case', () => {
       [[1, 2, 5], [1, 1, 1]],
       [[3, 4], [1, 1]]
     ])
-  ).toEqual([
+  ).toStrictEqual([
     {
       left: { index: 0 },
       right: { index: 2 },
@@ -82,7 +82,7 @@ test('thresholdFactor', () => {
   ];
   let mass = [[[1, 2], [1, 1]], [[1, 2, 5], [1, 1, 1]], [[2, 4], [1, 1]]];
 
-  expect(massInPeaks(peaks, mass, { thresholdFactor: 0.5 })).toEqual([
+  expect(massInPeaks(peaks, mass, { thresholdFactor: 0.5 })).toStrictEqual([
     {
       left: { index: 0 },
       right: { index: 2 },
@@ -103,7 +103,7 @@ test('maxNumberPeaks', () => {
   ];
   let mass = [[[1, 2], [1, 1]], [[1, 2, 5], [1, 1, 1]], [[2, 4], [1, 2]]];
 
-  expect(massInPeaks(peaks, mass, { maxNumberPeaks: 3 })).toEqual([
+  expect(massInPeaks(peaks, mass, { maxNumberPeaks: 3 })).toStrictEqual([
     {
       left: { index: 0 },
       right: { index: 2 },

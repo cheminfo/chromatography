@@ -28,7 +28,7 @@ test('triplet', () => {
   };
 
   let table = getKovatsTable(chrom, options);
-  expect(table.kovatsIndexes).toEqual([{ time: 15, value: 800 }]);
+  expect(table.kovatsIndexes).toStrictEqual([{ time: 15, value: 800 }]);
 });
 
 test('default', () => {
@@ -50,5 +50,5 @@ test('default', () => {
   chrom.addSerie('ms', ms);
 
   let table = getKovatsTable(chrom);
-  expect(table).toEqual({ kovatsIndexes: [], peaks: [] });
+  expect(table).toStrictEqual({ kovatsIndexes: [], peaks: [] });
 });
