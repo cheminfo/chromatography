@@ -54,15 +54,15 @@ export function getPeaks(chromatogram, options = {}) {
     heightFactor: 2,
     boundaries: true
   });
-  peakList.sort((a, b) => a.height - b.height);
+
+  // peakList.sort((a, b) => a.height - b.height);
 
   // filter height by factor
   let medianHeight = peakList[Math.floor((peakList.length - 1) / 2)].height;
   peakList = peakList.filter((val) => val.height > medianHeight * heightFilter);
 
-  var factor = broadenPeaks.factor === undefined ? 1 : broadenPeaks.factor;
-  var overlap =
-    broadenPeaks.overlap === undefined ? false : broadenPeaks.overlap;
+  var { factor = 1, overlap = false } = broadenPeaks;
+
   post.broadenPeaks(peakList, {
     factor,
     overlap
