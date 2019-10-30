@@ -136,6 +136,7 @@ test('Remove similar peaks in the similarity matrix column', () => {
       lorentzian(i, 6 * peakX);
 
     ms1[i] = [[i + 10, 2 * (i + 10), 3 * (i + 10)], [1, 1, 1]];
+    // eslint-disable-next-line jest/no-if
     if (i < 45) {
       ms2[i] = [
         [28, 29, 30, 31, 32, 56, 58, 60, 62, 64, 84, 87, 90, 93, 96],
