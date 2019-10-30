@@ -15,7 +15,7 @@ describe('filter', () => {
     expect(chromatogram.getTimes()).toStrictEqual([2, 4]);
     expect(chromatogram.getSerie('ms').data).toStrictEqual([
       [[102, 202, 302], [12, 22, 32]],
-      [[104, 204, 304], [14, 24, 34]]
+      [[104, 204, 304], [14, 24, 34]],
     ]);
   });
 
@@ -26,7 +26,7 @@ describe('filter', () => {
     expect(chromatogram.getTimes()).toStrictEqual([1, 2]);
     expect(chromatogram.getSerie('ms').data).toStrictEqual([
       [[101, 201, 301], [11, 21, 31]],
-      [[102, 202, 302], [12, 22, 32]]
+      [[102, 202, 302], [12, 22, 32]],
     ]);
   });
 
@@ -37,4 +37,3 @@ describe('filter', () => {
     expect(copy.getTimes()).toHaveLength(2);
   });
 });
-

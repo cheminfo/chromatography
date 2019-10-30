@@ -11,9 +11,7 @@ import { baselineCorrection } from './baselineCorrection';
  * @return {[]}
  */
 export function integrate(chromatogram, name, ranges, options = {}) {
-  const {
-    baseline = false
-  } = options;
+  const { baseline = false } = options;
 
   if (!Array.isArray(ranges)) {
     throw new Error('ranges must be an array of type [[from,to]]');
@@ -41,7 +39,9 @@ export function integrate(chromatogram, name, ranges, options = {}) {
     let fromIndex = getClosestTime(from, time).safeIndexBefore;
     let toIndex = getClosestTime(to, time).safeIndexAfter;
 
-    results.push(_integrate(time, serie, from, to, fromIndex, toIndex, baseline));
+    results.push(
+      _integrate(time, serie, from, to, fromIndex, toIndex, baseline),
+    );
   }
 
   return results;
@@ -54,35 +54,42 @@ function _integrate(time, serie, from, to, fromIndex, toIndex, baseline) {
     let timeStart = time[i];
     let timeEnd = time[i + 1];
     let heightStart = serie.data[i];
-    if (i === fromIndex) { // need to check the exact starting point
-      heightStart = serie.data[i] + (serie.data[i + 1] - serie.data[i]) * (from - timeStart) / (timeEnd - timeStart);
+    if (i === fromIndex) {
+      // need to check the exact starting point
+      heightStart =
+        serie.data[i] +
+        ((serie.data[i + 1] - serie.data[i]) * (from - timeStart)) /
+          (timeEnd - timeStart);
       base.start = { height: heightStart, time: from };
       timeStart = from;
     }
 
     let heightEnd = serie.data[i + 1];
     if (i === toIndex - 1) {
-      heightEnd = serie.data[i] + (serie.data[i + 1] - serie.data[i]) * (to - timeStart) / (timeEnd - timeStart);
+      heightEnd =
+        serie.data[i] +
+        ((serie.data[i + 1] - serie.data[i]) * (to - timeStart)) /
+          (timeEnd - timeStart);
       base.end = { height: heightEnd, time: to };
       timeEnd = to;
     }
-    total += (timeEnd - timeStart) * (heightStart + heightEnd) / 2;
+    total += ((timeEnd - timeStart) * (heightStart + heightEnd)) / 2;
   }
 
   if (baseline) {
-    var ans = baselineCorrection(total, base, baseline);
+    let ans = baselineCorrection(total, base, baseline);
     return {
       integral: ans.integral,
       from: {
         time: from,
         index: fromIndex,
-        baseline: ans.base.start.height
+        baseline: ans.base.start.height,
       },
       to: {
         time: to,
         index: toIndex,
-        baseline: ans.base.end.height
-      }
+        baseline: ans.base.end.height,
+      },
     };
   } else {
     return {
@@ -90,13 +97,13 @@ function _integrate(time, serie, from, to, fromIndex, toIndex, baseline) {
       from: {
         time: from,
         index: fromIndex,
-        baseline: 0
+        baseline: 0,
       },
       to: {
         time: to,
         index: toIndex,
-        baseline: 0
-      }
+        baseline: 0,
+      },
     };
   }
 }

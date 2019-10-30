@@ -23,7 +23,7 @@ test('Parse a text with options', () => {
 
   let newChromatogram = fromText(text, {
     xColumn: 1,
-    yColumn: 2
+    yColumn: 2,
   });
   expect(newChromatogram.getSerie('intensity').data).toHaveLength(3);
   expect(newChromatogram.times).toHaveLength(3);

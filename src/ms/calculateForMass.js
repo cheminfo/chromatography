@@ -15,8 +15,8 @@ export function calculateForMass(chromatogram, targetMass, options = {}) {
   if (!ms) {
     throw Error('calculateForMass: the mass serie must be defined');
   }
-  var massSpectra = ms.data;
-  var result = new Array(massSpectra.length).fill(0);
+  let massSpectra = ms.data;
+  let result = new Array(massSpectra.length).fill(0);
   for (let i = 0; i < massSpectra.length; i++) {
     let massSpectrum = massSpectra[i];
     for (let j = 0; j < massSpectrum[0].length; j++) {

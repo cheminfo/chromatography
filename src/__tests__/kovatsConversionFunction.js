@@ -3,7 +3,7 @@ import { kovatsConversionFunction } from '..';
 const conversionTable = [
   { time: 10, value: 800 },
   { time: 20, value: 900 },
-  { time: 30, value: 1000 }
+  { time: 30, value: 1000 },
 ];
 
 test('from time to kovats', () => {
@@ -16,7 +16,9 @@ test('from time to kovats', () => {
 });
 
 test('from kovats to time', () => {
-  const kovats2time = kovatsConversionFunction(conversionTable, { revert: true });
+  const kovats2time = kovatsConversionFunction(conversionTable, {
+    revert: true,
+  });
   expect(kovats2time(800)).toStrictEqual(10);
   expect(kovats2time(850)).toStrictEqual(15);
   expect(kovats2time(900)).toStrictEqual(20);

@@ -23,7 +23,7 @@ function preprocessing(chromatography, options) {
   return {
     peaks,
     integratedMs,
-    vector
+    vector,
   };
 }
 
@@ -34,7 +34,7 @@ const defaultOption = {
   heightFilter: 2,
   massPower: 3,
   intPower: 0.6,
-  similarityThreshold: 0.7
+  similarityThreshold: 0.7,
 };
 
 /**
@@ -66,7 +66,7 @@ export function spectraComparison(chrom1, chrom2, options) {
   let similarityPeaks = {
     chrom1: new Array(len),
     chrom2: new Array(len),
-    similarity: new Array(len)
+    similarity: new Array(len),
   };
   let similarLen = 0;
 
@@ -75,13 +75,18 @@ export function spectraComparison(chrom1, chrom2, options) {
     let max = { similarity: -3 };
     let biggerCounter = 0;
     for (let j = 0; j < reference.peaks.length; ++j) {
-      let sim = cosine(sample.vector[i].x, sample.vector[i].y, reference.vector[j].x, reference.vector[j].y);
+      let sim = cosine(
+        sample.vector[i].x,
+        sample.vector[i].y,
+        reference.vector[j].x,
+        reference.vector[j].y,
+      );
 
       if (sim > options.similarityThreshold && sim > max.similarity) {
         max = {
           similarity: sim,
           chrom1: reference.peaks[j],
-          chrom2: sample.peaks[i]
+          chrom2: sample.peaks[i],
         };
       }
       if (sim > options.similarityThreshold) {

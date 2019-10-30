@@ -28,11 +28,11 @@ export function getPeaks(chromatogram, options = {}) {
     smoothY: true,
     sgOptions: { windowSize: 5, polynomial: 2 },
     heightFactor: 2,
-    boundaries: true
+    boundaries: true,
   });
 
   peakList.sort(
-    (a, b) => a.right.index - a.left.index - (b.right.index - b.left.index)
+    (a, b) => a.right.index - a.left.index - (b.right.index - b.left.index),
   );
   let medianDotsWidth = peakList[Math.floor((peakList.length - 1) / 2)];
   medianDotsWidth = medianDotsWidth.right.index - medianDotsWidth.left.index;
@@ -52,20 +52,20 @@ export function getPeaks(chromatogram, options = {}) {
     smoothY: true,
     sgOptions: { windowSize: medianDotsWidth, polynomial: 2 },
     heightFactor: 2,
-    boundaries: true
+    boundaries: true,
   });
 
-  // peakList.sort((a, b) => a.height - b.height);
+  peakList.sort((a, b) => a.height - b.height);
 
   // filter height by factor
   let medianHeight = peakList[Math.floor((peakList.length - 1) / 2)].height;
   peakList = peakList.filter((val) => val.height > medianHeight * heightFilter);
 
-  var { factor = 1, overlap = false } = broadenPeaks;
+  let { factor = 1, overlap = false } = broadenPeaks;
 
   post.broadenPeaks(peakList, {
     factor,
-    overlap
+    overlap,
   });
 
   return peakList;

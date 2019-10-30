@@ -13,10 +13,7 @@ import { getClosestTime } from './getClosestTime';
  * @return {[]}
  */
 export function merge(chromatogram, name, ranges, options = {}) {
-  const {
-    algorithm = 'slot',
-    delta = 1
-  } = options;
+  const { algorithm = 'slot', delta = 1 } = options;
 
   if (!Array.isArray(ranges) || !Array.isArray(ranges[0])) {
     throw new Error('ranges must be an array of type [[from,to]]');
@@ -41,12 +38,12 @@ export function merge(chromatogram, name, ranges, options = {}) {
       serie: _merge(serie, fromIndex, toIndex, delta, algorithm),
       from: {
         time: from,
-        index: fromIndex
+        index: fromIndex,
       },
       to: {
         time: to,
-        index: toIndex
-      }
+        index: toIndex,
+      },
     });
   }
 
@@ -67,11 +64,11 @@ export function _merge(serie, fromIndex, toIndex, delta, algorithm) {
 function slot(fromIndex, toIndex, serie, slot) {
   let massDictionary = {};
 
-  for (var i = fromIndex; i <= toIndex; i++) {
-    for (var j = 0; j < serie.data[i][0].length; j++) {
+  for (let i = fromIndex; i <= toIndex; i++) {
+    for (let j = 0; j < serie.data[i][0].length; j++) {
       // round the mass value
-      var x = serie.data[i][0][j];
-      let mass = x + slot / 2 - (x + slot / 2) % slot;
+      let x = serie.data[i][0][j];
+      let mass = x + slot / 2 - ((x + slot / 2) % slot);
 
       // add the mass value to the dictionary
       if (massDictionary[mass]) {
@@ -82,13 +79,12 @@ function slot(fromIndex, toIndex, serie, slot) {
     }
   }
 
-  const massList = Object.keys(massDictionary).map((val) => Number(val)).sort(asc);
-  let integral = [
-    new Array(massList.length),
-    new Array(massList.length)
-  ];
+  const massList = Object.keys(massDictionary)
+    .map((val) => Number(val))
+    .sort(asc);
+  let integral = [new Array(massList.length), new Array(massList.length)];
 
-  for (var k = 0; k < massList.length; k++) {
+  for (let k = 0; k < massList.length; k++) {
     integral[0][k] = Number(massList[k]);
     integral[1][k] = massDictionary[massList[k]];
   }
@@ -96,39 +92,40 @@ function slot(fromIndex, toIndex, serie, slot) {
 }
 
 function centroid(fromIndex, toIndex, serie, slot) {
-  var integral = [[], []];
+  let integral = [[], []];
 
-  for (var i = fromIndex; i <= toIndex; i++) {
+  for (let i = fromIndex; i <= toIndex; i++) {
     integral = mergeCentroids(integral, serie.data[i], slot);
   }
   return integral;
 }
 
 function mergeCentroids(previous, data, slot) {
-  var leftIndex = 0;
-  var rightIndex = 0;
-  var merged = [[], []];
-  var weightedMass = [[], []];
-  var size = 0;
+  let leftIndex = 0;
+  let rightIndex = 0;
+  let merged = [[], []];
+  let weightedMass = [[], []];
+  let size = 0;
 
-  while ((leftIndex < previous[0].length) && (rightIndex < data[0].length)) {
+  while (leftIndex < previous[0].length && rightIndex < data[0].length) {
     if (previous[0][leftIndex] <= data[0][rightIndex]) {
       // append first(left) to result
-      if ((size === 0) || (previous[0][leftIndex] - merged[0][size - 1] > slot)) {
+      if (size === 0 || previous[0][leftIndex] - merged[0][size - 1] > slot) {
         weightedMass[0].push(previous[0][leftIndex] * previous[1][leftIndex]);
         weightedMass[1].push(previous[1][leftIndex]);
         merged[0].push(previous[0][leftIndex]);
         merged[1].push(previous[1][leftIndex++]);
         size++;
       } else {
-        weightedMass[0][size - 1] += previous[0][leftIndex] * previous[1][leftIndex];
+        weightedMass[0][size - 1] +=
+          previous[0][leftIndex] * previous[1][leftIndex];
         weightedMass[1][size - 1] += previous[1][leftIndex];
         merged[0][size - 1] = previous[0][leftIndex];
         merged[1][size - 1] += previous[1][leftIndex++];
       }
     } else {
       // append first(right) to result
-      if ((size === 0) || (data[0][rightIndex] - merged[0][size - 1] > slot)) {
+      if (size === 0 || data[0][rightIndex] - merged[0][size - 1] > slot) {
         weightedMass[0].push(data[0][rightIndex] * data[1][rightIndex]);
         weightedMass[1].push(data[1][rightIndex]);
         merged[0].push(data[0][rightIndex]);
@@ -145,14 +142,15 @@ function mergeCentroids(previous, data, slot) {
 
   while (leftIndex < previous[0].length) {
     // append first(left) to result
-    if ((size === 0) || (previous[0][leftIndex] - merged[0][size - 1] > slot)) {
+    if (size === 0 || previous[0][leftIndex] - merged[0][size - 1] > slot) {
       weightedMass[0].push(previous[0][leftIndex] * previous[1][leftIndex]);
       weightedMass[1].push(previous[1][leftIndex]);
       merged[0].push(previous[0][leftIndex]);
       merged[1].push(previous[1][leftIndex++]);
       size++;
     } else {
-      weightedMass[0][size - 1] += previous[0][leftIndex] * previous[1][leftIndex];
+      weightedMass[0][size - 1] +=
+        previous[0][leftIndex] * previous[1][leftIndex];
       weightedMass[1][size - 1] += previous[1][leftIndex];
       merged[0][size - 1] = previous[0][leftIndex];
       merged[1][size - 1] += previous[1][leftIndex++];
@@ -161,7 +159,7 @@ function mergeCentroids(previous, data, slot) {
 
   while (rightIndex < data[0].length) {
     // append first(right) to result
-    if ((size === 0) || (data[0][rightIndex] - merged[0][size - 1] > slot)) {
+    if (size === 0 || data[0][rightIndex] - merged[0][size - 1] > slot) {
       weightedMass[0].push(data[0][rightIndex] * data[1][rightIndex]);
       weightedMass[1].push(data[1][rightIndex]);
       merged[0].push(data[0][rightIndex]);
@@ -175,7 +173,7 @@ function mergeCentroids(previous, data, slot) {
     }
   }
 
-  for (var i = 0; i < merged[0].length; i++) {
+  for (let i = 0; i < merged[0].length; i++) {
     merged[0][i] = weightedMass[0][i] / weightedMass[1][i];
   }
 

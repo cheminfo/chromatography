@@ -14,7 +14,7 @@ export function cosine(ms1x, ms1y, ms2x, ms2y) {
   let norm1 = 0;
   let norm2 = 0;
 
-  while ((index1 < ms1x.length) || (index2 < ms2x.length)) {
+  while (index1 < ms1x.length || index2 < ms2x.length) {
     let w1 = ms1y[index1];
     let w2 = ms2y[index2];
     if (index2 === ms2x.length || ms1x[index1] < ms2x[index2]) {
@@ -32,10 +32,10 @@ export function cosine(ms1x, ms1y, ms2x, ms2y) {
     }
   }
 
-  var norm1Norm2 = norm1 * norm2;
+  let norm1Norm2 = norm1 * norm2;
   if (norm1Norm2 === 0) {
     return 0;
   } else {
-    return (product * product) / (norm1Norm2);
+    return (product * product) / norm1Norm2;
   }
 }

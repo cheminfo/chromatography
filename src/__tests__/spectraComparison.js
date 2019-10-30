@@ -1,6 +1,6 @@
-import { Chromatogram, spectraComparison } from '..';
-
 import { lorentzian } from '../../testFiles/examples';
+
+import { Chromatogram, spectraComparison } from '..';
 
 test('Simple case', () => {
   const size = 70;
@@ -29,7 +29,7 @@ test('Simple case', () => {
   }
 
   const options = {
-    heightFilter: 0
+    heightFilter: 0,
   };
 
   let chrom1 = new Chromatogram(times);
@@ -42,8 +42,20 @@ test('Simple case', () => {
 
   let compared = spectraComparison(chrom1, chrom2, options);
   expect(compared.peaksSimilarity).toStrictEqual([1, 1, 1, 1, 1]);
-  expect(compared.peaksFirst.map((val) => val.x)).toStrictEqual([10, 20, 30, 40, 50]);
-  expect(compared.peaksSecond.map((val) => val.x)).toStrictEqual([20, 30, 40, 50, 60]);
+  expect(compared.peaksFirst.map((val) => val.x)).toStrictEqual([
+    10,
+    20,
+    30,
+    40,
+    50,
+  ]);
+  expect(compared.peaksSecond.map((val) => val.x)).toStrictEqual([
+    20,
+    30,
+    40,
+    50,
+    60,
+  ]);
 });
 
 test('Shifted peaks', () => {
@@ -73,7 +85,7 @@ test('Shifted peaks', () => {
   }
 
   const options = {
-    heightFilter: 0
+    heightFilter: 0,
   };
 
   let chrom1 = new Chromatogram(times);
@@ -86,8 +98,18 @@ test('Shifted peaks', () => {
 
   let compared = spectraComparison(chrom1, chrom2, options);
   expect(compared.peaksSimilarity).toStrictEqual([1, 1, 1, 1]);
-  expect(compared.peaksFirst.map((val) => val.x)).toStrictEqual([20, 30, 40, 50]);
-  expect(compared.peaksSecond.map((val) => val.x)).toStrictEqual([20, 30, 40, 50]);
+  expect(compared.peaksFirst.map((val) => val.x)).toStrictEqual([
+    20,
+    30,
+    40,
+    50,
+  ]);
+  expect(compared.peaksSecond.map((val) => val.x)).toStrictEqual([
+    20,
+    30,
+    40,
+    50,
+  ]);
 });
 
 test('Remove similar peaks in the similarity matrix column', () => {
@@ -117,7 +139,7 @@ test('Remove similar peaks in the similarity matrix column', () => {
     if (i < 45) {
       ms2[i] = [
         [28, 29, 30, 31, 32, 56, 58, 60, 62, 64, 84, 87, 90, 93, 96],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       ];
     } else {
       ms2[i] = [[i, 2 * i, 3 * i], [1, 1, 1]];
@@ -125,7 +147,7 @@ test('Remove similar peaks in the similarity matrix column', () => {
   }
 
   const options = {
-    heightFilter: 0
+    heightFilter: 0,
   };
 
   let chrom1 = new Chromatogram(times);

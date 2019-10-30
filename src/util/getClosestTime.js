@@ -1,6 +1,6 @@
 import binarySearch from 'binary-search';
 
-const ascValue = (a, b) => (a - b);
+const ascValue = (a, b) => a - b;
 
 /**
  * Returns information for the closest time
@@ -16,7 +16,7 @@ export function getClosestTime(time, times) {
     position = -position - 1;
 
     let safeIndexBefore = position === 0 ? 0 : position - 1;
-    if (position > (times.length - 1)) {
+    if (position > times.length - 1) {
       position = times.length - 1;
       safeIndexBefore = times.length - 1;
     }
@@ -33,7 +33,7 @@ export function getClosestTime(time, times) {
       timeAfter: times[safeIndexAfter],
       timeClosest: times[position],
       safeIndexBefore: safeIndexBefore,
-      safeIndexAfter: safeIndexAfter
+      safeIndexAfter: safeIndexAfter,
     };
   } else {
     // the value exists in the array
@@ -43,7 +43,7 @@ export function getClosestTime(time, times) {
       timeAfter: times[position],
       timeClosest: times[position],
       safeIndexBefore: position,
-      safeIndexAfter: position
+      safeIndexAfter: position,
     };
   }
 }

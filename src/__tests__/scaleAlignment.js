@@ -1,6 +1,6 @@
-import { Chromatogram, spectraComparison, scaleAlignment } from '..';
-
 import { lorentzian } from '../../testFiles/examples';
+
+import { Chromatogram, spectraComparison, scaleAlignment } from '..';
 
 test('Simple case', () => {
   const size = 70;
@@ -29,7 +29,7 @@ test('Simple case', () => {
   }
 
   const options = {
-    heightFilter: 0
+    heightFilter: 0,
   };
 
   let chrom1 = new Chromatogram(times);
@@ -42,8 +42,20 @@ test('Simple case', () => {
 
   let compared = spectraComparison(chrom1, chrom2, options);
   expect(compared.peaksSimilarity).toStrictEqual([1, 1, 1, 1, 1]);
-  expect(compared.peaksFirst.map((val) => val.x)).toStrictEqual([10, 20, 30, 40, 50]);
-  expect(compared.peaksSecond.map((val) => val.x)).toStrictEqual([20, 30, 40, 50, 60]);
+  expect(compared.peaksFirst.map((val) => val.x)).toStrictEqual([
+    10,
+    20,
+    30,
+    40,
+    50,
+  ]);
+  expect(compared.peaksSecond.map((val) => val.x)).toStrictEqual([
+    20,
+    30,
+    40,
+    50,
+    60,
+  ]);
 
   let aligned = scaleAlignment(compared.peaksFirst, compared.peaksSecond);
   expect(aligned.scaleRegression.predict(30)).toBeCloseTo(20, 4);
@@ -76,7 +88,7 @@ test('Quality and string', () => {
   }
 
   const options = {
-    heightFilter: 0
+    heightFilter: 0,
   };
 
   let chrom1 = new Chromatogram(times);
@@ -89,16 +101,28 @@ test('Quality and string', () => {
 
   let compared = spectraComparison(chrom1, chrom2, options);
   expect(compared.peaksSimilarity).toStrictEqual([1, 1, 1, 1, 1]);
-  expect(compared.peaksFirst.map((val) => val.x)).toStrictEqual([10, 20, 30, 40, 50]);
-  expect(compared.peaksSecond.map((val) => val.x)).toStrictEqual([20, 30, 40, 50, 60]);
+  expect(compared.peaksFirst.map((val) => val.x)).toStrictEqual([
+    10,
+    20,
+    30,
+    40,
+    50,
+  ]);
+  expect(compared.peaksSecond.map((val) => val.x)).toStrictEqual([
+    20,
+    30,
+    40,
+    50,
+    60,
+  ]);
 
   let aligned = scaleAlignment(compared.peaksFirst, compared.peaksSecond, {
     computeQuality: true,
-    stringFormula: 3
+    stringFormula: 3,
   });
   expect(aligned.scaleRegression.predict(30)).toBeCloseTo(20, 4);
   expect(aligned.scaleRegression.toString(3)).toStrictEqual(
-    'f(x) = 9.95e-17 * x^3 - 1.22e-14 * x^2 + 1.00 * x - 10.0'
+    'f(x) = 9.95e-17 * x^3 - 1.22e-14 * x^2 + 1.00 * x - 10.0',
   );
   expect(aligned.r2).toBeCloseTo(1, 4);
 });

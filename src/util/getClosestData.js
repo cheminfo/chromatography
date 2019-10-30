@@ -10,6 +10,6 @@ export function getClosestData(name, rt) {
   return {
     rt: closest.timeClosest,
     index: closest.index,
-    data: this.getSerie(name).data[closest.index]
+    data: this.getSerie(name).data[closest.index],
   };
 }

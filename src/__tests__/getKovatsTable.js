@@ -1,6 +1,6 @@
-import { Chromatogram, getKovatsTable } from '..';
-
 import { lorentzian } from '../../testFiles/examples';
+
+import { Chromatogram, getKovatsTable } from '..';
 
 test('triplet', () => {
   const size = 30;
@@ -24,7 +24,7 @@ test('triplet', () => {
     heightFilter: 2,
     thresholdFactor: 0,
     maxNumberPeaks: 1000,
-    groupWidth: 0
+    groupWidth: 0,
   };
 
   let table = getKovatsTable(chrom, options);

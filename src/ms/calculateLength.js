@@ -6,7 +6,7 @@
  */
 export function calculateLength(chromatogram, serieName) {
   let serie2D = chromatogram.getSerie(serieName);
-  var spectra = serie2D.data;
-  var length = spectra.map((spectrum) => spectrum[0].length);
+  let spectra = serie2D.data;
+  let length = spectra.map((spectrum) => spectrum[0].length);
   return length;
 }

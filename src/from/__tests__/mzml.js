@@ -14,6 +14,8 @@ describe('mzML data files', () => {
   it('Errors', () => {
     const path = join(__dirname, '../../../testFiles/mzML/test.mzdata.xml');
     const mzData = readFileSync(path);
-    expect(() => fromMzML(mzData, 'null')).toThrow('Unable to parse from "null" format');
+    expect(() => fromMzML(mzData, 'null')).toThrow(
+      'Unable to parse from "null" format',
+    );
   });
 });

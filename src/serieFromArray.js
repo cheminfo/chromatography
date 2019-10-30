@@ -6,7 +6,7 @@ export function serieFromArray(array) {
   // need to check if it is a 1D or 2D array (or 3D ?)
   if (!isArray(array)) {
     throw new TypeError(
-      'Serie.fromArray requires as parameter an array of numbers or array'
+      'Serie.fromArray requires as parameter an array of numbers or array',
     );
   }
 
@@ -16,7 +16,7 @@ export function serieFromArray(array) {
 
   if (!isArray(array[0])) {
     throw new TypeError(
-      'Serie.fromArray requires as parameter an array of numbers or array'
+      'Serie.fromArray requires as parameter an array of numbers or array',
     );
   }
 

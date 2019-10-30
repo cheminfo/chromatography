@@ -1,7 +1,7 @@
 import binarySearch from 'binary-search';
 
-const ascValue = (a, b) => (a.value - b.value);
-const ascTime = (a, b) => (a.time - b.time);
+const ascValue = (a, b) => a.value - b.value;
+const ascTime = (a, b) => a.time - b.time;
 
 /**
  * Returns a function that allows to convert from time to Kovats or from Kovats to time
@@ -29,8 +29,12 @@ export function kovatsConversionFunction(kovatsConversionTable, options = {}) {
 
         let smallerAlcane = values[position - 1].time;
         let largerAlcane = values[position].time;
-        return (index - values[position - 1].value) * (largerAlcane - smallerAlcane) / 100
-                    + smallerAlcane;
+        return (
+          ((index - values[position - 1].value) *
+            (largerAlcane - smallerAlcane)) /
+            100 +
+          smallerAlcane
+        );
       } else {
         return values[position].time;
       }
@@ -51,8 +55,10 @@ export function kovatsConversionFunction(kovatsConversionTable, options = {}) {
 
         let smallerAlcane = times[position - 1].time;
         let largerAlcane = times[position].time;
-        return 100 * (time - smallerAlcane) / (largerAlcane - smallerAlcane)
-                    + times[position - 1].value;
+        return (
+          (100 * (time - smallerAlcane)) / (largerAlcane - smallerAlcane) +
+          times[position - 1].value
+        );
       } else {
         return times[position].value;
       }

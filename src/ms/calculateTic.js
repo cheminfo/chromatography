@@ -8,9 +8,9 @@ export function calculateTic(chromatogram) {
   if (!ms) {
     throw new Error('The mass serie must be defined');
   }
-  var massSpectra = ms.data;
-  var tic = [];
-  for (var massSpectrum of massSpectra) {
+  let massSpectra = ms.data;
+  let tic = [];
+  for (let massSpectrum of massSpectra) {
     tic.push(massSpectrum[1].reduce((a, b) => a + b, 0));
   }
 

@@ -1,9 +1,9 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-import { Chromatogram, massInPeaks, getPeaks, fromJcamp } from '..';
-
 import { lorentzian } from '../../testFiles/examples';
+
+import { Chromatogram, massInPeaks, getPeaks, fromJcamp } from '..';
 
 test('from a Diesel chromatogram', () => {
   const path = join(__dirname, '../../testFiles/jcamp/P064.JDX');
@@ -15,7 +15,7 @@ test('from a Diesel chromatogram', () => {
   expect(peakList).toHaveLength(312);
 
   let sampleMS = chrom.getSerie('ms').data;
-  expect(sampleMS.length).not.toBe(0);
+  expect(sampleMS).not.toHaveLength(0);
   let integratedList = massInPeaks(peakList, sampleMS);
   expect(peakList).toHaveLength(integratedList.length);
 });
@@ -42,7 +42,7 @@ test('triplet', () => {
   expect(peaks).toHaveLength(1);
 
   let sampleMS = chrom.getSerie('ms').data;
-  expect(sampleMS.length).not.toBe(0);
+  expect(sampleMS).not.toHaveLength(0);
   let integratedList = massInPeaks(peaks, sampleMS);
   expect(peaks).toHaveLength(integratedList.length);
 });
@@ -51,25 +51,25 @@ test('simple case', () => {
   let peaks = [
     {
       left: { index: 0 },
-      right: { index: 2 }
-    }
+      right: { index: 2 },
+    },
   ];
 
   expect(
     massInPeaks(peaks, [
       [[1, 2], [1, 1]],
       [[1, 2, 5], [1, 1, 1]],
-      [[3, 4], [1, 1]]
-    ])
+      [[3, 4], [1, 1]],
+    ]),
   ).toStrictEqual([
     {
       left: { index: 0 },
       right: { index: 2 },
       ms: {
         x: [1, 2, 3, 4, 5],
-        y: [2, 2, 1, 1, 1]
-      }
-    }
+        y: [2, 2, 1, 1, 1],
+      },
+    },
   ]);
 });
 
@@ -77,8 +77,8 @@ test('thresholdFactor', () => {
   let peaks = [
     {
       left: { index: 0 },
-      right: { index: 2 }
-    }
+      right: { index: 2 },
+    },
   ];
   let mass = [[[1, 2], [1, 1]], [[1, 2, 5], [1, 1, 1]], [[2, 4], [1, 1]]];
 
@@ -88,9 +88,9 @@ test('thresholdFactor', () => {
       right: { index: 2 },
       ms: {
         x: [1, 2],
-        y: [2, 3]
-      }
-    }
+        y: [2, 3],
+      },
+    },
   ]);
 });
 
@@ -98,8 +98,8 @@ test('maxNumberPeaks', () => {
   let peaks = [
     {
       left: { index: 0 },
-      right: { index: 2 }
-    }
+      right: { index: 2 },
+    },
   ];
   let mass = [[[1, 2], [1, 1]], [[1, 2, 5], [1, 1, 1]], [[2, 4], [1, 2]]];
 
@@ -109,8 +109,8 @@ test('maxNumberPeaks', () => {
       right: { index: 2 },
       ms: {
         x: [1, 2, 4],
-        y: [2, 3, 2]
-      }
-    }
+        y: [2, 3, 2],
+      },
+    },
   ]);
 });

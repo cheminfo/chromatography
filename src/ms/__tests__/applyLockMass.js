@@ -5,14 +5,9 @@ import { Chromatogram } from '../..';
 expect.extend({ toBeDeepCloseTo });
 
 test('simple case', () => {
-  let chromatogram = new Chromatogram(
-    [1, 2], {
-      ms: [
-        [[100, 200, 300], [10, 20, 30]],
-        [[622.024747], [274]]
-      ]
-    }
-  );
+  let chromatogram = new Chromatogram([1, 2], {
+    ms: [[[100, 200, 300], [10, 20, 30]], [[622.024747], [274]]],
+  });
 
   let newLength = chromatogram.getTimes().length / 2;
   chromatogram.applyLockMass('C12H19F12N3O6P3'); // em: 622.02951
@@ -25,18 +20,16 @@ test('simple case', () => {
   expect(chromatogram.getSerie('ms').data[0][1]).toStrictEqual([10, 20, 30]);
 
   const expectedMass = [100.005, 200.005, 300.005];
-  expect(chromatogram.getSerie('ms').data[0][0]).toBeDeepCloseTo(expectedMass, 3);
+  expect(chromatogram.getSerie('ms').data[0][0]).toBeDeepCloseTo(
+    expectedMass,
+    3,
+  );
 });
 
 test('array of mf', () => {
-  let chromatogram = new Chromatogram(
-    [1, 2], {
-      ms: [
-        [[100, 200, 300], [10, 20, 30]],
-        [[622.024747], [274]]
-      ]
-    }
-  );
+  let chromatogram = new Chromatogram([1, 2], {
+    ms: [[[100, 200, 300], [10, 20, 30]], [[622.024747], [274]]],
+  });
 
   let newLength = chromatogram.getTimes().length / 2;
   chromatogram.applyLockMass(['C12H19F12N3O6P3', 'CCl3H', 'C10H20O3']); // em: 622.02951
@@ -49,27 +42,31 @@ test('array of mf', () => {
   expect(chromatogram.getSerie('ms').data[0][1]).toStrictEqual([10, 20, 30]);
 
   const expectedMass = [100.005, 200.005, 300.005];
-  expect(chromatogram.getSerie('ms').data[0][0]).toBeDeepCloseTo(expectedMass, 3);
+  expect(chromatogram.getSerie('ms').data[0][0]).toBeDeepCloseTo(
+    expectedMass,
+    3,
+  );
 });
 
 test('different references', () => {
-  let chromatogram = new Chromatogram(
-    [1, 2, 3, 4, 5, 6], {
-      ms: [
-        [[10, 622.024747, 100, 200], [10, 274, 40, 50]],
-        [[100, 200, 300], [10, 20, 30]],
-        [[188.136240], [272]],
-        [[100, 200, 300], [10, 20, 30]],
-        [[10], [10]],
-        [[100, 200, 300], [10, 20, 30]],
-      ]
-    }
-  );
+  let chromatogram = new Chromatogram([1, 2, 3, 4, 5, 6], {
+    ms: [
+      [[10, 622.024747, 100, 200], [10, 274, 40, 50]],
+      [[100, 200, 300], [10, 20, 30]],
+      [[188.13624], [272]],
+      [[100, 200, 300], [10, 20, 30]],
+      [[10], [10]],
+      [[100, 200, 300], [10, 20, 30]],
+    ],
+  });
 
   let newLength = chromatogram.getTimes().length / 2;
-  const { referenceUsed } = chromatogram.applyLockMass(['C12H19F12N3O6P3', 'C10H20O3', 'C100'], {
-    oddReference: false
-  }); // em: 622.02951
+  const { referenceUsed } = chromatogram.applyLockMass(
+    ['C12H19F12N3O6P3', 'C10H20O3', 'C100'],
+    {
+      oddReference: false,
+    },
+  ); // em: 622.02951
 
   expect(referenceUsed).toStrictEqual({
     C100: 0,
@@ -77,7 +74,7 @@ test('different references', () => {
     C10H20O3: 1,
     total: 3,
     percent: 66.66666666666666,
-    totalFound: 2
+    totalFound: 2,
   });
 
   expect(chromatogram.getTimes()).toHaveLength(newLength);
@@ -89,11 +86,19 @@ test('different references', () => {
   expect(chromatogram.getSerie('ms').data[1][1]).toStrictEqual([10, 20, 30]);
 
   const expectedMass = [100.005, 200.005, 300.005];
-  expect(chromatogram.getSerie('ms').data[0][0]).toBeDeepCloseTo(expectedMass, 3);
-  expect(chromatogram.getSerie('ms').data[1][0]).toBeDeepCloseTo(expectedMass, 3);
+  expect(chromatogram.getSerie('ms').data[0][0]).toBeDeepCloseTo(
+    expectedMass,
+    3,
+  );
+  expect(chromatogram.getSerie('ms').data[1][0]).toBeDeepCloseTo(
+    expectedMass,
+    3,
+  );
 });
 
 test('check exceptions', () => {
   let chromatogram = new Chromatogram([1]);
-  expect(() => chromatogram.applyLockMass('C12H19F12N3O6P3')).toThrow('The "ms" serie must be defined');
+  expect(() => chromatogram.applyLockMass('C12H19F12N3O6P3')).toThrow(
+    'The "ms" serie must be defined',
+  );
 });

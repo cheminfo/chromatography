@@ -19,20 +19,30 @@ export function massInPeaks(peakList, sampleMS, options = {}) {
     maxNumberPeaks = Number.MAX_VALUE,
     groupWidth = 0,
     slot = 1,
-    method = 'slot'
+    method = 'slot',
   } = options;
 
   // integrate MS
   for (let i = 0; i < peakList.length; ++i) {
-    var serie = { dimension: 2, data: sampleMS };
-    var integral = _merge(serie, peakList[i].left.index, peakList[i].right.index, slot, method);
-    var msSum = {
+    let serie = { dimension: 2, data: sampleMS };
+    let integral = _merge(
+      serie,
+      peakList[i].left.index,
+      peakList[i].right.index,
+      slot,
+      method,
+    );
+    let msSum = {
       x: integral[0],
-      y: integral[1]
+      y: integral[1],
     };
 
     if (maxNumberPeaks || thresholdFactor || groupWidth) {
-      msSum = massFilter(msSum, { maxNumberPeaks, thresholdFactor, groupWidth });
+      msSum = massFilter(msSum, {
+        maxNumberPeaks,
+        thresholdFactor,
+        groupWidth,
+      });
     }
     peakList[i].ms = msSum;
   }

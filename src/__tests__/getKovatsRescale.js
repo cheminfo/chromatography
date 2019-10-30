@@ -1,6 +1,6 @@
-import { getKovatsRescale } from '..';
-
 import { getSimulatedSpectrum } from '../../testFiles/examples';
+
+import { getKovatsRescale } from '..';
 
 test('triplet', () => {
   let chrom = getSimulatedSpectrum();
@@ -9,7 +9,7 @@ test('triplet', () => {
     heightFilter: 2,
     thresholdFactor: 0,
     maxNumberPeaks: 1000,
-    groupWidth: 0
+    groupWidth: 0,
   };
 
   let kovatsRescale = getKovatsRescale(chrom, options);
@@ -24,7 +24,7 @@ test('inplace', () => {
     heightFilter: 2,
     thresholdFactor: 0,
     maxNumberPeaks: 1000,
-    groupWidth: 0
+    groupWidth: 0,
   };
 
   let kovatsRescale = chrom.getKovatsRescale(options);

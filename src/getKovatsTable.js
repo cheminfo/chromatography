@@ -17,7 +17,7 @@ export function getKovatsTable(reference, options = {}) {
     heightFilter = 100,
     thresholdFactor = 0.005,
     maxNumberPeaks = 40,
-    groupWidth = 5
+    groupWidth = 5,
   } = options;
 
   // Peak picking
@@ -27,18 +27,22 @@ export function getKovatsTable(reference, options = {}) {
 
   // integrate mass in the peaks
   let ms = reference.getSerie('ms').data;
-  let integratedMs = massInPeaks(peaks, ms, { thresholdFactor, maxNumberPeaks, groupWidth });
+  let integratedMs = massInPeaks(peaks, ms, {
+    thresholdFactor,
+    maxNumberPeaks,
+    groupWidth,
+  });
 
-  var kovatsIndexes = new Array(integratedMs.length);
-  for (var i = 0; i < integratedMs.length; i++) {
+  let kovatsIndexes = new Array(integratedMs.length);
+  for (let i = 0; i < integratedMs.length; i++) {
     kovatsIndexes[i] = {
       time: integratedMs[i].x,
-      value: kovats(integratedMs[i].ms)
+      value: kovats(integratedMs[i].ms),
     };
   }
 
   return {
     kovatsIndexes,
-    peaks
+    peaks,
   };
 }

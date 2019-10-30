@@ -10,9 +10,9 @@ export function calculateBpc(chrom) {
   if (!ms) {
     throw new Error('The mass serie must be defined');
   }
-  var massSpectra = ms.data;
-  var bpc = [];
-  for (var massSpectrum of massSpectra) {
+  let massSpectra = ms.data;
+  let bpc = [];
+  for (let massSpectrum of massSpectra) {
     if (massSpectrum[1].length > 0) {
       bpc.push(max(massSpectrum[1]));
     } else {

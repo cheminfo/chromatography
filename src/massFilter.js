@@ -10,14 +10,18 @@
  * @return {object} - Object with filtered x and y data
  */
 export function massFilter(massXYObject, options = {}) {
-  const { thresholdFactor = 0, maxNumberPeaks = Number.MAX_VALUE, groupWidth = 0 } = options;
+  const {
+    thresholdFactor = 0,
+    maxNumberPeaks = Number.MAX_VALUE,
+    groupWidth = 0,
+  } = options;
 
   let max = -1;
   let massList = new Array(massXYObject.x.length);
   for (let i = 0; i < massXYObject.x.length; ++i) {
     massList[i] = {
       x: massXYObject.x[i],
-      y: massXYObject.y[i]
+      y: massXYObject.y[i],
     };
 
     if (massXYObject.y[i] > max) {
@@ -41,7 +45,7 @@ export function massFilter(massXYObject, options = {}) {
 
   let ans = {
     x: new Array(filteredList.length),
-    y: new Array(filteredList.length)
+    y: new Array(filteredList.length),
   };
   for (let i = 0; i < filteredList.length; ++i) {
     ans.x[i] = filteredList[i].x;
@@ -66,10 +70,15 @@ export function moreDistinct(list, maxNumberPeaks, groupWidth) {
   }
   let filteredList = new Array(maxNumberPeaks);
 
-  for (let i = 0; (i < list.length) && (len < maxNumberPeaks); ++i) {
+  for (let i = 0; i < list.length && len < maxNumberPeaks; ++i) {
     let outRange = true;
     for (let j = 0; j < len && outRange; ++j) {
-      outRange = outRange && !((list[i].x > (filteredList[j].x - groupWidth)) && (list[i].x < (filteredList[j].x + groupWidth)));
+      outRange =
+        outRange &&
+        !(
+          list[i].x > filteredList[j].x - groupWidth &&
+          list[i].x < filteredList[j].x + groupWidth
+        );
     }
     if (outRange) {
       filteredList[len++] = list[i];

@@ -7,7 +7,7 @@ test('Simple case', () => {
   const time2kovats = kovatsConversionFunction([
     { time: 10, value: 800 },
     { time: 20, value: 900 },
-    { time: 30, value: 1000 }
+    { time: 30, value: 1000 },
   ]);
 
   const inferior = 10;
@@ -39,10 +39,10 @@ test('Non-in place', () => {
     { time: 9.017, value: 1200 },
     { time: 10.417, value: 1300 },
     { time: 11.732, value: 1400 },
-    { time: 12.960, value: 1500 },
+    { time: 12.96, value: 1500 },
     { time: 14.156, value: 1600 },
-    { time: 15.280, value: 1700 },
-    { time: 16.340, value: 1800 },
+    { time: 15.28, value: 1700 },
+    { time: 16.34, value: 1800 },
     { time: 17.359, value: 1900 },
     { time: 18.327, value: 2000 },
     { time: 19.255, value: 2100 },
@@ -54,8 +54,8 @@ test('Non-in place', () => {
     { time: 24.373, value: 2700 },
     { time: 25.582, value: 2800 },
     { time: 27.124, value: 2900 },
-    { time: 29.090, value: 3000 },
-    { time: 31.619, value: 3100 }
+    { time: 29.09, value: 3000 },
+    { time: 31.619, value: 3100 },
   ]);
   const newTime = rescaleTime(chrom.getTimes(), time2kovats);
   chrom.setTimes(newTime);
@@ -78,10 +78,10 @@ test('In place', () => {
     { time: 9.017, value: 1200 },
     { time: 10.417, value: 1300 },
     { time: 11.732, value: 1400 },
-    { time: 12.960, value: 1500 },
+    { time: 12.96, value: 1500 },
     { time: 14.156, value: 1600 },
-    { time: 15.280, value: 1700 },
-    { time: 16.340, value: 1800 },
+    { time: 15.28, value: 1700 },
+    { time: 16.34, value: 1800 },
     { time: 17.359, value: 1900 },
     { time: 18.327, value: 2000 },
     { time: 19.255, value: 2100 },
@@ -93,8 +93,8 @@ test('In place', () => {
     { time: 24.373, value: 2700 },
     { time: 25.582, value: 2800 },
     { time: 27.124, value: 2900 },
-    { time: 29.090, value: 3000 },
-    { time: 31.619, value: 3100 }
+    { time: 29.09, value: 3000 },
+    { time: 31.619, value: 3100 },
   ]);
   chrom.rescaleTime(time2kovats);
   const internalTime = chrom.getTimes();

@@ -23,30 +23,30 @@ export function applyLockMass(mf, options = {}) {
     return info.observedMonoisotopicMass || info.monoisotopicMass;
   });
 
-  var ms = this.getSerie('ms');
+  let ms = this.getSerie('ms');
   if (!ms) {
     throw new Error('The "ms" serie must be defined');
   }
   ms = ms.data;
 
   // check where is the reference values
-  var referenceIndexShift = Number(oddReference);
-  var msIndexShift = Number(!oddReference);
+  let referenceIndexShift = Number(oddReference);
+  let msIndexShift = Number(!oddReference);
   const newSize = ms.length >> 1;
-  var referencesCount = new Array(referenceMass.length).fill(0);
+  let referencesCount = new Array(referenceMass.length).fill(0);
 
   // applying the changes for all the spectra
   let previousValidDifference = Number.MAX_VALUE;
   let usingPreviousValidDifference = false;
-  for (var i = 0; i < newSize; i++) {
-    var massIndex = 2 * i + msIndexShift;
-    var referenceIndex = 2 * i + referenceIndexShift;
+  for (let i = 0; i < newSize; i++) {
+    let massIndex = 2 * i + msIndexShift;
+    let referenceIndex = 2 * i + referenceIndexShift;
 
     // calculate the difference between theory and experimental (the smallest)
-    var difference = Number.MAX_VALUE;
-    var closestIndex = -1;
-    for (var j = 0; j < referenceMass.length; j++) {
-      for (var k = 0; k < ms[referenceIndex][0].length; k++) {
+    let difference = Number.MAX_VALUE;
+    let closestIndex = -1;
+    for (let j = 0; j < referenceMass.length; j++) {
+      for (let k = 0; k < ms[referenceIndex][0].length; k++) {
         if (
           Math.abs(difference) >
           Math.abs(referenceMass[j] - ms[referenceIndex][0][k])
@@ -73,17 +73,17 @@ export function applyLockMass(mf, options = {}) {
           referencesCount[closestIndex] += 1;
         }
       }
-      for (var m = 0; m < ms[massIndex][0].length; m++) {
+      for (let m = 0; m < ms[massIndex][0].length; m++) {
         ms[massIndex][0][m] += difference;
       }
     }
   }
 
-  var referenceUsed = {
+  let referenceUsed = {
     total: newSize,
-    totalFound: referencesCount.reduce((prev, current) => current + prev, 0)
+    totalFound: referencesCount.reduce((prev, current) => current + prev, 0),
   };
-  for (var r = 0; r < referenceMass.length; r++) {
+  for (let r = 0; r < referenceMass.length; r++) {
     referenceUsed[mf[r]] = referencesCount[r];
   }
   referenceUsed.percent =

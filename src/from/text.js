@@ -2,7 +2,6 @@ import { parseXY } from 'xy-parser';
 
 import { Chromatogram } from '../Chromatogram';
 
-
 /**
  * Creates a new Chromatogram element based in a Txt string
  * @param {string} text - String containing the data as CSV or TSV
@@ -15,7 +14,7 @@ export function fromText(text, options) {
 
   const time = data[0];
   let series = {
-    intensity: data[1]
+    intensity: data[1],
   };
 
   return new Chromatogram(time, series);

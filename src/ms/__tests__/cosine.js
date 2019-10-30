@@ -7,7 +7,7 @@ import {
   getPeaks,
   vectorify,
   cosine,
-  fromJcamp
+  fromJcamp,
 } from '../../index';
 import { lorentzian } from '../../../testFiles/examples';
 
@@ -21,7 +21,7 @@ test('from a Diesel chromatogram', () => {
   expect(peakList).toHaveLength(312);
 
   let sampleMS = chrom.getSerie('ms').data;
-  expect(sampleMS.length).not.toBe(0);
+  expect(sampleMS).not.toHaveLength(0);
   let integratedList = massInPeaks(peakList, sampleMS);
   expect(peakList).toHaveLength(integratedList.length);
 
@@ -55,7 +55,7 @@ test('triplet', () => {
   expect(peakList).toHaveLength(1);
 
   let sampleMS = chrom.getSerie('ms').data;
-  expect(sampleMS.length).not.toBe(0);
+  expect(sampleMS).not.toHaveLength(0);
   let integratedList = massInPeaks(peakList, sampleMS);
   expect(peakList).toHaveLength(integratedList.length);
 
@@ -69,11 +69,15 @@ test('triplet', () => {
 
 test('simple case', () => {
   expect(cosine([1, 2, 3], [1, 1, 1], [1, 2, 3], [1, 1, 1])).toBe(1);
-  expect(cosine([1, 2, 3], [1, 1, 1], [1, 2, 4], [1, 1, 1])).toStrictEqual(4 / 9);
+  expect(cosine([1, 2, 3], [1, 1, 1], [1, 2, 4], [1, 1, 1])).toStrictEqual(
+    4 / 9,
+  );
   expect(cosine([1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3])).toBe(1);
   expect(
-    cosine([1, 2, 3, 4], [1, 1, 1, 1], [1, 2, 4, 5], [1, 1, 1, 1])
+    cosine([1, 2, 3, 4], [1, 1, 1, 1], [1, 2, 4, 5], [1, 1, 1, 1]),
   ).toStrictEqual(9 / 16);
-  expect(cosine([1, 2, 3, 4], [1, 1, 1, 1], [4, 5], [1, 1])).toStrictEqual(1 / 8);
+  expect(cosine([1, 2, 3, 4], [1, 1, 1, 1], [4, 5], [1, 1])).toStrictEqual(
+    1 / 8,
+  );
   expect(cosine([], [], [], [])).toBe(0);
 });

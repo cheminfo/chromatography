@@ -20,14 +20,14 @@ export function calculateForMF(chromatogram, targetMF, options = {}) {
     throw Error('calculateForMF: the mass serie must be defined');
   }
 
-  var masses = new IsotopicDistribution(targetMF, {
-    ionizations: options.ionizations.replace(/ /g, '')
+  let masses = new IsotopicDistribution(targetMF, {
+    ionizations: options.ionizations.replace(/ /g, ''),
   })
     .getParts()
     .map((entry) => entry.ms.em);
 
-  var massSpectra = ms.data;
-  var result = new Array(massSpectra.length).fill(0);
+  let massSpectra = ms.data;
+  let result = new Array(massSpectra.length).fill(0);
   for (let targetMass of masses) {
     for (let i = 0; i < massSpectra.length; i++) {
       let massSpectrum = massSpectra[i];

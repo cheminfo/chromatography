@@ -240,7 +240,7 @@ export class Chromatogram {
   calculateForMass(targetMass, options = {}) {
     const {
       serieName = `ms${targetMass}-${options.error || 0.5}`,
-      cache = false
+      cache = false,
     } = options;
     if (cache && this.hasSerie(serieName)) return this.getSerie(serieName);
     let result = calculateForMass(this, targetMass, options);
@@ -263,7 +263,7 @@ export class Chromatogram {
     const {
       serieName = `ms${targetMF}-${options.ionizations ||
         'H+'}-${options.error || 0.5}`,
-      cache = false
+      cache = false,
     } = options;
     if (cache && this.hasSerie(serieName)) return this.getSerie(serieName);
     let result = calculateForMF(this, targetMF, options);
@@ -336,7 +336,7 @@ export class Chromatogram {
    * @param {number} [options.factor = 2] - The values under the median times this factor are removed
    */
   meanFilter(serieName, options = {}) {
-    var serie = meanFilter(this, serieName, options);
+    let serie = meanFilter(this, serieName, options);
     if (options.serieName) {
       this.series[options.serieName] = serie;
     } else {
@@ -352,7 +352,7 @@ export class Chromatogram {
    * @param {number} [options.percentage = 0.1] - The values under the median times this factor are removed
    */
   percentageFilter(serieName, options = {}) {
-    var serie = percentageFilter(this, serieName, options);
+    let serie = percentageFilter(this, serieName, options);
     if (options.serieName) {
       this.series[options.serieName] = serie;
     } else {

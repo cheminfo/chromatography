@@ -17,7 +17,7 @@ export function fromJSON(json) {
   } else {
     for (let key of Object.keys(series)) {
       chromatogram.addSerie(key, series[key].data, {
-        meta: series[key].meta
+        meta: series[key].meta,
       });
     }
   }

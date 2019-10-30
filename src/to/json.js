@@ -5,6 +5,6 @@
 export function toJSON() {
   return {
     times: this.times,
-    series: this.series
+    series: this.series,
   };
 }

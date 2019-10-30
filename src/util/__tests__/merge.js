@@ -4,24 +4,24 @@ import { simple } from '../../../testFiles/examples';
 const highResolution = new Chromatogram([1, 2], {
   ms: [
     [[100.002, 200.02, 300.0002], [10, 20, 30]],
-    [[100.001, 200.01, 300.0001], [11, 21, 31]]
-  ]
+    [[100.001, 200.01, 300.0001], [11, 21, 31]],
+  ],
 });
 
 test('Low resolution', () => {
-  var result = merge(simple, 'ms', [[1, 2]]);
+  let result = merge(simple, 'ms', [[1, 2]]);
   expect(result).toStrictEqual([
     {
       serie: [[100, 101, 200, 201, 300, 301], [10, 11, 20, 21, 30, 31]],
       from: {
         time: 1,
-        index: 0
+        index: 0,
       },
       to: {
         time: 2,
-        index: 1
-      }
-    }
+        index: 1,
+      },
+    },
   ]);
 });
 
@@ -31,45 +31,45 @@ test('High resolution', () => {
       serie: [[100, 200, 300], [21, 41, 61]],
       from: {
         time: 1,
-        index: 0
+        index: 0,
       },
       to: {
         time: 2,
-        index: 1
-      }
-    }
+        index: 1,
+      },
+    },
   ]);
 
   expect(
     merge(highResolution, 'ms', [[1, 2]], {
-      delta: 0.01
-    })
+      delta: 0.01,
+    }),
   ).toStrictEqual([
     {
       serie: [[100.0, 200.01, 200.02, 300.0], [21, 21, 20, 61]],
       from: {
         time: 1,
-        index: 0
+        index: 0,
       },
       to: {
         time: 2,
-        index: 1
-      }
-    }
+        index: 1,
+      },
+    },
   ]);
 });
 
 test('Errors', () => {
   expect(() => merge(simple, 'ms', 123)).toThrow(
-    'ranges must be an array of type [[from,to]]'
+    'ranges must be an array of type [[from,to]]',
   );
   expect(() => merge(simple, 'ms', [[1, 2]], { algorithm: 'null' })).toThrow(
-    'Unknown algorithm "null"'
+    'Unknown algorithm "null"',
   );
 
-  var tic = new Chromatogram([1, 2, 3, 4], { tic: [2, 4, 6, 8] });
+  let tic = new Chromatogram([1, 2, 3, 4], { tic: [2, 4, 6, 8] });
   expect(() => merge(tic, 'tic', [[1, 2]])).toThrow(
-    'The serie is not of dimension 2'
+    'The serie is not of dimension 2',
   );
 });
 
@@ -77,16 +77,16 @@ describe('centroid integration', () => {
   it('symmetric case', () => {
     const integral = merge(highResolution, 'ms', [[1, 2]], {
       algorithm: 'centroid',
-      delta: 0.01
+      delta: 0.01,
     })[0].serie;
 
     const result = [
       (100.002 * 10 + 100.001 * 11) / 21,
       200.01,
       200.02,
-      (300.0002 * 30 + 300.0001 * 31) / 61
+      (300.0002 * 30 + 300.0001 * 31) / 61,
     ];
-    for (var i = 0; i < result.length; i++) {
+    for (let i = 0; i < result.length; i++) {
       expect(integral[0][i]).toBeCloseTo(result[i], 5);
     }
     expect(integral[1]).toStrictEqual([21, 21, 20, 61]);
@@ -97,24 +97,24 @@ describe('centroid integration', () => {
       new Chromatogram([1, 2], {
         ms: [
           [[100.002, 200.01], [10, 21]],
-          [[100.001, 300.0001, 300.0002, 300.0003, 400], [11, 30, 31, 32, 40]]
-        ]
+          [[100.001, 300.0001, 300.0002, 300.0003, 400], [11, 30, 31, 32, 40]],
+        ],
       }),
       'ms',
       [[1, 2]],
       {
         algorithm: 'centroid',
-        delta: 0.01
-      }
+        delta: 0.01,
+      },
     )[0].serie;
 
     const result = [
       (100.002 * 10 + 100.001 * 11) / 21,
       200.01,
       (300.0002 * 30 + 300.0001 * 31 + 300.0003 * 32) / 93,
-      400
+      400,
     ];
-    for (var i = 0; i < result.length; i++) {
+    for (let i = 0; i < result.length; i++) {
       expect(integral[0][i]).toBeCloseTo(result[i], 5);
     }
     expect(integral[1]).toStrictEqual([21, 21, 93, 40]);
@@ -125,24 +125,24 @@ describe('centroid integration', () => {
       new Chromatogram([1, 2], {
         ms: [
           [[100.002, 200.02, 300.0002, 300.0003, 400], [10, 20, 30, 32, 40]],
-          [[100.001, 300.0001], [11, 31]]
-        ]
+          [[100.001, 300.0001], [11, 31]],
+        ],
       }),
       'ms',
       [[1, 2]],
       {
         algorithm: 'centroid',
-        delta: 0.01
-      }
+        delta: 0.01,
+      },
     )[0].serie;
 
     const result = [
       (100.002 * 10 + 100.001 * 11) / 21,
       200.02,
       (300.0002 * 30 + 300.0001 * 31 + 300.0003 * 32) / 93,
-      400
+      400,
     ];
-    for (var i = 0; i < result.length; i++) {
+    for (let i = 0; i < result.length; i++) {
       expect(integral[0][i]).toBeCloseTo(result[i], 5);
     }
     expect(integral[1]).toStrictEqual([21, 20, 93, 40]);
@@ -153,14 +153,14 @@ describe('centroid edge cases', () => {
   it('single spectra', () => {
     const integral = merge(
       new Chromatogram([1], {
-        ms: [[[300.001, 300.01, 300.019], [10, 20, 30]]]
+        ms: [[[300.001, 300.01, 300.019], [10, 20, 30]]],
       }),
       'ms',
       [[1]],
       {
         algorithm: 'centroid',
-        delta: 0.01
-      }
+        delta: 0.01,
+      },
     )[0].serie;
 
     const result = (300.001 * 10 + 300.01 * 20 + 300.019 * 30) / 60;
@@ -171,14 +171,14 @@ describe('centroid edge cases', () => {
   it('two spectra', () => {
     const integral = merge(
       new Chromatogram([1, 2], {
-        ms: [[[300.001, 300.019], [10, 30]], [[300.01], [20]]]
+        ms: [[[300.001, 300.019], [10, 30]], [[300.01], [20]]],
       }),
       'ms',
       [[1, 2]],
       {
         algorithm: 'centroid',
-        delta: 0.01
-      }
+        delta: 0.01,
+      },
     )[0].serie;
 
     const result = (300.001 * 10 + 300.01 * 20 + 300.019 * 30) / 60;
@@ -189,14 +189,14 @@ describe('centroid edge cases', () => {
   it('three spectra', () => {
     const integral = merge(
       new Chromatogram([1, 2, 3], {
-        ms: [[[300.001], [10]], [[300.019], [30]], [[300.01], [20]]]
+        ms: [[[300.001], [10]], [[300.019], [30]], [[300.01], [20]]],
       }),
       'ms',
       [[1, 3]],
       {
         algorithm: 'centroid',
-        delta: 0.01
-      }
+        delta: 0.01,
+      },
     )[0].serie;
 
     const result = (300.001 * 10 + 300.01 * 20 + 300.019 * 30) / 60;

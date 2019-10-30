@@ -24,7 +24,7 @@ export class Serie {
   toJSON() {
     return {
       data: this.data,
-      meta: this.meta
+      meta: this.meta,
     };
   }
 

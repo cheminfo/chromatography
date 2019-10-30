@@ -1,9 +1,9 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-import { Chromatogram, massInPeaks, getPeaks, vectorify, fromJcamp } from '..';
-
 import { lorentzian } from '../../testFiles/examples';
+
+import { Chromatogram, massInPeaks, getPeaks, vectorify, fromJcamp } from '..';
 
 test('from a Diesel chromatogram', () => {
   const path = join(__dirname, '../../testFiles/jcamp/P064.JDX');
@@ -15,7 +15,7 @@ test('from a Diesel chromatogram', () => {
   expect(peakList).toHaveLength(312);
 
   let sampleMS = chrom.getSerie('ms').data;
-  expect(sampleMS.length).not.toBe(0);
+  expect(sampleMS).not.toHaveLength(0);
   let integratedList = massInPeaks(peakList, sampleMS);
   expect(peakList).toHaveLength(integratedList.length);
 
@@ -45,7 +45,7 @@ test('triplet', () => {
   expect(peakList).toHaveLength(1);
 
   let sampleMS = chrom.getSerie('ms').data;
-  expect(sampleMS.length).not.toBe(0);
+  expect(sampleMS).not.toHaveLength(0);
   let integratedList = massInPeaks(peakList, sampleMS);
   expect(peakList).toHaveLength(integratedList.length);
 
@@ -58,22 +58,22 @@ test('simple case', () => {
     {
       ms: {
         x: [1, 2, 3],
-        y: [1, 1, 1]
-      }
-    }
+        y: [1, 1, 1],
+      },
+    },
   ];
 
   expect(vectorify(peaks, { massPower: 1 })).toStrictEqual([
     {
       x: [1, 2, 3],
-      y: [1, 2, 3]
-    }
+      y: [1, 2, 3],
+    },
   ]);
 
   expect(vectorify(peaks)).toStrictEqual([
     {
       x: [1, 2, 3],
-      y: [1, 8, 27]
-    }
+      y: [1, 8, 27],
+    },
   ]);
 });
