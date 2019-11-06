@@ -12,7 +12,7 @@
     "build": "rollup -c && cheminfo build --root Chromatography --no-uglify",
     "build-doc": "cheminfo doc",
     "publish-doc": "cheminfo doc --publish",
-    "eslint": "eslint src",
+    "eslint": "eslint src --cache",
     "eslint-fix": "npm run eslint -- --fix",
     "prepublish": "rollup -c",
     "test": "npm run testonly && npm run eslint",
