@@ -24,8 +24,14 @@ test('Simple case', () => {
       lorentzian(i, 4 * peakX) +
       2 * lorentzian(i, 5 * peakX) +
       lorentzian(i, 6 * peakX);
-    ms1[i] = [[i + 10, 2 * (i + 10), 3 * (i + 10)], [1, 1, 1]];
-    ms2[i] = [[i, 2 * i, 3 * i], [1, 1, 1]];
+    ms1[i] = [
+      [i + 10, 2 * (i + 10), 3 * (i + 10)],
+      [1, 1, 1],
+    ];
+    ms2[i] = [
+      [i, 2 * i, 3 * i],
+      [1, 1, 1],
+    ];
   }
 
   const options = {
@@ -83,8 +89,14 @@ test('Quality and string', () => {
       lorentzian(i, 4 * peakX) +
       2 * lorentzian(i, 5 * peakX) +
       lorentzian(i, 6 * peakX);
-    ms1[i] = [[i + 10, 2 * (i + 10), 3 * (i + 10)], [1, 1, 1]];
-    ms2[i] = [[i, 2 * i, 3 * i], [1, 1, 1]];
+    ms1[i] = [
+      [i + 10, 2 * (i + 10), 3 * (i + 10)],
+      [1, 1, 1],
+    ];
+    ms2[i] = [
+      [i, 2 * i, 3 * i],
+      [1, 1, 1],
+    ];
   }
 
   const options = {

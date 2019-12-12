@@ -24,8 +24,14 @@ test('Simple case', () => {
       lorentzian(i, 4 * peakX) +
       2 * lorentzian(i, 5 * peakX) +
       lorentzian(i, 6 * peakX);
-    ms1[i] = [[i + 10, 2 * (i + 10), 3 * (i + 10)], [1, 1, 1]];
-    ms2[i] = [[i, 2 * i, 3 * i], [1, 1, 1]];
+    ms1[i] = [
+      [i + 10, 2 * (i + 10), 3 * (i + 10)],
+      [1, 1, 1],
+    ];
+    ms2[i] = [
+      [i, 2 * i, 3 * i],
+      [1, 1, 1],
+    ];
   }
 
   const options = {
@@ -80,8 +86,14 @@ test('Shifted peaks', () => {
       lorentzian(i, 4 * peakX) +
       2 * lorentzian(i, 5 * peakX) +
       lorentzian(i, 6 * peakX);
-    ms1[i] = [[i, 2 * i, 3 * i], [1, 1, 1]];
-    ms2[i] = [[i, 2 * i, 3 * i], [1, 1, 1]];
+    ms1[i] = [
+      [i, 2 * i, 3 * i],
+      [1, 1, 1],
+    ];
+    ms2[i] = [
+      [i, 2 * i, 3 * i],
+      [1, 1, 1],
+    ];
   }
 
   const options = {
@@ -135,7 +147,10 @@ test('Remove similar peaks in the similarity matrix column', () => {
       2 * lorentzian(i, 5 * peakX) +
       lorentzian(i, 6 * peakX);
 
-    ms1[i] = [[i + 10, 2 * (i + 10), 3 * (i + 10)], [1, 1, 1]];
+    ms1[i] = [
+      [i + 10, 2 * (i + 10), 3 * (i + 10)],
+      [1, 1, 1],
+    ];
     // eslint-disable-next-line jest/no-if
     if (i < 45) {
       ms2[i] = [
@@ -143,7 +158,10 @@ test('Remove similar peaks in the similarity matrix column', () => {
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       ];
     } else {
-      ms2[i] = [[i, 2 * i, 3 * i], [1, 1, 1]];
+      ms2[i] = [
+        [i, 2 * i, 3 * i],
+        [1, 1, 1],
+      ];
     }
   }
 
