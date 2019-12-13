@@ -1,5 +1,6 @@
 /**
  * Cosine similarity between two MS spectra
+ * This algorithm is optimized for missing mass values
  * @param {Array<number>} ms1x - Array of mass values for the first spectra
  * @param {Array<number>} ms1y - Array of weighted abundance values for the first spectra
  * @param {Array<number>} ms2x - Array of mass values for the second spectra
