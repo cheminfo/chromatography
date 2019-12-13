@@ -43,20 +43,7 @@ test('from massInPeaks', () => {
       right: { index: 2 },
     },
   ];
-  let mass = [
-    [
-      [1, 2],
-      [1, 1],
-    ],
-    [
-      [1, 2, 5],
-      [1, 1, 1],
-    ],
-    [
-      [2, 4],
-      [1, 1],
-    ],
-  ];
+  let mass = [[[1, 2], [1, 1]], [[1, 2, 5], [1, 1, 1]], [[2, 4], [1, 1]]];
 
   peaks = massInPeaks(peaks, mass, { thresholdFactor: 0.5 });
   expect(peaks).toStrictEqual([

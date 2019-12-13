@@ -103,10 +103,7 @@ describe('Integrations', () => {
     let result = simple.merge('ms', [[1, 2]]);
     expect(result).toStrictEqual([
       {
-        serie: [
-          [100, 101, 200, 201, 300, 301],
-          [10, 11, 20, 21, 30, 31],
-        ],
+        serie: [[100, 101, 200, 201, 300, 301], [10, 11, 20, 21, 30, 31]],
         from: {
           time: 1,
           index: 0,

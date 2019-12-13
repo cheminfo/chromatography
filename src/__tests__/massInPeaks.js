@@ -32,10 +32,7 @@ test('triplet', () => {
       lorentzian(i, fourth) +
       2 * lorentzian(i, 2 * fourth) +
       lorentzian(i, 3 * fourth);
-    ms[i] = [
-      [1.6, 2.1, 3],
-      [1, 1, 1],
-    ];
+    ms[i] = [[1.6, 2.1, 3], [1, 1, 1]];
   }
   let chrom = new Chromatogram(times);
   chrom.addSerie('tic', tic);
@@ -60,18 +57,9 @@ test('simple case', () => {
 
   expect(
     massInPeaks(peaks, [
-      [
-        [1, 2],
-        [1, 1],
-      ],
-      [
-        [1, 2, 5],
-        [1, 1, 1],
-      ],
-      [
-        [3, 4],
-        [1, 1],
-      ],
+      [[1, 2], [1, 1]],
+      [[1, 2, 5], [1, 1, 1]],
+      [[3, 4], [1, 1]],
     ]),
   ).toStrictEqual([
     {
@@ -92,20 +80,7 @@ test('thresholdFactor', () => {
       right: { index: 2 },
     },
   ];
-  let mass = [
-    [
-      [1, 2],
-      [1, 1],
-    ],
-    [
-      [1, 2, 5],
-      [1, 1, 1],
-    ],
-    [
-      [2, 4],
-      [1, 1],
-    ],
-  ];
+  let mass = [[[1, 2], [1, 1]], [[1, 2, 5], [1, 1, 1]], [[2, 4], [1, 1]]];
 
   expect(massInPeaks(peaks, mass, { thresholdFactor: 0.5 })).toStrictEqual([
     {
@@ -126,20 +101,7 @@ test('maxNumberPeaks', () => {
       right: { index: 2 },
     },
   ];
-  let mass = [
-    [
-      [1, 2],
-      [1, 1],
-    ],
-    [
-      [1, 2, 5],
-      [1, 1, 1],
-    ],
-    [
-      [2, 4],
-      [1, 2],
-    ],
-  ];
+  let mass = [[[1, 2], [1, 1]], [[1, 2, 5], [1, 1, 1]], [[2, 4], [1, 2]]];
 
   expect(massInPeaks(peaks, mass, { maxNumberPeaks: 3 })).toStrictEqual([
     {

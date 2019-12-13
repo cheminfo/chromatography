@@ -28,12 +28,7 @@ test('Errors', () => {
   );
 
   let ms = new Chromatogram([1], {
-    ms: [
-      [
-        [300.001, 300.01, 300.019],
-        [10, 20, 30],
-      ],
-    ],
+    ms: [[[300.001, 300.01, 300.019], [10, 20, 30]]],
   });
   expect(() => integrate(ms, 'ms', [[1]])).toThrow(
     'ranges must be an array of type [[from,to]]',

@@ -9,13 +9,7 @@ test('simple case', () => {
 
 test('empty mass', () => {
   let example = new Chromatogram([1, 2], {
-    ms: [
-      [[], []],
-      [
-        [101, 201, 301],
-        [11, 21, 31],
-      ],
-    ],
+    ms: [[[], []], [[101, 201, 301], [11, 21, 31]]],
   });
   example.calculateBpc();
   expect(example.getSerieNames()).toContain('bpc');

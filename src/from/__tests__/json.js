@@ -12,10 +12,7 @@ test('Serie as an array', () => {
   let series = [
     {
       name: 'ms',
-      data: [
-        [1, 1],
-        [2, 2],
-      ],
+      data: [[1, 1], [2, 2]],
     },
     { name: 'tic', data: [2, 4] },
   ];
