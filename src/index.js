@@ -11,7 +11,7 @@ export { kovatsConversionFunction } from './kovatsConversionFunction';
 export { rescaleTime } from './rescaleTime';
 export { getKovatsRescale } from './getKovatsRescale';
 
-export { cosine } from './ms/cosine';
+export { cosineSimilarity as cosine } from './ms/cosineSimilarity';
 
 export { meanFilter } from './filter/meanFilter';
 export { percentageFilter } from './filter/percentageFilter';

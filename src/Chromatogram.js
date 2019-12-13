@@ -48,11 +48,11 @@ export class Chromatogram {
 
   /**
    * Find the serie giving the name
-   * @param {string} name - name of the serie
+   * @param {string} serieName - name of the serie
    * @return {object} - Object with an array of data, dimensions of the elements in the array and name of the serie
    */
-  getSerie(name) {
-    return this.series[name];
+  getSerie(serieName) {
+    return this.series[serieName];
   }
 
   getSerieNames() {
@@ -65,13 +65,13 @@ export class Chromatogram {
 
   /**
    * Delete a serie
-   * @param {string} name - Name of the serie
+   * @param {string} serieName - Name of the serie
    */
-  deleteSerie(name) {
-    if (!this.hasSerie(name)) {
-      throw new Error(`The serie "${name}" does not exist`);
+  deleteSerie(serieName) {
+    if (!this.hasSerie(serieName)) {
+      throw new Error(`The serie "${serieName}" does not exist`);
     } else {
-      delete this.series[name];
+      delete this.series[serieName];
     }
   }
 
@@ -91,38 +91,38 @@ export class Chromatogram {
 
   /**
    * Add a new serie
-   * @param {string} name - Name of the serie to add
+   * @param {string} serieName - Name of the serie to add
    * @param {Array} array - Object with an array of data, dimensions of the elements in the array and name of the serie
    * @param {object} [options = {}] - Options object
    * @param {boolean} [options.force = false] - Force replacement of existing serie
    */
-  addSerie(name, array, options = {}) {
-    if (this.hasSerie(name) && !options.force) {
-      throw new Error(`A serie with name "${name}" already exists`);
+  addSerie(serieName, array, options = {}) {
+    if (this.hasSerie(serieName) && !options.force) {
+      throw new Error(`A serie with name "${serieName}" already exists`);
     }
     if (this.times.length !== array.length) {
       throw new Error('The array size is not the same as the time size');
     }
-    this.series[name] = serieFromArray(array);
-    this.series[name].name = name;
+    this.series[serieName] = serieFromArray(array);
+    this.series[serieName].name = serieName;
   }
 
   /**
    * Returns true if the serie name exists
-   * @param {string} name - Name of the serie to check
+   * @param {string} serieName - Name of the serie to check
    * @return {boolean}
    */
-  hasSerie(name) {
-    return typeof this.series[name] !== 'undefined';
+  hasSerie(serieName) {
+    return typeof this.series[serieName] !== 'undefined';
   }
 
   /**
    * Throws if the serie does not exists
-   * @param {string} name - Name of the serie to check
+   * @param {string} serieName - Name of the serie to check
    */
-  requiresSerie(name) {
-    if (!this.hasSerie(name)) {
-      throw new Error(`The serie "${name}" does not exist`);
+  requiresSerie(serieName) {
+    if (!this.hasSerie(serieName)) {
+      throw new Error(`The serie "${serieName}" does not exist`);
     }
   }
 
@@ -240,7 +240,7 @@ export class Chromatogram {
   calculateForMass(targetMass, options = {}) {
     const {
       serieName = `ms${targetMass}-${options.error || 0.5}`,
-      cache = false,
+      cache = false
     } = options;
     if (cache && this.hasSerie(serieName)) return this.getSerie(serieName);
     let result = calculateForMass(this, targetMass, options);
@@ -263,7 +263,7 @@ export class Chromatogram {
     const {
       serieName = `ms${targetMF}-${options.ionizations ||
         'H+'}-${options.error || 0.5}`,
-      cache = false,
+      cache = false
     } = options;
     if (cache && this.hasSerie(serieName)) return this.getSerie(serieName);
     let result = calculateForMF(this, targetMF, options);
@@ -287,27 +287,27 @@ export class Chromatogram {
 
   /**
    * Returns an object with the result of the integrations
-   * @param {string} name - Name of the serie to integrate
+   * @param {string} serieName - Name of the serie to integrate
    * @param {Array<Array<number>>} ranges - [[from1, to1], [from2, to2], ...]
    * @param {object} [options = {}] - Options object
    * @param {string|boolean} [options.baseline] - Applies baseline correction
    * @return {[]}
    */
-  integrate(name, ranges, options) {
-    return integrate(this, name, ranges, options);
+  integrate(serieName, ranges, options) {
+    return integrate(this, serieName, ranges, options);
   }
 
   /**
-   * Retuns an object with the result of the integrations
-   * @param {string} name - Name of the serie to integrate
+   * Retuns an object with the result of the merge
+   * @param {string} serieName - Name of the serie to merge
    * @param {Array<Array<number>>} ranges - [[from1, to1], [from2, to2], ...]
    * @param {object} [options = {}] - Options object
    * @param {object} [options.algorithm = 'slot'] - Decision for merging the peaks
    * @param {object} [options.delta = 1] - Parameter for merging the peaks
    * @return {[]}
    */
-  merge(name, ranges, options) {
-    return merge(this, name, ranges, options);
+  merge(serieName, ranges, options) {
+    return merge(this, serieName, ranges, options);
   }
 
   /**

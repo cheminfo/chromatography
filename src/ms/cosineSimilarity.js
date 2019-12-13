@@ -6,7 +6,7 @@
  * @param {Array<number>} ms2y - Array of weighted abundance values for the second spectra
  * @return {number} - Similarity between two MS spectra
  */
-export function cosine(ms1x, ms1y, ms2x, ms2y) {
+export function cosineSimilarity(ms1x, ms1y, ms2x, ms2y) {
   let index1 = 0;
   let index2 = 0;
 

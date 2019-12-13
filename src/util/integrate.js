@@ -4,13 +4,13 @@ import { baselineCorrection } from './baselineCorrection';
 /**
  * Returns a mass spectrum that is the integration of all the spectra in a specific range of time
  * @param {Chromatogram} chromatogram
- * @param {string} name - Name of the serie to integrate
+ * @param {string} serieName - Name of the serie to integrate
  * @param {Array<Array<number>>} ranges - [[from1, to1], [from2, to2], ...]
  * @param {object} [options = {}] - Options object
  * @param {string|boolean} [options.baseline] - Applies baseline correction (trapezoid, min)
  * @return {[]}
  */
-export function integrate(chromatogram, name, ranges, options = {}) {
+export function integrate(chromatogram, serieName, ranges, options = {}) {
   const { baseline = false } = options;
 
   if (!Array.isArray(ranges)) {
@@ -24,8 +24,8 @@ export function integrate(chromatogram, name, ranges, options = {}) {
     throw new Error('ranges must be an array of type [[from,to]]');
   }
 
-  chromatogram.requiresSerie(name);
-  let serie = chromatogram.series[name];
+  chromatogram.requiresSerie(serieName);
+  let serie = chromatogram.series[serieName];
   if (serie.dimension !== 1) {
     throw new Error('the serie is not of dimension 1');
   }

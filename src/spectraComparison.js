@@ -1,7 +1,7 @@
 import { getPeaks } from './util/getPeaks';
 import { massInPeaks } from './massInPeaks';
 import { vectorify } from './vectorify';
-import { cosine } from './ms/cosine';
+import { cosineSimilarity } from './ms/cosineSimilarity';
 
 /**
  * Preprocessing task over the signals
@@ -75,7 +75,7 @@ export function spectraComparison(chrom1, chrom2, options) {
     let max = { similarity: -3 };
     let biggerCounter = 0;
     for (let j = 0; j < reference.peaks.length; ++j) {
-      let sim = cosine(
+      let sim = cosineSimilarity(
         sample.vector[i].x,
         sample.vector[i].y,
         reference.vector[j].x,

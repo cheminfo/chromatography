@@ -8,13 +8,13 @@ import { Chromatogram, massInPeaks, getPeaks, fromJcamp } from '..';
 test('from a Diesel chromatogram', () => {
   const path = join(__dirname, '../../testFiles/jcamp/P064.JDX');
   const jcamp = readFileSync(path, 'utf8');
-  const chrom = fromJcamp(jcamp);
-  expect(chrom).toHaveLength(6992);
+  const chromatogram = fromJcamp(jcamp);
+  expect(chromatogram).toHaveLength(6992);
 
-  let peakList = getPeaks(chrom);
+  let peakList = getPeaks(chromatogram);
   expect(peakList).toHaveLength(312);
 
-  let sampleMS = chrom.getSerie('ms').data;
+  let sampleMS = chromatogram.getSerie('ms').data;
   expect(sampleMS).not.toHaveLength(0);
   let integratedList = massInPeaks(peakList, sampleMS);
   expect(peakList).toHaveLength(integratedList.length);
@@ -32,7 +32,10 @@ test('triplet', () => {
       lorentzian(i, fourth) +
       2 * lorentzian(i, 2 * fourth) +
       lorentzian(i, 3 * fourth);
-    ms[i] = [[1.6, 2.1, 3], [1, 1, 1]];
+    ms[i] = [
+      [1.6, 2.1, 3],
+      [1, 1, 1],
+    ];
   }
   let chrom = new Chromatogram(times);
   chrom.addSerie('tic', tic);
@@ -57,9 +60,18 @@ test('simple case', () => {
 
   expect(
     massInPeaks(peaks, [
-      [[1, 2], [1, 1]],
-      [[1, 2, 5], [1, 1, 1]],
-      [[3, 4], [1, 1]],
+      [
+        [1, 2],
+        [1, 1],
+      ],
+      [
+        [1, 2, 5],
+        [1, 1, 1],
+      ],
+      [
+        [3, 4],
+        [1, 1],
+      ],
     ]),
   ).toStrictEqual([
     {
@@ -80,7 +92,20 @@ test('thresholdFactor', () => {
       right: { index: 2 },
     },
   ];
-  let mass = [[[1, 2], [1, 1]], [[1, 2, 5], [1, 1, 1]], [[2, 4], [1, 1]]];
+  let mass = [
+    [
+      [1, 2],
+      [1, 1],
+    ],
+    [
+      [1, 2, 5],
+      [1, 1, 1],
+    ],
+    [
+      [2, 4],
+      [1, 1],
+    ],
+  ];
 
   expect(massInPeaks(peaks, mass, { thresholdFactor: 0.5 })).toStrictEqual([
     {
@@ -101,7 +126,20 @@ test('maxNumberPeaks', () => {
       right: { index: 2 },
     },
   ];
-  let mass = [[[1, 2], [1, 1]], [[1, 2, 5], [1, 1, 1]], [[2, 4], [1, 2]]];
+  let mass = [
+    [
+      [1, 2],
+      [1, 1],
+    ],
+    [
+      [1, 2, 5],
+      [1, 1, 1],
+    ],
+    [
+      [2, 4],
+      [1, 2],
+    ],
+  ];
 
   expect(massInPeaks(peaks, mass, { maxNumberPeaks: 3 })).toStrictEqual([
     {

@@ -1,11 +1,33 @@
 import { Chromatogram } from '../src';
 
 export const chromato = new Chromatogram([1, 2, 3, 5, 6], {
-  tic: [10, 20, 30, 40, 50]
+  tic: [10, 20, 30, 40, 50],
 });
 
 export const simple = new Chromatogram([1, 2], {
-  ms: [[[100, 200, 300], [10, 20, 30]], [[101, 201, 301], [11, 21, 31]]]
+  ms: [
+    [
+      [100, 200, 300],
+      [10, 20, 30],
+    ],
+    [
+      [101, 201, 301],
+      [11, 21, 31],
+    ],
+  ],
+});
+
+export const highResolution = new Chromatogram([1, 2], {
+  ms: [
+    [
+      [100.002, 200.02, 300.0002],
+      [10, 20, 30],
+    ],
+    [
+      [100.001, 200.01, 300.0001],
+      [11, 21, 31],
+    ],
+  ],
 });
 
 export const simpleStringified =
@@ -13,11 +35,23 @@ export const simpleStringified =
 
 export const simple4 = new Chromatogram([1, 2, 3, 4], {
   ms: [
-    [[101, 201, 301], [11, 21, 31]],
-    [[102, 202, 302], [12, 22, 32]],
-    [[103, 203, 303], [13, 23, 33]],
-    [[104, 204, 304], [14, 24, 34]]
-  ]
+    [
+      [101, 201, 301],
+      [11, 21, 31],
+    ],
+    [
+      [102, 202, 302],
+      [12, 22, 32],
+    ],
+    [
+      [103, 203, 303],
+      [13, 23, 33],
+    ],
+    [
+      [104, 204, 304],
+      [14, 24, 34],
+    ],
+  ],
 });
 
 // https://en.wikipedia.org/wiki/Cauchy_distribution
@@ -39,11 +73,14 @@ export function getSimulatedSpectrum(options = {}) {
       lorentzian(i, fourth) +
       2 * lorentzian(i, 2 * fourth) +
       lorentzian(i, 3 * fourth);
-    ms[i] = [[1, 2, 3], [1, 1, 1]];
+    ms[i] = [
+      [1, 2, 3],
+      [1, 1, 1],
+    ];
   }
   return new Chromatogram(times, {
     tic: tic,
-    ms: ms
+    ms: ms,
   });
 }
 
