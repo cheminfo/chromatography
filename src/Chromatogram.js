@@ -229,18 +229,18 @@ export class Chromatogram {
 
   /**
    * Calculate mass spectrum by filtering for a specific mass
-   * @param {number} targetMass - mass for which to extract the spectrum
+   * @param {number|Array} targetMass - mass for which to extract the spectrum
    * @param {object} [options = {}] - Options object
-   * @param {string} [options.serieName='ms'+targetMass] - Name of the serie to make calculation
+   * @param {string} [options.serieName='ms' targetMass] - Name of the serie to make calculation
    * @param {boolean} [options.cache = false] - Retrieve from cache if exists
    * @param {boolean} [options.force = false] - Force replacement of existing serie
-   * @param {number} [options.error=0.5] - Allowed error around the targetMass
+   * @param {number} [options.slotWidth=1] - Allowed error around the targetMass
    * @return {Serie}
    */
   calculateForMass(targetMass, options = {}) {
     const {
-      serieName = `ms${targetMass}-${options.error || 0.5}`,
-      cache = false
+      serieName = `ms${targetMass} ${options.error || 0.5}`,
+      cache = false,
     } = options;
     if (cache && this.hasSerie(serieName)) return this.getSerie(serieName);
     let result = calculateForMass(this, targetMass, options);
@@ -251,19 +251,17 @@ export class Chromatogram {
   /**
    * Calculate mass spectrum by filtering for a specific mass
    * @param {string} targetMF - mass for which to extract the spectrum
-   * @param {object} [options = {}] - Options object
-   * @param {string} [options.serieName='ms'+targetMass] - Name of the serie to make calculation
-   * @param {boolean} [options.force = false] - Force replacement of existing serie
-   * @param {boolean} [options.cache = false] - Retrieve from cache if exists
-   * @param {number} [options.error=0.5] - Allowed error around the targetMass
+   * @param {object} [options={}]
+   * @param {number} [options.slotWidth=1] - Allowed error around the targetMF
+   * @param {number} [options.threshold=0.05] - Minimal height for peaks
    * @param {number} [options.ionizations='H+'] - List of allowed ionisation
-   * @return {Serie}
+   * @return {Serie} - Calculated mass for targetMass
    */
   calculateForMF(targetMF, options = {}) {
     const {
-      serieName = `ms${targetMF}-${options.ionizations ||
-        'H+'}-${options.error || 0.5}`,
-      cache = false
+      serieName = `ms ${targetMF} ${options.ionizations ||
+        'H+'} (${options.slotWidth || 1}, ${options.threshold || 0.05})`,
+      cache = false,
     } = options;
     if (cache && this.hasSerie(serieName)) return this.getSerie(serieName);
     let result = calculateForMF(this, targetMF, options);

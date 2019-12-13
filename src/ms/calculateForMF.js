@@ -1,11 +1,14 @@
 import { IsotopicDistribution } from 'mf-global';
 import { XYObject } from 'ml-spectra-processing';
 /**
- * Calculate tic
+ * Calculate tic for specific molecular formula and ionizations
+ *
+ * The system will take all the peaks with an intensity over 5% (default value)
  * @param {Chromatogram} chromatogram - GC/MS chromatogram where make the peak picking
  * @param {string} targetMF - mass for which to extract the spectrum
  * @param {object} [options={}]
  * @param {number} [options.slotWidth=1] - Allowed error around the targetMF
+ * @param {number} [options.threshold=0.05] - Minimal height for peaks
  * @param {number} [options.ionizations='H+'] - List of allowed ionisation
  * @return {Array} - Calculated mass for targetMass
  */
@@ -13,7 +16,7 @@ export function calculateForMF(chromatogram, targetMF, options = {}) {
   if (typeof targetMF !== 'string') {
     throw Error('calculateForMF: targetMF must be defined and a string');
   }
-  const { slotWidth = 1, ionizations = 'H+' } = options;
+  const { threshold = 0.05, slotWidth = 1, ionizations = 'H+' } = options;
 
   const halfWidth = slotWidth / 2;
 
@@ -32,9 +35,9 @@ export function calculateForMF(chromatogram, targetMF, options = {}) {
 
   let masses = [].concat(...parts.map((part) => part.isotopicDistribution));
   masses.sort((a, b) => a.x - b.x);
-  masses = XYObject.slotX(masses, { slotWidth });
-
-  console.log(masses);
+  masses = XYObject.slotX(masses, { slotWidth }).filter(
+    (mass) => mass.y > threshold,
+  );
 
   let massSpectra = ms.data;
   let result = new Array(massSpectra.length).fill(0);
@@ -42,7 +45,7 @@ export function calculateForMF(chromatogram, targetMF, options = {}) {
     for (let i = 0; i < massSpectra.length; i++) {
       let massSpectrum = massSpectra[i];
       for (let j = 0; j < massSpectrum[0].length; j++) {
-        if (Math.abs(massSpectrum[0][j] - targetMass) <= halfWidth) {
+        if (Math.abs(massSpectrum[0][j] - targetMass.x) <= halfWidth) {
           result[i] += massSpectrum[1][j];
         }
       }

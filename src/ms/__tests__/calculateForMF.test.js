@@ -2,19 +2,37 @@ import { Chromatogram } from '../..';
 import { simple } from '../../../testFiles/examples';
 
 describe('calculateForMF', () => {
-  it.only('basic', () => {
+  it('basic', () => {
     simple.calculateForMF('C8H3', { ionizations: 'H+' });
-    expect(simple.getSerie('msC8H3-H+-0.5').data).toStrictEqual([10, 0]);
+    expect(simple.getSerie('ms C8H3 H+ (1, 0.05)').data).toStrictEqual([
+      10,
+      11,
+    ]);
   });
 
-  it('many parts', () => {
-    simple.calculateForMF('C10.C16H7', { ionizations: 'H+,Na+,K+' });
-    expect(simple.getSerie('msC10.C16H7-H+,Na+,K+-0.5').data).toStrictEqual([
-      20,
+  it('check threshold', () => {
+    simple.calculateForMF('C8H3', { threshold: 0.9, ionizations: 'H+' });
+    expect(simple.getSerie('ms C8H3 H+ (1, 0.9)').data).toStrictEqual([10, 0]);
+  });
+
+  it('check many ionizations', () => {
+    simple.calculateForMF('C8H4', {
+      threshold: 0.9,
+      slotWidth: 0.01,
+      ionizations: '+,H+',
+    });
+    expect(simple.getSerie('ms C8H4 +,H+ (0.01, 0.9)').data).toStrictEqual([
+      0,
       0,
     ]);
-    simple.calculateForMF('C16H7', { error: 1, ionizations: 'H+,Na+,K+' });
-    expect(simple.getSerie('msC16H7-H+,Na+,K+-1').data).toStrictEqual([20, 21]);
+  });
+
+  it('check many ionizations', () => {
+    simple.calculateForMF('C8H4', { threshold: 0.9, ionizations: '+,H+' });
+    expect(simple.getSerie('ms C8H4 +,H+ (1, 0.9)').data).toStrictEqual([
+      10,
+      11,
+    ]);
   });
 
   it('Errors', () => {

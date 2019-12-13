@@ -1,6 +1,6 @@
 import { Chromatogram } from '../src';
 
-export const chromato = new Chromatogram([1, 2, 3, 5, 6], {
+export const chromatogram = new Chromatogram([1, 2, 3, 5, 6], {
   tic: [10, 20, 30, 40, 50],
 });
 
@@ -83,7 +83,3 @@ export function getSimulatedSpectrum(options = {}) {
     ms: ms,
   });
 }
-
-test('This is not a test', () => {
-  expect(true).toBe(true);
-});
