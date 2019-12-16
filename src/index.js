@@ -24,5 +24,5 @@ export { fromMzML } from './from/mzML';
 export { fromMzData } from './from/mzData';
 
 export { integrate } from './util/integrate';
-export { merge } from './util/merge';
+export { merge } from './ms/merge';
 export { getPeaks } from './util/getPeaks';

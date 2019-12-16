@@ -1,5 +1,5 @@
 import { massFilter } from './massFilter';
-import { merge } from './util/merge';
+import { merge } from './ms/merge';
 
 /**
  * Append MS spectra to a peak list

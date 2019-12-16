@@ -56,6 +56,7 @@
   },
   "dependencies": {
     "binary-search": "^1.3.6",
+    "is-any-array": "0.0.3",
     "jcampconverter": "^4.1.0",
     "mf-global": "^0.12.0",
     "mf-parser": "^0.13.0",
