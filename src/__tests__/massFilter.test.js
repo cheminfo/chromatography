@@ -1,3 +1,5 @@
+import { Chromatogram } from '../Chromatogram';
+
 import { massFilter, massInPeaks, vectorify } from '..';
 
 test('thresholdFactor', () => {
@@ -34,41 +36,6 @@ test('groupWidth', () => {
     x: [2, 5],
     y: [5, 3],
   });
-});
-
-test('from massInPeaks', () => {
-  let peaks = [
-    {
-      left: { index: 0 },
-      right: { index: 2 },
-    },
-  ];
-  let mass = [
-    [
-      [1, 2],
-      [1, 1],
-    ],
-    [
-      [1, 2, 5],
-      [1, 1, 1],
-    ],
-    [
-      [2, 4],
-      [1, 1],
-    ],
-  ];
-
-  peaks = massInPeaks(peaks, mass, { thresholdFactor: 0.5 });
-  expect(peaks).toStrictEqual([
-    {
-      left: { index: 0 },
-      right: { index: 2 },
-      ms: {
-        x: [1, 2],
-        y: [2, 3],
-      },
-    },
-  ]);
 });
 
 test('from vectorify', () => {

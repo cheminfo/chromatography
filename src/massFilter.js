@@ -4,7 +4,7 @@
  * @param {Array<number>} massXYObject.x - Array of mass values
  * @param {Array<number>} massXYObject.y - Array of abundance values
  * @param {object} options - Options for the integral filtering
- * @param {number} [options.thresholdFactor = 0] - Every peak that it's bellow the main peak times this factor fill be removed (when is 0 there's no filter)
+ * @param {number} [options.thresholdFactor = 0] - Every peak that is below the main peak times this factor fill be removed (when is 0 there's no filter)
  * @param {number} [options.maxNumberPeaks = Number.MAX_VALUE] - Maximum number of peaks for each mass spectra (when is Number.MAX_VALUE there's no filter)
  * @param {number} [options.groupWidth = 0] - When find a max can't be another max in a radius of this size
  * @return {object} - Object with filtered x and y data

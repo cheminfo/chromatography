@@ -1,4 +1,4 @@
-import { chromato, simple } from '../../testFiles/examples';
+import { simpleTic, simple } from '../../testFiles/examples';
 
 import { Chromatogram } from '..';
 
@@ -16,9 +16,9 @@ describe('General methods', () => {
   });
 
   it('get first and last time', () => {
-    let chrom = new Chromatogram([1, 2, 3]);
-    expect(chrom.firstTime).toStrictEqual(1);
-    expect(chrom.lastTime).toStrictEqual(3);
+    let chromatogram = new Chromatogram([1, 2, 3]);
+    expect(chromatogram.firstTime).toStrictEqual(1);
+    expect(chromatogram.lastTime).toStrictEqual(3);
   });
 
   it('get first and last time of typed array', () => {
@@ -26,9 +26,9 @@ describe('General methods', () => {
     array[0] = 1;
     array[1] = 2;
     array[2] = 3;
-    let chrom = new Chromatogram(array);
-    expect(chrom.firstTime).toStrictEqual(1);
-    expect(chrom.lastTime).toStrictEqual(3);
+    let chromatogram = new Chromatogram(array);
+    expect(chromatogram.firstTime).toStrictEqual(1);
+    expect(chromatogram.lastTime).toStrictEqual(3);
   });
 
   it('addSerie errors', () => {
@@ -81,7 +81,7 @@ describe('General methods', () => {
 
 describe('Integrations', () => {
   it('Integrate a tic', () => {
-    let result = chromato.integrate('tic', [[1.5, 5.5]]);
+    let result = simpleTic.integrate('tic', [[1.5, 5.5]]);
     expect(result).toStrictEqual([
       {
         integral: 125,
@@ -103,7 +103,10 @@ describe('Integrations', () => {
     let result = simple.merge('ms', [[1, 2]]);
     expect(result).toStrictEqual([
       {
-        serie: [[100, 101, 200, 201, 300, 301], [10, 11, 20, 21, 30, 31]],
+        serie: [
+          [100, 101, 200, 201, 300, 301],
+          [10, 11, 20, 21, 30, 31],
+        ],
         from: {
           time: 1,
           index: 0,

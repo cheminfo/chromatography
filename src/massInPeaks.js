@@ -2,8 +2,8 @@ import { merge } from './ms/merge';
 
 /**
  * Append MS spectra to a peak list
- * @param {Array<object>} peakList - List of GSD objects
  * @param {Chromatogram} chromatogram
+ * @param {Array<object>} peakList - List of GSD objects
  * @param {object} [options={}] - Options for the integral filtering
  * @param {number} [options.mergeThreshold=0.3] - Peaks that are under this value (in Da) will be merged
  * @param {number} [options.serieName='ms'] - Maximum number of peaks for each mass spectra (when is Number.MAX_VALUE there's no filter)

@@ -6,18 +6,17 @@ import { cosineSimilarity } from './ms/cosineSimilarity';
 /**
  * Preprocessing task over the signals
  * @ignore
- * @param {Chromatogram} chromatography - Chromatogram to process
+ * @param {Chromatogram} chromatogram - Chromatogram to process
  * @param {object} [options] - Options object (same as spectraComparison)
  * @return {{peaks: Array<object>, integratedMs: Array<object>, vector: Array<object>}} - Array of peaks, integrated mass spectra and weighted mass spectra
  */
-function preprocessing(chromatography, options) {
+function preprocessing(chromatogram, options) {
   // peak picking
-  let peaks = getPeaks(chromatography, options);
+  let peaks = getPeaks(chromatogram, options);
   peaks = peaks.sort((a, b) => a.index - b.index);
 
   // integrate mass in the peaks
-  let ms = chromatography.getSerie('ms').data;
-  let integratedMs = massInPeaks(peaks, ms, options);
+  let integratedMs = massInPeaks(chromatogram, peaks, options);
   let vector = vectorify(integratedMs, options);
 
   return {
@@ -27,7 +26,7 @@ function preprocessing(chromatography, options) {
   };
 }
 
-const defaultOption = {
+const defaultOptions = {
   thresholdFactor: 0,
   maxNumberPeaks: Number.MAX_VALUE,
   groupWidth: 0,
@@ -41,11 +40,11 @@ const defaultOption = {
  * Returns the most similar peaks between two GC/MS and their similarities
  * @param {Chromatogram} chrom1 - First chromatogram
  * @param {Chromatogram} chrom2 - Second chromatogram
- * @param {object} [options] - Options object
- * @param {number} [options.thresholdFactor = 0] - Every peak that it's bellow the main peak times this factor fill be removed (when is 0 there's no filter)
+ * @param {object} [options={}] - Options object
+ * @param {number} [options.thresholdFactor = 0] - Every peak that it's below the main peak times this factor fill be removed (when is 0 there's no filter)
  * @param {number} [options.maxNumberPeaks = Number.MAX_VALUE] - Maximum number of peaks for each mass spectra (when is Number.MAX_VALUE there's no filter)
  * @param {number} [options.groupWidth = 0] - When find a max can't be another max in a radius of this size
- * @param {number} [options.heightFilter = 2] - Filter all objects that are bellow `heightFilter` times the median of the height
+ * @param {number} [options.heightFilter = 2] - Filter all objects that are below `heightFilter` times the median of the height
  * @param {number} [options.massPower = 3] - Power applied to the mass values
  * @param {number} [options.intPower = 0.6] - Power applied to the abundance values
  * @param {number} [options.similarityThreshold = 0.7] - Minimum similarity value to consider them similar
@@ -54,8 +53,8 @@ const defaultOption = {
  * * `peaksSecond`: Array of peaks, integrated mass spectra and weighted mass spectra for the second chromatogram
  * * `peaksSimilarity`: Array of similarities (number)
  */
-export function spectraComparison(chrom1, chrom2, options) {
-  options = Object.assign({}, defaultOption, options);
+export function spectraComparison(chrom1, chrom2, options = {}) {
+  options = Object.assign({}, defaultOptions, options);
 
   // peak picking
   let reference = preprocessing(chrom1, options);

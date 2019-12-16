@@ -35,7 +35,10 @@ test('triplet', () => {
       lorentzian(i, fourth) +
       2 * lorentzian(i, 2 * fourth) +
       lorentzian(i, 3 * fourth);
-    ms[i] = [[1, 2, 3], [1, 1, 1]];
+    ms[i] = [
+      [1, 2, 3],
+      [1, 1, 1],
+    ];
   }
   let chrom = new Chromatogram(times);
   chrom.addSerie('tic', tic);

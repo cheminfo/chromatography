@@ -22,12 +22,11 @@ export function getKovatsTable(reference, options = {}) {
 
   // Peak picking
   let peaks = getPeaks(reference, { heightFilter });
-  /* istanbul ignore next */
   peaks = peaks.sort((a, b) => a.index - b.index);
 
   // integrate mass in the peaks
   let ms = reference.getSerie('ms').data;
-  let integratedMs = massInPeaks(peaks, ms, {
+  let integratedMs = massInPeaks(reference, peaks, ms, {
     thresholdFactor,
     maxNumberPeaks,
     groupWidth,

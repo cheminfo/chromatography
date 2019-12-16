@@ -6,7 +6,7 @@ import { massFilter } from './massFilter';
  * @param {object} options - Options for the integral filtering
  * @param {number} [options.massPower = 3] - Power applied to the mass values
  * @param {number} [options.intPower = 0.6] - Power applied to the abundance values
- * @param {number} [options.thresholdFactor = 0] - Every peak that it's bellow the main peak times this factor fill be removed (when is 0 there's no filter)
+ * @param {number} [options.thresholdFactor = 0] - Every peak that it's below the main peak times this factor fill be removed (when is 0 there's no filter)
  * @param {number} [options.maxNumberPeaks = Number.MAX_VALUE] - Maximum number of peaks for each mass spectra (when is Number.MAX_VALUE there's no filter)
  * @param {number} [options.groupWidth = 0] - When find a max can't be another max in a radius of this size
  * @return {Array<object>} - List of mass and weighted mass times abundance objects

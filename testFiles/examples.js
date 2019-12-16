@@ -1,6 +1,6 @@
 import { Chromatogram } from '../src';
 
-export const chromatogram = new Chromatogram([1, 2, 3, 5, 6], {
+export const simpleTic = new Chromatogram([1, 2, 3, 4, 5], {
   tic: [10, 20, 30, 40, 50],
 });
 

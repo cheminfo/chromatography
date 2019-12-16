@@ -1,4 +1,5 @@
 import isAnyArray from 'is-any-array';
+
 import { Serie1D } from './Serie1D';
 import { Serie2D } from './Serie2D';
 

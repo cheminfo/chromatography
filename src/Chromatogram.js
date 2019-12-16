@@ -184,7 +184,7 @@ export class Chromatogram {
   /**
    * Apply the GSD peak picking algorithm
    * @param {object} [options] - Options object
-   * @param {object} [options.heightFilter = 2] - Filter all objects that are bellow `heightFilter` times the median of the height
+   * @param {object} [options.heightFilter = 2] - Filter all objects that are below `heightFilter` times the median of the height
    * @return {Array<object>} - List of GSD objects
    */
   getPeaks(options) {
@@ -287,7 +287,7 @@ export class Chromatogram {
   /**
    * Returns an object with the result of the integrations
    * @param {string} serieName - Name of the serie to integrate
-   * @param {Array<Array<number>>} ranges - [[from1, to1], [from2, to2], ...]
+   * @param {Array<object>} ranges - [[from1, to1], [from2, to2], ...]
    * @param {object} [options = {}] - Options object
    * @param {string|boolean} [options.baseline] - Applies baseline correction
    * @return {[]}
@@ -299,9 +299,8 @@ export class Chromatogram {
   /**
    * Retuns an object with the result of the merge
    * @param {string} serieName - Name of the serie to merge
-   * @param {Array<Array<number>>} ranges - [[from1, to1], [from2, to2], ...]
+   * @param {Array<object>} ranges - [{from:,to:}, {from:, to:}, ...]
    * @param {object} [options = {}] - Options object
-   * @param {object} [options.algorithm = 'slot'] - Decision for merging the peaks
    * @param {object} [options.delta = 1] - Parameter for merging the peaks
    * @return {[]}
    */
