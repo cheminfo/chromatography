@@ -232,15 +232,15 @@ export class Chromatogram {
    * Calculate mass spectrum by filtering for a specific mass
    * @param {number|Array} targetMass - mass for which to extract the spectrum
    * @param {object} [options = {}] - Options object
-   * @param {string} [options.serieName='ms' targetMass] - Name of the serie to make calculation
+   * @param {string} [options.serieName='ms'] - Name of the serie to make calculation
    * @param {boolean} [options.cache = false] - Retrieve from cache if exists
    * @param {boolean} [options.force = false] - Force replacement of existing serie
-   * @param {number} [options.slotWidth=1] - Allowed error around the targetMass
+   * @param {number} [options.slotWidth=1] - Width of the slot around the targetMass
    * @return {Serie}
    */
   calculateForMass(targetMass, options = {}) {
     const {
-      serieName = `ms${targetMass} ${options.error || 0.5}`,
+      serieName = `ms${targetMass}±${options.slotWidth / 2 || 0.5}`,
       cache = false,
     } = options;
     if (cache && this.hasSerie(serieName)) return this.getSerie(serieName);
@@ -253,7 +253,7 @@ export class Chromatogram {
    * Calculate mass spectrum by filtering for a specific mass
    * @param {string} targetMF - mass for which to extract the spectrum
    * @param {object} [options={}]
-   * @param {number} [options.slotWidth=1] - Allowed error around the targetMF
+   * @param {number} [options.slotWidth=1] - With of the slot around the mass of targetMF
    * @param {number} [options.threshold=0.05] - Minimal height for peaks
    * @param {number} [options.ionizations='H+'] - List of allowed ionisation
    * @return {Serie} - Calculated mass for targetMass

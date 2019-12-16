@@ -7,7 +7,7 @@ import { XYObject } from 'ml-spectra-processing';
  * @param {Chromatogram} chromatogram - GC/MS chromatogram where make the peak picking
  * @param {string} targetMF - mass for which to extract the spectrum
  * @param {object} [options={}]
- * @param {number} [options.slotWidth=1] - Allowed error around the targetMF
+ * @param {number} [options.slotWidth=1] - Width of the slot around the mass of targetMF
  * @param {number} [options.threshold=0.05] - Minimal height for peaks
  * @param {number} [options.ionizations='H+'] - List of allowed ionisation
  * @return {Array} - Calculated mass for targetMass

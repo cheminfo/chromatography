@@ -3,7 +3,7 @@
  * @param {Chromatogram} chromatogram - GC/MS chromatogram where make the peak picking
  * @param {number|Array} targetMass - mass for which to extract the spectrum
  * @param {object} [options={}]
- * @param {number} [options.slotWidth=1] - Allowed error around the targetMF
+ * @param {number} [options.slotWidth=1] - Width of the slot around the targetMass
  * @return {Array} - Calculated mass for targetMass
  */
 export function calculateForMass(chromatogram, targetMass, options = {}) {
