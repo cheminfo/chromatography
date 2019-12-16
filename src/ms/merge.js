@@ -5,13 +5,13 @@ import { X, XY, XYObject } from 'ml-spectra-processing';
  * @param {Chromatogram} chromatogram
  * @param {object} [options = {}] - Options object
  * @param {string} [options.serieName='ms'] - Name of the mass serie, by default 'ms''
- * @param {object} [options.error = 0.3] - Parameter for merging the peaks
+ * @param {object} [options.mergeThreshold = 0.3] - Parameter for merging the peaks
  * @param {object} [options.range={from:min,to:max}] - {from:x,to:y} we integrate a zone, by default all
  * @return {object} (x:[],y:[])
  */
 export function merge(chromatogram, options = {}) {
   const time = chromatogram.getTimes();
-  let { error = 0.3, serieName = 'ms', range } = options;
+  let { mergeThreshold = 0.3, serieName = 'ms', range } = options;
 
   chromatogram.requiresSerie(serieName);
   let serie = chromatogram.series[serieName];
@@ -36,7 +36,7 @@ export function merge(chromatogram, options = {}) {
     let newData = XY.toXYObject({ x: serie.data[i][0], y: serie.data[i][1] });
     result = result.concat(newData);
     result = XYObject.sortX(result);
-    result = XYObject.joinX(result, { xError: error });
+    result = XYObject.joinX(result, { xError: mergeThreshold });
   }
   result = { ...XYObject.toXY(result), fromIndex, toIndex };
   return result;

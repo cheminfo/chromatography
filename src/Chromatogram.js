@@ -1,3 +1,6 @@
+import isAnyArray from 'is-any-array';
+import { X } from 'ml-spectra-processing';
+
 import { rescaleTime } from './rescaleTime';
 import { filter } from './util/filter';
 import { serieFromArray } from './serieFromArray';
@@ -11,13 +14,11 @@ import { calculateForMF } from './ms/calculateForMF';
 import { integrate } from './util/integrate';
 import { merge } from './ms/merge';
 import { getKovatsRescale } from './getKovatsRescale';
-import { getClosestTime } from './util/getClosestTime';
 import { applyLockMass } from './ms/applyLockMass';
 import { meanFilter } from './filter/meanFilter';
 import { percentageFilter } from './filter/percentageFilter';
 import { toJSON } from './to/json';
 import { getClosestData } from './util/getClosestData';
-import isAnyArray from 'is-any-array';
 /**
  * Class allowing to store time / ms (ms) series
  * It allows also to store simple time a trace
@@ -240,7 +241,7 @@ export class Chromatogram {
   calculateForMass(targetMass, options = {}) {
     const {
       serieName = `ms${targetMass} ${options.error || 0.5}`,
-      cache = false
+      cache = false,
     } = options;
     if (cache && this.hasSerie(serieName)) return this.getSerie(serieName);
     let result = calculateForMass(this, targetMass, options);
@@ -261,7 +262,7 @@ export class Chromatogram {
     const {
       serieName = `ms ${targetMF} ${options.ionizations ||
         'H+'} (${options.slotWidth || 1}, ${options.threshold || 0.05})`,
-      cache = false
+      cache = false,
     } = options;
     if (cache && this.hasSerie(serieName)) return this.getSerie(serieName);
     let result = calculateForMF(this, targetMF, options);
@@ -311,10 +312,14 @@ export class Chromatogram {
   /**
    * Returns information for the closest time
    * @param {number} time - Retention time
-   * @return {{index: number, timeBefore: number, timeAfter: number, timeClosest: number, safeIndexBefore: number, safeIndexAfter: number}}
+   * @return {number} index
    */
   getClosestTime(time) {
-    return getClosestTime(time, this.getTimes());
+    return X.findClosestIndex(this.getTimes(), time);
+  }
+
+  getClosestData(time, options = {}) {
+    return getClosestData(this, time, options);
   }
 
   /**
@@ -361,4 +366,3 @@ export class Chromatogram {
 
 Chromatogram.prototype.applyLockMass = applyLockMass;
 Chromatogram.prototype.toJSON = toJSON;
-Chromatogram.prototype.getClosestData = getClosestData;
