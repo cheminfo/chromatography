@@ -27,7 +27,7 @@ describe('calculateForMF', () => {
     ]);
   });
 
-  it('check many ionizations', () => {
+  it('check many ionizations, default slotWidth', () => {
     simple.calculateForMF('C8H4', { threshold: 0.9, ionizations: '+,H+' });
     expect(simple.getSerie('ms C8H4 +,H+ (1, 0.9)').data).toStrictEqual([
       10,

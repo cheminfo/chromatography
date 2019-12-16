@@ -1,6 +1,4 @@
-import { Chromatogram } from '../Chromatogram';
-
-import { massFilter, massInPeaks, vectorify } from '..';
+import { massFilter, vectorify } from '..';
 
 test('thresholdFactor', () => {
   let mass = {
