@@ -241,7 +241,7 @@ export class Chromatogram {
   calculateForMass(targetMass, options = {}) {
     const {
       serieName = `ms${targetMass}±${options.slotWidth / 2 || 0.5}`,
-      cache = false,
+      cache = false
     } = options;
     if (cache && this.hasSerie(serieName)) return this.getSerie(serieName);
     let result = calculateForMass(this, targetMass, options);
@@ -262,7 +262,7 @@ export class Chromatogram {
     const {
       serieName = `ms ${targetMF} ${options.ionizations ||
         'H+'} (${options.slotWidth || 1}, ${options.threshold || 0.05})`,
-      cache = false,
+      cache = false
     } = options;
     if (cache && this.hasSerie(serieName)) return this.getSerie(serieName);
     let result = calculateForMF(this, targetMF, options);
@@ -286,22 +286,23 @@ export class Chromatogram {
 
   /**
    * Returns an object with the result of the integrations
-   * @param {string} serieName - Name of the serie to integrate
-   * @param {Array<object>} ranges - [[from1, to1], [from2, to2], ...]
+   * @param {Array<object>} ranges - [{from:,to:}, {from:, to:}, ...]
    * @param {object} [options = {}] - Options object
-   * @param {string|boolean} [options.baseline] - Applies baseline correction
+   * @param {string} [options.serieName='tic'] - Name of the chromatogram serie, by default 'tic
+   * @param {string|boolean} [options.baseline] - Applies baseline correction (trapezoid, min)
    * @return {[]}
    */
-  integrate(serieName, ranges, options) {
-    return integrate(this, serieName, ranges, options);
+  integrate(ranges, options) {
+    return integrate(this, ranges, options);
   }
 
   /**
    * Retuns an object with the result of the merge
-   * @param {string} serieName - Name of the serie to merge
-   * @param {Array<object>} ranges - [{from:,to:}, {from:, to:}, ...]
+   * @param {Array<object>} [ranges=[{}]] - [{from:,to:}, {from:, to:}, ...]
    * @param {object} [options = {}] - Options object
-   * @param {object} [options.delta = 1] - Parameter for merging the peaks
+   * @param {string} [options.serieName='ms'] - Name of the mass serie, by default 'ms'
+   * @param {object} [options.mergeThreshold = 0.3] - Parameter for merging the peaks
+   * @param {object} [options.range={from:min,to:max}] - {from:x,to:y} we integrate a zone, by default all
    * @return {[]}
    */
   merge(serieName, ranges, options) {

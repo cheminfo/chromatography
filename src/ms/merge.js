@@ -24,29 +24,36 @@ export function merge(chromatogram, ranges = [{}], options = {}) {
   }
   let results = [];
   for (let range of ranges) {
-    if (range && (range.from > time[time.length - 1] || range.to < time[0])) {
-      results.push({
-        x: [],
-        y: [],
-      });
-    } else {
-      let { fromIndex, toIndex } = X.getFromToIndex(time, range);
-      let result = XY.toXYObject({
-        x: serie.data[fromIndex][0],
-        y: serie.data[fromIndex][1],
-      });
-      for (let i = fromIndex + 1; i <= toIndex; i++) {
-        let newData = XY.toXYObject({
-          x: serie.data[i][0],
-          y: serie.data[i][1],
-        });
-        result = result.concat(newData);
-        result = XYObject.sortX(result);
-        result = XYObject.joinX(result, { xError: mergeThreshold });
-      }
-      result = { ...XYObject.toXY(result), fromIndex, toIndex };
-      results.push(result);
+    if (!range || range.from > time[time.length - 1] || range.to < time[0]) {
+      results.push({ x: [], y: [] });
+      continue;
     }
+    let { fromIndex, toIndex } = X.getFromToIndex(time, range);
+    let result = XY.toXYObject({
+      x: serie.data[fromIndex][0],
+      y: serie.data[fromIndex][1],
+    });
+    for (let i = fromIndex + 1; i <= toIndex; i++) {
+      let newData = XY.toXYObject({
+        x: serie.data[i][0],
+        y: serie.data[i][1],
+      });
+      result = result.concat(newData);
+      result = XYObject.sortX(result);
+      result = XYObject.joinX(result, { xError: mergeThreshold });
+    }
+    result = {
+      ...XYObject.toXY(result),
+      from: {
+        index: fromIndex,
+        time: time[fromIndex],
+      },
+      to: {
+        index: toIndex,
+        time: time[toIndex],
+      },
+    };
+    results.push(result);
   }
 
   return results;

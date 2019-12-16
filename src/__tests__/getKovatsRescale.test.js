@@ -3,7 +3,7 @@ import { getSimulatedSpectrum } from '../../testFiles/examples';
 import { getKovatsRescale } from '..';
 
 test('triplet', () => {
-  let chrom = getSimulatedSpectrum();
+  let chromatogram = getSimulatedSpectrum();
 
   const options = {
     heightFilter: 2,
@@ -12,7 +12,7 @@ test('triplet', () => {
     groupWidth: 0,
   };
 
-  let kovatsRescale = getKovatsRescale(chrom, options);
+  let kovatsRescale = getKovatsRescale(chromatogram, options);
   expect(kovatsRescale.kovatsIndexes).toStrictEqual([{ time: 15, value: 0 }]);
   expect(kovatsRescale.peaks).toHaveLength(1);
 });

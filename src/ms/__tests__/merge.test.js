@@ -12,8 +12,8 @@ describe('Low resolution', () => {
     expect(result[0]).toStrictEqual({
       x: [100, 101, 200, 201, 300, 301],
       y: [10, 11, 20, 21, 30, 31],
-      fromIndex: 0,
-      toIndex: 1,
+      from: { index: 0, time: 1 },
+      to: { index: 1, time: 2 },
     });
   });
 
@@ -22,8 +22,8 @@ describe('Low resolution', () => {
     expect(result[0]).toStrictEqual({
       x: [100, 200, 300],
       y: [10, 20, 30],
-      fromIndex: 0,
-      toIndex: 0,
+      from: { index: 0, time: 1 },
+      to: { index: 0, time: 1 },
     });
   });
 
@@ -32,8 +32,8 @@ describe('Low resolution', () => {
     expect(result).toStrictEqual({
       x: [101, 201, 301],
       y: [11, 21, 31],
-      fromIndex: 1,
-      toIndex: 1,
+      from: { index: 1, time: 2 },
+      to: { index: 1, time: 2 },
     });
   });
 
@@ -51,8 +51,8 @@ describe('High resolution', () => {
     let result = merge(highResolution, [{}])[0];
     expect(result.x).toBeDeepCloseTo([100.0014, 200.0148, 300.0001], 4);
     expect(result.y).toBeDeepCloseTo([21, 41, 61]);
-    expect(result.fromIndex).toBe(0);
-    expect(result.toIndex).toBe(1);
+    expect(result.from).toStrictEqual({ index: 0, time: 1 });
+    expect(result.to).toStrictEqual({ index: 1, time: 2 });
   });
 
   it('small threhold', () => {
@@ -60,8 +60,8 @@ describe('High resolution', () => {
     expect(result).toStrictEqual({
       x: [100.001, 100.002, 200.01, 200.02, 300.0001, 300.0002],
       y: [11, 10, 21, 20, 31, 30],
-      fromIndex: 0,
-      toIndex: 1,
+      from: { index: 0, time: 1 },
+      to: { index: 1, time: 2 },
     });
   });
 
