@@ -56,7 +56,7 @@ describe('High resolution', () => {
   });
 
   it('small threhold', () => {
-    let result = merge(highResolution, { threshold: 0.00001 });
+    let result = merge(highResolution, { error: 0.00001 });
     expect(result).toStrictEqual({
       x: [100.001, 100.002, 200.01, 200.02, 300.0001, 300.0002],
       y: [11, 10, 21, 20, 31, 30],
