@@ -8,10 +8,10 @@ test('from a Diesel chromatogram', () => {
   const path = join(__dirname, '../../../testFiles/jcamp/P064.JDX');
   const jcamp = fs.readFileSync(path, 'utf8');
 
-  const chrom = fromJcamp(jcamp);
-  expect(chrom).toHaveLength(6992);
+  const chromatogram = fromJcamp(jcamp);
+  expect(chromatogram).toHaveLength(6992);
 
-  let peakList = chrom.getPeaks();
+  let peakList = chromatogram.getPeaks();
   expect(peakList).toHaveLength(312);
 });
 

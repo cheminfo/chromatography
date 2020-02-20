@@ -8,13 +8,13 @@ import { Chromatogram, massInPeaks, getPeaks, vectorify, fromJcamp } from '..';
 test('from a Diesel chromatogram', () => {
   const path = join(__dirname, '../../testFiles/jcamp/P064.JDX');
   const jcamp = readFileSync(path, 'utf8');
-  const chrom = fromJcamp(jcamp);
-  expect(chrom).toHaveLength(6992);
+  const chromatogram = fromJcamp(jcamp);
+  expect(chromatogram).toHaveLength(6992);
 
-  let peakList = getPeaks(chrom);
+  let peakList = getPeaks(chromatogram);
   expect(peakList).toHaveLength(312);
 
-  let sampleMS = chrom.getSerie('ms').data;
+  let sampleMS = chromatogram.getSerie('ms').data;
   expect(sampleMS).not.toHaveLength(0);
   let integratedList = massInPeaks(peakList, sampleMS);
   expect(peakList).toHaveLength(integratedList.length);
@@ -40,14 +40,14 @@ test('triplet', () => {
       [1, 1, 1],
     ];
   }
-  let chrom = new Chromatogram(times);
-  chrom.addSerie('tic', tic);
-  chrom.addSerie('ms', ms);
+  let chromatogram = new Chromatogram(times);
+  chromatogram.addSerie('tic', tic);
+  chromatogram.addSerie('ms', ms);
 
-  let peakList = getPeaks(chrom);
+  let peakList = getPeaks(chromatogram);
   expect(peakList).toHaveLength(1);
 
-  let sampleMS = chrom.getSerie('ms').data;
+  let sampleMS = chromatogram.getSerie('ms').data;
   expect(sampleMS).not.toHaveLength(0);
   let integratedList = massInPeaks(peakList, sampleMS);
   expect(peakList).toHaveLength(integratedList.length);

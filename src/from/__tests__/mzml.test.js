@@ -7,8 +7,8 @@ describe('mzML data files', () => {
   it('mzData', () => {
     const path = join(__dirname, '../../../testFiles/mzML/test.mzdata.xml');
     const mzData = readFileSync(path);
-    const chrom = fromMzML(mzData);
-    expect(chrom).toHaveLength(3029);
+    const chromatogram = fromMzML(mzData);
+    expect(chromatogram).toHaveLength(3029);
   });
 
   it('Errors', () => {

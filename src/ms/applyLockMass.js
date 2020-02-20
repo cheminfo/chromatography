@@ -92,5 +92,5 @@ export function applyLockMass(mf, options = {}) {
   // remove the time and the mass spectra that contains the reference
   this.filter((index) => index % 2 !== referenceIndexShift);
 
-  return { chrom: this, referenceUsed };
+  return { chromatogram: this, referenceUsed };
 }

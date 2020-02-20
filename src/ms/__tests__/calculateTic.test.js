@@ -9,7 +9,7 @@ test('simple case', () => {
 
 test('Errors', () => {
   expect(() => {
-    const chrom = new Chromatogram([1, 2, 3, 5, 6]);
-    chrom.calculateTic();
+    const chromatogram = new Chromatogram([1, 2, 3, 5, 6]);
+    chromatogram.calculateTic();
   }).toThrow('The mass serie must be defined');
 });

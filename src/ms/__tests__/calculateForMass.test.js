@@ -11,11 +11,11 @@ test('calculateForMass: simple case', () => {
 });
 
 test('Errors', () => {
-  const chrom = new Chromatogram([1, 2, 3, 5, 6]);
+  const chromatogram = new Chromatogram([1, 2, 3, 5, 6]);
   expect(() => {
-    chrom.calculateForMass();
+    chromatogram.calculateForMass();
   }).toThrow('calculateForMass: targetMass must be defined and a number');
   expect(() => {
-    chrom.calculateForMass(300);
+    chromatogram.calculateForMass(300);
   }).toThrow('calculateForMass: the mass serie must be defined');
 });

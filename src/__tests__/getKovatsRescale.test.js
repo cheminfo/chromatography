@@ -18,7 +18,7 @@ test('triplet', () => {
 });
 
 test('inplace', () => {
-  let chrom = getSimulatedSpectrum();
+  let chromatogram = getSimulatedSpectrum();
 
   const options = {
     heightFilter: 2,
@@ -27,7 +27,7 @@ test('inplace', () => {
     groupWidth: 0,
   };
 
-  let kovatsRescale = chrom.getKovatsRescale(options);
+  let kovatsRescale = chromatogram.getKovatsRescale(options);
   expect(kovatsRescale.kovatsIndexes).toStrictEqual([{ time: 15, value: 0 }]);
   expect(kovatsRescale.peaks).toHaveLength(1);
 });

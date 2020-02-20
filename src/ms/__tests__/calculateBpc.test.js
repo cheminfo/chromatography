@@ -24,7 +24,7 @@ test('empty mass', () => {
 
 test('Errors', () => {
   expect(() => {
-    const chrom = new Chromatogram([1, 2, 3, 5, 6]);
-    chrom.calculateBpc();
+    const chromatogram = new Chromatogram([1, 2, 3, 5, 6]);
+    chromatogram.calculateBpc();
   }).toThrow('The mass serie must be defined');
 });

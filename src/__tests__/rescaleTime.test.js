@@ -29,7 +29,7 @@ test('Simple case', () => {
 test('Non-in place', () => {
   const path = join(__dirname, '../../testFiles/jcamp/P064.JDX');
   const jcamp = readFileSync(path, 'utf8');
-  const chrom = fromJcamp(jcamp);
+  const chromatogram = fromJcamp(jcamp);
 
   const time2kovats = kovatsConversionFunction([
     { time: 2.735, value: 800 },
@@ -57,9 +57,9 @@ test('Non-in place', () => {
     { time: 29.09, value: 3000 },
     { time: 31.619, value: 3100 },
   ]);
-  const newTime = rescaleTime(chrom.getTimes(), time2kovats);
-  chrom.setTimes(newTime);
-  const internalTime = chrom.getTimes();
+  const newTime = rescaleTime(chromatogram.getTimes(), time2kovats);
+  chromatogram.setTimes(newTime);
+  const internalTime = chromatogram.getTimes();
   for (let i = 0; i < newTime.length; i++) {
     expect(internalTime[i]).toStrictEqual(newTime[i]);
   }
@@ -68,7 +68,7 @@ test('Non-in place', () => {
 test('In place', () => {
   const path = join(__dirname, '../../testFiles/jcamp/P064.JDX');
   const jcamp = readFileSync(path, 'utf8');
-  const chrom = fromJcamp(jcamp);
+  const chromatogram = fromJcamp(jcamp);
 
   const time2kovats = kovatsConversionFunction([
     { time: 2.735, value: 800 },
@@ -96,8 +96,8 @@ test('In place', () => {
     { time: 29.09, value: 3000 },
     { time: 31.619, value: 3100 },
   ]);
-  chrom.rescaleTime(time2kovats);
-  const internalTime = chrom.getTimes();
+  chromatogram.rescaleTime(time2kovats);
+  const internalTime = chromatogram.getTimes();
   for (let i = 0; i < internalTime.length; i++) {
     expect(internalTime[i] < 3100).toStrictEqual(true);
   }

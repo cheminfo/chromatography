@@ -36,12 +36,12 @@ describe('calculateForMF', () => {
   });
 
   it('Errors', () => {
-    const chrom = new Chromatogram([1, 2, 3, 5, 6]);
+    const chromatogram = new Chromatogram([1, 2, 3, 5, 6]);
     expect(() => {
-      chrom.calculateForMF();
+      chromatogram.calculateForMF();
     }).toThrow('calculateForMF: targetMF must be defined and a string');
     expect(() => {
-      chrom.calculateForMF('C10');
+      chromatogram.calculateForMF('C10');
     }).toThrow('calculateForMF: the mass serie must be defined');
   });
 });

@@ -2,11 +2,11 @@ import max from 'ml-array-max';
 
 /**
  * Calculate bpc
- * @param {Chromatogram} chrom - GC/MS chromatogram where make the peak picking
+ * @param {Chromatogram} chromatogram - GC/MS chromatogram where make the peak picking
  * @return {Array} - Calculated bpc
  */
-export function calculateBpc(chrom) {
-  let ms = chrom.getSerie('ms');
+export function calculateBpc(chromatogram) {
+  let ms = chromatogram.getSerie('ms');
   if (!ms) {
     throw new Error('The mass serie must be defined');
   }

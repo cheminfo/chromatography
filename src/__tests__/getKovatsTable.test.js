@@ -19,9 +19,9 @@ test('triplet', () => {
       [1, 1, 1, 1, 1, 1],
     ];
   }
-  let chrom = new Chromatogram(times);
-  chrom.addSerie('tic', tic);
-  chrom.addSerie('ms', ms);
+  let chromatogram = new Chromatogram(times);
+  chromatogram.addSerie('tic', tic);
+  chromatogram.addSerie('ms', ms);
 
   const options = {
     heightFilter: 2,
@@ -30,7 +30,7 @@ test('triplet', () => {
     groupWidth: 0,
   };
 
-  let table = getKovatsTable(chrom, options);
+  let table = getKovatsTable(chromatogram, options);
   expect(table.kovatsIndexes).toStrictEqual([{ time: 15, value: 800 }]);
 });
 
@@ -51,10 +51,10 @@ test('default', () => {
       [1, 1, 1, 1, 1, 1],
     ];
   }
-  let chrom = new Chromatogram(times);
-  chrom.addSerie('tic', tic);
-  chrom.addSerie('ms', ms);
+  let chromatogram = new Chromatogram(times);
+  chromatogram.addSerie('tic', tic);
+  chromatogram.addSerie('ms', ms);
 
-  let table = getKovatsTable(chrom);
+  let table = getKovatsTable(chromatogram);
   expect(table).toStrictEqual({ kovatsIndexes: [], peaks: [] });
 });
