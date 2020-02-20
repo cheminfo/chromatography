@@ -13,4 +13,5 @@ const { x, y } = spectrumGenerator.getSpectrum();
 const chromatogram = new Chromatogram(x, { tic: y });
 
 const peaks = chromatogram.getPeaks({ heightFilter: 2 });
+
 console.log(peaks);
