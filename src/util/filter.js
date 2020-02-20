@@ -9,11 +9,8 @@
  */
 export function filter(chromatogram, callback, options = {}) {
   const { copy = false } = options;
-  let chromatogram;
   if (copy) {
     chromatogram = chromatogram.copy();
-  } else {
-    chromatogram = chromatogram;
   }
 
   let times = chromatogram.getTimes();
