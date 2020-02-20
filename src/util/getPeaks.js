@@ -1,5 +1,5 @@
 import { gsd, post } from 'ml-gsd';
-
+import median from 'ml-array-median';
 /**
  * Apply the GSD peak picking algorithm
  * @param {Chromatogram} chromatogram - GC/MS chromatogram where make the peak picking
@@ -58,7 +58,8 @@ export function getPeaks(chromatogram, options = {}) {
   peakList.sort((a, b) => a.height - b.height);
 
   // filter height by factor
-  let medianHeight = peakList[Math.floor((peakList.length - 1) / 2)].height;
+  let medianHeight = median(serie);
+
   peakList = peakList.filter((val) => val.height > medianHeight * heightFilter);
 
   let { factor = 1, overlap = false } = broadenPeaks;
