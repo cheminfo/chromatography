@@ -1,13 +1,13 @@
-import { kovatsConversionFunction } from '..';
+import { getKovatsConversionFunction } from '..';
 
 const conversionTable = [
-  { time: 10, value: 800 },
-  { time: 20, value: 900 },
-  { time: 30, value: 1000 },
+  { x: 10, kovats: { index: 800 } },
+  { x: 20, kovats: { index: 900 } },
+  { x: 30, kovats: { index: 1000 } },
 ];
 
 test('from time to kovats', () => {
-  const time2kovats = kovatsConversionFunction(conversionTable);
+  const time2kovats = getKovatsConversionFunction(conversionTable);
   expect(time2kovats(10)).toStrictEqual(800);
   expect(time2kovats(15)).toStrictEqual(850);
   expect(time2kovats(20)).toStrictEqual(900);
@@ -16,7 +16,7 @@ test('from time to kovats', () => {
 });
 
 test('from kovats to time', () => {
-  const kovats2time = kovatsConversionFunction(conversionTable, {
+  const kovats2time = getKovatsConversionFunction(conversionTable, {
     revert: true,
   });
   expect(kovats2time(800)).toStrictEqual(10);

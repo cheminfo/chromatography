@@ -1,11 +1,10 @@
 import isAnyArray from 'is-any-array';
 import { X } from 'ml-spectra-processing';
 
-import { rescaleTime } from './rescaleTime';
 import { filter } from './util/filter';
 import { serieFromArray } from './serieFromArray';
 import { fromJSON } from './from/json';
-import { getPeaks } from './util/getPeaks';
+import { getPeaks } from './peaks/getPeaks';
 import { calculateTic } from './ms/calculateTic';
 import { calculateLength } from './ms/calculateLength';
 import { calculateBpc } from './ms/calculateBpc';
@@ -13,7 +12,6 @@ import { calculateForMass } from './ms/calculateForMass';
 import { calculateForMF } from './ms/calculateForMF';
 import { integrate } from './util/integrate';
 import { merge } from './ms/merge';
-import { getKovatsRescale } from './getKovatsRescale';
 import { applyLockMass } from './ms/applyLockMass';
 import { meanFilter } from './filter/meanFilter';
 import { percentageFilter } from './filter/percentageFilter';
@@ -165,7 +163,7 @@ export class Chromatogram {
    * @return {Chromatogram}
    */
   rescaleTime(conversionFunction) {
-    this.times = rescaleTime(this.times, conversionFunction);
+    this.times = this.times.map((time) => conversionFunction(time));
     return this;
   }
 
@@ -271,17 +269,14 @@ export class Chromatogram {
   }
 
   /**
-   * Calculates the table of Kovats indexes for the reference spectra
+   * Calculates the conversion function based on peaks that contains kovats
+   * @param {array} [peaks]
    * @param {object} [options = {}] - Options object
-   * @param {number} [options.heightFilter = 100] - Filter all objects that are below heightFilter times the median of the height
-   * @param {number} [options.thresholdFactor = 0.005] - Every peak that is below the main peak times this factor will be removed (when is 0 there's no filter)
-   * @param {number} [options.maxNumberPeaks = 40] - Maximum number of peaks for each mass spectra (when is Number.MAX_VALUE there's no filter)
-   * @param {number} [options.groupWidth = 5] - When find a max can't be another max in a radius of this size
    * @param {boolean} [options.revert = false] - True for convert from Kovats to time, false otherwise
    * @return {{conversionFunction:function(number),kovatsIndexes:Array<object>,peaks:Array<object>}} - Time and value for the Kovats index
    */
-  getKovatsRescale(options) {
-    return getKovatsRescale(this, options);
+  getKovatsConversionFunction(peaks) {
+    return getKovatsConversionFunction(peaks, options);
   }
 
   /**

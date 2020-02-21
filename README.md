@@ -13,14 +13,14 @@ Tools for storing, searching and analyzing GC/MS data.
 ## Usage
 
 ```js
-import * as GCMS from "chromatography";
+import * as GCMS from 'chromatography';
 
 let gcms = GCMS.fromJcamp(jcampReferenceMixture);
 
-let kovatsConversionTable = GCMS.getKovatsTable(gcms); // [{time, value}]
-let conversionFunction = GCMS.kovatsConversionFunction(
+let kovatsConversionTable = GCMS.appendKovats(gcms); // [{time, value}]
+let conversionFunction = GCMS.getKovatsConversionFunction(
   kovatsConversionTable,
-  {}
+  {},
 );
 
 let diesel = GCMS.fromJcamp(jcampOfDiesel);
@@ -33,9 +33,9 @@ let gcms2 = GCMS.fromJSON(anotherDieselJSON);
 let similarity = GCMS.similarity(gcms, gcms2, options);
 
 // Get a spectrum in another reference model
-let revertConversionFunction = GCMS.kovatsConversionFunction(
+let revertConversionFunction = GCMS.getKovatsConversionFunction(
   kovatsConversionTable,
-  { revert: true }
+  { revert: true },
 );
 let mySpectrumInAnotherReference = revertConversionFunction(mySpectrum);
 ```

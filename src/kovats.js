@@ -1,38 +1,46 @@
+import max from 'ml-array-max';
+
 /**
  * Calculates the Kovats retention index for a mass spectra of a n-alkane
- * @param {object} ms - An mass spectra object
+ * @param {object} ms - A mass spectra object
  * @param {Array<number>} ms.x - Array of masses
  * @param {Array<number>} ms.y - Array of intensities
  * @return {number} - Kovats retention index
  */
-export function kovats(ms) {
-  let mass = ms.x;
-  let massMol = [];
-  const targets = [43, 57, 71, 85];
+export function kovats(ms, options = {}) {
+  const { threshold = 0.01 } = options;
+  // we normalize the data and filter them
+  let maxY = max(ms.y);
+  let masses = [];
+  let intensities = [];
+  for (let i = 0; i < ms.x.length; i++) {
+    if (ms.y[i] / maxY > threshold) {
+      masses.push(ms.x[i]);
+      intensities.push(ms.y[i] / maxY);
+    }
+  }
 
-  for (let i = 0; i < mass.length; i++) {
-    if ((mass[i] - 2) % 14 === 0) {
-      massMol.push(mass[i]);
+  // we find candidates
+  let nAlcaneMasses = [];
+  let fragmentMasses = [];
+
+  for (let i = 0; i < masses.length; i++) {
+    if ((masses[i] - 2) % 14 === 0) {
+      nAlcaneMasses.push(masses[i]);
     }
-  }
-  if (massMol.length === 0) {
-    return 0;
+    if ((masses[i] - 1) % 14 === 0) {
+      fragmentMasses.push(masses[i]);
+    }
   }
 
-  let kovatsIndex = 0;
-  for (let m = 0; m < massMol.length; m++) {
-    let candidate = true;
-    for (let t = 0; t < targets.length; t++) {
-      candidate =
-        candidate &&
-        mass.indexOf(targets[t]) !== -1 &&
-        (mass.indexOf(massMol[m] - targets[t]) !== -1 ||
-          mass.indexOf(massMol[m] - targets[t] + 1) !== -1 ||
-          mass.indexOf(massMol[m] - targets[t] - 1) !== -1);
-    }
-    if (candidate) {
-      kovatsIndex = (100 * (massMol[m] - 2)) / 14;
-    }
-  }
-  return kovatsIndex;
+  if (nAlcaneMasses.length === 0) return {};
+
+  let biggestMass = nAlcaneMasses.sort((a, b) => b - a)[0];
+  fragmentMasses = fragmentMasses.filter((mass) => mass < biggestMass);
+
+  return {
+    index: (100 * (biggestMass - 2)) / 14,
+    numberFragments: fragmentMasses.length,
+    percentFragments: fragmentMasses.length / ((biggestMass - 2) / 14),
+  };
 }

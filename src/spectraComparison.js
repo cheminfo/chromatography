@@ -1,5 +1,5 @@
-import { getPeaks } from './util/getPeaks';
-import { calculateMassForPeaks } from './calculateMassForPeaks';
+import { getPeaks } from './peaks/getPeaks';
+import { appendMass } from './peaks/appendMass';
 import { vectorify } from './vectorify';
 import { cosineSimilarity } from './ms/cosineSimilarity';
 
@@ -16,7 +16,7 @@ function preprocessing(chromatogram, options) {
   peaks = peaks.sort((a, b) => a.index - b.index);
 
   // integrate mass in the peaks
-  let integratedMs = calculateMassForPeaks(chromatogram, peaks, options);
+  let integratedMs = appendMass(chromatogram, peaks, options);
   let vector = vectorify(integratedMs, options);
 
   return {

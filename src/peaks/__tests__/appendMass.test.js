@@ -3,15 +3,15 @@ import { join } from 'path';
 
 import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to';
 
-import { lorentzian, simple4 } from '../../testFiles/examples';
+import { lorentzian, simple4 } from '../../../testFiles/examples';
 
-import { Chromatogram, calculateMassForPeaks, getPeaks, fromJcamp } from '..';
+import { Chromatogram, appendMass, getPeaks, fromJcamp } from '../..';
 
 expect.extend({ toBeDeepCloseTo });
 
-describe('calculateMassForPeaks', () => {
+describe('appendMass', () => {
   it('from a Diesel chromatogram', () => {
-    const path = join(__dirname, '../../testFiles/jcamp/P064.JDX');
+    const path = join(__dirname, '../../../testFiles/jcamp/P064.JDX');
     const jcamp = readFileSync(path, 'utf8');
     const chromatogram = fromJcamp(jcamp);
     expect(chromatogram).toHaveLength(6992);
@@ -21,7 +21,7 @@ describe('calculateMassForPeaks', () => {
 
     let sampleMS = chromatogram.getSerie('ms').data;
     expect(sampleMS).not.toHaveLength(0);
-    let peaksWithMS = calculateMassForPeaks(chromatogram, peaks, sampleMS);
+    let peaksWithMS = appendMass(chromatogram, peaks, sampleMS);
     expect(peaks).toHaveLength(peaksWithMS.length);
   });
 
@@ -51,7 +51,7 @@ describe('calculateMassForPeaks', () => {
 
     let sampleMS = chromatogram.getSerie('ms').data;
     expect(sampleMS).not.toHaveLength(0);
-    let integratedList = calculateMassForPeaks(chromatogram, peaks, sampleMS);
+    let integratedList = appendMass(chromatogram, peaks, sampleMS);
     expect(peaks).toHaveLength(integratedList.length);
   });
 
@@ -63,7 +63,7 @@ describe('calculateMassForPeaks', () => {
       },
     ];
 
-    let result = calculateMassForPeaks(simple4, peaks);
+    let result = appendMass(simple4, peaks);
     expect(result).toStrictEqual([
       {
         fromIndex: 0,
@@ -85,7 +85,7 @@ describe('calculateMassForPeaks', () => {
         toIndex: 2,
       },
     ];
-    let result = calculateMassForPeaks(simple4, peaks, {
+    let result = appendMass(simple4, peaks, {
       mergeThreshold: 2,
     })[0];
     expect(result.ms.x).toBeDeepCloseTo([102, 202, 302], 1);

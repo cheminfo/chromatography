@@ -1,15 +1,13 @@
 export { Chromatogram } from './Chromatogram';
 
-export { calculateMassForPeaks } from './calculateMassForPeaks';
+export { appendMass } from './peaks/appendMass';
 export { vectorify } from './vectorify';
 export { massFilter } from './massFilter';
 export { spectraComparison } from './spectraComparison';
 export { scaleAlignment } from './scaleAlignment';
 export { kovats } from './kovats';
-export { getKovatsTable } from './getKovatsTable';
-export { kovatsConversionFunction } from './kovatsConversionFunction';
-export { rescaleTime } from './rescaleTime';
-export { getKovatsRescale } from './getKovatsRescale';
+export { appendKovats } from './peaks/appendKovats';
+export { getKovatsConversionFunction } from './getKovatsConversionFunction';
 
 export { cosineSimilarity as cosine } from './ms/cosineSimilarity';
 
@@ -25,4 +23,4 @@ export { fromMzData } from './from/mzData';
 
 export { integrate } from './util/integrate';
 export { merge } from './ms/merge';
-export { getPeaks } from './util/getPeaks';
+export { getPeaks } from './peaks/getPeaks';

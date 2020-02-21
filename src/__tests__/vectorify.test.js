@@ -3,13 +3,7 @@ import { join } from 'path';
 
 import { lorentzian } from '../../testFiles/examples';
 
-import {
-  Chromatogram,
-  calculateMassForPeaks,
-  getPeaks,
-  vectorify,
-  fromJcamp,
-} from '..';
+import { Chromatogram, appendMass, getPeaks, vectorify, fromJcamp } from '..';
 
 describe('vectorify', () => {
   it('from a Diesel chromatogram', () => {
@@ -22,11 +16,7 @@ describe('vectorify', () => {
 
     let sampleMS = chromatogram.getSerie('ms').data;
     expect(sampleMS).not.toHaveLength(0);
-    let integratedList = calculateMassForPeaks(
-      chromatogram,
-      peakList,
-      sampleMS,
-    );
+    let integratedList = appendMass(chromatogram, peakList, sampleMS);
     expect(peakList).toHaveLength(integratedList.length);
 
     let vector = vectorify(integratedList);
@@ -59,11 +49,7 @@ describe('vectorify', () => {
 
     let sampleMS = chromatogram.getSerie('ms').data;
     expect(sampleMS).not.toHaveLength(0);
-    let integratedList = calculateMassForPeaks(
-      chromatogram,
-      peakList,
-      sampleMS,
-    );
+    let integratedList = appendMass(chromatogram, peakList, sampleMS);
     expect(peakList).toHaveLength(integratedList.length);
 
     let vector = vectorify(integratedList);
