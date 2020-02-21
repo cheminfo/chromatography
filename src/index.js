@@ -1,6 +1,6 @@
 export { Chromatogram } from './Chromatogram';
 
-export { massInPeaks } from './massInPeaks';
+export { calculateMassForPeaks } from './calculateMassForPeaks';
 export { vectorify } from './vectorify';
 export { massFilter } from './massFilter';
 export { spectraComparison } from './spectraComparison';

@@ -3,7 +3,7 @@ import { X, XY, XYObject } from 'ml-spectra-processing';
 /**
  * Returns a mass spectrum that is the integration of all the spectra in a specific range of time
  * @param {Chromatogram} chromatogram
- * @param {Array<object>|object} [range={}] - [{from:,to:}, {from:, to:}, ...]
+ * @param {object} [range={}] - [{from:,to:}, {from:, to:}, ...]
  * @param {object} [options = {}] - Options object
  * @param {string} [options.serieName='ms'] - Name of the mass serie, by default 'ms'
  * @param {object} [options.mergeThreshold = 0.3] - Parameter for merging the peaks

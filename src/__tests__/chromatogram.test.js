@@ -34,17 +34,17 @@ describe('General methods', () => {
   it('addSerie errors', () => {
     let chromatogram = new Chromatogram([1, 2], { tic: [1, 2] });
     expect(() => chromatogram.addSerie('abc', 1234)).toThrow(
-      'The array size is not the same as the time size'
+      'The array size is not the same as the time size',
     );
     expect(() => chromatogram.addSerie('abc', { a: 1, b: 2 })).toThrow(
-      'The array size is not the same as the time size'
+      'The array size is not the same as the time size',
     );
     expect(() => chromatogram.addSerie('tic', [2, 3, 4])).toThrow(
-      'A serie with name "tic" already exists'
+      'A serie with name "tic" already exists',
     );
 
     expect(() => chromatogram.addSeries(1)).toThrow(
-      'data must be an object containing arrays of series'
+      'data must be an object containing arrays of series',
     );
   });
 
@@ -52,7 +52,7 @@ describe('General methods', () => {
     let chromatogram = new Chromatogram([1, 2], { tic: [1, 2] });
     expect(chromatogram.hasSerie('tic')).toStrictEqual(true);
     expect(() => chromatogram.deleteSerie('ms')).toThrow(
-      'The serie "ms" does not exist'
+      'The serie "ms" does not exist',
     );
     chromatogram.deleteSerie('tic');
     expect(chromatogram.hasSerie('tic')).toStrictEqual(false);
@@ -71,10 +71,10 @@ describe('General methods', () => {
   it('Require serie', () => {
     let chromatogram = new Chromatogram([1, 2], { tic: [1, 2] });
     expect(() => chromatogram.requiresSerie('ms')).toThrow(
-      'The serie "ms" does not exist'
+      'The serie "ms" does not exist',
     );
     expect(() => chromatogram.requiresSerie('tic')).not.toThrow(
-      'The serie "tic" does not exist'
+      'The serie "tic" does not exist',
     );
   });
 });
@@ -88,33 +88,31 @@ describe('Integrations', () => {
         from: {
           baseline: 0,
           index: 0,
-          time: 1
+          time: 1,
         },
         to: {
           baseline: 0,
           index: 4,
-          time: 5
-        }
-      }
+          time: 5,
+        },
+      },
     ]);
   });
 
   it('Merge a ms', () => {
-    let result = simple.merge([{ from: 1, to: 2 }]);
-    expect(result).toStrictEqual([
-      {
-        x: [100, 101, 200, 201, 300, 301],
-        y: [10, 11, 20, 21, 30, 31],
+    let result = simple.merge({ from: 1, to: 2 });
+    expect(result).toStrictEqual({
+      x: [100, 101, 200, 201, 300, 301],
+      y: [10, 11, 20, 21, 30, 31],
 
-        from: {
-          time: 1,
-          index: 0
-        },
-        to: {
-          time: 2,
-          index: 1
-        }
-      }
-    ]);
+      from: {
+        time: 1,
+        index: 0,
+      },
+      to: {
+        time: 2,
+        index: 1,
+      },
+    });
   });
 });

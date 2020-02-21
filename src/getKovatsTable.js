@@ -1,6 +1,6 @@
 import { kovats } from './kovats';
 import { getPeaks } from './util/getPeaks';
-import { massInPeaks } from './massInPeaks';
+import { calculateMassForPeaks } from './calculateMassForPeaks';
 
 /**
  * Calculates the table of Kovats indexes for the reference spectra
@@ -26,7 +26,7 @@ export function getKovatsTable(reference, options = {}) {
 
   // integrate mass in the peaks
   let ms = reference.getSerie('ms').data;
-  let integratedMs = massInPeaks(reference, peaks, ms, {
+  let integratedMs = calculateMassForPeaks(reference, peaks, ms, {
     thresholdFactor,
     maxNumberPeaks,
     groupWidth,

@@ -241,7 +241,7 @@ export class Chromatogram {
   calculateForMass(targetMass, options = {}) {
     const {
       serieName = `ms${targetMass}±${options.slotWidth / 2 || 0.5}`,
-      cache = false
+      cache = false,
     } = options;
     if (cache && this.hasSerie(serieName)) return this.getSerie(serieName);
     let result = calculateForMass(this, targetMass, options);
@@ -262,7 +262,7 @@ export class Chromatogram {
     const {
       serieName = `ms ${targetMF} ${options.ionizations ||
         'H+'} (${options.slotWidth || 1}, ${options.threshold || 0.05})`,
-      cache = false
+      cache = false,
     } = options;
     if (cache && this.hasSerie(serieName)) return this.getSerie(serieName);
     let result = calculateForMF(this, targetMF, options);
@@ -298,15 +298,15 @@ export class Chromatogram {
 
   /**
    * Retuns an object with the result of the merge
-   * @param {Array<object>} [ranges=[{}]] - [{from:,to:}, {from:, to:}, ...]
+   * @param {object} [range={}] - {from:,to:}
    * @param {object} [options = {}] - Options object
    * @param {string} [options.serieName='ms'] - Name of the mass serie, by default 'ms'
    * @param {object} [options.mergeThreshold = 0.3] - Parameter for merging the peaks
    * @param {object} [options.range={from:min,to:max}] - {from:x,to:y} we integrate a zone, by default all
    * @return {[]}
    */
-  merge(serieName, ranges, options) {
-    return merge(this, serieName, ranges, options);
+  merge(serieName, range, options) {
+    return merge(this, serieName, range, options);
   }
 
   /**
