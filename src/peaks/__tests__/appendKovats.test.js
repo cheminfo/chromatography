@@ -1,5 +1,4 @@
 import { tenPeaksKovats as chromatogram } from '../../../testFiles/examples';
-
 import { getPeaks } from '../getPeaks';
 import { appendMass } from '../appendMass';
 import { appendKovats } from '../..';
@@ -12,7 +11,7 @@ describe('appendKovats', () => {
 
     appendKovats(peaks);
     for (let peak of peaks) {
-      expect(peak.x).toEqual(peak.kovats.index);
+      expect(peak.x).toStrictEqual(peak.kovats.index);
     }
   });
 });

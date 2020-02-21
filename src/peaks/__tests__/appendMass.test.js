@@ -4,7 +4,6 @@ import { join } from 'path';
 import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to';
 
 import { lorentzian, simple4 } from '../../../testFiles/examples';
-
 import { Chromatogram, appendMass, getPeaks, fromJcamp } from '../..';
 
 expect.extend({ toBeDeepCloseTo });

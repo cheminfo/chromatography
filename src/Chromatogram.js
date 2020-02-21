@@ -1,6 +1,7 @@
 import isAnyArray from 'is-any-array';
 import { X } from 'ml-spectra-processing';
 
+import { getKovatsConversionFunction } from './getKovatsConversionFunction';
 import { filter } from './util/filter';
 import { serieFromArray } from './serieFromArray';
 import { fromJSON } from './from/json';
@@ -275,7 +276,7 @@ export class Chromatogram {
    * @param {boolean} [options.revert = false] - True for convert from Kovats to time, false otherwise
    * @return {{conversionFunction:function(number),kovatsIndexes:Array<object>,peaks:Array<object>}} - Time and value for the Kovats index
    */
-  getKovatsConversionFunction(peaks) {
+  getKovatsConversionFunction(peaks, options) {
     return getKovatsConversionFunction(peaks, options);
   }
 
