@@ -12,7 +12,7 @@
     "src"
   ],
   "scripts": {
-    "build": "rollup -c && cheminfo-build --root Chromatography ",
+    "build": "rollup -c && cheminfo-build --entry src/index.js --root Chromatography",
     "eslint": "eslint src --cache",
     "eslint-fix": "npm run eslint -- --fix",
     "prepublishOnly": "rollup -c",
