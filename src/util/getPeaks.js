@@ -69,5 +69,13 @@ export function getPeaks(chromatogram, options = {}) {
     overlap,
   });
 
-  return peakList;
+  return peakList.map((peak) => ({
+    from: Math.min(peak.from, peak.to),
+    to: Math.max(peak.from, peak.to),
+    fromIndex: Math.min(peak.left.index, peak.right.index),
+    toIndex: Math.max(peak.left.index, peak.right.index),
+    x: peak.x,
+    y: peak.y,
+    index: peak.index,
+  }));
 }

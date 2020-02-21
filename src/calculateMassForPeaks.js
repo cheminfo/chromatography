@@ -3,24 +3,23 @@ import { merge } from './ms/merge';
 /**
  * Append MS spectra to a peak list
  * @param {Chromatogram} chromatogram
- * @param {Array<object>} peakList - List of GSD objects
+ * @param {Array<object>} ranges - Array of range {from:, to:}
  * @param {object} [options={}] - Options for the integral filtering
  * @param {number} [options.mergeThreshold=0.3] - Peaks that are under this value (in Da) will be merged
  * @param {number} [options.serieName='ms'] - Maximum number of peaks for each mass spectra (when is Number.MAX_VALUE there's no filter)
- * @return {Array<object>} - List of GSD objects with an extra 'ms' field with the integrated MS spectra
+ * @return {Array<object>} - A copy of ranges with ms appended
  */
-export function massInPeaks(chromatogram, peakList, options = {}) {
+export function calculateMassForPeaks(chromatogram, ranges, options = {}) {
   const { mergeThreshold = 0.3, serieName = 'ms' } = options;
-
+  ranges = JSON.parse(JSON.stringify(ranges));
   // integrate MS
-  for (let peak of peakList) {
-    let massSpectrum = merge(chromatogram, {
+  for (let range of ranges) {
+    let massSpectrum = merge(chromatogram, range, {
       mergeThreshold,
       serieName,
-      range: { from: peak.left.index, to: peak.right.index },
     });
-    peak.ms = massSpectrum;
+    range.ms = massSpectrum;
   }
 
-  return peakList;
+  return ranges;
 }

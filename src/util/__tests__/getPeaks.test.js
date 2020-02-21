@@ -12,13 +12,13 @@ test('from a Diesel chromatogram', () => {
   expect(chromatogram).toHaveLength(6992);
 
   let peakList = chromatogram.getPeaks();
-  expect(peakList).toHaveLength(312);
+  expect(peakList).toHaveLength(47);
 });
 
 test('triplet', () => {
   let chromatogram = getSimulatedSpectrum({ size: 60 });
   let peaks = chromatogram.getPeaks();
-  expect(peaks).toHaveLength(1);
+  expect(peaks).toHaveLength(3);
 });
 
 test('throws when not send a tic serie', () => {
