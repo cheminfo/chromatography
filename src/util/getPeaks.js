@@ -31,43 +31,18 @@ export function getPeaks(chromatogram, options = {}) {
     boundaries: true,
   });
 
-  peakList.sort(
-    (a, b) => a.right.index - a.left.index - (b.right.index - b.left.index),
-  );
-  let medianDotsWidth = peakList[Math.floor((peakList.length - 1) / 2)];
-  medianDotsWidth = medianDotsWidth.right.index - medianDotsWidth.left.index;
-
-  // reset parameters
-  if (medianDotsWidth < 5) {
-    medianDotsWidth = 5;
-  }
-  if (medianDotsWidth % 2 === 0) {
-    medianDotsWidth -= 1;
-  }
-
-  // second peak selection
-  peakList = gsd(times, serie, {
-    noiseLevel: 0,
-    realTopDetection: false,
-    smoothY: true,
-    sgOptions: { windowSize: medianDotsWidth, polynomial: 2 },
-    heightFactor: 2,
-    boundaries: true,
-  });
-
-  peakList.sort((a, b) => a.height - b.height);
-
   // filter height by factor
   let medianHeight = median(serie);
 
   peakList = peakList.filter((val) => val.height > medianHeight * heightFilter);
 
   let { factor = 1, overlap = false } = broadenPeaks;
-
   post.broadenPeaks(peakList, {
     factor,
     overlap,
   });
+
+  peakList.sort((a, b) => a.x - b.x);
 
   return peakList.map((peak) => ({
     from: Math.min(peak.from, peak.to),
