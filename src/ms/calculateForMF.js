@@ -1,4 +1,4 @@
-import { IsotopicDistribution } from 'mf-global';
+import IsotopicDistribution from 'isotopic-distribution';
 import { XYObject } from 'ml-spectra-processing';
 /**
  * Calculate tic for specific molecular formula and ionizations

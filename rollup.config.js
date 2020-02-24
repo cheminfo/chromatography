@@ -8,8 +8,8 @@ export default {
   external: [
     'binary-search',
     'is-any-array',
+    'isotopic-distribution',
     'jcampconverter',
-    'mf-global',
     'mf-parser',
     'ml-array-max',
     'ml-array-mean',
