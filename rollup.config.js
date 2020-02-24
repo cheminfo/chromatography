@@ -13,6 +13,7 @@ export default {
     'mf-parser',
     'ml-array-max',
     'ml-array-mean',
+    'ml-array-median',
     'ml-array-sum',
     'ml-gsd',
     'ml-regression-polynomial',
