@@ -2,23 +2,23 @@ import { MF } from 'mf-parser';
 
 /**
  * Recalculates series for GC/MS with lock mass
- * @param {string|Array<string>} mf - Reference molecular formula(s)
+ * @param {string|Array<string>} mfs - Reference molecular formula(s)
  * @param {object} [options = {}] - Options object
  * @param {boolean} [options.oddReference = true] - Mass reference it's in the odd position
  * @param {number} [options.maxShift = 0.1] - Maximum allowed shift
  * @param {boolean} [options.usePreviousIfNotFound = true] - If not found we use the previous value
  * @return {object} this
  */
-export function applyLockMass(mf, options = {}) {
+export function applyLockMass(mfs, options = {}) {
   const { oddReference = true, maxShift = 0.1 } = options;
 
   // allows mf as string or array
-  if (typeof mf === 'string') {
-    mf = [mf];
+  if (typeof mfs === 'string') {
+    mfs = [mfs];
   }
 
   // calculate the mass reference values
-  const referenceMass = mf.map((mf) => {
+  const referenceMass = mfs.map((mf) => {
     let info = new MF(mf).getInfo();
     return info.observedMonoisotopicMass || info.monoisotopicMass;
   });
@@ -84,7 +84,7 @@ export function applyLockMass(mf, options = {}) {
     totalFound: referencesCount.reduce((prev, current) => current + prev, 0),
   };
   for (let r = 0; r < referenceMass.length; r++) {
-    referenceUsed[mf[r]] = referencesCount[r];
+    referenceUsed[mfs[r]] = referencesCount[r];
   }
   referenceUsed.percent =
     (referenceUsed.totalFound / referenceUsed.total) * 100;
