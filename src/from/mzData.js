@@ -1,6 +1,6 @@
 import mzData from 'mzdata';
 
-import { fromJSON } from './json';
+import { fromJSON } from '../Chromatogram';
 
 export function fromMzData(xml, kind = 'mzData') {
   switch (kind) {

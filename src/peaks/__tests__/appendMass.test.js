@@ -18,7 +18,7 @@ describe('appendMass', () => {
     let peaks = getPeaks(chromatogram);
     expect(peaks).toHaveLength(47);
 
-    let sampleMS = chromatogram.getSerie('ms').data;
+    let sampleMS = chromatogram.getSeries('ms').data;
     expect(sampleMS).not.toHaveLength(0);
     let peaksWithMS = appendMass(chromatogram, peaks, sampleMS);
     expect(peaks).toHaveLength(peaksWithMS.length);
@@ -42,13 +42,13 @@ describe('appendMass', () => {
       ];
     }
     let chromatogram = new Chromatogram(times);
-    chromatogram.addSerie('tic', tic);
-    chromatogram.addSerie('ms', ms);
+    chromatogram.addSeries('tic', tic);
+    chromatogram.addSeries('ms', ms);
 
     let peaks = getPeaks(chromatogram);
     expect(peaks).toHaveLength(3);
 
-    let sampleMS = chromatogram.getSerie('ms').data;
+    let sampleMS = chromatogram.getSeries('ms').data;
     expect(sampleMS).not.toHaveLength(0);
     let integratedList = appendMass(chromatogram, peaks, sampleMS);
     expect(peaks).toHaveLength(integratedList.length);

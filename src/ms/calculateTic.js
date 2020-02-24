@@ -6,9 +6,9 @@ import sum from 'ml-array-sum';
  * @return {Array} - Calculated tic
  */
 export function calculateTic(chromatogram) {
-  let ms = chromatogram.getSerie('ms');
+  let ms = chromatogram.getSeries('ms');
   if (!ms) {
-    throw new Error('The mass serie must be defined');
+    throw new Error('The mass series must be defined');
   }
   let massSpectra = ms.data;
   let tic = [];

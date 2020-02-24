@@ -17,9 +17,9 @@ export function calculateForMass(chromatogram, targetMass, options = {}) {
   }
   const { slotWidth = 1 } = options;
   const halfWidth = slotWidth / 2;
-  let ms = chromatogram.getSerie('ms');
+  let ms = chromatogram.getSeries('ms');
   if (!ms) {
-    throw Error('calculateForMass: the mass serie must be defined');
+    throw Error('calculateForMass: the mass series must be defined');
   }
   let massSpectra = ms.data;
 

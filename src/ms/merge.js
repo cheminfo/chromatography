@@ -5,19 +5,19 @@ import { X, XY, XYObject } from 'ml-spectra-processing';
  * @param {Chromatogram} chromatogram
  * @param {object} [range={}] - [{from:,to:}, {from:, to:}, ...]
  * @param {object} [options = {}] - Options object
- * @param {string} [options.serieName='ms'] - Name of the mass serie, by default 'ms'
+ * @param {string} [options.seriesName='ms'] - Name of the mass series, by default 'ms'
  * @param {object} [options.mergeThreshold = 0.3] - Parameter for merging the peaks
  * @param {object} [options.range={from:min,to:max}] - {from:x,to:y} we integrate a zone, by default all
  * @return {object} (x:[],y:[])
  */
 export function merge(chromatogram, range = {}, options = {}) {
   const time = chromatogram.getTimes();
-  let { mergeThreshold = 0.3, serieName = 'ms' } = options;
+  let { mergeThreshold = 0.3, seriesName = 'ms' } = options;
 
-  chromatogram.requiresSerie(serieName);
-  let serie = chromatogram.series[serieName];
-  if (serie.dimension !== 2) {
-    throw new Error(`The serie "${serieName}" is not of dimension 2`);
+  chromatogram.requiresSeries(seriesName);
+  let series = chromatogram.series[seriesName];
+  if (series.dimension !== 2) {
+    throw new Error(`The series "${seriesName}" is not of dimension 2`);
   }
 
   if (!range || range.from > time[time.length - 1] || range.to < time[0]) {
@@ -25,13 +25,13 @@ export function merge(chromatogram, range = {}, options = {}) {
   }
   let { fromIndex, toIndex } = X.getFromToIndex(time, range);
   let result = XY.toXYObject({
-    x: serie.data[fromIndex][0],
-    y: serie.data[fromIndex][1],
+    x: series.data[fromIndex][0],
+    y: series.data[fromIndex][1],
   });
   for (let i = fromIndex + 1; i <= toIndex; i++) {
     let newData = XY.toXYObject({
-      x: serie.data[i][0],
-      y: serie.data[i][1],
+      x: series.data[i][0],
+      y: series.data[i][1],
     });
     result = result.concat(newData);
     result = XYObject.sortX(result);

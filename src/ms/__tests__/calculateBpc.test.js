@@ -4,8 +4,8 @@ import { simple } from '../../../testFiles/examples';
 describe('calculateBps', () => {
   it('simple case', () => {
     simple.calculateBpc();
-    expect(simple.getSerieNames()).toContain('bpc');
-    expect(simple.getSerie('bpc').data).toStrictEqual([30, 31]);
+    expect(simple.getSeriesNames()).toContain('bpc');
+    expect(simple.getSeries('bpc').data).toStrictEqual([30, 31]);
   });
 
   it('empty mass', () => {
@@ -19,14 +19,14 @@ describe('calculateBps', () => {
       ],
     });
     example.calculateBpc();
-    expect(example.getSerieNames()).toContain('bpc');
-    expect(example.getSerie('bpc').data).toStrictEqual([0, 31]);
+    expect(example.getSeriesNames()).toContain('bpc');
+    expect(example.getSeries('bpc').data).toStrictEqual([0, 31]);
   });
 
   it('Errors', () => {
     expect(() => {
       const chromatogram = new Chromatogram([1, 2, 3, 5, 6]);
       chromatogram.calculateBpc();
-    }).toThrow('The mass serie must be defined');
+    }).toThrow('The mass series must be defined');
   });
 });

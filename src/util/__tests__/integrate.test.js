@@ -5,7 +5,7 @@ let chromatogram = new Chromatogram([1, 2, 3, 4], { tic: [2, 4, 6, 8] });
 
 test('Integrate a tic', () => {
   let result = integrate(simpleTic, [{ from: 1.8, to: 5.5 }], {
-    serieName: 'tic',
+    seriesName: 'tic',
   });
   expect(result).toStrictEqual([
     {
@@ -39,9 +39,9 @@ test('Errors', () => {
   });
   expect(() =>
     integrate(ms, [{ from: 1, to: 2 }], {
-      serieName: 'ms',
+      seriesName: 'ms',
     }),
-  ).toThrow('The serie "ms" is not of dimension 1');
+  ).toThrow('The series "ms" is not of dimension 1');
 });
 
 describe('integrate: baseline correction', () => {

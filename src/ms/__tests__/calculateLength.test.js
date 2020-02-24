@@ -11,6 +11,6 @@ test('calculate length with empty mass', () => {
     ],
   });
   example.calculateLength('ms');
-  expect(example.getSerieNames()).toContain('length');
-  expect(example.getSerie('length').data).toStrictEqual([0, 3]);
+  expect(example.getSeriesNames()).toContain('length');
+  expect(example.getSeries('length').data).toStrictEqual([0, 3]);
 });

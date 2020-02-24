@@ -1,32 +1,32 @@
 import arrayMax from 'ml-array-max';
 
-import { serieFromArray } from '../serieFromArray';
+import { seriesFromArray } from '../seriesFromArray';
 
-export function percentageFilter(chromatogram, serieName, options = {}) {
+export function percentageFilter(chromatogram, seriesName, options = {}) {
   const { percentage = 0.1 } = options;
 
-  let serie = chromatogram.getSerie(serieName);
+  let series = chromatogram.getSeries(seriesName);
   let filtered = [];
 
-  for (let i = 0; i < serie.data.length; i++) {
-    filtered.push(applyFilter(serie.data[i], percentage));
+  for (let i = 0; i < series.data.length; i++) {
+    filtered.push(applyFilter(series.data[i], percentage));
   }
 
-  return serieFromArray(filtered);
+  return seriesFromArray(filtered);
 }
 
-function applyFilter(serie, percentage) {
+function applyFilter(series, percentage) {
   let basePeak;
   try {
-    basePeak = arrayMax(serie[1]);
+    basePeak = arrayMax(series[1]);
   } catch (e) {
     basePeak = 0;
   }
   let filtered = [[], []];
-  for (let i = 0; i < serie[0].length; i++) {
-    if (serie[1][i] > percentage * basePeak) {
-      filtered[0].push(serie[0][i]);
-      filtered[1].push(serie[1][i]);
+  for (let i = 0; i < series[0].length; i++) {
+    if (series[1][i] > percentage * basePeak) {
+      filtered[0].push(series[0][i]);
+      filtered[1].push(series[1][i]);
     }
   }
   return filtered;

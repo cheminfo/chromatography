@@ -1,6 +1,6 @@
 import { convert as converter } from 'jcampconverter';
 
-import { fromJSON } from './json';
+import { fromJSON } from '../Chromatogram';
 
 /**
  * Creates a new Chromatogram element based in a JCAMP string

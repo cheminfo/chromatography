@@ -22,7 +22,7 @@ describe('getPeaks', () => {
     expect(peaks).toHaveLength(3);
   });
 
-  it('throws when not send a tic serie', () => {
+  it('throws when not send a tic series', () => {
     const size = 30;
     let times = new Array(size);
     for (let i = 0; i < size; ++i) {
@@ -30,7 +30,7 @@ describe('getPeaks', () => {
     }
     let chromatogram = new Chromatogram(times);
 
-    expect(() => chromatogram.getPeaks()).toThrow('"tic" serie not founded');
+    expect(() => chromatogram.getPeaks()).toThrow('"tic" series not found');
   });
 
   it('fivePeaks', () => {

@@ -3,8 +3,7 @@ import { X } from 'ml-spectra-processing';
 
 import { getKovatsConversionFunction } from './getKovatsConversionFunction';
 import { filter } from './util/filter';
-import { serieFromArray } from './serieFromArray';
-import { fromJSON } from './from/json';
+import { seriesFromArray } from './seriesFromArray';
 import { getPeaks } from './peaks/getPeaks';
 import { calculateTic } from './ms/calculateTic';
 import { calculateLength } from './ms/calculateLength';
@@ -18,13 +17,7 @@ import { meanFilter } from './filter/meanFilter';
 import { percentageFilter } from './filter/percentageFilter';
 import { toJSON } from './to/json';
 import { getClosestData } from './util/getClosestData';
-/**
- * Class allowing to store time / ms (ms) series
- * It allows also to store simple time a trace
- * @class Chromatogram
- * @param {Array<number>} times - Time serie
- * @param {object} series - A map of series with name and the Serie object
- */
+
 export class Chromatogram {
   constructor(times, series) {
     this.series = {};
@@ -35,10 +28,12 @@ export class Chromatogram {
       }
       this.times = times;
     } else {
-      throw new Error('The time serie is mandatory');
+      throw new Error('The time series is mandatory');
     }
     if (series) {
-      this.addSeries(series);
+      for (const [name, value] of Object.entries(series)) {
+        this.addSeries(name, value);
+      }
     }
   }
 
@@ -47,82 +42,68 @@ export class Chromatogram {
   }
 
   /**
-   * Find the serie giving the name
-   * @param {string} serieName - name of the serie
+   * Find the series giving the name
+   * @param {string} seriesName - name of the serie
    * @return {object} - Object with an array of data, dimensions of the elements in the array and name of the serie
    */
-  getSerie(serieName) {
-    return this.series[serieName];
+  getSeries(seriesName) {
+    return this.series[seriesName];
   }
 
-  getSerieNames() {
+  getSeriesNames() {
     return Object.keys(this.series);
   }
 
   hasMass() {
-    return this.hasSerie('ms');
+    return this.hasSeries('ms');
   }
 
   /**
    * Delete a serie
-   * @param {string} serieName - Name of the serie
+   * @param {string} seriesName - Name of the serie
    */
-  deleteSerie(serieName) {
-    if (!this.hasSerie(serieName)) {
-      throw new Error(`The serie "${serieName}" does not exist`);
+  deleteSeries(seriesName) {
+    if (!this.hasSeries(seriesName)) {
+      throw new Error(`The series "${seriesName}" does not exist`);
     } else {
-      delete this.series[serieName];
-    }
-  }
-
-  /**
-   * Add new series
-   * @param {object} series - Object with an array of data, dimensions of the elements in the array and name of the serie
-   * @param {object} [options = {}] - Object with an array of data, dimensions of the elements in the array and name of the serie
-   */
-  addSeries(series, options = {}) {
-    if (typeof series !== 'object' || Array.isArray(series)) {
-      throw new TypeError('data must be an object containing arrays of series');
-    }
-    for (const key of Object.keys(series)) {
-      this.addSerie(key, series[key], options);
+      delete this.series[seriesName];
     }
   }
 
   /**
    * Add a new serie
-   * @param {string} serieName - Name of the serie to add
+   * @param {string} seriesName - Name of the series to add
    * @param {Array} array - Object with an array of data, dimensions of the elements in the array and name of the serie
    * @param {object} [options = {}] - Options object
    * @param {boolean} [options.force = false] - Force replacement of existing serie
    */
-  addSerie(serieName, array, options = {}) {
-    if (this.hasSerie(serieName) && !options.force) {
-      throw new Error(`A serie with name "${serieName}" already exists`);
+  addSeries(seriesName, array, options = {}) {
+    if (this.hasSeries(seriesName) && !options.force) {
+      throw new Error(`A series with name "${seriesName}" already exists`);
     }
     if (this.times.length !== array.length) {
       throw new Error('The array size is not the same as the time size');
     }
-    this.series[serieName] = serieFromArray(array);
-    this.series[serieName].name = serieName;
+    this.series[seriesName] = seriesFromArray(array);
+    this.series[seriesName].name = seriesName;
   }
 
   /**
-   * Returns true if the serie name exists
-   * @param {string} serieName - Name of the serie to check
+   * Returns true if the series name exists
+   * @param {string} seriesName - Name of the series to check
    * @return {boolean}
    */
-  hasSerie(serieName) {
-    return typeof this.series[serieName] !== 'undefined';
+  hasSeries(seriesName) {
+    return typeof this.series[seriesName] !== 'undefined';
   }
 
   /**
-   * Throws if the serie does not exists
-   * @param {string} serieName - Name of the serie to check
+   * Throws if the series does not exists
+   * @param {string} seriesName - Name of the series to check
    */
-  requiresSerie(serieName) {
-    if (!this.hasSerie(serieName)) {
-      throw new Error(`The serie "${serieName}" does not exist`);
+  requiresSeries(seriesName) {
+    if (!this.hasSeries(seriesName)) {
+      throw new Error(`The series "${seriesName}" does not exist`);
     }
   }
 
@@ -196,22 +177,22 @@ export class Chromatogram {
    * @param {boolean} [options.force = false] - Force the calculation it it exists
    */
   calculateTic(options = {}) {
-    if (!this.getSerie('tic') || options.force) {
+    if (!this.getSeries('tic') || options.force) {
       let tic = calculateTic(this);
-      this.addSerie('tic', tic, options);
+      this.addSeries('tic', tic, options);
     }
   }
 
   /**
    * Calculate length and save it in the 'length' serie
-   * @param {string} serieName - Name of the serie to make calculation
+   * @param {string} seriesName - Name of the series to make calculation
    * @param {object} [options = {}] - Options object
    * @param {boolean} [options.force = false] - Force the calculation it it exists
    */
-  calculateLength(serieName, options = {}) {
-    if (!this.getSerie('length') || options.force) {
-      let length = calculateLength(this, serieName);
-      this.addSerie('length', length, options);
+  calculateLength(seriesName, options = {}) {
+    if (!this.getSeries('length') || options.force) {
+      let length = calculateLength(this, seriesName);
+      this.addSeries('length', length, options);
     }
   }
 
@@ -221,9 +202,9 @@ export class Chromatogram {
    * @param {boolean} [options.force = false] - Force the calculation it it exists
    */
   calculateBpc(options = {}) {
-    if (!this.getSerie('bpc') || options.force) {
+    if (!this.getSeries('bpc') || options.force) {
       let bpc = calculateBpc(this);
-      this.addSerie('bpc', bpc, options);
+      this.addSeries('bpc', bpc, options);
     }
   }
 
@@ -231,21 +212,21 @@ export class Chromatogram {
    * Calculate mass spectrum by filtering for a specific mass
    * @param {number|Array} targetMass - mass for which to extract the spectrum
    * @param {object} [options = {}] - Options object
-   * @param {string} [options.serieName='ms'] - Name of the serie to make calculation
+   * @param {string} [options.seriesName='ms'] - Name of the series to make calculation
    * @param {boolean} [options.cache = false] - Retrieve from cache if exists
    * @param {boolean} [options.force = false] - Force replacement of existing serie
    * @param {number} [options.slotWidth=1] - Width of the slot around the targetMass
-   * @return {Serie}
+   * @return {Series}
    */
   calculateForMass(targetMass, options = {}) {
     const {
-      serieName = `ms${targetMass}±${options.slotWidth / 2 || 0.5}`,
+      seriesName = `ms${targetMass}±${options.slotWidth / 2 || 0.5}`,
       cache = false,
     } = options;
-    if (cache && this.hasSerie(serieName)) return this.getSerie(serieName);
+    if (cache && this.hasSeries(seriesName)) return this.getSeries(seriesName);
     let result = calculateForMass(this, targetMass, options);
-    this.addSerie(serieName, result, options);
-    return this.getSerie(serieName);
+    this.addSeries(seriesName, result, options);
+    return this.getSeries(seriesName);
   }
 
   /**
@@ -255,18 +236,18 @@ export class Chromatogram {
    * @param {number} [options.slotWidth=1] - With of the slot around the mass of targetMF
    * @param {number} [options.threshold=0.05] - Minimal height for peaks
    * @param {number} [options.ionizations='H+'] - List of allowed ionisation
-   * @return {Serie} - Calculated mass for targetMass
+   * @return {Series} - Calculated mass for targetMass
    */
   calculateForMF(targetMF, options = {}) {
     const {
-      serieName = `ms ${targetMF} ${options.ionizations ||
+      seriesName = `ms ${targetMF} ${options.ionizations ||
         'H+'} (${options.slotWidth || 1}, ${options.threshold || 0.05})`,
       cache = false,
     } = options;
-    if (cache && this.hasSerie(serieName)) return this.getSerie(serieName);
+    if (cache && this.hasSeries(seriesName)) return this.getSeries(seriesName);
     let result = calculateForMF(this, targetMF, options);
-    this.addSerie(serieName, result, options);
-    return this.getSerie(serieName);
+    this.addSeries(seriesName, result, options);
+    return this.getSeries(seriesName);
   }
 
   /**
@@ -284,7 +265,7 @@ export class Chromatogram {
    * Returns an object with the result of the integrations
    * @param {Array<object>} ranges - [{from:,to:}, {from:, to:}, ...]
    * @param {object} [options = {}] - Options object
-   * @param {string} [options.serieName='tic'] - Name of the chromatogram serie, by default 'tic
+   * @param {string} [options.seriesName='tic'] - Name of the chromatogram series, by default 'tic
    * @param {string|boolean} [options.baseline] - Applies baseline correction (trapezoid, min)
    * @return {[]}
    */
@@ -296,13 +277,13 @@ export class Chromatogram {
    * Retuns an object with the result of the merge
    * @param {object} [range={}] - {from:,to:}
    * @param {object} [options = {}] - Options object
-   * @param {string} [options.serieName='ms'] - Name of the mass serie, by default 'ms'
+   * @param {string} [options.seriesName='ms'] - Name of the mass series, by default 'ms'
    * @param {object} [options.mergeThreshold = 0.3] - Parameter for merging the peaks
    * @param {object} [options.range={from:min,to:max}] - {from:x,to:y} we integrate a zone, by default all
    * @return {[]}
    */
-  merge(serieName, range, options) {
-    return merge(this, serieName, range, options);
+  merge(seriesName, range, options) {
+    return merge(this, seriesName, range, options);
   }
 
   /**
@@ -328,37 +309,61 @@ export class Chromatogram {
   }
 
   /**
-   * Filter the given serie2D based on it's median value
-   * @param {string} serieName
+   * Filter the given series2D based on it's median value
+   * @param {string} seriesName
    * @param {object} [options]
-   * @param {string} [options.serieName = 'msMedian'] - Name of the new serie
+   * @param {string} [options.seriesName = 'msMedian'] - Name of the new serie
    * @param {number} [options.factor = 2] - The values under the median times this factor are removed
    */
-  meanFilter(serieName, options = {}) {
-    let serie = meanFilter(this, serieName, options);
-    if (options.serieName) {
-      this.series[options.serieName] = serie;
+  meanFilter(seriesName, options = {}) {
+    let series = meanFilter(this, seriesName, options);
+    if (options.seriesName) {
+      this.series[options.seriesName] = series;
     } else {
-      this.series.msMedian = serie;
+      this.series.msMedian = series;
     }
   }
 
   /**
-   * Filter the given serie2D based on the percentage of the highest value
-   * @param {string} serieName
+   * Filter the given series2D based on the percentage of the highest value
+   * @param {string} seriesName
    * @param {object} [options]
-   * @param {string} [options.serieName = 'msPercentage'] - Name of the new serie
+   * @param {string} [options.seriesName = 'msPercentage'] - Name of the new serie
    * @param {number} [options.percentage = 0.1] - The values under the median times this factor are removed
    */
-  percentageFilter(serieName, options = {}) {
-    let serie = percentageFilter(this, serieName, options);
-    if (options.serieName) {
-      this.series[options.serieName] = serie;
+  percentageFilter(seriesName, options = {}) {
+    let series = percentageFilter(this, seriesName, options);
+    if (options.seriesName) {
+      this.series[options.seriesName] = series;
     } else {
-      this.series.msPercentage = serie;
+      this.series.msPercentage = series;
     }
   }
 }
 
 Chromatogram.prototype.applyLockMass = applyLockMass;
 Chromatogram.prototype.toJSON = toJSON;
+
+/**
+ * Parse from a JSON element to a new Chromatogram
+ * @param {object} json - Result from the toJSON method
+ * @return {Chromatogram} - New parsed Chromatogram
+ */
+export function fromJSON(json) {
+  let series = json.series;
+  let times = json.times;
+  let chromatogram = new Chromatogram(times);
+
+  if (Array.isArray(series)) {
+    for (let i = 0; i < series.length; i++) {
+      chromatogram.addSeries(series[i].name, series[i].data);
+    }
+  } else {
+    for (let key of Object.keys(series)) {
+      chromatogram.addSeries(key, series[key].data, {
+        meta: series[key].meta,
+      });
+    }
+  }
+  return chromatogram;
+}

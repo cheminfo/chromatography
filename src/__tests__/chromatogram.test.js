@@ -12,7 +12,7 @@ describe('General methods', () => {
     }).toThrow('Times must be an array');
     expect(() => {
       new Chromatogram(); // eslint-disable-line
-    }).toThrow('The time serie is mandatory');
+    }).toThrow('The time series is mandatory');
   });
 
   it('get first and last time', () => {
@@ -31,50 +31,46 @@ describe('General methods', () => {
     expect(chromatogram.lastTime).toStrictEqual(3);
   });
 
-  it('addSerie errors', () => {
+  it('addSeries errors', () => {
     let chromatogram = new Chromatogram([1, 2], { tic: [1, 2] });
-    expect(() => chromatogram.addSerie('abc', 1234)).toThrow(
+    expect(() => chromatogram.addSeries('abc', 1234)).toThrow(
       'The array size is not the same as the time size',
     );
-    expect(() => chromatogram.addSerie('abc', { a: 1, b: 2 })).toThrow(
+    expect(() => chromatogram.addSeries('abc', { a: 1, b: 2 })).toThrow(
       'The array size is not the same as the time size',
     );
-    expect(() => chromatogram.addSerie('tic', [2, 3, 4])).toThrow(
-      'A serie with name "tic" already exists',
-    );
-
-    expect(() => chromatogram.addSeries(1)).toThrow(
-      'data must be an object containing arrays of series',
+    expect(() => chromatogram.addSeries('tic', [2, 3, 4])).toThrow(
+      'A series with name "tic" already exists',
     );
   });
 
-  it('deleteSerie', () => {
+  it('deleteSeries', () => {
     let chromatogram = new Chromatogram([1, 2], { tic: [1, 2] });
-    expect(chromatogram.hasSerie('tic')).toStrictEqual(true);
-    expect(() => chromatogram.deleteSerie('ms')).toThrow(
-      'The serie "ms" does not exist',
+    expect(chromatogram.hasSeries('tic')).toStrictEqual(true);
+    expect(() => chromatogram.deleteSeries('ms')).toThrow(
+      'The series "ms" does not exist',
     );
-    chromatogram.deleteSerie('tic');
-    expect(chromatogram.hasSerie('tic')).toStrictEqual(false);
+    chromatogram.deleteSeries('tic');
+    expect(chromatogram.hasSeries('tic')).toStrictEqual(false);
   });
 
   it('Copy chromatogram', () => {
     let chromatogram = new Chromatogram([1, 2], { tic: [1, 2] });
-    expect(chromatogram.hasSerie('tic')).toStrictEqual(true);
+    expect(chromatogram.hasSeries('tic')).toStrictEqual(true);
     let copy = chromatogram.copy();
-    expect(copy.hasSerie('tic')).toStrictEqual(true);
-    copy.deleteSerie('tic');
-    expect(copy.hasSerie('tic')).toStrictEqual(false);
-    expect(chromatogram.hasSerie('tic')).toStrictEqual(true);
+    expect(copy.hasSeries('tic')).toStrictEqual(true);
+    copy.deleteSeries('tic');
+    expect(copy.hasSeries('tic')).toStrictEqual(false);
+    expect(chromatogram.hasSeries('tic')).toStrictEqual(true);
   });
 
-  it('Require serie', () => {
+  it('Require series', () => {
     let chromatogram = new Chromatogram([1, 2], { tic: [1, 2] });
-    expect(() => chromatogram.requiresSerie('ms')).toThrow(
-      'The serie "ms" does not exist',
+    expect(() => chromatogram.requiresSeries('ms')).toThrow(
+      'The series "ms" does not exist',
     );
-    expect(() => chromatogram.requiresSerie('tic')).not.toThrow(
-      'The serie "tic" does not exist',
+    expect(() => chromatogram.requiresSeries('tic')).not.toThrow(
+      'The series "tic" does not exist',
     );
   });
 });

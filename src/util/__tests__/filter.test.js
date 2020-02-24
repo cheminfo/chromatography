@@ -11,9 +11,9 @@ describe('filter', () => {
   it('Keep the odd', () => {
     chromatogram.filter((index) => index % 2);
     expect(chromatogram.getTimes()).toHaveLength(2);
-    expect(chromatogram.getSerie('ms').data).toHaveLength(2);
+    expect(chromatogram.getSeries('ms').data).toHaveLength(2);
     expect(chromatogram.getTimes()).toStrictEqual([2, 4]);
-    expect(chromatogram.getSerie('ms').data).toStrictEqual([
+    expect(chromatogram.getSeries('ms').data).toStrictEqual([
       [
         [102, 202, 302],
         [12, 22, 32],
@@ -28,9 +28,9 @@ describe('filter', () => {
   it('Keep time under a value', () => {
     chromatogram.filter((index, time) => time < 3);
     expect(chromatogram.getTimes()).toHaveLength(2);
-    expect(chromatogram.getSerie('ms').data).toHaveLength(2);
+    expect(chromatogram.getSeries('ms').data).toHaveLength(2);
     expect(chromatogram.getTimes()).toStrictEqual([1, 2]);
-    expect(chromatogram.getSerie('ms').data).toStrictEqual([
+    expect(chromatogram.getSeries('ms').data).toStrictEqual([
       [
         [101, 201, 301],
         [11, 21, 31],

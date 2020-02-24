@@ -1,10 +1,10 @@
-import { serieFromArray } from '../serieFromArray';
+import { seriesFromArray } from '../seriesFromArray';
 
 test('Errors', () => {
-  expect(() => serieFromArray(1)).toThrow(
-    'Serie.fromArray requires as parameter an array of numbers or array',
+  expect(() => seriesFromArray(1)).toThrow(
+    'seriesFromArray requires as parameter an array of numbers or array',
   );
-  expect(() => serieFromArray(['a'])).toThrow(
-    'Serie.fromArray requires as parameter an array of numbers or array',
+  expect(() => seriesFromArray(['a'])).toThrow(
+    'seriesFromArray requires as parameter an array of numbers or array',
   );
 });

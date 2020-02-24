@@ -7,13 +7,13 @@ import { baselineCorrection } from './baselineCorrection';
  * @param {Chromatogram} chromatogram
  * @param {Array<object>} ranges - [{from:,to:}, {from:, to:}, ...]
  * @param {object} [options = {}] - Options object
- * @param {string} [options.serieName='tic'] - Name of the chromatogram serie, by default 'tic
+ * @param {string} [options.seriesName='tic'] - Name of the chromatogram series, by default 'tic
  * @param {string|boolean} [options.baseline] - Applies baseline correction (trapezoid, min)
  * @return {[]}
  */
 export function integrate(chromatogram, ranges, options = {}) {
-  const { baseline = false, serieName = 'tic' } = options;
-  chromatogram.requiresSerie(serieName);
+  const { baseline = false, seriesName = 'tic' } = options;
+  chromatogram.requiresSeries(seriesName);
   if (!Array.isArray(ranges)) {
     throw new Error('Ranges must be an array of type [{from:to}]');
   }
@@ -21,10 +21,10 @@ export function integrate(chromatogram, ranges, options = {}) {
     return [];
   }
 
-  chromatogram.requiresSerie(serieName);
-  let serie = chromatogram.series[serieName];
-  if (serie.dimension !== 1) {
-    throw new Error(`The serie "${serieName}" is not of dimension 1`);
+  chromatogram.requiresSeries(seriesName);
+  let series = chromatogram.series[seriesName];
+  if (series.dimension !== 1) {
+    throw new Error(`The series "${seriesName}" is not of dimension 1`);
   }
 
   const time = chromatogram.getTimes();
@@ -33,7 +33,7 @@ export function integrate(chromatogram, ranges, options = {}) {
   for (let range of ranges) {
     const fromTo = X.getFromToIndex(time, range);
     const integral = integrateRange(
-      { x: time, y: serie.data },
+      { x: time, y: series.data },
       fromTo,
       baseline,
     );

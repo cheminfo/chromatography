@@ -24,9 +24,9 @@ export function filter(chromatogram, callback, options = {}) {
   }
   chromatogram.setTimes(newTimes);
 
-  for (let key of chromatogram.getSerieNames()) {
-    let serie = chromatogram.getSerie(key);
-    serie.keep(indexToKeep);
+  for (let key of chromatogram.getSeriesNames()) {
+    const series = chromatogram.getSeries(key);
+    series.keep(indexToKeep);
   }
 
   return chromatogram;

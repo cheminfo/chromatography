@@ -20,13 +20,13 @@ test('simple case', () => {
 
   expect(chromatogram.getTimes()).toHaveLength(newLength);
   expect(chromatogram).toHaveLength(newLength);
-  expect(chromatogram.getSerie('ms').data).toHaveLength(newLength);
+  expect(chromatogram.getSeries('ms').data).toHaveLength(newLength);
 
   expect(chromatogram.getTimes()).toStrictEqual([1]);
-  expect(chromatogram.getSerie('ms').data[0][1]).toStrictEqual([10, 20, 30]);
+  expect(chromatogram.getSeries('ms').data[0][1]).toStrictEqual([10, 20, 30]);
 
   const expectedMass = [100.005, 200.005, 300.005];
-  expect(chromatogram.getSerie('ms').data[0][0]).toBeDeepCloseTo(
+  expect(chromatogram.getSeries('ms').data[0][0]).toBeDeepCloseTo(
     expectedMass,
     3,
   );
@@ -48,13 +48,13 @@ test('array of mf', () => {
 
   expect(chromatogram.getTimes()).toHaveLength(newLength);
   expect(chromatogram).toHaveLength(newLength);
-  expect(chromatogram.getSerie('ms').data).toHaveLength(newLength);
+  expect(chromatogram.getSeries('ms').data).toHaveLength(newLength);
 
   expect(chromatogram.getTimes()).toStrictEqual([1]);
-  expect(chromatogram.getSerie('ms').data[0][1]).toStrictEqual([10, 20, 30]);
+  expect(chromatogram.getSeries('ms').data[0][1]).toStrictEqual([10, 20, 30]);
 
   const expectedMass = [100.005, 200.005, 300.005];
-  expect(chromatogram.getSerie('ms').data[0][0]).toBeDeepCloseTo(
+  expect(chromatogram.getSeries('ms').data[0][0]).toBeDeepCloseTo(
     expectedMass,
     3,
   );
@@ -103,18 +103,18 @@ test('different references', () => {
 
   expect(chromatogram.getTimes()).toHaveLength(newLength);
   expect(chromatogram).toHaveLength(newLength);
-  expect(chromatogram.getSerie('ms').data).toHaveLength(newLength);
+  expect(chromatogram.getSeries('ms').data).toHaveLength(newLength);
 
   expect(chromatogram.getTimes()).toStrictEqual([2, 4, 6]);
-  expect(chromatogram.getSerie('ms').data[0][1]).toStrictEqual([10, 20, 30]);
-  expect(chromatogram.getSerie('ms').data[1][1]).toStrictEqual([10, 20, 30]);
+  expect(chromatogram.getSeries('ms').data[0][1]).toStrictEqual([10, 20, 30]);
+  expect(chromatogram.getSeries('ms').data[1][1]).toStrictEqual([10, 20, 30]);
 
   const expectedMass = [100.005, 200.005, 300.005];
-  expect(chromatogram.getSerie('ms').data[0][0]).toBeDeepCloseTo(
+  expect(chromatogram.getSeries('ms').data[0][0]).toBeDeepCloseTo(
     expectedMass,
     3,
   );
-  expect(chromatogram.getSerie('ms').data[1][0]).toBeDeepCloseTo(
+  expect(chromatogram.getSeries('ms').data[1][0]).toBeDeepCloseTo(
     expectedMass,
     3,
   );
@@ -123,6 +123,6 @@ test('different references', () => {
 test('check exceptions', () => {
   let chromatogram = new Chromatogram([1]);
   expect(() => chromatogram.applyLockMass('C12H19F12N3O6P3')).toThrow(
-    'The "ms" serie must be defined',
+    'The "ms" series must be defined',
   );
 });

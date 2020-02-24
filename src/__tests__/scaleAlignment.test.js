@@ -39,12 +39,12 @@ test('Simple case', () => {
   };
 
   let chrom1 = new Chromatogram(times);
-  chrom1.addSerie('tic', tic1);
-  chrom1.addSerie('ms', ms1);
+  chrom1.addSeries('tic', tic1);
+  chrom1.addSeries('ms', ms1);
 
   let chrom2 = new Chromatogram(times);
-  chrom2.addSerie('tic', tic2);
-  chrom2.addSerie('ms', ms2);
+  chrom2.addSeries('tic', tic2);
+  chrom2.addSeries('ms', ms2);
 
   let compared = spectraComparison(chrom1, chrom2, options);
   expect(compared.peaksSimilarity).toStrictEqual([1, 1, 1, 1, 1]);
@@ -104,12 +104,12 @@ test('Quality and string', () => {
   };
 
   let chrom1 = new Chromatogram(times);
-  chrom1.addSerie('tic', tic1);
-  chrom1.addSerie('ms', ms1);
+  chrom1.addSeries('tic', tic1);
+  chrom1.addSeries('ms', ms1);
 
   let chrom2 = new Chromatogram(times);
-  chrom2.addSerie('tic', tic2);
-  chrom2.addSerie('ms', ms2);
+  chrom2.addSeries('tic', tic2);
+  chrom2.addSeries('ms', ms2);
 
   let compared = spectraComparison(chrom1, chrom2, options);
   expect(compared.peaksSimilarity).toStrictEqual([1, 1, 1, 1, 1]);

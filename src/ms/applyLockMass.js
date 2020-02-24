@@ -23,9 +23,9 @@ export function applyLockMass(mfs, options = {}) {
     return info.observedMonoisotopicMass || info.monoisotopicMass;
   });
 
-  let ms = this.getSerie('ms');
+  let ms = this.getSeries('ms');
   if (!ms) {
-    throw new Error('The "ms" serie must be defined');
+    throw new Error('The "ms" series must be defined');
   }
   ms = ms.data;
 

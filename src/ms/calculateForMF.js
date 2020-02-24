@@ -20,9 +20,9 @@ export function calculateForMF(chromatogram, targetMF, options = {}) {
 
   const halfWidth = slotWidth / 2;
 
-  let ms = chromatogram.getSerie('ms');
+  let ms = chromatogram.getSeries('ms');
   if (!ms) {
-    throw Error('calculateForMF: the mass serie must be defined');
+    throw Error('calculateForMF: the mass series must be defined');
   }
 
   let isotopicDistribution = new IsotopicDistribution(targetMF, {

@@ -14,7 +14,7 @@ describe('vectorify', () => {
 
     let peakList = getPeaks(chromatogram);
 
-    let sampleMS = chromatogram.getSerie('ms').data;
+    let sampleMS = chromatogram.getSeries('ms').data;
     expect(sampleMS).not.toHaveLength(0);
     let integratedList = appendMass(chromatogram, peakList, sampleMS);
     expect(peakList).toHaveLength(integratedList.length);
@@ -41,13 +41,13 @@ describe('vectorify', () => {
       ];
     }
     let chromatogram = new Chromatogram(times);
-    chromatogram.addSerie('tic', tic);
-    chromatogram.addSerie('ms', ms);
+    chromatogram.addSeries('tic', tic);
+    chromatogram.addSeries('ms', ms);
 
     let peakList = getPeaks(chromatogram);
     expect(peakList).toHaveLength(3);
 
-    let sampleMS = chromatogram.getSerie('ms').data;
+    let sampleMS = chromatogram.getSeries('ms').data;
     expect(sampleMS).not.toHaveLength(0);
     let integratedList = appendMass(chromatogram, peakList, sampleMS);
     expect(peakList).toHaveLength(integratedList.length);

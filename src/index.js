@@ -1,4 +1,4 @@
-export { Chromatogram } from './Chromatogram';
+export { Chromatogram, fromJSON } from './Chromatogram';
 
 export { appendMass } from './peaks/appendMass';
 export { vectorify } from './vectorify';
@@ -15,7 +15,6 @@ export { meanFilter } from './filter/meanFilter';
 export { percentageFilter } from './filter/percentageFilter';
 
 export { fromJcamp } from './from/jcamp';
-export { fromJSON } from './from/json';
 export { fromText } from './from/text';
 export { fromNetCDF } from './from/netcdf';
 export { fromMzML } from './from/mzML';

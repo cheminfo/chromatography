@@ -1,11 +1,11 @@
 /**
  * Class allowing to manage a Serie
  */
-export class Serie {
+export class Series {
   constructor(array, dimension, options = {}) {
     let { meta = {} } = options;
-    if (new.target === Serie) {
-      throw new Error('You need to create either a 1D or 2D serie');
+    if (new.target === Series) {
+      throw new Error('You need to create either a 1D or 2D series');
     }
     this.data = array;
     this.dimension = dimension;

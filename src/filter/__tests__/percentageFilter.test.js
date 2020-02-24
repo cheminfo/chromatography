@@ -60,7 +60,7 @@ describe('inplace', () => {
         [[600], [274]],
       ],
     });
-    chromatogram.percentageFilter('ms', { serieName: 'filtered' });
+    chromatogram.percentageFilter('ms', { seriesName: 'filtered' });
     expect(chromatogram.series.filtered.data).toStrictEqual([
       [
         [200, 300],

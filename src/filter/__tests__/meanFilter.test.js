@@ -73,7 +73,7 @@ describe('meanFilter inplace', () => {
         [[600], [274]],
       ],
     });
-    chromatogram.meanFilter('ms', { serieName: 'filtered' });
+    chromatogram.meanFilter('ms', { seriesName: 'filtered' });
     expect(chromatogram.series.filtered.data).toStrictEqual([
       [[300], [300]],
       [[], []],

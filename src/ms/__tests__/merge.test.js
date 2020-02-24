@@ -65,9 +65,9 @@ describe('High resolution', () => {
     });
   });
 
-  it('wrong serieName', () => {
-    expect(() => merge(highResolution, [{}], { serieName: 'abc' })).toThrow(
-      'The serie "abc"',
+  it('wrong seriesName', () => {
+    expect(() => merge(highResolution, [{}], { seriesName: 'abc' })).toThrow(
+      'The series "abc"',
     );
   });
 });

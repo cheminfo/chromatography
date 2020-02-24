@@ -5,24 +5,24 @@ import median from 'ml-array-median';
  * @param {Chromatogram} chromatogram - GC/MS chromatogram where make the peak picking
  * @param {object} [options] - Options object
  * @param {number} [options.heightFilter = 2] - Filter all objects that are below `heightFilter` times the median of the height
- * @param {string} [options.serieName = 'tic'] - Serie to do the peak picking
+ * @param {string} [options.seriesName = 'tic'] - Series to do the peak picking
  * @param {object} [options.broadenPeaks = {}] - Options to broadenPeaks
  * @param {number} [options.broadenPeaks.factor = 1] - factor to enlarge
  * @param {boolean} [options.broadenPeaks.overlap = false] - Prevent overlap kf false
  * @return {Array<object>} - List of GSD objects
  */
 export function getPeaks(chromatogram, options = {}) {
-  const { heightFilter = 2, serieName = 'tic', broadenPeaks = {} } = options;
+  const { heightFilter = 2, seriesName = 'tic', broadenPeaks = {} } = options;
 
-  let serie = chromatogram.getSerie(serieName);
-  if (!serie) {
-    throw new Error(`"${serieName}" serie not founded`);
+  let series = chromatogram.getSeries(seriesName);
+  if (!series) {
+    throw new Error(`"${seriesName}" series not found`);
   }
-  serie = serie.data;
+  series = series.data;
   let times = chromatogram.getTimes();
 
   // first peak selection
-  let peakList = gsd(times, serie, {
+  let peakList = gsd(times, series, {
     noiseLevel: 0,
     realTopDetection: false,
     smoothY: true,
@@ -32,7 +32,7 @@ export function getPeaks(chromatogram, options = {}) {
   });
 
   // filter height by factor
-  let medianHeight = median(serie);
+  let medianHeight = median(series);
 
   peakList = peakList.filter((val) => val.height > medianHeight * heightFilter);
 
