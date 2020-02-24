@@ -14,16 +14,13 @@ import { XYObject } from 'ml-spectra-processing';
  */
 export function calculateForMF(chromatogram, targetMF, options = {}) {
   if (typeof targetMF !== 'string') {
-    throw Error('calculateForMF: targetMF must be defined and a string');
+    throw Error('targetMF must be defined and a string');
   }
   const { threshold = 0.05, slotWidth = 1, ionizations = 'H+' } = options;
 
   const halfWidth = slotWidth / 2;
 
-  let ms = chromatogram.getSeries('ms');
-  if (!ms) {
-    throw Error('calculateForMF: the mass series must be defined');
-  }
+  const ms = chromatogram.getSeries('ms');
 
   let isotopicDistribution = new IsotopicDistribution(targetMF, {
     ionizations,

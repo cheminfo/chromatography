@@ -11,5 +11,5 @@ test('Errors', () => {
   expect(() => {
     const chromatogram = new Chromatogram([1, 2, 3, 5, 6]);
     chromatogram.calculateTic();
-  }).toThrow('The mass series must be defined');
+  }).toThrow('The series "ms" does not exist');
 });

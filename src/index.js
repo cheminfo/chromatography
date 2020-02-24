@@ -9,17 +9,9 @@ export { kovats } from './kovats';
 export { appendKovats } from './peaks/appendKovats';
 export { getKovatsConversionFunction } from './getKovatsConversionFunction';
 
-export { cosineSimilarity as cosine } from './ms/cosineSimilarity';
-
-export { meanFilter } from './filter/meanFilter';
-export { percentageFilter } from './filter/percentageFilter';
+export { cosineSimilarity } from './ms/cosineSimilarity';
 
 export { fromJcamp } from './from/jcamp';
 export { fromText } from './from/text';
 export { fromNetCDF } from './from/netcdf';
-export { fromMzML } from './from/mzML';
-export { fromMzData } from './from/mzData';
-
-export { integrate } from './util/integrate';
-export { merge } from './ms/merge';
-export { getPeaks } from './peaks/getPeaks';
+export { fromXML } from './from/xml';

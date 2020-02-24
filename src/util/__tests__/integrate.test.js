@@ -1,10 +1,10 @@
-import { integrate, Chromatogram } from '../..';
+import { Chromatogram } from '../..';
 import { simpleTic } from '../../../testFiles/examples';
 
 let chromatogram = new Chromatogram([1, 2, 3, 4], { tic: [2, 4, 6, 8] });
 
 test('Integrate a tic', () => {
-  let result = integrate(simpleTic, [{ from: 1.8, to: 5.5 }], {
+  let result = simpleTic.integrate([{ from: 1.8, to: 5.5 }], {
     seriesName: 'tic',
   });
   expect(result).toStrictEqual([
@@ -25,8 +25,8 @@ test('Integrate a tic', () => {
 });
 
 test('Errors', () => {
-  expect(() => integrate(simpleTic, 123)).toThrow(
-    'Ranges must be an array of type [{from:to}]',
+  expect(() => simpleTic.integrate(123)).toThrow(
+    'Ranges must be an array of type [{from,to}]',
   );
 
   let ms = new Chromatogram([1], {
@@ -38,7 +38,7 @@ test('Errors', () => {
     ],
   });
   expect(() =>
-    integrate(ms, [{ from: 1, to: 2 }], {
+    ms.integrate([{ from: 1, to: 2 }], {
       seriesName: 'ms',
     }),
   ).toThrow('The series "ms" is not of dimension 1');
@@ -46,7 +46,7 @@ test('Errors', () => {
 
 describe('integrate: baseline correction', () => {
   it('without baseline', () => {
-    let result = integrate(simpleTic, [{ from: 1, to: 3 }], {
+    let result = simpleTic.integrate([{ from: 1, to: 3 }], {
       baseline: false,
     });
     expect(result).toStrictEqual([
@@ -67,7 +67,7 @@ describe('integrate: baseline correction', () => {
   });
 
   it('trapezoid baseline', () => {
-    let result = integrate(chromatogram, [{ from: 1, to: 3 }], {
+    let result = chromatogram.integrate([{ from: 1, to: 3 }], {
       baseline: 'trapezoid',
     });
     expect(result).toStrictEqual([
@@ -88,7 +88,7 @@ describe('integrate: baseline correction', () => {
   });
 
   it('min baseline', () => {
-    let result = integrate(chromatogram, [{ from: 1, to: 3 }], {
+    let result = chromatogram.integrate([{ from: 1, to: 3 }], {
       baseline: 'min',
     });
     expect(result).toStrictEqual([
@@ -108,7 +108,7 @@ describe('integrate: baseline correction', () => {
     ]);
 
     let other = new Chromatogram([1, 2, 3], { tic: [6, 4, 2] });
-    result = integrate(other, [{ from: 1, to: 3 }], { baseline: 'min' });
+    result = other.integrate([{ from: 1, to: 3 }], { baseline: 'min' });
     expect(result).toStrictEqual([
       {
         integration: 4,
@@ -128,7 +128,7 @@ describe('integrate: baseline correction', () => {
 
   it('error', () => {
     expect(() =>
-      integrate(chromatogram, [{ from: 1, to: 3 }], { baseline: 'bla' }),
+      chromatogram.integrate([{ from: 1, to: 3 }], { baseline: 'bla' }),
     ).toThrow('Unknown baseline method "bla"');
   });
 });

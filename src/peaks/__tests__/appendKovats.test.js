@@ -5,11 +5,11 @@ import { appendKovats } from '../..';
 
 describe('appendKovats', () => {
   it('ten peaks', () => {
-    const peaks = getPeaks(chromatogram);
+    let peaks = getPeaks(chromatogram);
 
-    appendMass(chromatogram, peaks);
+    peaks = appendMass(chromatogram, peaks);
 
-    appendKovats(peaks);
+    peaks = appendKovats(peaks);
     for (let peak of peaks) {
       expect(peak.x).toStrictEqual(peak.kovats.index);
     }

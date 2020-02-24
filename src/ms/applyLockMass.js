@@ -1,15 +1,6 @@
 import { MF } from 'mf-parser';
 
-/**
- * Recalculates series for GC/MS with lock mass
- * @param {string|Array<string>} mfs - Reference molecular formula(s)
- * @param {object} [options = {}] - Options object
- * @param {boolean} [options.oddReference = true] - Mass reference it's in the odd position
- * @param {number} [options.maxShift = 0.1] - Maximum allowed shift
- * @param {boolean} [options.usePreviousIfNotFound = true] - If not found we use the previous value
- * @return {object} this
- */
-export function applyLockMass(mfs, options = {}) {
+export function applyLockMass(chromatogram, mfs, options = {}) {
   const { oddReference = true, maxShift = 0.1 } = options;
 
   // allows mf as string or array
@@ -23,11 +14,7 @@ export function applyLockMass(mfs, options = {}) {
     return info.observedMonoisotopicMass || info.monoisotopicMass;
   });
 
-  let ms = this.getSeries('ms');
-  if (!ms) {
-    throw new Error('The "ms" series must be defined');
-  }
-  ms = ms.data;
+  const ms = chromatogram.getSeries('ms').data;
 
   // check where is the reference values
   let referenceIndexShift = Number(oddReference);
@@ -79,18 +66,20 @@ export function applyLockMass(mfs, options = {}) {
     }
   }
 
-  let referenceUsed = {
+  const referenceUsed = {
     total: newSize,
     totalFound: referencesCount.reduce((prev, current) => current + prev, 0),
+    mfs: {},
+    percent: 0,
   };
   for (let r = 0; r < referenceMass.length; r++) {
-    referenceUsed[mfs[r]] = referencesCount[r];
+    referenceUsed.mfs[mfs[r]] = referencesCount[r];
   }
   referenceUsed.percent =
     (referenceUsed.totalFound / referenceUsed.total) * 100;
 
   // remove the time and the mass spectra that contains the reference
-  this.filter((index) => index % 2 !== referenceIndexShift);
+  chromatogram.filter((index) => index % 2 !== referenceIndexShift);
 
-  return { chromatogram: this, referenceUsed };
+  return referenceUsed;
 }

@@ -11,13 +11,18 @@ import { merge } from '../ms/merge';
  */
 export function appendMass(chromatogram, peaks, options = {}) {
   const { mergeThreshold = 0.3, seriesName = 'ms' } = options;
+  const result = [];
   // integrate MS
-  for (let peak of peaks) {
-    let massSpectrum = merge(chromatogram, peak, {
+  for (const peak of peaks) {
+    const massSpectrum = merge(chromatogram, {
       mergeThreshold,
       seriesName,
+      range: peak,
     });
-    peak.ms = massSpectrum;
+    result.push({
+      ...peak,
+      ms: massSpectrum,
+    });
   }
-  return peaks;
+  return result;
 }

@@ -85,7 +85,7 @@ test('different references', () => {
   });
 
   let newLength = chromatogram.getTimes().length / 2;
-  const { referenceUsed } = chromatogram.applyLockMass(
+  const referenceUsed = chromatogram.applyLockMass(
     ['C12H19F12N3O6P3', 'C10H20O3', 'C100'],
     {
       oddReference: false,
@@ -93,9 +93,7 @@ test('different references', () => {
   ); // em: 622.02951
 
   expect(referenceUsed).toStrictEqual({
-    C100: 0,
-    C12H19F12N3O6P3: 1,
-    C10H20O3: 1,
+    mfs: { C100: 0, C12H19F12N3O6P3: 1, C10H20O3: 1 },
     total: 3,
     percent: 66.66666666666666,
     totalFound: 2,
@@ -123,6 +121,6 @@ test('different references', () => {
 test('check exceptions', () => {
   let chromatogram = new Chromatogram([1]);
   expect(() => chromatogram.applyLockMass('C12H19F12N3O6P3')).toThrow(
-    'The "ms" series must be defined',
+    'The series "ms" does not exist',
   );
 });

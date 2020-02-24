@@ -30,7 +30,9 @@ describe('getPeaks', () => {
     }
     let chromatogram = new Chromatogram(times);
 
-    expect(() => chromatogram.getPeaks()).toThrow('"tic" series not found');
+    expect(() => chromatogram.getPeaks()).toThrow(
+      'The series "tic" does not exist',
+    );
   });
 
   it('fivePeaks', () => {

@@ -2,20 +2,11 @@ import { X, XY } from 'ml-spectra-processing';
 
 import { baselineCorrection } from './baselineCorrection';
 
-/**
- * Returns a mass spectrum that is the integration of all the spectra in a specific range of time
- * @param {Chromatogram} chromatogram
- * @param {Array<object>} ranges - [{from:,to:}, {from:, to:}, ...]
- * @param {object} [options = {}] - Options object
- * @param {string} [options.seriesName='tic'] - Name of the chromatogram series, by default 'tic
- * @param {string|boolean} [options.baseline] - Applies baseline correction (trapezoid, min)
- * @return {[]}
- */
 export function integrate(chromatogram, ranges, options = {}) {
-  const { baseline = false, seriesName = 'tic' } = options;
-  chromatogram.requiresSeries(seriesName);
+  const { baseline, seriesName = 'tic' } = options;
+
   if (!Array.isArray(ranges)) {
-    throw new Error('Ranges must be an array of type [{from:to}]');
+    throw new Error('Ranges must be an array of type [{from,to}]');
   }
   if (ranges.length === 0) {
     return [];

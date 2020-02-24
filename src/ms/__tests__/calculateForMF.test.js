@@ -39,9 +39,9 @@ describe('calculateForMF', () => {
     const chromatogram = new Chromatogram([1, 2, 3, 5, 6]);
     expect(() => {
       chromatogram.calculateForMF();
-    }).toThrow('calculateForMF: targetMF must be defined and a string');
+    }).toThrow('targetMF must be defined and a string');
     expect(() => {
       chromatogram.calculateForMF('C10');
-    }).toThrow('calculateForMF: the mass series must be defined');
+    }).toThrow('The series "ms" does not exist');
   });
 });

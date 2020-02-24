@@ -4,7 +4,7 @@ import { join } from 'path';
 import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to';
 
 import { lorentzian, simple4 } from '../../../testFiles/examples';
-import { Chromatogram, appendMass, getPeaks, fromJcamp } from '../..';
+import { Chromatogram, appendMass, fromJcamp } from '../..';
 
 expect.extend({ toBeDeepCloseTo });
 
@@ -15,7 +15,7 @@ describe('appendMass', () => {
     const chromatogram = fromJcamp(jcamp);
     expect(chromatogram).toHaveLength(6992);
 
-    let peaks = getPeaks(chromatogram);
+    let peaks = chromatogram.getPeaks();
     expect(peaks).toHaveLength(47);
 
     let sampleMS = chromatogram.getSeries('ms').data;
@@ -45,7 +45,7 @@ describe('appendMass', () => {
     chromatogram.addSeries('tic', tic);
     chromatogram.addSeries('ms', ms);
 
-    let peaks = getPeaks(chromatogram);
+    let peaks = chromatogram.getPeaks();
     expect(peaks).toHaveLength(3);
 
     let sampleMS = chromatogram.getSeries('ms').data;

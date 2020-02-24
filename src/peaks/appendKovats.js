@@ -1,13 +1,9 @@
 import { kovats } from '../kovats';
 
-/**
- * Append kovats to
- * @param {array<object>} peaks - Reference spectra
- */
 export function appendKovats(peaks) {
-  // Peak picking
+  const result = [];
   for (let peak of peaks) {
-    peak.kovats = kovats(peak.ms);
+    result.push({ ...peak, kovats: kovats(peak.ms) });
   }
-  return peaks;
+  return result;
 }

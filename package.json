@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "build": "cheminfo-build --entry src/index.js --root Chromatography",
+    "build-docs": "typedoc --out docs --name \"Chromatography\" --mode file --includeDeclarations --excludeExternals --hideGenerator --excludePrivate --moduleResolution node --target ESNext chromatography.d.ts",
     "eslint": "eslint src --cache",
     "eslint-fix": "npm run eslint -- --fix",
     "prepublishOnly": "rollup -c",
@@ -50,7 +51,8 @@
     "jest-matcher-deep-close-to": "^1.3.0",
     "prettier": "^1.19.1",
     "rollup": "^1.31.1",
-    "spectrum-generator": "^3.1.3"
+    "spectrum-generator": "^3.1.3",
+    "typedoc": "^0.16.10"
   },
   "dependencies": {
     "binary-search": "^1.3.6",

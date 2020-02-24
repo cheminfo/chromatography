@@ -3,7 +3,7 @@ import { join } from 'path';
 
 import { lorentzian } from '../../testFiles/examples';
 
-import { Chromatogram, appendMass, getPeaks, vectorify, fromJcamp } from '..';
+import { Chromatogram, appendMass, vectorify, fromJcamp } from '..';
 
 describe('vectorify', () => {
   it('from a Diesel chromatogram', () => {
@@ -12,7 +12,7 @@ describe('vectorify', () => {
     const chromatogram = fromJcamp(jcamp);
     expect(chromatogram).toHaveLength(6992);
 
-    let peakList = getPeaks(chromatogram);
+    let peakList = chromatogram.getPeaks();
 
     let sampleMS = chromatogram.getSeries('ms').data;
     expect(sampleMS).not.toHaveLength(0);
@@ -44,7 +44,7 @@ describe('vectorify', () => {
     chromatogram.addSeries('tic', tic);
     chromatogram.addSeries('ms', ms);
 
-    let peakList = getPeaks(chromatogram);
+    let peakList = chromatogram.getPeaks();
     expect(peakList).toHaveLength(3);
 
     let sampleMS = chromatogram.getSeries('ms').data;

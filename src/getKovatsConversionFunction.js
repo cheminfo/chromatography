@@ -3,13 +3,6 @@ import binarySearch from 'binary-search';
 const ascValue = (a, b) => a.index - b.index;
 const ascTime = (a, b) => a.time - b.time;
 
-/**
- * Returns a function that allows to convert from time to Kovats or from Kovats to time
- * @param {Array<object>} [peaks] - List of time-kovats from the reference
- * @param {object} [options = {}] - Options object
- * @param {boolean} [options.revert = false] - True for convert from Kovats to time, false otherwise
- * @return {function(number)} - One parameter function that convert to one dimension to the other
- */
 export function getKovatsConversionFunction(peaks, options = {}) {
   const { revert = false } = options;
 

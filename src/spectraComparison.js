@@ -36,23 +36,6 @@ const defaultOptions = {
   similarityThreshold: 0.7,
 };
 
-/**
- * Returns the most similar peaks between two GC/MS and their similarities
- * @param {Chromatogram} chrom1 - First chromatogram
- * @param {Chromatogram} chrom2 - Second chromatogram
- * @param {object} [options={}] - Options object
- * @param {number} [options.thresholdFactor = 0] - Every peak that it's below the main peak times this factor fill be removed (when is 0 there's no filter)
- * @param {number} [options.maxNumberPeaks = Number.MAX_VALUE] - Maximum number of peaks for each mass spectra (when is Number.MAX_VALUE there's no filter)
- * @param {number} [options.groupWidth = 0] - When find a max can't be another max in a radius of this size
- * @param {number} [options.heightFilter = 2] - Filter all objects that are below `heightFilter` times the median of the height
- * @param {number} [options.massPower = 3] - Power applied to the mass values
- * @param {number} [options.intPower = 0.6] - Power applied to the abundance values
- * @param {number} [options.similarityThreshold = 0.7] - Minimum similarity value to consider them similar
- * @return {object} - Most similar peaks and their similarities:
- * * `peaksFirst`: Array of peaks, integrated mass spectra and weighted mass spectra for the first chromatogram
- * * `peaksSecond`: Array of peaks, integrated mass spectra and weighted mass spectra for the second chromatogram
- * * `peaksSimilarity`: Array of similarities (number)
- */
 export function spectraComparison(chrom1, chrom2, options = {}) {
   options = Object.assign({}, defaultOptions, options);
 
@@ -103,7 +86,7 @@ export function spectraComparison(chrom1, chrom2, options = {}) {
 
   let duplicates = {};
   for (let i = 0; i < similarLen; ++i) {
-    if ({}.hasOwnProperty.call(duplicates, similarityPeaks.chrom1[i].x)) {
+    if (duplicates[similarityPeaks.chrom1[i].x]) {
       duplicates[similarityPeaks.chrom1[i].x].push(i);
     } else {
       duplicates[similarityPeaks.chrom1[i].x] = [i];

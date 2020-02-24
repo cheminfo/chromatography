@@ -27,6 +27,6 @@ describe('calculateBps', () => {
     expect(() => {
       const chromatogram = new Chromatogram([1, 2, 3, 5, 6]);
       chromatogram.calculateBpc();
-    }).toThrow('The mass series must be defined');
+    }).toThrow('The series "ms" does not exist');
   });
 });

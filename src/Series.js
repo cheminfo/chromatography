@@ -33,10 +33,11 @@ export class Series {
    * @param {Array} array
    */
   keep(array) {
-    let newData = [];
+    const newData = [];
     for (let i of array) {
       newData.push(this.data[i]);
     }
     this.data = newData;
+    return this;
   }
 }

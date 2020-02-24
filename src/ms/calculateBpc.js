@@ -6,13 +6,10 @@ import max from 'ml-array-max';
  * @return {Array} - Calculated bpc
  */
 export function calculateBpc(chromatogram) {
-  let ms = chromatogram.getSeries('ms');
-  if (!ms) {
-    throw new Error('The mass series must be defined');
-  }
-  let massSpectra = ms.data;
-  let bpc = [];
-  for (let massSpectrum of massSpectra) {
+  const ms = chromatogram.getSeries('ms');
+  const massSpectra = ms.data;
+  const bpc = [];
+  for (const massSpectrum of massSpectra) {
     if (massSpectrum[1].length > 0) {
       bpc.push(max(massSpectrum[1]));
     } else {

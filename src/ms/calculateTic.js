@@ -1,18 +1,10 @@
 import sum from 'ml-array-sum';
 
-/**
- * Calculate tic
- * @param {Chromatogram} chromatogram - GC/MS chromatogram where make the peak picking
- * @return {Array} - Calculated tic
- */
 export function calculateTic(chromatogram) {
-  let ms = chromatogram.getSeries('ms');
-  if (!ms) {
-    throw new Error('The mass series must be defined');
-  }
-  let massSpectra = ms.data;
-  let tic = [];
-  for (let massSpectrum of massSpectra) {
+  const ms = chromatogram.getSeries('ms');
+  const massSpectra = ms.data;
+  const tic = [];
+  for (const massSpectrum of massSpectra) {
     if (massSpectrum[1].length > 0) {
       tic.push(sum(massSpectrum[1]));
     } else {

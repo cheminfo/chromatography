@@ -4,15 +4,9 @@ import { Chromatogram } from '..';
 
 describe('General methods', () => {
   it('Constructor errors', () => {
-    expect(() => {
-      new Chromatogram({ a: 1 }); // eslint-disable-line
-    }).toThrow('Times must be an array');
-    expect(() => {
-      new Chromatogram(12); // eslint-disable-line
-    }).toThrow('Times must be an array');
-    expect(() => {
-      new Chromatogram(); // eslint-disable-line
-    }).toThrow('The time series is mandatory');
+    expect(() => new Chromatogram({ a: 1 })).toThrow('times must be an array');
+    expect(() => new Chromatogram(12)).toThrow('times must be an array');
+    expect(() => new Chromatogram()).toThrow('times must be an array');
   });
 
   it('get first and last time', () => {
@@ -34,10 +28,10 @@ describe('General methods', () => {
   it('addSeries errors', () => {
     let chromatogram = new Chromatogram([1, 2], { tic: [1, 2] });
     expect(() => chromatogram.addSeries('abc', 1234)).toThrow(
-      'The array size is not the same as the time size',
+      'The series size is not the same as the times size',
     );
     expect(() => chromatogram.addSeries('abc', { a: 1, b: 2 })).toThrow(
-      'The array size is not the same as the time size',
+      'The series size is not the same as the times size',
     );
     expect(() => chromatogram.addSeries('tic', [2, 3, 4])).toThrow(
       'A series with name "tic" already exists',
@@ -96,7 +90,7 @@ describe('Integrations', () => {
   });
 
   it('Merge a ms', () => {
-    let result = simple.merge({ from: 1, to: 2 });
+    let result = simple.merge({ range: { from: 1, to: 2 } });
     expect(result).toStrictEqual({
       x: [100, 101, 200, 201, 300, 301],
       y: [10, 11, 20, 21, 30, 31],

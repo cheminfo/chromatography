@@ -1,18 +1,8 @@
 import { X, XY, XYObject } from 'ml-spectra-processing';
 
-/**
- * Returns a mass spectrum that is the integration of all the spectra in a specific range of time
- * @param {Chromatogram} chromatogram
- * @param {object} [range={}] - [{from:,to:}, {from:, to:}, ...]
- * @param {object} [options = {}] - Options object
- * @param {string} [options.seriesName='ms'] - Name of the mass series, by default 'ms'
- * @param {object} [options.mergeThreshold = 0.3] - Parameter for merging the peaks
- * @param {object} [options.range={from:min,to:max}] - {from:x,to:y} we integrate a zone, by default all
- * @return {object} (x:[],y:[])
- */
-export function merge(chromatogram, range = {}, options = {}) {
+export function merge(chromatogram, options = {}) {
   const time = chromatogram.getTimes();
-  let { mergeThreshold = 0.3, seriesName = 'ms' } = options;
+  let { mergeThreshold = 0.3, seriesName = 'ms', range = {} } = options;
 
   chromatogram.requiresSeries(seriesName);
   let series = chromatogram.series[seriesName];
