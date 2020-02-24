@@ -48,9 +48,9 @@ let mySpectrumInAnotherReference = revertConversionFunction(mySpectrum);
 
 [MIT](./LICENSE)
 
-[npm-image]: https://img.shields.io/npm/v/chromatography.svg?style=flat-square
+[npm-image]: https://img.shields.io/npm/v/chromatography.svg
 [npm-url]: https://npmjs.org/package/chromatography
 [ci-image]: https://github.com/mljs/matrix/workflows/Node.js%20CI/badge.svg?branch=master
 [ci-url]: https://github.com/mljs/matrix/actions?query=workflow%3A%22Node.js+CI%22
-[download-image]: https://img.shields.io/npm/dm/chromatography.svg?style=flat-square
+[download-image]: https://img.shields.io/npm/dm/chromatography.svg
 [download-url]: https://npmjs.org/package/chromatography
