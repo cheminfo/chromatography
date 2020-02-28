@@ -57,11 +57,6 @@ export interface GetPeaksOptions {
    * @default `'tic'`
    */
   seriesName?: string;
-
-  /**
-   * Options to broaden peaks.
-   */
-  broadenPeaks?: BroadenPeaksOptions;
 }
 
 export interface GSDObject {
