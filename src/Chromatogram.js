@@ -178,7 +178,7 @@ export class Chromatogram {
   }
 
   meanFilter(seriesName, options = {}) {
-    const { seriesName: newSeriesName = 'msMedian' } = options;
+    const { seriesName: newSeriesName = 'msMean' } = options;
     if (this.hasSeries(newSeriesName) && !options.force) {
       throw new Error(`A series with name "${seriesName}" already exists`);
     }

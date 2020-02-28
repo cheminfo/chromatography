@@ -50,7 +50,7 @@ describe('meanFilter inplace', () => {
       ],
     });
     chromatogram.meanFilter('ms');
-    expect(chromatogram.series.msMedian.data).toStrictEqual([
+    expect(chromatogram.series.msMean.data).toStrictEqual([
       [[300], [300]],
       [[], []],
     ]);
