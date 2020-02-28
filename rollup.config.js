@@ -1,4 +1,4 @@
-export default {
+const config = {
   input: 'src/index.js',
   output: {
     file: 'lib/index.js',
@@ -23,3 +23,5 @@ export default {
     'xy-parser',
   ],
 };
+
+export default config;

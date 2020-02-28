@@ -26,7 +26,8 @@
     "url": "git+https://github.com/cheminfo/chromatography.git"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "transformIgnorePatterns": []
   },
   "author": "Michaël Zasso",
   "contributors": [
@@ -50,7 +51,7 @@
     "jest": "^25.1.0",
     "jest-matcher-deep-close-to": "^1.3.0",
     "prettier": "^1.19.1",
-    "rollup": "^1.31.1",
+    "rollup": "^1.32.0",
     "spectrum-generator": "^3.1.3",
     "typedoc": "^0.16.11"
   },
@@ -67,7 +68,7 @@
     "ml-gsd": "^3.0.1",
     "ml-regression-polynomial": "^2.1.0",
     "ml-spectra-processing": "^2.0.1",
-    "mzdata": "^1.1.0",
+    "mzdata": "^2.0.0",
     "netcdf-gcms": "^1.3.1",
     "xy-parser": "^3.0.0"
   }
