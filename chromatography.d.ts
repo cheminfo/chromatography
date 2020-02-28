@@ -69,21 +69,6 @@ export interface GSDObject {
   index: number;
 }
 
-// TODO: Use type from dependency ml-gsd?
-export interface BroadenPeaksOptions {
-  /**
-   * Factor to enlarge.
-   * @default: `1`
-   */
-  factor?: number;
-
-  /**
-   * If false, prevents overlap.
-   * @default `false`
-   */
-  overlap?: boolean;
-}
-
 export interface CalculateOptions {
   /**
    * Force the calculation if it already exists.
