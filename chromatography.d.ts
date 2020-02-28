@@ -226,7 +226,7 @@ export interface MeanFilterOptions {
 
   /**
    * Name of the created series.
-   * @default `'msMedian'`
+   * @default `'msMean'`
    */
   seriesName?: string;
 
