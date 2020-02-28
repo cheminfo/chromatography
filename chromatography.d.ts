@@ -437,8 +437,7 @@ export class Chromatogram {
   ): ChromatogramSeries;
 
   /**
-   * Returns an object with the result of the integrations.
-   * It contains a mass spectrum that is the integration of all the spectra in the specified range of times.
+   * Returns an array containing the integral of various ranges
    * @param ranges
    * @param options
    */
@@ -448,7 +447,7 @@ export class Chromatogram {
   ): IntegrateResult[];
 
   /**
-   * Retuns an object with the result of the merge.
+   * Returns a mass spectrum corresponding to the merge of a range.
    * @param options
    */
   merge(options?: MergeOptions): MergeResult;
