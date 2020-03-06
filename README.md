@@ -50,7 +50,7 @@ let mySpectrumInAnotherReference = revertConversionFunction(mySpectrum);
 
 [npm-image]: https://img.shields.io/npm/v/chromatography.svg
 [npm-url]: https://npmjs.org/package/chromatography
-[ci-image]: https://github.com/mljs/matrix/workflows/Node.js%20CI/badge.svg?branch=master
-[ci-url]: https://github.com/mljs/matrix/actions?query=workflow%3A%22Node.js+CI%22
+[ci-image]: https://github.com/cheminfo/chromatography/workflows/Node.js%20CI/badge.svg?branch=master
+[ci-url]: https://github.com/cheminfo/chromatography/actions?query=workflow%3A%22Node.js+CI%22
 [download-image]: https://img.shields.io/npm/dm/chromatography.svg
 [download-url]: https://npmjs.org/package/chromatography
