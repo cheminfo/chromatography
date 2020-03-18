@@ -1,6 +1,7 @@
 import { SpectrumGenerator } from 'spectrum-generator';
 import { Chromatogram } from '../src';
-let spectrumGenerator = new SpectrumGenerator({ start: 0, end: 1000 });
+
+let spectrumGenerator = new SpectrumGenerator({ from: 0, to: 1000 });
 
 spectrumGenerator.addPeak([100, 100]);
 spectrumGenerator.addPeak([200, 20]);
