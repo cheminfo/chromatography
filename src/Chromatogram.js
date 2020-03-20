@@ -40,6 +40,22 @@ export class Chromatogram {
     return this.series[seriesName];
   }
 
+  getSeries1D(seriesName) {
+    const series = this.getSeries(seriesName);
+    if (!series.is1D()) {
+      throw new Error(`series ${seriesName} is not a 1D series`);
+    }
+    return series;
+  }
+
+  getSeries2D(seriesName) {
+    const series = this.getSeries(seriesName);
+    if (!series.is2D()) {
+      throw new Error(`series ${seriesName} is not a 2D series`);
+    }
+    return series;
+  }
+
   getSeriesNames() {
     return Object.keys(this.series);
   }
