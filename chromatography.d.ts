@@ -463,10 +463,10 @@ export class Chromatogram {
    * Returns the closest mass spectrum to a specific retention time
    * @param time - Retention time
    */
-  getClosestData(
+  getClosestData<DataType = number[]>(
     time: number,
     options?: GetClosestDataOptions,
-  ): GetClosestDataResult;
+  ): GetClosestDataResult<DataType>;
 
   /**
    * Returns a copy of the chromatogram.
