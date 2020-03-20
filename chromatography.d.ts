@@ -24,8 +24,15 @@ export interface ChromatogramRange {
 }
 
 export interface ChromatogramPeak {
-  x: number;
-  y: number;
+  from: number;
+  to: number;
+  inflectionPoints: {
+    from: number;
+    to: number;
+  };
+  toIndex: number;
+  retentionTime: number;
+  intensity: number;
 }
 
 export interface AddSeriesOptions {
@@ -57,16 +64,6 @@ export interface GetPeaksOptions {
    * @default `'tic'`
    */
   seriesName?: string;
-}
-
-export interface GSDObject {
-  from: number;
-  to: number;
-  fromIndex: number;
-  toIndex: number;
-  x: number;
-  y: number;
-  index: number;
 }
 
 export interface CalculateOptions {
@@ -379,7 +376,7 @@ export class Chromatogram {
    * @param options
    * @returns - List of GSD objects
    */
-  getPeaks(options?: GetPeaksOptions): GSDObject[];
+  getPeaks(options?: GetPeaksOptions): ChromatogramPeak[];
 
   /**
    * Calculate the "tic" series from the "ms" one.

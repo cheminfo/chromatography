@@ -4,7 +4,7 @@ import { vectorify } from './vectorify';
 import { cosineSimilarity } from './ms/cosineSimilarity';
 
 /**
- * Preprocessing task over the signals
+ * Preprocessing task over the signalsj
  * @ignore
  * @param {Chromatogram} chromatogram - Chromatogram to process
  * @param {object} [options] - Options object (same as spectraComparison)
@@ -13,12 +13,11 @@ import { cosineSimilarity } from './ms/cosineSimilarity';
 function preprocessing(chromatogram, options) {
   // peak picking
   let peaks = getPeaks(chromatogram, options);
-  peaks = peaks.sort((a, b) => a.index - b.index);
+  peaks = peaks.sort((a, b) => a.from - b.to);
 
   // integrate mass in the peaks
   let integratedMs = appendMass(chromatogram, peaks, options);
   let vector = vectorify(integratedMs, options);
-
   return {
     peaks,
     integratedMs,
@@ -81,15 +80,16 @@ export function spectraComparison(chrom1, chrom2, options = {}) {
       similarityPeaks.similarity[similarLen++] = max.similarity;
     }
   }
+
   similarityPeaks.chrom1.length = similarLen;
   similarityPeaks.chrom2.length = similarLen;
 
   let duplicates = {};
   for (let i = 0; i < similarLen; ++i) {
-    if (duplicates[similarityPeaks.chrom1[i].x]) {
-      duplicates[similarityPeaks.chrom1[i].x].push(i);
+    if (duplicates[similarityPeaks.chrom1[i].retentionTime]) {
+      duplicates[similarityPeaks.chrom1[i].retentionTime].push(i);
     } else {
-      duplicates[similarityPeaks.chrom1[i].x] = [i];
+      duplicates[similarityPeaks.chrom1[i].retentionTime] = [i];
     }
   }
 

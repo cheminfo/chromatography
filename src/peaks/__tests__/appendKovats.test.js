@@ -11,7 +11,7 @@ describe('appendKovats', () => {
 
     peaks = appendKovats(peaks);
     for (let peak of peaks) {
-      expect(peak.x).toStrictEqual(peak.kovats.index);
+      expect(peak.retentionTime).toStrictEqual(peak.kovats.index);
     }
   });
 });

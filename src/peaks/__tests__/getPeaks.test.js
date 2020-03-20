@@ -14,6 +14,14 @@ describe('getPeaks', () => {
 
     let peakList = chromatogram.getPeaks();
     expect(peakList).toHaveLength(47);
+
+    expect(peakList[0]).toEqual({
+      from: 26.27,
+      to: 27.089,
+      inflectionPoints: { from: 26.27, to: 27.089 },
+      retentionTime: 26.543,
+      intensity: 243033.28571428574,
+    });
   });
 
   it('triplet', () => {
@@ -37,10 +45,15 @@ describe('getPeaks', () => {
 
   it('fivePeaks', () => {
     let peaks = fivePeaks.getPeaks();
+    console.log(peaks);
+    let fwhm = 1;
+    // https://en.wikipedia.org/wiki/Gaussian_function
+    let deltaInflexionPoints = fwhm / Math.sqrt(2 * Math.log(2));
+
     let sumOfDiffFromTo = peaks.reduce(
       (previous, current) => (previous += current.to - current.from),
       0,
     );
-    expect(sumOfDiffFromTo).toBeCloseTo(22, 5);
+    expect(sumOfDiffFromTo).toBeCloseTo(deltaInflexionPoints * 5, 2);
   });
 });

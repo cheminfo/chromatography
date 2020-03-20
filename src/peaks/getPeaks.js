@@ -1,8 +1,13 @@
 import { gsd } from 'ml-gsd/src/gsd';
+import { broadenPeaks } from 'ml-gsd/src/post/broadenPeaks';
 import median from 'ml-array-median';
 
 export function getPeaks(chromatogram, options = {}) {
-  const { heightFilter = 2, seriesName = 'tic' } = options;
+  const {
+    heightFilter = 2,
+    seriesName = 'tic',
+    broadenPeaksOptions = { factor: 1, overlap: false },
+  } = options;
 
   const series = chromatogram.getSeries(seriesName).data;
   const times = chromatogram.getTimes();
@@ -24,13 +29,18 @@ export function getPeaks(chromatogram, options = {}) {
 
   peakList.sort((a, b) => a.x - b.x);
 
+  if (broadenPeaksOptions) {
+    peakList = broadenPeaks(peakList, broadenPeaksOptions);
+  }
+
   return peakList.map((peak) => ({
-    from: Math.min(peak.left.x, peak.right.x),
-    to: Math.max(peak.left.x, peak.right.x),
-    fromIndex: Math.min(peak.left.index, peak.right.index),
-    toIndex: Math.max(peak.left.index, peak.right.index),
-    x: peak.x,
-    y: peak.y,
-    index: peak.index,
+    from: peak.from,
+    to: peak.to,
+    inflectionPoints: {
+      from: Math.min(peak.left.x, peak.right.x),
+      to: Math.max(peak.left.x, peak.right.x),
+    },
+    retentionTime: peak.x,
+    intensity: peak.y,
   }));
 }
