@@ -21,7 +21,6 @@ export function getPeaks(chromatogram, options = {}) {
     heightFactor: 2,
     boundaries: true,
   });
-
   // filter height by factor
   let medianHeight = median(series);
 
