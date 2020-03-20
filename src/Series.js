@@ -13,6 +13,10 @@ export class Series {
     this.name = '';
   }
 
+  getData() {
+    return this.data;
+  }
+
   is1D() {
     return this.dimension === 1;
   }

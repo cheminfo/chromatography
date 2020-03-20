@@ -1,8 +1,9 @@
-export class ChromatogramSeries {
+export abstract class ChromatogramSeries<DataType> {
+  getData(): DataType;
   is1D(): boolean;
   is2D(): boolean;
   toJSON(): {
-    data: ChromatogramSeriesData;
+    data: DataType;
     meta?: object;
   };
 
@@ -13,8 +14,8 @@ export class ChromatogramSeries {
   keep(array: number[]): this;
 }
 
-export class ChromatogramSeries1D extends ChromatogramSeries {}
-export class ChromatogramSeries2D extends ChromatogramSeries {}
+export class ChromatogramSeries1D extends ChromatogramSeries<number[]> {}
+export class ChromatogramSeries2D extends ChromatogramSeries<number[][]> {}
 
 export type ChromatogramSeriesData = number[] | number[][];
 
@@ -211,10 +212,10 @@ export interface GetClosestDataOptions {
   seriesName?: string;
 }
 
-export interface GetClosestDataResult {
+export interface GetClosestDataResult<DataType> {
   rt: number;
   index: number;
-  data: ChromatogramSeriesData;
+  data: DataType;
 }
 
 export interface MeanFilterOptions {
@@ -298,7 +299,21 @@ export class Chromatogram {
    * Find the series from its name.
    * @param seriesName - Name of the series.
    */
-  getSeries(seriesName: string): ChromatogramSeries;
+  getSeries(seriesName: string): ChromatogramSeries<number[] | number[][]>;
+
+  /**
+   * Find the series from its name.
+   * Throws an error if it is not a 1D series.
+   * @param seriesName: string): Name of the series.
+   */
+  getSeries1D(seriesName: string): ChromatogramSeries1D;
+
+  /**
+   * Find the series from its name.
+   * Throws an error if it is not a 2D series.
+   * @param seriesName: string): Name of the series.
+   */
+  getSeries2D(seriesName: string): ChromatogramSeries2D;
 
   /**
    * Returns the names of all series.
@@ -408,7 +423,7 @@ export class Chromatogram {
   calculateEic(
     targetMass: number | number[],
     options?: CalculateForMassOptions,
-  ): ChromatogramSeries;
+  ): ChromatogramSeries1D;
 
   /**
    * Calculate mass spectrum by filtering for a molecular formula.
@@ -419,7 +434,7 @@ export class Chromatogram {
   calculateForMF(
     targetMF: string,
     options?: CalculateForMFOptions,
-  ): ChromatogramSeries;
+  ): ChromatogramSeries1D;
 
   /**
    * Returns an array containing the integral of various ranges
@@ -466,7 +481,7 @@ export class Chromatogram {
   meanFilter(
     seriesName: string,
     options?: MeanFilterOptions,
-  ): ChromatogramSeries;
+  ): ChromatogramSeries2D;
 
   /**
    * Filter the given 2D series based on the percentage of the highest value
@@ -476,7 +491,7 @@ export class Chromatogram {
   percentageFilter(
     seriesName: string,
     options?: PercentageFilterOptions,
-  ): ChromatogramSeries;
+  ): ChromatogramSeries2D;
 
   /**
    * Recalculates series for GC/MS with lock mass.
