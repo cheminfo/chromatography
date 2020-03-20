@@ -47,7 +47,7 @@ test('Simple case', () => {
   chrom2.addSeries('ms', ms2);
 
   let compared = spectraComparison(chrom1, chrom2, options);
-  console.log(compared);
+
   expect(compared.peaksSimilarity).toStrictEqual([1, 1, 1, 1, 1]);
   expect(compared.peaksFirst.map((val) => val.retentionTime)).toStrictEqual([
     10,

@@ -15,7 +15,7 @@ describe('getPeaks', () => {
     let peakList = chromatogram.getPeaks();
     expect(peakList).toHaveLength(47);
 
-    expect(peakList[0]).toEqual({
+    expect(peakList[0]).toStrictEqual({
       from: 26.27,
       to: 27.089,
       inflectionPoints: { from: 26.27, to: 27.089 },
@@ -45,7 +45,6 @@ describe('getPeaks', () => {
 
   it('fivePeaks', () => {
     let peaks = fivePeaks.getPeaks();
-    console.log(peaks);
     let fwhm = 1;
     // https://en.wikipedia.org/wiki/Gaussian_function
     let deltaInflexionPoints = fwhm / Math.sqrt(2 * Math.log(2));

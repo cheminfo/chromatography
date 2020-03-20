@@ -16,8 +16,6 @@ for (let i = 1; i < nbPeaks; i++) {
 }
 let { x, y } = spectrumGenerator.getSpectrum();
 
-console.log({ x, y });
-
 // we add some virtual ms spectra
 let ms = [];
 for (let i = 0; i < x.length; i++) {
@@ -28,5 +26,5 @@ for (let i = 0; i < x.length; i++) {
     ms.push([[], []]);
   }
 }
-console.log(ms);
+
 export const tenPeaksKovats = new Chromatogram(x, { tic: y, ms });
