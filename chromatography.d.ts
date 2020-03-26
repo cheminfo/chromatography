@@ -15,9 +15,9 @@ export abstract class ChromatogramSeries<DataType> {
 }
 
 export class ChromatogramSeries1D extends ChromatogramSeries<number[]> {}
-export class ChromatogramSeries2D extends ChromatogramSeries<number[][]> {}
+export class ChromatogramSeries2D extends ChromatogramSeries<number[][][]> {}
 
-export type ChromatogramSeriesData = number[] | number[][];
+export type ChromatogramSeriesData = number[] | number[][][];
 
 export interface ChromatogramRange {
   from: number;
@@ -296,7 +296,7 @@ export class Chromatogram {
    * Find the series from its name.
    * @param seriesName - Name of the series.
    */
-  getSeries(seriesName: string): ChromatogramSeries<number[] | number[][]>;
+  getSeries(seriesName: string): ChromatogramSeries<number[] | number[][][]>;
 
   /**
    * Find the series from its name.
