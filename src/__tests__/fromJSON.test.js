@@ -1,6 +1,5 @@
-import { simpleStringified } from '../../testFiles/examples';
-
 import { fromJSON } from '..';
+import { simpleStringified } from '../../testFiles/examples';
 
 test('Parse a JSON', () => {
   let newChromatogram = fromJSON(JSON.parse(simpleStringified));

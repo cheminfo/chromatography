@@ -1,20 +1,20 @@
 import isAnyArray from 'is-any-array';
 import { X } from 'ml-spectra-processing';
 
-import { filter } from './util/filter';
-import { seriesFromArray } from './seriesFromArray';
-import { getPeaks } from './peaks/getPeaks';
-import { calculateTic } from './ms/calculateTic';
-import { calculateLength } from './ms/calculateLength';
-import { calculateBpc } from './ms/calculateBpc';
-import { calculateEic } from './ms/calculateEic';
-import { calculateForMF } from './ms/calculateForMF';
-import { integrate } from './util/integrate';
-import { merge } from './ms/merge';
 import { applyLockMass } from './ms/applyLockMass';
 import { meanFilter } from './filter/meanFilter';
 import { percentageFilter } from './filter/percentageFilter';
+import { calculateBpc } from './ms/calculateBpc';
+import { calculateEic } from './ms/calculateEic';
+import { calculateForMF } from './ms/calculateForMF';
+import { calculateLength } from './ms/calculateLength';
+import { calculateTic } from './ms/calculateTic';
+import { merge } from './ms/merge';
+import { getPeaks } from './peaks/getPeaks';
+import { seriesFromArray } from './seriesFromArray';
+import { filter } from './util/filter';
 import { getClosestData } from './util/getClosestData';
+import { integrate } from './util/integrate';
 
 export class Chromatogram {
   constructor(times, series) {
@@ -162,8 +162,9 @@ export class Chromatogram {
 
   calculateForMF(targetMF, options = {}) {
     const {
-      seriesName = `ms ${targetMF} ${options.ionizations ||
-        'H+'} (${options.slotWidth || 1}, ${options.threshold || 0.05})`,
+      seriesName = `ms ${targetMF} ${options.ionizations || 'H+'} (${
+        options.slotWidth || 1
+      }, ${options.threshold || 0.05})`,
       cache = false,
     } = options;
     if (cache && this.hasSeries(seriesName)) return this.getSeries(seriesName);

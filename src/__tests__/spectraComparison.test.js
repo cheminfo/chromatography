@@ -1,6 +1,5 @@
-import { lorentzian } from '../../testFiles/examples';
-
 import { Chromatogram, spectraComparison } from '..';
+import { lorentzian } from '../../testFiles/examples';
 
 test('Simple case', () => {
   const size = 70;

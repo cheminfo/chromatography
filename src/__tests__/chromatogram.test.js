@@ -1,6 +1,5 @@
-import { simpleTic, simple } from '../../testFiles/examples';
-
 import { Chromatogram } from '..';
+import { simpleTic, simple } from '../../testFiles/examples';
 
 describe('General methods', () => {
   it('Constructor errors', () => {

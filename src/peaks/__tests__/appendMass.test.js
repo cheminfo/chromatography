@@ -3,8 +3,8 @@ import { join } from 'path';
 
 import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to';
 
-import { lorentzian, simple4 } from '../../../testFiles/examples';
 import { Chromatogram, appendMass, fromJcamp } from '../..';
+import { lorentzian, simple4 } from '../../../testFiles/examples';
 
 expect.extend({ toBeDeepCloseTo });
 

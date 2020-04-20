@@ -1,7 +1,7 @@
-import { tenPeaksKovats as chromatogram } from '../../../testFiles/examples';
-import { getPeaks } from '../getPeaks';
-import { appendMass } from '../appendMass';
 import { appendKovats } from '../..';
+import { tenPeaksKovats as chromatogram } from '../../../testFiles/examples';
+import { appendMass } from '../appendMass';
+import { getPeaks } from '../getPeaks';
 
 describe('appendKovats', () => {
   it('ten peaks', () => {

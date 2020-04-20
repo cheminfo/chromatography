@@ -1,9 +1,8 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-import { lorentzian } from '../../testFiles/examples';
-
 import { Chromatogram, appendMass, vectorify, fromJcamp } from '..';
+import { lorentzian } from '../../testFiles/examples';
 
 describe('vectorify', () => {
   it('from a Diesel chromatogram', () => {
