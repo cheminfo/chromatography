@@ -1,6 +1,5 @@
 import median from 'ml-array-median';
-import { gsd } from 'ml-gsd/src/gsd';
-import { broadenPeaks } from 'ml-gsd/src/post/broadenPeaks';
+import { gsd, broadenPeaks } from 'ml-gsd';
 
 export function getPeaks(chromatogram, options = {}) {
   const {
