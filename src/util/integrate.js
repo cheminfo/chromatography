@@ -1,4 +1,4 @@
-import { X, XY } from 'ml-spectra-processing';
+import { xGetFromToIndex, xyIntegration } from 'ml-spectra-processing';
 
 import { baselineCorrection } from './baselineCorrection';
 
@@ -22,7 +22,7 @@ export function integrate(chromatogram, ranges, options = {}) {
   let results = [];
 
   for (let range of ranges) {
-    const fromTo = X.getFromToIndex(time, range);
+    const fromTo = xGetFromToIndex(time, range);
     const integral = integrateRange(
       { x: time, y: series.data },
       fromTo,
@@ -35,7 +35,7 @@ export function integrate(chromatogram, ranges, options = {}) {
 }
 
 function integrateRange(points, fromTo, baseline) {
-  let integration = XY.integration(points, fromTo);
+  let integration = xyIntegration(points, fromTo);
 
   if (baseline) {
     let correction = baselineCorrection(points, fromTo, baseline);

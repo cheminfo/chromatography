@@ -1,4 +1,10 @@
-import { X, XY, XYObject } from 'ml-spectra-processing';
+import {
+  xGetFromToIndex,
+  xyObjectJoinX,
+  xyObjectToXY,
+  xyObjectSortX,
+  xyToXYObject,
+} from 'ml-spectra-processing';
 
 export function merge(chromatogram, options = {}) {
   const time = chromatogram.getTimes();
@@ -13,22 +19,22 @@ export function merge(chromatogram, options = {}) {
   if (!range || range.from > time[time.length - 1] || range.to < time[0]) {
     return { x: [], y: [] };
   }
-  let { fromIndex, toIndex } = X.getFromToIndex(time, range);
-  let result = XY.toXYObject({
+  let { fromIndex, toIndex } = xGetFromToIndex(time, range);
+  let result = xyToXYObject({
     x: series.data[fromIndex][0],
     y: series.data[fromIndex][1],
   });
   for (let i = fromIndex + 1; i <= toIndex; i++) {
-    let newData = XY.toXYObject({
+    let newData = xyToXYObject({
       x: series.data[i][0],
       y: series.data[i][1],
     });
     result = result.concat(newData);
-    result = XYObject.sortX(result);
-    result = XYObject.joinX(result, { xError: mergeThreshold });
+    result = xyObjectSortX(result);
+    result = xyObjectJoinX(result, { xError: mergeThreshold });
   }
   result = {
-    ...XYObject.toXY(result),
+    ...xyObjectToXY(result),
     from: {
       index: fromIndex,
       time: time[fromIndex],

@@ -1,5 +1,5 @@
 import IsotopicDistribution from 'isotopic-distribution';
-import { XYObject } from 'ml-spectra-processing';
+import { xyObjectSlotX } from 'ml-spectra-processing';
 /**
  * Calculate tic for specific molecular formula and ionizations
  *
@@ -32,7 +32,7 @@ export function calculateForMF(chromatogram, targetMF, options = {}) {
 
   let masses = [].concat(...parts.map((part) => part.isotopicDistribution));
   masses.sort((a, b) => a.x - b.x);
-  masses = XYObject.slotX(masses, { slotWidth }).filter(
+  masses = xyObjectSlotX(masses, { slotWidth }).filter(
     (mass) => mass.y > threshold,
   );
 

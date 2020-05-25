@@ -1,5 +1,5 @@
 import isAnyArray from 'is-any-array';
-import { X } from 'ml-spectra-processing';
+import { xFindClosestIndex } from 'ml-spectra-processing';
 
 import { applyLockMass } from './ms/applyLockMass';
 import { meanFilter } from './filter/meanFilter';
@@ -182,7 +182,7 @@ export class Chromatogram {
   }
 
   getClosestTime(time) {
-    return X.findClosestIndex(this.getTimes(), time);
+    return xFindClosestIndex(this.getTimes(), time);
   }
 
   getClosestData(time, options = {}) {
