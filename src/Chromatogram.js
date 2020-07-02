@@ -1,9 +1,9 @@
 import isAnyArray from 'is-any-array';
 import { xFindClosestIndex } from 'ml-spectra-processing';
 
-import { applyLockMass } from './ms/applyLockMass';
 import { meanFilter } from './filter/meanFilter';
 import { percentageFilter } from './filter/percentageFilter';
+import { applyLockMass } from './ms/applyLockMass';
 import { calculateBpc } from './ms/calculateBpc';
 import { calculateEic } from './ms/calculateEic';
 import { calculateForMF } from './ms/calculateForMF';
