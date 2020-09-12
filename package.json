@@ -74,6 +74,8 @@
     "ml-array-median": "^1.1.3",
     "ml-array-sum": "^1.1.3",
     "ml-gsd": "^5.0.2",
+    "ml-ngmca": "0.0.2",
+    "ml-pca": "^4.0.1",
     "ml-regression-polynomial": "^2.1.0",
     "ml-spectra-processing": "^4.2.1",
     "mzdata": "^2.1.0",
