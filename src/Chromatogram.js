@@ -1,6 +1,4 @@
 import isAnyArray from 'is-any-array';
-import { ngmca } from 'ml-ngmca';
-import { PCA } from 'ml-pca';
 import { xFindClosestIndex } from 'ml-spectra-processing';
 
 import { meanFilter } from './filter/meanFilter';
@@ -11,11 +9,14 @@ import { calculateEic } from './ms/calculateEic';
 import { calculateForMF } from './ms/calculateForMF';
 import { calculateLength } from './ms/calculateLength';
 import { calculateTic } from './ms/calculateTic';
+import { deconvolution } from './ms/deconvolution';
 import { merge } from './ms/merge';
 import { getPeaks } from './peaks/getPeaks';
 import { seriesFromArray } from './seriesFromArray';
+import { estimateNbPureComponents } from './util/estimateNbPureComponents';
 import { filter } from './util/filter';
 import { getClosestData } from './util/getClosestData';
+import { getSubMatrix } from './util/getSubMatrix';
 import { integrate } from './util/integrate';
 
 export class Chromatogram {
@@ -220,109 +221,16 @@ export class Chromatogram {
     return applyLockMass(this, mfs, options);
   }
 
-  getMatrix(range = []) {
-    let matrices = [];
-    for (let p = 0; p < range.length; p++) {
-      let peak = range[p];
-      let { from, to } = peak;
-      let fromIndex = this.getClosestTime(from);
-      let toIndex = this.getClosestTime(to);
-
-      let data = this.series.ms.data.slice(fromIndex, toIndex);
-      let times = this.times.slice(fromIndex, toIndex);
-
-      let xAxis = new Set();
-      for (let i = 0; i < data.length; i++) {
-        let spectrum = data[i];
-        for (let j = 0; j < spectrum[0].length; j++) {
-          xAxis.add(Math.round(spectrum[0][j]));
-        }
-      }
-      xAxis = Array.from(xAxis).sort((a, b) => a - b);
-      const nbPoints = xAxis.length;
-      const matrix = new Array(data.length);
-      for (let i = 0; i < data.length; i++) {
-        let element = data[i];
-        let row = new Float32Array(nbPoints);
-        for (let j = 0; j < element[0].length; j++) {
-          let xValue = Math.round(element[0][j]);
-          let yValue = element[1][j];
-          let index = xFindClosestIndex(xAxis, xValue);
-          row[index] = yValue;
-        }
-        matrix[i] = Array.from(row);
-      }
-      matrices.push({ times, xAxis, matrix });
-    }
-    return matrices;
+  getMatrix(ranges = []) {
+    return getSubMatrix(this, ranges);
   }
 
-  estimateNbPureComponents(range = []) {
-    let ranks = [];
-    for (let p = 0; p < range.length; p++) {
-      let matrix;
-      let data = range[p];
-      if (data.matrix) {
-        matrix = data.matrix;
-      } else {
-        let result = this.getMatrix([data]);
-        matrix = result[0].matrix;
-      }
-      let pca = new PCA(matrix, {
-        method: 'NIPALS',
-        nCompNIPALS: 10,
-        scale: true,
-        ignoreZeroVariance: true,
-      });
-      let s = pca.getExplainedVariance();
-      let i = 1;
-      let cumulative = s[0];
-      for (; i < s.length; i++) {
-        cumulative += s[i];
-        let value = (cumulative - s[i]) / cumulative;
-        if (value > 0.88) {
-          break;
-        }
-      }
-      ranks.push(i);
-    }
-    return ranks;
+  estimateNbPureComponents(ranges = []) {
+    return estimateNbPureComponents(this, ranges);
   }
 
-  deconvolution(range = [], options = {}) {
-    let deconvoluted = [];
-    for (let p = 0; p < range.length; p++) {
-      let data = range[p];
-      let { matrix, xAxis, times } = ['matrix', 'xAxis', 'times'].some(
-        (e) => !data[e],
-      )
-        ? this.getMatrix([data])[0]
-        : data;
-      let rank =
-        !data.rank || isNaN(data.rank)
-          ? this.estimateNbPureComponents([{ matrix }])[0]
-          : data.rank;
-      if (rank < 1) {
-        new RangeError(
-          `Rank should be a positive number for ${data.from} - ${data.to}`,
-        );
-        continue;
-      }
-
-      let result = ngmca(matrix, Number(rank), options);
-      let maxByRow = new Float32Array(result.S.rows);
-      for (let i = 0; i < result.S.rows; i++) {
-        maxByRow[i] = result.S.maxRow(i);
-      }
-
-      result.S.scale('row', { scale: Array.from(maxByRow) });
-      result.A.scale('column', {
-        scale: Array.from(maxByRow).map((e) => 1 / e),
-      });
-
-      deconvoluted.push(Object.assign(result, { matrix, times, xAxis, rank }));
-    }
-    return deconvoluted;
+  deconvolution(ranges = [], options = {}) {
+    return deconvolution(this, ranges, options);
   }
 
   toJSON() {
