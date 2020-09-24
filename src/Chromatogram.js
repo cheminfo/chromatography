@@ -221,16 +221,16 @@ export class Chromatogram {
     return applyLockMass(this, mfs, options);
   }
 
-  getMatrix(ranges = []) {
-    return getSubMatrix(this, ranges);
+  getMatrix(range = {}) {
+    return getSubMatrix(this, range);
   }
 
-  estimateNbPureComponents(ranges = []) {
-    return estimateNbPureComponents(this, ranges);
+  estimateNbPureComponents(range = {}) {
+    return estimateNbPureComponents(this, range);
   }
 
-  deconvolution(ranges = [], options = {}) {
-    return deconvolution(this, ranges, options);
+  deconvolution(range = {}, options = {}) {
+    return deconvolution(this, range, options);
   }
 
   toJSON() {
