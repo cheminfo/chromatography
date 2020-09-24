@@ -4,7 +4,10 @@ import { PCA } from 'ml-pca';
  * Estimate the number of pure components of each range by NIPALS PCA
  * @param {Chromatogram} chromatogram - GC/MS chromatogram where make the estimation
  * @param {Object} range - Range with from to and optional the sub-matrix
- * @return {Array<Number>} - List of number of estimated pure components
+ * @param {Number} [range.from] - lower limit in the retention time
+ * @param {Number} [range.to] - upper limit in the retention time
+ * @param {Array<Array>} [range.matrix] - sub-matrix of the range, if does not exist it will be computed.
+ * @return {<Number>} - Number of estimated pure components
  */
 
 export function estimateNbPureComponents(chromatogram, range) {

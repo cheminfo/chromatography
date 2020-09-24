@@ -4,6 +4,11 @@ import { ngmca } from 'ml-ngmca';
  * Performing non-negative matrix factorization solving argmin_(A >= 0, S >= 0) 1 / 2 * ||Y - AS||_2^2 + lambda * ||S||_1
  * @param {Chromatogram} chromatogram - GC/MS chromatogram where make the estimation.
  * @param {Object} range - Range with from to and optional the sub-matrix with the mass x axis, times, and the number of pure components
+ * @param {Number} [range.from] - lower limit in the retention time
+ * @param {Number} [range.to] - upper limit in the retention time
+ * @param {Array<Array>} [range.matrix] - sub-matrix of the range, if does not exist it will be computed.
+ * @param {Array<Array>} [range.times] - retention times axis of the range, if does not exist it will be computed.
+ * @param {Array<Array>} [range.xAxis] - m/z axis of the range, if does not exist it will be computed.
  * @param {Object} options - Options of ngmca factorization method
  * @param {Number} [options.maximumIteration = 500] - Maximum number of iterations
  * @param {Number} [options.maximumFBIIteration = 80] - Maximum number of iterations of the Forward-Backward subroutine
@@ -29,12 +34,12 @@ export function deconvolution(chromatogram, range, options) {
   }
 
   let result = ngmca(matrix, Number(rank), options);
-  let maxByRow = new Float32Array(result.S.rows);
+  let maxByRow = new Array(result.S.rows);
   for (let i = 0; i < result.S.rows; i++) {
     maxByRow[i] = result.S.maxRow(i);
   }
 
-  result.S.scale('row', { scale: Array.from(maxByRow) });
+  result.S.scale('row', { scale: maxByRow });
   result.A.scale('column', {
     scale: Array.from(maxByRow).map((e) => 1 / e),
   });

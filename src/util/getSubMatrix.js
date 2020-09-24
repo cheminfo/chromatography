@@ -3,7 +3,9 @@ import { xFindClosestIndex } from 'ml-spectra-processing';
 /**
  * Return the submatrix, times, and mass x axis for each range
  * @param {Object} range - from - to of the TIC
- * @return {Array<Object>} - List with submatrix, times and mass x axis
+ * @param {Number} [range.from] - lower limit in the retention time
+ * @param {Number} [range.to] - upper limit in the retention time
+ * @return {Object} - submatrix, times and m/z axis of the range.
  */
 export function getSubMatrix(chromatogram, range) {
   let { from, to } = range;
