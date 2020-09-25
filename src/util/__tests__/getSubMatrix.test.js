@@ -10,6 +10,6 @@ test('get sub-matrix', () => {
   let result = chromatogram.getMatrix({ from: 8.82, to: 9.2 });
   expect(result.times).toHaveLength(88);
   expect(result.xAxis).toHaveLength(72);
-  expect(result.matrix[0]).toHaveLength(72);
-  expect(result.matrix).toHaveLength(88);
+  expect(result.matrix.columns).toBe(72);
+  expect(result.matrix.rows).toBe(88);
 });

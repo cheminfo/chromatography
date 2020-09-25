@@ -34,14 +34,14 @@ export function deconvolution(chromatogram, range, options) {
   }
 
   let result = ngmca(matrix, Number(rank), options);
-  let maxByRow = new Array(result.S.rows);
+  let maxByRow = [];
   for (let i = 0; i < result.S.rows; i++) {
-    maxByRow[i] = result.S.maxRow(i);
+    maxByRow.push(result.S.maxRow(i));
   }
 
   result.S.scale('row', { scale: maxByRow });
   result.A.scale('column', {
-    scale: Array.from(maxByRow).map((e) => 1 / e),
+    scale: maxByRow.map((e) => 1 / e),
   });
 
   return Object.assign(result, { matrix, times, xAxis, rank });

@@ -1,3 +1,4 @@
+import { Matrix } from 'ml-matrix';
 import { xFindClosestIndex } from 'ml-spectra-processing';
 
 /**
@@ -24,17 +25,14 @@ export function getSubMatrix(chromatogram, range) {
   }
   xAxis = Array.from(xAxis).sort((a, b) => a - b);
   const nbPoints = xAxis.length;
-  const matrix = new Array(data.length);
+  const matrix = new Matrix(data.length, nbPoints);
   for (let i = 0; i < data.length; i++) {
     let element = data[i];
-    let row = new Float32Array(nbPoints);
     for (let j = 0; j < element[0].length; j++) {
       let xValue = Math.round(element[0][j]);
-      let yValue = element[1][j];
       let index = xFindClosestIndex(xAxis, xValue);
-      row[index] = yValue;
+      matrix.set(i, index, element[1][j]);
     }
-    matrix[i] = Array.from(row);
   }
   return { times, xAxis, matrix };
 }
