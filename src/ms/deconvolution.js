@@ -1,5 +1,7 @@
 import { ngmca } from 'ml-ngmca';
 
+import { estimateNbPureComponents } from '../util/estimateNbPureComponents';
+
 /**
  * Performing non-negative matrix factorization solving argmin_(A >= 0, S >= 0) 1 / 2 * ||Y - AS||_2^2 + lambda * ||S||_1
  * @param {Chromatogram} chromatogram - GC/MS chromatogram where make the estimation.
@@ -22,8 +24,10 @@ import { ngmca } from 'ml-ngmca';
  */
 
 export function deconvolution(chromatogram, options) {
-  const { range, rank } = options;
-  let { matrix, mzAxis, times } = chromatogram.getMatrix(range);
+  let { range, rank } = options;
+  let { matrix, mzAxis, times } = chromatogram.getMzVsTimesMatrix(range);
+
+  if (!rank) rank = estimateNbPureComponents(chromatogram, { range, matrix });
 
   if (rank < 1) {
     throw new RangeError(

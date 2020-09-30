@@ -13,10 +13,9 @@ import { deconvolution } from './ms/deconvolution';
 import { merge } from './ms/merge';
 import { getPeaks } from './peaks/getPeaks';
 import { seriesFromArray } from './seriesFromArray';
-import { estimateNbPureComponents } from './util/estimateNbPureComponents';
 import { filter } from './util/filter';
 import { getClosestData } from './util/getClosestData';
-import { getSubMatrix } from './util/getSubMatrix';
+import { getMzVsTimesMatrix } from './util/getMzVsTimesMatrix';
 import { integrate } from './util/integrate';
 
 export class Chromatogram {
@@ -221,8 +220,8 @@ export class Chromatogram {
     return applyLockMass(this, mfs, options);
   }
 
-  getMatrix(range = {}) {
-    return getSubMatrix(this, range);
+  getMzVsTimesMatrix(range = {}) {
+    return getMzVsTimesMatrix(this, range);
   }
 
   deconvolution(range = {}, options = {}) {

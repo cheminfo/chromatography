@@ -8,7 +8,7 @@ import { xFindClosestIndex } from 'ml-spectra-processing';
  * @param {Number} [range.to] - upper limit in the retention time
  * @return {Object} - submatrix, times and m/z axis of the range.
  */
-export function getSubMatrix(chromatogram, range) {
+export function getMzVsTimesMatrix(chromatogram, range) {
   let { from, to } = range;
   let fromIndex = chromatogram.getClosestTime(from);
   let toIndex = chromatogram.getClosestTime(to);
