@@ -225,10 +225,6 @@ export class Chromatogram {
     return getSubMatrix(this, range);
   }
 
-  estimateNbPureComponents(range = {}) {
-    return estimateNbPureComponents(this, range);
-  }
-
   deconvolution(range = {}, options = {}) {
     return deconvolution(this, range, options);
   }
