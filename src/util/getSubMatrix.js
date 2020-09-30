@@ -16,23 +16,23 @@ export function getSubMatrix(chromatogram, range) {
   let data = chromatogram.series.ms.data.slice(fromIndex, toIndex);
   let times = chromatogram.times.slice(fromIndex, toIndex);
 
-  let xAxis = new Set();
+  let mzAxis = new Set();
   for (let i = 0; i < data.length; i++) {
     let spectrum = data[i];
     for (let j = 0; j < spectrum[0].length; j++) {
-      xAxis.add(Math.round(spectrum[0][j]));
+      mzAxis.add(Math.round(spectrum[0][j]));
     }
   }
-  xAxis = Array.from(xAxis).sort((a, b) => a - b);
-  const nbPoints = xAxis.length;
+  mzAxis = Array.from(mzAxis).sort((a, b) => a - b);
+  const nbPoints = mzAxis.length;
   const matrix = new Matrix(data.length, nbPoints);
   for (let i = 0; i < data.length; i++) {
     let element = data[i];
     for (let j = 0; j < element[0].length; j++) {
       let xValue = Math.round(element[0][j]);
-      let index = xFindClosestIndex(xAxis, xValue);
+      let index = xFindClosestIndex(mzAxis, xValue);
       matrix.set(i, index, element[1][j]);
     }
   }
-  return { times, xAxis, matrix };
+  return { times, mzAxis, matrix };
 }
