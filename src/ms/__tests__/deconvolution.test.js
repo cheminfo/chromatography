@@ -9,8 +9,10 @@ test('deconvolution of overlap signals', () => {
   const chromatogram = fromJcamp(jcamp);
   let result = chromatogram.deconvolution({
     range: { from: 8.82, to: 9.2 },
-    maximumIteration: 100,
-    phaseRatio: 0.4,
+    nmfOptions: {
+      maximumIteration: 100,
+      phaseRatio: 0.4,
+    },
   });
   expect(result.rank).toBe(2);
   expect(result.mzAxis).toHaveLength(72);
