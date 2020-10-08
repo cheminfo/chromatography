@@ -224,8 +224,8 @@ export class Chromatogram {
     return getMzVsTimesMatrix(this, range);
   }
 
-  deconvolution(range = {}, options = {}) {
-    return deconvolution(this, range, options);
+  deconvolution(options = {}) {
+    return deconvolution(this, options);
   }
 
   toJSON() {
