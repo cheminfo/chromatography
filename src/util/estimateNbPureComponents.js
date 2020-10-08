@@ -24,12 +24,9 @@ export function estimateNbPureComponents(chromatogram, options = {}) {
   let s = pca.getExplainedVariance();
   let rank = 1;
   let cumulative = s[0];
-  for (; rank < s.length; rank++) {
+  while ((cumulative - s[rank]) / cumulative > 0.88 && rank < s.length) {
     cumulative += s[rank];
-    let value = (cumulative - s[rank]) / cumulative;
-    if (value > 0.88) {
-      break;
-    }
+    rank++;
   }
   return rank;
 }
