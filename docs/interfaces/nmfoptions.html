@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>MergeResult | Chromatography</title>
+	<title>nmfOptions | Chromatography</title>
 	<meta name="description" content="Documentation for Chromatography">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="mergeresult.html">MergeResult</a>
+					<a href="nmfoptions.html">nmfOptions</a>
 				</li>
 			</ul>
-			<h1>Interface MergeResult</h1>
+			<h1>Interface nmfOptions</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">MergeResult</span>
+						<span class="target">nmfOptions</span>
 					</li>
 				</ul>
 			</section>
@@ -79,10 +79,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mergeresult.html#from" class="tsd-kind-icon">from</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mergeresult.html#to" class="tsd-kind-icon">to</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mergeresult.html#x" class="tsd-kind-icon">x</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mergeresult.html#y" class="tsd-kind-icon">y</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="nmfoptions.html#maxfbiteration" class="tsd-kind-icon">maxFBIteration</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="nmfoptions.html#maximumiteration" class="tsd-kind-icon">maximum<wbr>Iteration</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="nmfoptions.html#phaseratio" class="tsd-kind-icon">phase<wbr>Ratio</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="nmfoptions.html#tolerancefb" class="tsd-kind-icon">toleranceFB</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="nmfoptions.html#usetranspose" class="tsd-kind-icon">use<wbr>Transpose</a></li>
 							</ul>
 						</section>
 					</div>
@@ -91,66 +92,104 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="from" class="tsd-anchor"></a>
-					<h3>from</h3>
-					<div class="tsd-signature tsd-kind-icon">from<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>time<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
+					<a name="maxfbiteration" class="tsd-anchor"></a>
+					<h3>maxFBIteration</h3>
+					<div class="tsd-signature tsd-kind-icon">maxFBIteration<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cheminfo/chromatography/blob/16998b2/chromatography.d.ts#L194">chromatography.d.ts:194</a></li>
+							<li>Defined in <a href="https://github.com/cheminfo/chromatography/blob/16998b2/chromatography.d.ts#L290">chromatography.d.ts:290</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>time<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							</li>
-						</ul>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maximum number of iterations of the Forward-Backward subroutine.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>default</dt>
+							<dd><p><code>80</code></p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="to" class="tsd-anchor"></a>
-					<h3>to</h3>
-					<div class="tsd-signature tsd-kind-icon">to<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>time<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
+					<a name="maximumiteration" class="tsd-anchor"></a>
+					<h3>maximum<wbr>Iteration</h3>
+					<div class="tsd-signature tsd-kind-icon">maximum<wbr>Iteration<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cheminfo/chromatography/blob/16998b2/chromatography.d.ts#L198">chromatography.d.ts:198</a></li>
+							<li>Defined in <a href="https://github.com/cheminfo/chromatography/blob/16998b2/chromatography.d.ts#L285">chromatography.d.ts:285</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>time<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							</li>
-						</ul>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maximum number of iterations</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>default</dt>
+							<dd><p><code>500</code></p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="x" class="tsd-anchor"></a>
-					<h3>x</h3>
-					<div class="tsd-signature tsd-kind-icon">x<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="phaseratio" class="tsd-anchor"></a>
+					<h3>phase<wbr>Ratio</h3>
+					<div class="tsd-signature tsd-kind-icon">phase<wbr>Ratio<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cheminfo/chromatography/blob/16998b2/chromatography.d.ts#L192">chromatography.d.ts:192</a></li>
+							<li>Defined in <a href="https://github.com/cheminfo/chromatography/blob/16998b2/chromatography.d.ts#L300">chromatography.d.ts:300</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Transition between decreasing thresholding phase and refinement phase in percent of the iterations.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>default</dt>
+							<dd><p><code>0.8</code></p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="y" class="tsd-anchor"></a>
-					<h3>y</h3>
-					<div class="tsd-signature tsd-kind-icon">y<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="tolerancefb" class="tsd-anchor"></a>
+					<h3>toleranceFB</h3>
+					<div class="tsd-signature tsd-kind-icon">toleranceFB<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cheminfo/chromatography/blob/16998b2/chromatography.d.ts#L193">chromatography.d.ts:193</a></li>
+							<li>Defined in <a href="https://github.com/cheminfo/chromatography/blob/16998b2/chromatography.d.ts#L295">chromatography.d.ts:295</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Relative difference tolerance for convergence of the Forward-Backward sub-iterations.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>default</dt>
+							<dd><p><code>1e-5</code></p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="usetranspose" class="tsd-anchor"></a>
+					<h3>use<wbr>Transpose</h3>
+					<div class="tsd-signature tsd-kind-icon">use<wbr>Transpose<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cheminfo/chromatography/blob/16998b2/chromatography.d.ts#L305">chromatography.d.ts:305</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If true the originalMatrix is transposed.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>default</dt>
+							<dd><p><code>false</code></p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -167,19 +206,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="mergeresult.html" class="tsd-kind-icon">Merge<wbr>Result</a>
+						<a href="nmfoptions.html" class="tsd-kind-icon">nmf<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="mergeresult.html#from" class="tsd-kind-icon">from</a>
+								<a href="nmfoptions.html#maxfbiteration" class="tsd-kind-icon">maxFBIteration</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="mergeresult.html#to" class="tsd-kind-icon">to</a>
+								<a href="nmfoptions.html#maximumiteration" class="tsd-kind-icon">maximum<wbr>Iteration</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="mergeresult.html#x" class="tsd-kind-icon">x</a>
+								<a href="nmfoptions.html#phaseratio" class="tsd-kind-icon">phase<wbr>Ratio</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="mergeresult.html#y" class="tsd-kind-icon">y</a>
+								<a href="nmfoptions.html#tolerancefb" class="tsd-kind-icon">toleranceFB</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="nmfoptions.html#usetranspose" class="tsd-kind-icon">use<wbr>Transpose</a>
 							</li>
 						</ul>
 					</li>
