@@ -9,11 +9,13 @@ import { calculateEic } from './ms/calculateEic';
 import { calculateForMF } from './ms/calculateForMF';
 import { calculateLength } from './ms/calculateLength';
 import { calculateTic } from './ms/calculateTic';
+import { deconvolution } from './ms/deconvolution';
 import { merge } from './ms/merge';
 import { getPeaks } from './peaks/getPeaks';
 import { seriesFromArray } from './seriesFromArray';
 import { filter } from './util/filter';
 import { getClosestData } from './util/getClosestData';
+import { getMzVsTimesMatrix } from './util/getMzVsTimesMatrix';
 import { integrate } from './util/integrate';
 
 export class Chromatogram {
@@ -216,6 +218,14 @@ export class Chromatogram {
 
   applyLockMass(mfs, options) {
     return applyLockMass(this, mfs, options);
+  }
+
+  getMzVsTimesMatrix(range = {}) {
+    return getMzVsTimesMatrix(this, range);
+  }
+
+  deconvolution(options = {}) {
+    return deconvolution(this, options);
   }
 
   toJSON() {

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>FromJSONObject | Chromatography</title>
+	<title>DeconvolutionOptions | Chromatography</title>
 	<meta name="description" content="Documentation for Chromatography">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="fromjsonobject.html">FromJSONObject</a>
+					<a href="deconvolutionoptions.html">DeconvolutionOptions</a>
 				</li>
 			</ul>
-			<h1>Interface FromJSONObject</h1>
+			<h1>Interface DeconvolutionOptions</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">FromJSONObject</span>
+						<span class="target">DeconvolutionOptions</span>
 					</li>
 				</ul>
 			</section>
@@ -79,8 +79,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="fromjsonobject.html#series" class="tsd-kind-icon">series</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="fromjsonobject.html#times" class="tsd-kind-icon">times</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="deconvolutionoptions.html#nmfoptions" class="tsd-kind-icon">nmf<wbr>Options</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="deconvolutionoptions.html#range" class="tsd-kind-icon">range</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="deconvolutionoptions.html#rank" class="tsd-kind-icon">rank</a></li>
 							</ul>
 						</section>
 					</div>
@@ -89,24 +90,39 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="series" class="tsd-anchor"></a>
-					<h3>series</h3>
-					<div class="tsd-signature tsd-kind-icon">series<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>data<span class="tsd-signature-symbol">: </span><a href="../globals.html#chromatogramseriesdata" class="tsd-signature-type">ChromatogramSeriesData</a><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{}</span></div>
+					<a name="nmfoptions" class="tsd-anchor"></a>
+					<h3>nmf<wbr>Options</h3>
+					<div class="tsd-signature tsd-kind-icon">nmf<wbr>Options<span class="tsd-signature-symbol">:</span> <a href="nmfoptions.html" class="tsd-signature-type">nmfOptions</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cheminfo/chromatography/blob/16998b2/chromatography.d.ts#L586">chromatography.d.ts:586</a></li>
+							<li>Defined in <a href="https://github.com/cheminfo/chromatography/blob/16998b2/chromatography.d.ts#L314">chromatography.d.ts:314</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="times" class="tsd-anchor"></a>
-					<h3>times</h3>
-					<div class="tsd-signature tsd-kind-icon">times<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="range" class="tsd-anchor"></a>
+					<h3>range</h3>
+					<div class="tsd-signature tsd-kind-icon">range<span class="tsd-signature-symbol">:</span> <a href="chromatogramrange.html" class="tsd-signature-type">ChromatogramRange</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cheminfo/chromatography/blob/16998b2/chromatography.d.ts#L585">chromatography.d.ts:585</a></li>
+							<li>Defined in <a href="https://github.com/cheminfo/chromatography/blob/16998b2/chromatography.d.ts#L313">chromatography.d.ts:313</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="rank" class="tsd-anchor"></a>
+					<h3>rank</h3>
+					<div class="tsd-signature tsd-kind-icon">rank<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cheminfo/chromatography/blob/16998b2/chromatography.d.ts#L312">chromatography.d.ts:312</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Number of pure components</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -123,13 +139,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="fromjsonobject.html" class="tsd-kind-icon">FromJSONObject</a>
+						<a href="deconvolutionoptions.html" class="tsd-kind-icon">Deconvolution<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="fromjsonobject.html#series" class="tsd-kind-icon">series</a>
+								<a href="deconvolutionoptions.html#nmfoptions" class="tsd-kind-icon">nmf<wbr>Options</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="fromjsonobject.html#times" class="tsd-kind-icon">times</a>
+								<a href="deconvolutionoptions.html#range" class="tsd-kind-icon">range</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="deconvolutionoptions.html#rank" class="tsd-kind-icon">rank</a>
 							</li>
 						</ul>
 					</li>

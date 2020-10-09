@@ -277,6 +277,70 @@ export interface LockMassReferenceUsed {
   mfs: { [mf: string]: number };
 }
 
+export interface nmfOptions {
+  /**
+   * Maximum number of iterations
+   * @default `500`
+   */
+  maximumIteration: number;
+  /**
+   * Maximum number of iterations of the Forward-Backward subroutine.
+   * @default `80`
+   */
+  maxFBIteration: number;
+  /**
+   * Relative difference tolerance for convergence of the Forward-Backward sub-iterations.
+   * @default `1e-5`
+   */
+  toleranceFB: number;
+  /**
+   * Transition between decreasing thresholding phase and refinement phase in percent of the iterations.
+   * @default `0.8`
+   */
+  phaseRatio: number;
+  /**
+   * If true the originalMatrix is transposed.
+   * @default `false`
+   */
+  useTranspose: boolean;
+}
+
+export interface DeconvolutionOptions {
+  /**
+   * Number of pure components 
+   */
+  rank: number;
+  range: ChromatogramRange;
+  nmfOptions: nmfOptions;
+}
+
+export interface DeconvolutionResult {
+  /**
+   * submatrix, times and m/z axis of the range
+  */
+  matrix: number[][];
+  /**
+   * vector with retention times of the range
+   */
+  times: number[];
+  /**
+   * vector with m/z value of the range
+   */
+  mzAxis: number[];
+  /**
+   * number of pure components
+   */
+  rank: number;
+  /**
+   * Matrix with columns as composition profile
+   */
+  profile: number[][];
+  /**
+   * Matrix with row as estimated pure components 
+   */
+  component: number[][];
+}
+
 export class Chromatogram {
   /**
    * @param times - Array of time points.
@@ -507,6 +571,21 @@ export class Chromatogram {
     times: number[];
     series: { [key: string]: { data: ChromatogramSeriesData; meta?: object } };
   };
+
+  /**
+   * Performing non-negative matrix factorization solving
+   * argmin_(A >= 0, S >= 0) 1 / 2 * ||Y - AS||_2^2 + lambda * ||S||_1
+   */
+  deconvolution(
+    options?: DeconvolutionOptions
+  ): DeconvolutionResult;
+
+  /**
+   * Return the submatrix, times, and mass x axis for each range
+   */
+  getMzVsTimesMatrix(
+    range: ChromatogramRange
+  )
 }
 
 export interface FromJSONObject {
