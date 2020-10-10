@@ -75,7 +75,7 @@
     "ml-array-sum": "^1.1.4",
     "ml-gsd": "^5.0.2",
     "ml-matrix": "^6.5.2",
-    "ml-ngmca": "^0.1.2",
+    "ml-ngmca": "^0.1.4",
     "ml-pca": "^4.0.1",
     "ml-regression-polynomial": "^2.1.0",
     "ml-spectra-processing": "^4.5.1",
