@@ -1,4 +1,4 @@
-import { ngmca } from 'ml-ngmca';
+import { nGMCA } from 'ml-ngmca';
 
 import { estimateNbPureComponents } from '../util/estimateNbPureComponents';
 
@@ -30,7 +30,7 @@ export function deconvolution(chromatogram, options = {}) {
     );
   }
 
-  let result = ngmca(matrix, rank, nmfOptions);
+  let result = nGMCA(matrix, rank, nmfOptions);
   let maxByRow = [];
   for (let i = 0; i < result.S.rows; i++) {
     maxByRow.push(result.S.maxRow(i));
