@@ -13,7 +13,7 @@ import { PCA } from 'ml-pca';
 export function estimateNbPureComponents(chromatogram, options = {}) {
   let { range, matrix } = options;
 
-  if (!matrix) matrix = chromatogram.getMatrix(range);
+  if (!matrix) matrix = chromatogram.getMzVsTimesMatrix(range).matrix;
 
   let pca = new PCA(matrix, {
     method: 'NIPALS',
@@ -24,7 +24,7 @@ export function estimateNbPureComponents(chromatogram, options = {}) {
   let s = pca.getExplainedVariance();
   let rank = 1;
   let cumulative = s[0];
-  while ((cumulative - s[rank]) / cumulative > 0.88 && rank < s.length) {
+  while ((cumulative - s[rank]) / cumulative < 0.88 && rank < s.length) {
     cumulative += s[rank];
     rank++;
   }
