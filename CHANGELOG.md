@@ -1,3 +1,5 @@
+# Changelog
+
 ## [4.2.0](https://github.com/cheminfo/chromatography/compare/v4.1.3...v4.2.0) (2020-11-09)
 
 
