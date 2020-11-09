@@ -1,0 +1,311 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Chromatography</title>
+	<meta name="description" content="Documentation for Chromatography">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">Chromatography</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>Chromatography</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#chromatography" id="chromatography" style="color: inherit; text-decoration: none;">
+					<h1>chromatography</h1>
+				</a>
+				<p><a href="https://npmjs.org/package/chromatography"><img src="https://img.shields.io/npm/v/chromatography.svg" alt="NPM version"></a>
+					<a href="https://github.com/cheminfo/chromatography/actions?query=workflow%3A%22Node.js+CI%22"><img src="https://github.com/cheminfo/chromatography/workflows/Node.js%20CI/badge.svg?branch=master" alt="build status"></a>
+				<a href="https://npmjs.org/package/chromatography"><img src="https://img.shields.io/npm/dm/chromatography.svg" alt="npm download"></a></p>
+				<p>Tools for storing, searching and analyzing GC/MS data.</p>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
+				<p><code>$ npm i chromatography</code></p>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> GCMS <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;chromatography&#x27;</span>;
+
+<span class="hljs-keyword">let</span> gcms = GCMS.fromJcamp(jcampReferenceMixture);
+
+<span class="hljs-keyword">let</span> kovatsConversionTable = GCMS.appendKovats(gcms); <span class="hljs-comment">// [{time, value}]</span>
+<span class="hljs-keyword">let</span> conversionFunction = GCMS.getKovatsConversionFunction(
+  kovatsConversionTable,
+  {},
+);
+
+<span class="hljs-keyword">let</span> diesel = GCMS.fromJcamp(jcampOfDiesel);
+<span class="hljs-keyword">let</span> times = GCMS.rescaleTime(diesel.getTimes(), conversionFunction);
+diesel.setTimes(times);
+
+<span class="hljs-keyword">let</span> peaks = GCMS.getPeaks(diesel, options);
+<span class="hljs-keyword">let</span> dieselJSON = diesel.toJSON(options); <span class="hljs-comment">// [{time:12, height:12, width: 3, mass: [{mass, intensity}]}]</span>
+<span class="hljs-keyword">let</span> gcms2 = GCMS.fromJSON(anotherDieselJSON);
+<span class="hljs-keyword">let</span> similarity = GCMS.similarity(gcms, gcms2, options);
+
+<span class="hljs-comment">// Get a spectrum in another reference model</span>
+<span class="hljs-keyword">let</span> revertConversionFunction = GCMS.getKovatsConversionFunction(
+  kovatsConversionTable,
+  { <span class="hljs-attr">revert</span>: <span class="hljs-literal">true</span> },
+);
+<span class="hljs-keyword">let</span> mySpectrumInAnotherReference = revertConversionFunction(mySpectrum);</code></pre>
+				<a href="#api-documentation" id="api-documentation" style="color: inherit; text-decoration: none;">
+					<h2><a href="https://cheminfo.github.io/chromatography/">API Documentation</a></h2>
+				</a>
+				<p><a href="https://docs.google.com/document/d/1Jg2l6wKjFCYBSqdVWBSujSkqMhsEV6ZMyxeI9RSLhn0/edit#heading=h.8gjgl6jygt0s">API discussion</a></p>
+				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+					<h2>License</h2>
+				</a>
+				<p><a href="./LICENSE">MIT</a></p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="classes/chromatogram.html" class="tsd-kind-icon">Chromatogram</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/chromatogramseries.html" class="tsd-kind-icon">Chromatogram<wbr>Series</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/chromatogramseries1d.html" class="tsd-kind-icon">Chromatogram<wbr>Series1D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/chromatogramseries2d.html" class="tsd-kind-icon">Chromatogram<wbr>Series2D</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/addseriesoptions.html" class="tsd-kind-icon">Add<wbr>Series<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/appendkovatsresult.html" class="tsd-kind-icon">Append<wbr>Kovats<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/appendmassoptions.html" class="tsd-kind-icon">Append<wbr>Mass<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/appendmassresult.html" class="tsd-kind-icon">Append<wbr>Mass<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/applylockmassoptions.html" class="tsd-kind-icon">Apply<wbr>Lock<wbr>Mass<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/calculateformfoptions.html" class="tsd-kind-icon">Calculate<wbr>ForMFOptions</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/calculateformassoptions.html" class="tsd-kind-icon">Calculate<wbr>For<wbr>Mass<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/calculateoptions.html" class="tsd-kind-icon">Calculate<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/chromatogrampeak.html" class="tsd-kind-icon">Chromatogram<wbr>Peak</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/chromatogramrange.html" class="tsd-kind-icon">Chromatogram<wbr>Range</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/deconvolutionoptions.html" class="tsd-kind-icon">Deconvolution<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/deconvolutionresult.html" class="tsd-kind-icon">Deconvolution<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/filteroptions.html" class="tsd-kind-icon">Filter<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/fromjsonobject.html" class="tsd-kind-icon">FromJSONObject</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/fromtextoptions.html" class="tsd-kind-icon">From<wbr>Text<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/getclosestdataoptions.html" class="tsd-kind-icon">Get<wbr>Closest<wbr>Data<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/getclosestdataresult.html" class="tsd-kind-icon">Get<wbr>Closest<wbr>Data<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/getkovatsconversionfunctionoptions.html" class="tsd-kind-icon">Get<wbr>Kovats<wbr>Conversion<wbr>Function<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/getpeaksoptions.html" class="tsd-kind-icon">Get<wbr>Peaks<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/integrateoptions.html" class="tsd-kind-icon">Integrate<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/integrateresult.html" class="tsd-kind-icon">Integrate<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/kovatsoptions.html" class="tsd-kind-icon">Kovats<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/kovatsresult.html" class="tsd-kind-icon">Kovats<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/lockmassreferenceused.html" class="tsd-kind-icon">Lock<wbr>Mass<wbr>Reference<wbr>Used</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/massfilteroptions.html" class="tsd-kind-icon">Mass<wbr>Filter<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/massspectrum.html" class="tsd-kind-icon">Mass<wbr>Spectrum</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/meanfilteroptions.html" class="tsd-kind-icon">Mean<wbr>Filter<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/mergeoptions.html" class="tsd-kind-icon">Merge<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/mergeresult.html" class="tsd-kind-icon">Merge<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/percentagefilteroptions.html" class="tsd-kind-icon">Percentage<wbr>Filter<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/scalealignmentoptions.html" class="tsd-kind-icon">Scale<wbr>Alignment<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/spectracomparisonoptions.html" class="tsd-kind-icon">Spectra<wbr>Comparison<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/spectracomparisonresult.html" class="tsd-kind-icon">Spectra<wbr>Comparison<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/vectorifyoptions.html" class="tsd-kind-icon">Vectorify<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/nmfoptions.html" class="tsd-kind-icon">nmf<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#chromatogramseriesdata" class="tsd-kind-icon">Chromatogram<wbr>Series<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#appendkovats" class="tsd-kind-icon">append<wbr>Kovats</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#appendmass" class="tsd-kind-icon">append<wbr>Mass</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#cosinesimilarity" class="tsd-kind-icon">cosine<wbr>Similarity</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#fromjson" class="tsd-kind-icon">fromJSON</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#fromjcamp" class="tsd-kind-icon">from<wbr>Jcamp</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#fromnetcdf" class="tsd-kind-icon">from<wbr>NetCDF</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#fromtext" class="tsd-kind-icon">from<wbr>Text</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#fromxml" class="tsd-kind-icon">fromXML</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#getkovatsconversionfunction" class="tsd-kind-icon">get<wbr>Kovats<wbr>Conversion<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#kovats" class="tsd-kind-icon">kovats</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#massfilter" class="tsd-kind-icon">mass<wbr>Filter</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#scalealignment" class="tsd-kind-icon">scale<wbr>Alignment</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#spectracomparison" class="tsd-kind-icon">spectra<wbr>Comparison</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#vectorify" class="tsd-kind-icon">vectorify</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
