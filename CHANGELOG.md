@@ -1,5 +1,13 @@
 # Changelog
 
+### [4.2.1](https://www.github.com/cheminfo/chromatography/compare/v4.2.0...v4.2.1) (2020-11-09)
+
+
+### Bug Fixes
+
+* add missing deploy to lactame.com ([14a0754](https://www.github.com/cheminfo/chromatography/commit/14a0754f5e3c998c02dc459a301ef0ed45f800a7))
+* add missing release-please ([293c6ef](https://www.github.com/cheminfo/chromatography/commit/293c6efb7a583e7413282adcfd8d6e92ef9656ea))
+
 ## [4.2.0](https://github.com/cheminfo/chromatography/compare/v4.1.3...v4.2.0) (2020-11-09)
 
 
@@ -384,6 +392,3 @@
 * "vectorization" of a peak list ([234caa0](https://github.com/cheminfo/chromatography/commit/234caa02c13bd9ed76b5bbec8082e65f62894a1f))
 * calculate and stores the array of peaks ([509d34e](https://github.com/cheminfo/chromatography/commit/509d34ec06098ccb33ba8a93d49500228bd7fd9c))
 * similarity between two ms ([740ae1f](https://github.com/cheminfo/chromatography/commit/740ae1fc9d986bc644a421e41512f8a1b478743a))
-
-
-
