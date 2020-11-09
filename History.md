@@ -1,3 +1,16 @@
+## [4.2.0](https://github.com/cheminfo/chromatography/compare/v4.1.3...v4.2.0) (2020-11-09)
+
+
+### Features
+
+* add deconvolution method ([#45](https://github.com/cheminfo/chromatography/issues/45)) ([8dcd58b](https://github.com/cheminfo/chromatography/commit/8dcd58bcae30c5d784d15da3ca2c1f9e51c25275))
+* update ml-ngmca ([#47](https://github.com/cheminfo/chromatography/issues/47)) ([25378c3](https://github.com/cheminfo/chromatography/commit/25378c3a5d6b0a93ede0963ad223ca675c17b314))
+
+
+### Bug Fixes
+
+* nGMCA dependency ([3bcc122](https://github.com/cheminfo/chromatography/commit/3bcc1224ada375430976862558cb2081254fa11b))
+
 ## [4.1.2](https://github.com/cheminfo/chromatography/compare/v4.1.1...v4.1.2) (2020-05-25)
 
 
