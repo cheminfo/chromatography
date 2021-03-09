@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.2.2](https://www.github.com/cheminfo/chromatography/compare/v4.2.1...v4.2.2) (2021-03-09)
+
+
+### Bug Fixes
+
+* add testcase in merge ([0dd52ba](https://www.github.com/cheminfo/chromatography/commit/0dd52ba1f066c50fcdfd42a2f20a983ae0be949d))
+
 ### [4.2.1](https://www.github.com/cheminfo/chromatography/compare/v4.2.0...v4.2.1) (2020-11-09)
 
 
