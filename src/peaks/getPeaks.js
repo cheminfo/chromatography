@@ -10,16 +10,17 @@ export function getPeaks(chromatogram, options = {}) {
 
   const series = chromatogram.getSeries(seriesName).data;
   const times = chromatogram.getTimes();
-
   // first peak selection
-  let peakList = gsd(times, series, {
-    noiseLevel: 0,
-    realTopDetection: false,
-    smoothY: true,
-    sgOptions: { windowSize: 5, polynomial: 2 },
-    heightFactor: 2,
-    boundaries: true,
-  });
+  let peakList = gsd(
+    { x: times, y: series },
+    {
+      noiseLevel: 0,
+      realTopDetection: false,
+      smoothY: true,
+      sgOptions: { windowSize: 5, polynomial: 2 },
+      heightFactor: 2,
+    },
+  );
   // filter height by factor
   let medianHeight = median(series);
 
