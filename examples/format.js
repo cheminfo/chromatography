@@ -25,12 +25,11 @@ export const chromatogram = {
         {
           data: [{ x: [], y: [], time: Number }], // one element per previous data.x BUT only 14 peaks ...
           kind: 'ms',
-          kind: 'ir',
+          name: 'ms',
           parentIon: [],
           meta: {},
-          name: 'ms',
         },
       ],
     },
   ],
-};j
+};
