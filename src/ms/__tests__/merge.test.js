@@ -1,6 +1,10 @@
 import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to';
 
-import { highResolution4, highResolution, simple } from '../../../testFiles/examples';
+import {
+  highResolution4,
+  highResolution,
+  simple,
+} from '../../../testFiles/examples';
 
 expect.extend({ toBeDeepCloseTo });
 
@@ -60,7 +64,7 @@ describe('High resolution', () => {
     expect(result.y).toBeDeepCloseTo([70, 85, 115]);
     expect(result.from).toStrictEqual({ index: 0, time: 1 });
     expect(result.to).toStrictEqual({ index: 3, time: 4 });
-  })
+  });
 
   it('small threhold', () => {
     let result = highResolution.merge({ mergeThreshold: 0.00001 });
