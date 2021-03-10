@@ -78,7 +78,7 @@
     "ml-ngmca": "^0.2.2",
     "ml-pca": "^4.0.1",
     "ml-regression-polynomial": "^2.1.0",
-    "ml-spectra-processing": "^5.7.0",
+    "ml-spectra-processing": "^5.7.2",
     "mzdata": "^2.1.0",
     "netcdf-gcms": "^1.4.0",
     "xy-parser": "^3.0.0"

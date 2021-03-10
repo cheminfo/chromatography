@@ -60,8 +60,8 @@ describe('High resolution', () => {
 
   it('no options and 4 spectra', () => {
     let result = highResolution4.merge();
-    expect(result.x).toBeDeepCloseTo([100, 200, 300], 0);
-    expect(result.y).toBeDeepCloseTo([70, 85, 115]);
+    expect(result.x).toBeDeepCloseTo([100.00091836734693, 100.31545454545454, 200.0012, 300], 3);
+    expect(result.y).toBeDeepCloseTo([49, 11, 25, 32]);
     expect(result.from).toStrictEqual({ index: 0, time: 1 });
     expect(result.to).toStrictEqual({ index: 3, time: 4 });
   });
