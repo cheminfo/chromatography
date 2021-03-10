@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.2.3](https://www.github.com/cheminfo/chromatography/compare/v4.2.2...v4.2.3) (2021-03-10)
+
+
+### Bug Fixes
+
+* update packages to solve merge NaN problem ([3281d7d](https://www.github.com/cheminfo/chromatography/commit/3281d7dd2b8fefc32071c71748a3601602da99a9))
+
 ### [4.2.2](https://www.github.com/cheminfo/chromatography/compare/v4.2.1...v4.2.2) (2021-03-09)
 
 
