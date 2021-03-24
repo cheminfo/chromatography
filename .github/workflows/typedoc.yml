@@ -1,18 +1,28 @@
 name: Deploy TypeDoc on GitHub pages
 
 on:
+  workflow_dispatch:
   release:
     types: [published]
+
+env:
+  NODE_VERSION: 14.x
+  ENTRY_FILE: 'chromatography.d.ts'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build documentation
-        uses: zakodium/typedoc-action@v1
+      - uses: actions/setup-node@v2
         with:
-          entry: 'src/index.ts'
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install dependencies
+        run: npm install
+      - name: Build documentation
+        uses: zakodium/typedoc-action@v2
+        with:
+          entry: ${{ env.ENTRY_FILE }}
       - name: Deploy to GitHub pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
