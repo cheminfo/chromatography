@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.2.4](https://www.github.com/cheminfo/chromatography/compare/v4.2.3...v4.2.4) (2021-03-24)
+
+
+### Bug Fixes
+
+* update dependencies ([c630805](https://www.github.com/cheminfo/chromatography/commit/c63080556acea474d37297866cfdfc54a2a610ee))
+
 ### [4.2.3](https://www.github.com/cheminfo/chromatography/compare/v4.2.2...v4.2.3) (2021-03-10)
 
 
