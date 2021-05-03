@@ -63,6 +63,8 @@ describe('appendMass', () => {
     ];
 
     let result = appendMass(simple4, peaks);
+    result[0].ms.x = Array.from(result[0].ms.x);
+    result[0].ms.y = Array.from(result[0].ms.y);
     expect(result).toStrictEqual([
       {
         fromIndex: 0,
@@ -87,7 +89,7 @@ describe('appendMass', () => {
     let result = appendMass(simple4, peaks, {
       mergeThreshold: 2,
     })[0];
-    expect(result.ms.x).toBeDeepCloseTo([102, 202, 302], 1);
-    expect(result.ms.y).toStrictEqual([36, 66, 96]);
+    expect(Array.from(result.ms.x)).toBeDeepCloseTo([102, 202, 302], 1);
+    expect(Array.from(result.ms.y)).toStrictEqual([36, 66, 96]);
   });
 });
