@@ -1,4 +1,14 @@
+/**
+ * Calculate the Extracted Ion Chromatogram
+ * @param {object} chromatogram
+ * @param {string|number} targetMass
+ * @param {object} [options={}]
+ * @param {number} [options.slotWidth=1]
+ * @returns
+ */
+
 export function calculateEic(chromatogram, targetMass, options = {}) {
+  const { slotWidth = 1 } = options;
   if (!targetMass) {
     throw new Error(
       'targetMass must be defined and a number or string of comma separated numbers',
@@ -17,7 +27,6 @@ export function calculateEic(chromatogram, targetMass, options = {}) {
     }
   }
 
-  const { slotWidth = 1 } = options;
   const halfWidth = slotWidth / 2;
   const ms = chromatogram.getSeries('ms');
   const massSpectra = ms.data;
