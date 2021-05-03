@@ -1,3 +1,4 @@
+import { xySortX } from 'ml-spectra-processing';
 import { SpectrumGenerator } from 'spectrum-generator';
 import { Chromatogram } from '../src';
 
@@ -20,10 +21,12 @@ let { x, y } = spectrumGenerator.getSpectrum();
 let ms = [];
 for (let i = 0; i < x.length; i++) {
   if (i > 0 && i % 100 === 0) {
-    ms.push([
-      [43, 57, 71, 85, (i / 100) * 14 + 2],
-      [100, 100, 100, 100, 10],
-    ]);
+    let data = {
+      x: [43, 57, 71, 85, (i / 100) * 14 + 2],
+      y: [100, 100, 100, 100, 10],
+    };
+    data = xySortX(data);
+    ms.push([data.x, data.y]);
   } else {
     ms.push([[], []]);
   }
