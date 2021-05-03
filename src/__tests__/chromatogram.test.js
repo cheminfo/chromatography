@@ -90,6 +90,8 @@ describe('Integrations', () => {
 
   it('Merge a ms', () => {
     let result = simple.merge({ range: { from: 1, to: 2 } });
+    result.x = Array.from(result.x);
+    result.y = Array.from(result.y);
     expect(result).toStrictEqual({
       x: [100, 101, 200, 201, 300, 301],
       y: [10, 11, 20, 21, 30, 31],
