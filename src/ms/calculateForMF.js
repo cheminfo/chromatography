@@ -13,10 +13,11 @@ import { xyObjectSlotX } from 'ml-spectra-processing';
  * @return {Array} - Calculated mass for targetMass
  */
 export function calculateForMF(chromatogram, targetMF, options = {}) {
+  const { threshold = 0.05, slotWidth = 1, ionizations = 'H+' } = options;
+
   if (typeof targetMF !== 'string') {
     throw Error('targetMF must be defined and a string');
   }
-  const { threshold = 0.05, slotWidth = 1, ionizations = 'H+' } = options;
 
   const halfWidth = slotWidth / 2;
 
