@@ -4,35 +4,25 @@ import { simple } from '../../../testFiles/examples';
 describe('calculateForMF', () => {
   it('basic', () => {
     simple.calculateForMF('C8H3', { ionizations: 'H+' });
-    expect(simple.getSeries('ms C8H3 H+ (1, 0.05)').data).toStrictEqual([
-      10,
-      11,
-    ]);
+    expect(simple.getSeries('C8H3(H+)±0.5').data).toStrictEqual([10, 11]);
   });
 
   it('check threshold', () => {
     simple.calculateForMF('C8H3', { threshold: 0.9, ionizations: 'H+' });
-    expect(simple.getSeries('ms C8H3 H+ (1, 0.9)').data).toStrictEqual([10, 0]);
+    expect(simple.getSeries('C8H3(H+)±0.5(0.9)').data).toStrictEqual([10, 0]);
   });
 
   it('check many ionizations', () => {
     simple.calculateForMF('C8H4', {
-      threshold: 0.9,
       slotWidth: 0.01,
       ionizations: '+,H+',
     });
-    expect(simple.getSeries('ms C8H4 +,H+ (0.01, 0.9)').data).toStrictEqual([
-      0,
-      0,
-    ]);
+    expect(simple.getSeries('C8H4(+,H+)±0.005').data).toStrictEqual([0, 0]);
   });
 
   it('check many ionizations, default slotWidth', () => {
-    simple.calculateForMF('C8H4', { threshold: 0.9, ionizations: '+,H+' });
-    expect(simple.getSeries('ms C8H4 +,H+ (1, 0.9)').data).toStrictEqual([
-      10,
-      11,
-    ]);
+    simple.calculateForMF('C8H4', { ionizations: '+,H+' });
+    expect(simple.getSeries('C8H4(+,H+)±0.5').data).toStrictEqual([10, 11]);
   });
 
   it('Errors', () => {
