@@ -164,9 +164,9 @@ export class Chromatogram {
 
   calculateForMF(targetMF, options = {}) {
     const {
-      seriesName = `ms ${targetMF} ${options.ionizations || 'H+'} (${
-        options.slotWidth || 1
-      }, ${options.threshold || 0.05})`,
+      seriesName = `${targetMF} (${options.ionizations || 'H+'}±${
+        options.slotWidth / 2 || 0.5
+      }`,
       cache = false,
     } = options;
     if (cache && this.hasSeries(seriesName)) return this.getSeries(seriesName);
