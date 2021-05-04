@@ -36,7 +36,18 @@ export const highResolution = new Chromatogram([1, 2], {
 export const highResolution4 = new Chromatogram([1, 2, 3, 4], {
   ms: [
     [
-      [300.0002, 100.002, 200.02, 99.999, 100, 100.01, 200.01, 200.02, 100.31, 100.32],
+      [
+        300.0002,
+        100.002,
+        200.02,
+        99.999,
+        100,
+        100.01,
+        200.01,
+        200.02,
+        100.31,
+        100.32,
+      ],
       [0, 20, 0, 15, 0, 2, 3, 0, 5, 6],
     ],
     [
@@ -44,7 +55,7 @@ export const highResolution4 = new Chromatogram([1, 2, 3, 4], {
       [0, 0, 0],
     ],
     [
-      [100.000, 200.00, 300.0000],
+      [100.0, 200.0, 300.0],
       [12, 22, 32],
     ],
     [
@@ -53,7 +64,6 @@ export const highResolution4 = new Chromatogram([1, 2, 3, 4], {
     ],
   ],
 });
-
 
 export const simpleStringified =
   '{"times":[1,2],"series":{"ms":{"data":[[[100,200,300],[10,20,30]],[[101,201,301],[11,21,31]]],"meta":{}}}}';

@@ -166,7 +166,7 @@ export class Chromatogram {
     const {
       seriesName = `${targetMF}(${options.ionizations || 'H+'})±${
         options.slotWidth / 2 || 0.5
-      }${options.threshold ? '(' + options.threshold + ')' : ''}`,
+      }${options.threshold ? `(${options.threshold})` : ''}`,
       cache = false,
     } = options;
     if (cache && this.hasSeries(seriesName)) return this.getSeries(seriesName);
