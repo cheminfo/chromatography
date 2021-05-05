@@ -1,5 +1,21 @@
 # Changelog
 
+## [5.0.0](https://www.github.com/cheminfo/chromatography/compare/v4.2.4...v5.0.0) (2021-05-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* improve merge of high resolution mass spectra
+
+### Features
+
+* improve merge of high resolution mass spectra ([981d5a5](https://www.github.com/cheminfo/chromatography/commit/981d5a5135455b05fc9690bba0c7e609618cb88f))
+
+
+### Bug Fixes
+
+* simplify name of calculateForMF ([62b6b97](https://www.github.com/cheminfo/chromatography/commit/62b6b9729122a12f05057f494ef852abc8b46e0b))
+
 ### [4.2.4](https://www.github.com/cheminfo/chromatography/compare/v4.2.3...v4.2.4) (2021-03-24)
 
 
