@@ -1,4 +1,5 @@
 import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to';
+import { isExportDeclaration } from 'typescript';
 
 import {
   highResolution4,
@@ -8,9 +9,12 @@ import {
 
 expect.extend({ toBeDeepCloseTo });
 
-describe('Low resolution', () => {
+describe('merge: Low resolution', () => {
   it('no options', () => {
     let result = simple.merge();
+
+    result.x = Array.from(result.x);
+    result.y = Array.from(result.y);
 
     expect(result).toStrictEqual({
       x: [100, 101, 200, 201, 300, 301],
@@ -22,6 +26,9 @@ describe('Low resolution', () => {
 
   it('time range', () => {
     let result = simple.merge({ range: { from: 1, to: 1 } });
+    result.x = Array.from(result.x);
+    result.y = Array.from(result.y);
+
     expect(result).toStrictEqual({
       x: [100, 200, 300],
       y: [10, 20, 30],
@@ -32,6 +39,9 @@ describe('Low resolution', () => {
 
   it('time range to high', () => {
     let result = simple.merge({ range: { from: 2, to: 100 } });
+    result.x = Array.from(result.x);
+    result.y = Array.from(result.y);
+
     expect(result).toStrictEqual({
       x: [101, 201, 301],
       y: [11, 21, 31],
@@ -49,29 +59,32 @@ describe('Low resolution', () => {
   });
 });
 
-describe('High resolution', () => {
+describe('merge: High resolution', () => {
   it('no options', () => {
     let result = highResolution.merge();
-    expect(result.x).toBeDeepCloseTo([100.0014, 200.0148, 300.0001], 4);
-    expect(result.y).toBeDeepCloseTo([21, 41, 61]);
-    expect(result.from).toStrictEqual({ index: 0, time: 1 });
-    expect(result.to).toStrictEqual({ index: 1, time: 2 });
+    expect(result).toBeDeepCloseTo({
+      x: [100.00147619047618, 200.0148780487805, 300.00014918032787],
+      y: [21, 41, 61],
+      from: { index: 0, time: 1 },
+      to: { index: 1, time: 2 },
+    });
   });
 
   it('no options and 4 spectra', () => {
     let result = highResolution4.merge();
-    expect(result.x).toBeDeepCloseTo(
-      [100.00091836734693, 100.31545454545454, 200.0012, 300],
-      3,
-    );
-    expect(result.y).toBeDeepCloseTo([49, 11, 25, 32]);
-    expect(result.from).toStrictEqual({ index: 0, time: 1 });
-    expect(result.to).toStrictEqual({ index: 3, time: 4 });
+    expect(result).toBeDeepCloseTo({
+      x: [100.05858333333335, 200.00119999999998, 300],
+      y: [60, 25, 32],
+      from: { index: 0, time: 1 },
+      to: { index: 3, time: 4 },
+    });
   });
 
   it('small threhold', () => {
     let result = highResolution.merge({ mergeThreshold: 0.00001 });
-    expect(result).toStrictEqual({
+    result.x = Array.from(result.x);
+    result.y = Array.from(result.y);
+    expect(result).toBeDeepCloseTo({
       x: [100.001, 100.002, 200.01, 200.02, 300.0001, 300.0002],
       y: [11, 10, 21, 20, 31, 30],
       from: { index: 0, time: 1 },

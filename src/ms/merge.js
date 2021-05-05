@@ -1,14 +1,13 @@
 import {
+  xySortX,
   xGetFromToIndex,
-  xyObjectJoinX,
-  xyObjectToXY,
-  xyObjectSortX,
-  xyToXYObject,
+  xyArrayWeightedMerge,
 } from 'ml-spectra-processing';
 
 export function merge(chromatogram, options = {}) {
-  const time = chromatogram.getTimes();
   let { mergeThreshold = 0.3, seriesName = 'ms', range = {} } = options;
+
+  const time = chromatogram.getTimes();
 
   chromatogram.requiresSeries(seriesName);
   let series = chromatogram.series[seriesName];
@@ -20,21 +19,13 @@ export function merge(chromatogram, options = {}) {
     return { x: [], y: [] };
   }
   let { fromIndex, toIndex } = xGetFromToIndex(time, range);
-  let result = xyToXYObject({
-    x: series.data[fromIndex][0],
-    y: series.data[fromIndex][1],
-  });
-  for (let i = fromIndex + 1; i <= toIndex; i++) {
-    let newData = xyToXYObject({
-      x: series.data[i][0],
-      y: series.data[i][1],
-    });
-    result = result.concat(newData);
-    result = xyObjectSortX(result);
-    result = xyObjectJoinX(result, { xError: mergeThreshold });
-  }
-  result = {
-    ...xyObjectToXY(result),
+
+  let data = series.data
+    .slice(fromIndex, toIndex + 1)
+    .map((datum) => xySortX({ x: datum[0], y: datum[1] }));
+
+  return {
+    ...xyArrayWeightedMerge(data, { delta: mergeThreshold }),
     from: {
       index: fromIndex,
       time: time[fromIndex],
@@ -44,6 +35,4 @@ export function merge(chromatogram, options = {}) {
       time: time[toIndex],
     },
   };
-
-  return result;
 }
