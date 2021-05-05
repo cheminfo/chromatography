@@ -1,5 +1,4 @@
 import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to';
-import { isExportDeclaration } from 'typescript';
 
 import {
   highResolution4,
