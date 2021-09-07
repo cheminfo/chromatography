@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.1.0](https://www.github.com/cheminfo/chromatography/compare/v5.0.0...v5.1.0) (2021-09-07)
+
+
+### Features
+
+* remove node 10 compatibility ([c6eeb2e](https://www.github.com/cheminfo/chromatography/commit/c6eeb2e68aae6782370d055ba17c14f6d2283cb5))
+* update dependencies to deal with int64 mzml data ([9df3cfe](https://www.github.com/cheminfo/chromatography/commit/9df3cfe1b64a8888deca4d5614b97a2addd76f42))
+
 ## [5.0.0](https://www.github.com/cheminfo/chromatography/compare/v4.2.4...v5.0.0) (2021-05-05)
 
 
