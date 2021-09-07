@@ -7,25 +7,27 @@
 export const chromatogram = {
   times: [], // renamed to data ???
   meta: {},
-  series: [
+  variables: [
     {
-      data: [], // problem of 'sparse' series
+      data: [], // problem of 'sparse' variables
       meta: {},
-      name: 'tic',
+      units: '',
+      variableType: 'dependent',
+      label: 'tic',
       kind: 'values',
     },
     {
       data: [{ x: [], y: [] }], // one element per time = the higher level data
       parent: [], //???
       meta: {},
-      name: 'ms',
+      label: 'ms',
       kind: 'ms',
       parentIon: 123,
-      series: [
+      variables: [
         {
           data: [{ x: [], y: [], time: Number }], // one element per previous data.x BUT only 14 peaks ...
           kind: 'ms',
-          name: 'ms',
+          label: 'ms',
           parentIon: [],
           meta: {},
         },
