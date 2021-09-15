@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.0](https://www.github.com/cheminfo/chromatography/compare/v5.1.0...v5.2.0) (2021-09-15)
+
+
+### Features
+
+* Extract ions allow a range in MF ([5e76f3f](https://www.github.com/cheminfo/chromatography/commit/5e76f3f7778bc0c3ca46c342a93141b399744791))
+
 ## [5.1.0](https://www.github.com/cheminfo/chromatography/compare/v5.0.0...v5.1.0) (2021-09-07)
 
 
