@@ -7,6 +7,11 @@ describe('calculateForMF', () => {
     expect(simple.getSeries('C8H3(H+)±0.5').data).toStrictEqual([10, 11]);
   });
 
+  it('basic range', () => {
+    simple.calculateForMF('(CH)0-5C5', { ionizations: 'H+' });
+    expect(simple.getSeries('(CH)0-5C5(H+)±0.5').data).toStrictEqual([10, 11]);
+  });
+
   it('check threshold', () => {
     simple.calculateForMF('C8H3', { threshold: 0.9, ionizations: 'H+' });
     expect(simple.getSeries('C8H3(H+)±0.5(0.9)').data).toStrictEqual([10, 0]);
