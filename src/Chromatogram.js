@@ -1,4 +1,4 @@
-import isAnyArray from 'is-any-array';
+import { isAnyArray } from 'is-any-array';
 import { xFindClosestIndex } from 'ml-spectra-processing';
 
 import { meanFilter } from './filter/meanFilter';

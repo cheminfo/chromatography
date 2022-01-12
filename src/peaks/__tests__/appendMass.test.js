@@ -89,7 +89,10 @@ describe('appendMass', () => {
     let result = appendMass(simple4, peaks, {
       mergeThreshold: 2,
     })[0];
-    expect(Array.from(result.ms.x)).toBeDeepCloseTo([102, 202, 302], 1);
+    expect(Array.from(result.ms.x)).toBeDeepCloseTo(
+      [102.05, 202.03, 302.02],
+      1,
+    );
     expect(Array.from(result.ms.y)).toStrictEqual([36, 66, 96]);
   });
 });

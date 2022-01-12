@@ -1,4 +1,4 @@
-import isAnyArray from 'is-any-array';
+import { isAnyArray } from 'is-any-array';
 
 import { Series1D } from './Series1D';
 import { Series2D } from './Series2D';
