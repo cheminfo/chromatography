@@ -10,8 +10,8 @@ describe('General methods', () => {
 
   it('get first and last time', () => {
     let chromatogram = new Chromatogram([1, 2, 3]);
-    expect(chromatogram.firstTime).toStrictEqual(1);
-    expect(chromatogram.lastTime).toStrictEqual(3);
+    expect(chromatogram.firstTime).toBe(1);
+    expect(chromatogram.lastTime).toBe(3);
   });
 
   it('get first and last time of typed array', () => {
@@ -20,8 +20,8 @@ describe('General methods', () => {
     array[1] = 2;
     array[2] = 3;
     let chromatogram = new Chromatogram(array);
-    expect(chromatogram.firstTime).toStrictEqual(1);
-    expect(chromatogram.lastTime).toStrictEqual(3);
+    expect(chromatogram.firstTime).toBe(1);
+    expect(chromatogram.lastTime).toBe(3);
   });
 
   it('addSeries errors', () => {
@@ -39,22 +39,22 @@ describe('General methods', () => {
 
   it('deleteSeries', () => {
     let chromatogram = new Chromatogram([1, 2], { tic: [1, 2] });
-    expect(chromatogram.hasSeries('tic')).toStrictEqual(true);
+    expect(chromatogram.hasSeries('tic')).toBe(true);
     expect(() => chromatogram.deleteSeries('ms')).toThrow(
       'The series "ms" does not exist',
     );
     chromatogram.deleteSeries('tic');
-    expect(chromatogram.hasSeries('tic')).toStrictEqual(false);
+    expect(chromatogram.hasSeries('tic')).toBe(false);
   });
 
   it('Copy chromatogram', () => {
     let chromatogram = new Chromatogram([1, 2], { tic: [1, 2] });
-    expect(chromatogram.hasSeries('tic')).toStrictEqual(true);
+    expect(chromatogram.hasSeries('tic')).toBe(true);
     let copy = chromatogram.copy();
-    expect(copy.hasSeries('tic')).toStrictEqual(true);
+    expect(copy.hasSeries('tic')).toBe(true);
     copy.deleteSeries('tic');
-    expect(copy.hasSeries('tic')).toStrictEqual(false);
-    expect(chromatogram.hasSeries('tic')).toStrictEqual(true);
+    expect(copy.hasSeries('tic')).toBe(false);
+    expect(chromatogram.hasSeries('tic')).toBe(true);
   });
 
   it('Require series', () => {

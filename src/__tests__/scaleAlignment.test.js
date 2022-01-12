@@ -133,7 +133,7 @@ test('Quality and string', () => {
     stringFormula: 3,
   });
   expect(aligned.scaleRegression.predict(30)).toBeCloseTo(20, 4);
-  expect(aligned.scaleRegression.toString(3)).toStrictEqual(
+  expect(aligned.scaleRegression.toString(3)).toBe(
     'f(x) = 9.95e-17 * x^3 - 1.22e-14 * x^2 + 1.00 * x - 10.0',
   );
   expect(aligned.r2).toBeCloseTo(1, 4);
