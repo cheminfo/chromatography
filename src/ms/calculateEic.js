@@ -14,12 +14,15 @@ export function calculateEic(chromatogram, targetMass, options = {}) {
       'targetMass must be defined and a number or string of comma separated numbers',
     );
   }
-  if (!isNaN(targetMass)) {
-    targetMass = [targetMass];
+  let targetMasses;
+  if (!Number.isNaN(Number(targetMass))) {
+    targetMasses = [Number(targetMass)];
   } else if (typeof targetMass === 'string') {
-    targetMass = targetMass.split(/[ ,;\r\n\t]+/).map((value) => Number(value));
+    targetMasses = targetMass
+      .split(/[ ,;\r\n\t]+/)
+      .map((value) => Number(value));
   }
-  for (let mass of targetMass) {
+  for (let mass of targetMasses) {
     if (isNaN(mass)) {
       throw new Error(
         'targetMass must be defined and a number or string of comma separated numbers',
@@ -32,7 +35,7 @@ export function calculateEic(chromatogram, targetMass, options = {}) {
   const massSpectra = ms.data;
 
   const result = new Array(massSpectra.length).fill(0);
-  for (let mass of targetMass) {
+  for (let mass of targetMasses) {
     for (let i = 0; i < massSpectra.length; i++) {
       let massSpectrum = massSpectra[i];
       for (let j = 0; j < massSpectrum[0].length; j++) {
