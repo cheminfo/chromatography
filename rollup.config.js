@@ -16,7 +16,6 @@ const config = {
     'ml-array-median',
     'ml-array-sum',
     'ml-gsd',
-    'ml-gsd/src/gsd',
     'ml-regression-polynomial',
     'ml-spectra-processing',
     'mzdata',
