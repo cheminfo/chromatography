@@ -3,10 +3,10 @@ import { join } from 'path';
 
 import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to';
 
-expect.extend({ toBeDeepCloseTo });
-
 import { Chromatogram, fromJcamp } from '../..';
 import { getSimulatedSpectrum, fivePeaks } from '../../../testFiles/examples';
+
+expect.extend({ toBeDeepCloseTo });
 
 describe('getPeaks', () => {
   it('from a Diesel chromatogram', () => {

@@ -32,10 +32,10 @@ describe('calculateForMF', () => {
 
   it('Errors', async () => {
     const chromatogram = new Chromatogram([1, 2, 3, 5, 6]);
-    expect(chromatogram.calculateForMF()).rejects.toThrow(
+    await expect(chromatogram.calculateForMF()).rejects.toThrow(
       'targetMF must be defined and a string',
     );
-    expect(chromatogram.calculateForMF('C10')).rejects.toThrow(
+    await expect(chromatogram.calculateForMF('C10')).rejects.toThrow(
       'The series "ms" does not exist',
     );
   });
