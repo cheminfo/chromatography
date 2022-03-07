@@ -162,7 +162,7 @@ export class Chromatogram {
     return this.getSeries(seriesName);
   }
 
-  calculateForMF(targetMF, options = {}) {
+  async calculateForMF(targetMF, options = {}) {
     const {
       seriesName = `${targetMF}(${options.ionizations || 'H+'})±${
         options.slotWidth / 2 || 0.5
@@ -170,7 +170,7 @@ export class Chromatogram {
       cache = false,
     } = options;
     if (cache && this.hasSeries(seriesName)) return this.getSeries(seriesName);
-    const result = calculateForMF(this, targetMF, options);
+    const result = await calculateForMF(this, targetMF, options);
     this.addSeries(seriesName, result, options);
     return this.getSeries(seriesName);
   }

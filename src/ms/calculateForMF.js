@@ -11,16 +11,16 @@ import { xyObjectSlotX } from 'ml-spectra-processing';
  * @param {number} [options.slotWidth=1] - Width of the slot around the mass of targetMF
  * @param {number} [options.threshold=0.05] - Minimal height for peaks
  * @param {number} [options.ionizations='H+'] - List of allowed ionisation
- * @return {Array} - Calculated mass for targetMass
+ * @return {Promise<Array>} - Calculated mass for targetMass
  */
-export function calculateForMF(chromatogram, targetMF, options = {}) {
+export async function calculateForMF(chromatogram, targetMF, options = {}) {
   const { threshold = 0.05, slotWidth = 1, ionizations = 'H+' } = options;
 
   if (typeof targetMF !== 'string') {
     throw Error('targetMF must be defined and a string');
   }
 
-  const mfs = generateMFs([targetMF]).map((info) => info.mf);
+  const mfs = (await generateMFs([targetMF])).map((info) => info.mf);
 
   const halfWidth = slotWidth / 2;
 
