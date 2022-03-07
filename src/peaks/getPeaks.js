@@ -42,8 +42,6 @@ export function getPeaks(chromatogram, options = {}) {
     xMedianAbsoluteDeviation(airpls(dataXY.x, dataXY.y).corrected).mad *
     heightFilter;
 
-
-
   peakList = peakList.filter(
     (peak) =>
       (peak.y -

@@ -16,7 +16,7 @@ describe('appendMass', () => {
     expect(chromatogram).toHaveLength(6992);
 
     let peaks = chromatogram.getPeaks();
-    expect(peaks).toHaveLength(47);
+    expect(peaks).toHaveLength(146);
 
     let sampleMS = chromatogram.getSeries('ms').data;
     expect(sampleMS).not.toHaveLength(0);

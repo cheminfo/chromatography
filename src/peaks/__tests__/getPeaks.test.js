@@ -20,14 +20,13 @@ describe('getPeaks', () => {
 
     expect(peakList).toHaveLength(146);
 
-
-    expect(peakList[0]).toBeDeepCloseTo(    {
-	from: 24.906,
-	to: 25.452,
-	width: 0.546,
-	retentionTime: 25.179,
-	intensity: 100674.08571428571,
-      });
+    expect(peakList[0]).toBeDeepCloseTo({
+      from: 24.906,
+      to: 25.452,
+      width: 0.546,
+      retentionTime: 25.179,
+      intensity: 100674.08571428571,
+    });
   });
 
   it('triplet', () => {
