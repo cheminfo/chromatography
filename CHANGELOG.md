@@ -1,5 +1,28 @@
 # Changelog
 
+## [6.0.0](https://github.com/cheminfo/chromatography/compare/v5.2.0...v6.0.0) (2022-03-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* calculateForMF is now async and returns a Promise
+* remove support for Node.js 12
+
+### Features
+
+* calculateForMF is now async and returns a Promise ([c173e22](https://github.com/cheminfo/chromatography/commit/c173e224a954956a15259f66b2167df8041864fc))
+* getPeaks will make a baseline correction before calculate the noise ([c173e22](https://github.com/cheminfo/chromatography/commit/c173e224a954956a15259f66b2167df8041864fc))
+
+
+### Bug Fixes
+
+* update dependencies ([#55](https://github.com/cheminfo/chromatography/issues/55)) ([c173e22](https://github.com/cheminfo/chromatography/commit/c173e224a954956a15259f66b2167df8041864fc))
+
+
+### Miscellaneous Chores
+
+* remove support for Node.js 12 ([c173e22](https://github.com/cheminfo/chromatography/commit/c173e224a954956a15259f66b2167df8041864fc))
+
 ## [5.2.0](https://www.github.com/cheminfo/chromatography/compare/v5.1.0...v5.2.0) (2021-09-15)
 
 
