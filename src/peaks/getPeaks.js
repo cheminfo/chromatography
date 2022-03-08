@@ -7,14 +7,15 @@ import { xMedianAbsoluteDeviation } from 'ml-spectra-processing';
  *
  * Make a peak picking on a chromatogram is not obvious because the baseline is often not close to 0
  * and it is therefore difficult to filter by height.
- * We will therefore consider as height of a peak 2 times the height between the top and the middle of the inflection points.
+ * We will therefore consider as height of a peak 2 times the height between the top and the middle
+ * of the inflection points.
  *
- * We therefore calculate 2 properties:
- * - the median that is expected ot be the
- *
+ * In order to calculate the noise the same problem occurs, baseline is not horizontal.
+ * We therefore calculate the median absolute deviation after baseline correction using airpls.
+ * This noise will be used to filter the peak based on the 'heightFilter'.
  * @param {*} chromatogram
  * @param {object} [options={}]
- * @param {number} [options.heightFilter=2] Peak height should be this factor times the noise (Median Absolute Deviation)
+ * @param {number} [options.heightFilter=5] Peak height should be this factor times the noise (Median Absolute Deviation)
  * @param {string} [options.seriesName='tic']
  * @param {object} [options.broadenPeaksOptions='tic']
  * @returns
