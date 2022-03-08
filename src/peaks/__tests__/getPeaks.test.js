@@ -1,8 +1,12 @@
 import fs from 'fs';
 import { join } from 'path';
 
+import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to';
+
 import { Chromatogram, fromJcamp } from '../..';
 import { getSimulatedSpectrum, fivePeaks } from '../../../testFiles/examples';
+
+expect.extend({ toBeDeepCloseTo });
 
 describe('getPeaks', () => {
   it('from a Diesel chromatogram', () => {
@@ -13,14 +17,15 @@ describe('getPeaks', () => {
     expect(chromatogram).toHaveLength(6992);
 
     let peakList = chromatogram.getPeaks();
-    expect(peakList).toHaveLength(47);
 
-    expect(peakList[0]).toStrictEqual({
-      from: 26.27,
-      to: 27.089,
-      inflectionPoints: { from: 26.27, to: 27.089 },
-      retentionTime: 26.543,
-      intensity: 243033.28571428574,
+    expect(peakList).toHaveLength(146);
+
+    expect(peakList[0]).toBeDeepCloseTo({
+      from: 24.906,
+      to: 25.452,
+      width: 0.546,
+      retentionTime: 25.179,
+      intensity: 100674.08571428571,
     });
   });
 

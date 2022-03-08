@@ -49,18 +49,10 @@ test('Simple case', () => {
 
   expect(compared.peaksSimilarity).toStrictEqual([1, 1, 1, 1, 1]);
   expect(compared.peaksFirst.map((val) => val.retentionTime)).toStrictEqual([
-    10,
-    20,
-    30,
-    40,
-    50,
+    10, 20, 30, 40, 50,
   ]);
   expect(compared.peaksSecond.map((val) => val.retentionTime)).toStrictEqual([
-    20,
-    30,
-    40,
-    50,
-    60,
+    20, 30, 40, 50, 60,
   ]);
 
   let aligned = scaleAlignment(compared.peaksFirst, compared.peaksSecond);
@@ -114,18 +106,10 @@ test('Quality and string', () => {
   let compared = spectraComparison(chrom1, chrom2, options);
   expect(compared.peaksSimilarity).toStrictEqual([1, 1, 1, 1, 1]);
   expect(compared.peaksFirst.map((val) => val.retentionTime)).toStrictEqual([
-    10,
-    20,
-    30,
-    40,
-    50,
+    10, 20, 30, 40, 50,
   ]);
   expect(compared.peaksSecond.map((val) => val.retentionTime)).toStrictEqual([
-    20,
-    30,
-    40,
-    50,
-    60,
+    20, 30, 40, 50, 60,
   ]);
 
   let aligned = scaleAlignment(compared.peaksFirst, compared.peaksSecond, {

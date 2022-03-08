@@ -1,44 +1,66 @@
-import median from 'ml-array-median';
+import airpls from 'ml-airpls';
 import { gsd, broadenPeaks } from 'ml-gsd';
+import { xMedianAbsoluteDeviation } from 'ml-spectra-processing';
+
+/**
+ * Returns the result of a peak picking in the chromatogram
+ *
+ * Make a peak picking on a chromatogram is not obvious because the baseline is often not close to 0
+ * and it is therefore difficult to filter by height.
+ * We will therefore consider as height of a peak 2 times the height between the top and the middle
+ * of the inflection points.
+ *
+ * In order to calculate the noise the same problem occurs, baseline is not horizontal.
+ * We therefore calculate the median absolute deviation after baseline correction using airpls.
+ * This noise will be used to filter the peak based on the 'heightFilter'.
+ * @param {*} chromatogram
+ * @param {object} [options={}]
+ * @param {number} [options.heightFilter=5] Peak height should be this factor times the noise (Median Absolute Deviation)
+ * @param {string} [options.seriesName='tic']
+ * @param {object} [options.broadenPeaksOptions='tic']
+ * @returns
+ */
 
 export function getPeaks(chromatogram, options = {}) {
   const {
-    heightFilter = 2,
+    heightFilter = 5,
     seriesName = 'tic',
     broadenPeaksOptions = { factor: 1, overlap: false },
   } = options;
 
   const series = chromatogram.getSeries(seriesName).data;
   const times = chromatogram.getTimes();
+  const dataXY = { x: times, y: series };
   // first peak selection
-  let peakList = gsd(
-    { x: times, y: series },
-    {
-      noiseLevel: 0,
-      realTopDetection: false,
-      smoothY: true,
-      sgOptions: { windowSize: 5, polynomial: 2 },
-      heightFactor: 2,
-    },
-  );
-  // filter height by factor
-  let medianHeight = median(series);
+  let peakList = gsd(dataXY, {
+    noiseLevel: 0,
+    realTopDetection: false,
+    smoothY: true,
+    sgOptions: { windowSize: 5, polynomial: 2 },
+  });
 
-  peakList = peakList.filter((val) => val.height > medianHeight * heightFilter);
+  const noiseHeight =
+    xMedianAbsoluteDeviation(airpls(dataXY.x, dataXY.y).corrected).mad *
+    heightFilter;
+
+  peakList = peakList.filter(
+    (peak) =>
+      (peak.y -
+        (dataXY.y[peak.inflectionPoints.from.index] +
+          dataXY.y[peak.inflectionPoints.to.index]) /
+          2) *
+        2 >
+      noiseHeight,
+  );
 
   peakList.sort((a, b) => a.x - b.x);
 
-  if (broadenPeaksOptions) {
-    peakList = broadenPeaks(peakList, broadenPeaksOptions);
-  }
+  const broadenPeaksList = broadenPeaks(peakList, broadenPeaksOptions);
 
-  return peakList.map((peak) => ({
-    from: peak.from,
-    to: peak.to,
-    inflectionPoints: {
-      from: Math.min(peak.left.x, peak.right.x),
-      to: Math.max(peak.left.x, peak.right.x),
-    },
+  return broadenPeaksList.map((peak) => ({
+    from: peak.from.x,
+    to: peak.to.x,
+    width: peak.width,
     retentionTime: peak.x,
     intensity: peak.y,
   }));
