@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/cheminfo/chromatography/compare/v6.0.0...v6.1.0) (2022-03-09)
+
+
+### Features
+
+* improve getPeaks to take into account width in broadening peaks ([dfa8af6](https://github.com/cheminfo/chromatography/commit/dfa8af6eef69d7ab18f78edce20ffec8b0222a9b))
+
 ## [6.0.0](https://github.com/cheminfo/chromatography/compare/v5.2.0...v6.0.0) (2022-03-08)
 
 
