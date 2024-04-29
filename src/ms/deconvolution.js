@@ -41,8 +41,12 @@ export function deconvolution(chromatogram, options = {}) {
     scale: maxByRow.map((e) => 1 / e),
   });
 
-  return Object.assign(
-    { matrix, times, mzAxis, rank },
-    { profile: result.A, component: result.S },
-  );
+  return {
+    matrix,
+    times,
+    mzAxis,
+    rank,
+    profile: result.A,
+    component: result.S,
+  };
 }

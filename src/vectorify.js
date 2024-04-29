@@ -21,8 +21,7 @@ export function vectorify(ranges, options = {}) {
       };
       for (let j = 0; j < len; ++j) {
         vector[i].y[j] =
-          Math.pow(ranges[i].ms.x[j], massPower) *
-          Math.pow(ranges[i].ms.y[j], intPower);
+          ranges[i].ms.x[j] ** massPower * ranges[i].ms.y[j] ** intPower;
       }
 
       vector[i] = massFilter(vector[i], filterOptions);
@@ -36,8 +35,7 @@ export function vectorify(ranges, options = {}) {
       };
       for (let j = 0; j < len; ++j) {
         vector[i].y[j] =
-          Math.pow(ranges[i].ms.x[j], massPower) *
-          Math.pow(ranges[i].ms.y[j], intPower);
+          ranges[i].ms.x[j] ** massPower * ranges[i].ms.y[j] ** intPower;
       }
     }
   }

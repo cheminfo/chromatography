@@ -1,11 +1,11 @@
-import Regression from 'ml-regression-polynomial';
+import { PolynomialRegression } from 'ml-regression-polynomial';
 
 export function scaleAlignment(reference, sample, options = {}) {
   const { computeQuality = false, polynomialDegree = 3 } = options;
   let referenceTime = reference.map((val) => val.retentionTime);
   let sampleTime = sample.map((val) => val.retentionTime);
 
-  const regression = new Regression(
+  const regression = new PolynomialRegression(
     sampleTime,
     referenceTime,
     polynomialDegree,

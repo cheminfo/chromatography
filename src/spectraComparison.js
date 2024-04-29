@@ -36,7 +36,7 @@ const defaultOptions = {
 };
 
 export function spectraComparison(chrom1, chrom2, options = {}) {
-  options = Object.assign({}, defaultOptions, options);
+  options = { ...defaultOptions, ...options };
 
   // peak picking
   let reference = preprocessing(chrom1, options);
@@ -107,6 +107,6 @@ export function spectraComparison(chrom1, chrom2, options = {}) {
   return {
     peaksFirst: peaksChrom1,
     peaksSecond: peaksChrom2,
-    peaksSimilarity: peaksSimilarity,
+    peaksSimilarity,
   };
 }
