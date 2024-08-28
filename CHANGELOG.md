@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.0.0](https://github.com/cheminfo/chromatography/compare/v6.1.0...v7.0.0) (2024-08-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* update dependencies - change of airpls algorithm increase the number of peaks in auto peak picking
+
+### Features
+
+* keep meta information from netcdf ([7863e4f](https://github.com/cheminfo/chromatography/commit/7863e4ff4d7ff3c70050afe316890100ac68df52))
+* update dependencies - change of airpls algorithm increase the number of peaks in auto peak picking ([63da9ae](https://github.com/cheminfo/chromatography/commit/63da9ae25283ecdb02af806c2fabfdcc7185e501))
+
 ## [6.1.0](https://github.com/cheminfo/chromatography/compare/v6.0.0...v6.1.0) (2022-03-09)
 
 
