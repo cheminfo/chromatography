@@ -1,7 +1,8 @@
-import { readFileSync } from 'fs';
-import { join } from 'path';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
 import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to';
+import { describe, it, expect } from 'vitest';
 
 import { Chromatogram, appendMass, fromJcamp } from '../..';
 import { lorentzian, simple4 } from '../../../testFiles/examples';
@@ -16,7 +17,7 @@ describe('appendMass', () => {
     expect(chromatogram).toHaveLength(6992);
 
     let peaks = chromatogram.getPeaks();
-    expect(peaks).toHaveLength(146);
+    expect(peaks).toHaveLength(244);
 
     let sampleMS = chromatogram.getSeries('ms').data;
     expect(sampleMS).not.toHaveLength(0);

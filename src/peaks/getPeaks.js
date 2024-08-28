@@ -15,7 +15,7 @@ import { xMedianAbsoluteDeviation } from 'ml-spectra-processing';
  * This noise will be used to filter the peak based on the 'heightFilter'.
  * @param {*} chromatogram
  * @param {object} [options={}]
- * @param {number} [options.heightFilter=5] Peak height should be this factor times the noise (Median Absolute Deviation)
+ * @param {number} [options.heightFilter=5] - Peak height should be this factor times the noise (Median Absolute Deviation)
  * @param {string} [options.seriesName='tic']
  * @param {object} [options.broadenPeaksOptions='tic']
  * @returns

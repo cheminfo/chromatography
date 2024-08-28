@@ -1,11 +1,20 @@
 import max from 'ml-array-max';
 
 /**
+ * @typedef KovatsReturn
+ * @type {object}
+ * @property {number} index - Kovats retention index
+ * @property {number} numberFragments - Number of fragments
+ * @property {number} percentFragments - Percentage of fragments
+ */
+
+/**
  * Calculates the Kovats retention index for a mass spectra of a n-alkane
  * @param {object} ms - A mass spectra object
  * @param {Array<number>} ms.x - Array of masses
  * @param {Array<number>} ms.y - Array of intensities
- * @return {number} - Kovats retention index
+ * @param options
+ * @returns {KovatsReturn} - Kovats retention index
  */
 export function kovats(ms, options = {}) {
   const { threshold = 0.01 } = options;
@@ -21,21 +30,21 @@ export function kovats(ms, options = {}) {
   }
 
   // we find candidates
-  let nAlcaneMasses = [];
+  let nbAlcaneMasses = [];
   let fragmentMasses = [];
 
   for (let i = 0; i < masses.length; i++) {
     if ((masses[i] - 2) % 14 === 0) {
-      nAlcaneMasses.push(masses[i]);
+      nbAlcaneMasses.push(masses[i]);
     }
     if ((masses[i] - 1) % 14 === 0) {
       fragmentMasses.push(masses[i]);
     }
   }
 
-  if (nAlcaneMasses.length === 0) return {};
+  if (nbAlcaneMasses.length === 0) return {};
 
-  let biggestMass = nAlcaneMasses.sort((a, b) => b - a)[0];
+  let biggestMass = nbAlcaneMasses.sort((a, b) => b - a)[0];
   fragmentMasses = fragmentMasses.filter((mass) => mass < biggestMass);
 
   return {

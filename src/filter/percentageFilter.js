@@ -19,7 +19,7 @@ function applyFilter(series, percentage) {
   let basePeak;
   try {
     basePeak = arrayMax(series[1]);
-  } catch (e) {
+  } catch {
     basePeak = 0;
   }
   let filtered = [[], []];

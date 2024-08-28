@@ -1,3 +1,5 @@
+import { describe, it, expect } from 'vitest';
+
 import { Chromatogram } from '..';
 import { simpleTic, simple } from '../../testFiles/examples';
 

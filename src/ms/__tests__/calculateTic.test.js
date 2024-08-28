@@ -1,3 +1,5 @@
+import { test, expect } from 'vitest';
+
 import { Chromatogram } from '../..';
 import { simple } from '../../../testFiles/examples.js';
 

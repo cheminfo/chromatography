@@ -3,7 +3,7 @@ import max from 'ml-array-max';
 /**
  * Calculate bpc
  * @param {Chromatogram} chromatogram - GC/MS chromatogram where make the peak picking
- * @return {Array} - Calculated bpc
+ * @returns {Array} - Calculated bpc
  */
 export function calculateBpc(chromatogram) {
   const ms = chromatogram.getSeries('ms');

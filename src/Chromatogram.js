@@ -85,7 +85,7 @@ export class Chromatogram {
   }
 
   hasSeries(seriesName) {
-    return typeof this.series[seriesName] !== 'undefined';
+    return this.series[seriesName] !== undefined;
   }
 
   requiresSeries(seriesName) {
@@ -192,7 +192,7 @@ export class Chromatogram {
   }
 
   copy() {
-    const json = JSON.parse(JSON.stringify(this));
+    const json = structuredClone(this);
     return fromJSON(json);
   }
 

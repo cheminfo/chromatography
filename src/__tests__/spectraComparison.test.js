@@ -1,3 +1,5 @@
+import { test, expect } from 'vitest';
+
 import { Chromatogram, spectraComparison } from '..';
 import { lorentzian } from '../../testFiles/examples';
 

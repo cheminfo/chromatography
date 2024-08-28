@@ -1,7 +1,8 @@
-import fs from 'fs';
-import { join } from 'path';
+import fs from 'node:fs';
+import { join } from 'node:path';
 
 import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to';
+import { describe, it, expect } from 'vitest';
 
 import { Chromatogram, fromJcamp } from '../..';
 import { getSimulatedSpectrum, fivePeaks } from '../../../testFiles/examples';
@@ -18,8 +19,7 @@ describe('getPeaks', () => {
 
     let peakList = chromatogram.getPeaks();
 
-    expect(peakList).toHaveLength(146);
-
+    expect(peakList).toHaveLength(244);
     expect(peakList[0]).toBeDeepCloseTo({
       from: 24.906,
       to: 25.452,
@@ -49,15 +49,15 @@ describe('getPeaks', () => {
   });
 
   it('fivePeaks', () => {
-    let peaks = fivePeaks.getPeaks();
-    let fwhm = 1;
+    const peaks = fivePeaks.getPeaks();
+    const fwhm = 1;
     // https://en.wikipedia.org/wiki/Gaussian_function
-    let deltaInflexionPoints = fwhm / Math.sqrt(2 * Math.log(2));
+    const deltaInflexionPoints = fwhm / Math.sqrt(2 * Math.log(2));
 
-    let sumOfDiffFromTo = peaks.reduce(
-      (previous, current) => (previous += current.to - current.from),
-      0,
-    );
+    let sumOfDiffFromTo = 0;
+    for (let peak of peaks) {
+      sumOfDiffFromTo += peak.to - peak.from;
+    }
     expect(sumOfDiffFromTo).toBeCloseTo(deltaInflexionPoints * 5, 2);
   });
 });

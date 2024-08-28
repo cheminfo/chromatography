@@ -1,5 +1,7 @@
-import { readFileSync } from 'fs';
-import { join } from 'path';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+import { describe, it, expect } from 'vitest';
 
 import { Chromatogram, appendMass, vectorify, fromJcamp } from '..';
 import { lorentzian } from '../../testFiles/examples';

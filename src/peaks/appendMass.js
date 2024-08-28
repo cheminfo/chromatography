@@ -7,7 +7,7 @@ import { merge } from '../ms/merge';
  * @param {object} [options={}] - Options for the integral filtering
  * @param {number} [options.mergeThreshold=0.3] - Peaks that are closer than this value (in Da) will be merged
  * @param {number} [options.seriesName='ms'] - Maximum number of peaks for each mass spectra (when is Number.MAX_VALUE there's no filter)
- * @return {Array<object>} - A copy of ranges with ms appended
+ * @returns {Array<object>} - A copy of ranges with ms appended
  */
 export function appendMass(chromatogram, peaks, options = {}) {
   const { mergeThreshold = 0.3, seriesName = 'ms' } = options;

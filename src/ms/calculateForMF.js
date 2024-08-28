@@ -1,6 +1,7 @@
 import { IsotopicDistribution } from 'isotopic-distribution';
 import { generateMFs } from 'mf-generator';
 import { xyObjectSlotX } from 'ml-spectra-processing';
+
 /**
  * Calculate tic for specific molecular formula and ionizations
  *
@@ -11,16 +12,17 @@ import { xyObjectSlotX } from 'ml-spectra-processing';
  * @param {number} [options.slotWidth=1] - Width of the slot around the mass of targetMF
  * @param {number} [options.threshold=0.05] - Minimal height for peaks
  * @param {number} [options.ionizations='H+'] - List of allowed ionisation
- * @return {Promise<Array>} - Calculated mass for targetMass
+ * @returns {Promise<Array>} - Calculated mass for targetMass
  */
 export async function calculateForMF(chromatogram, targetMF, options = {}) {
   const { threshold = 0.05, slotWidth = 1, ionizations = 'H+' } = options;
 
   if (typeof targetMF !== 'string') {
-    throw Error('targetMF must be defined and a string');
+    throw new Error('targetMF must be defined and a string');
   }
 
-  const mfs = (await generateMFs([targetMF])).map((info) => info.mf);
+  const mfInfos = await generateMFs([targetMF]);
+  const mfs = mfInfos.map((info) => info.mf);
 
   const halfWidth = slotWidth / 2;
 

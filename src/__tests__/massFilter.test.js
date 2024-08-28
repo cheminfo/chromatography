@@ -1,3 +1,5 @@
+import { test, expect } from 'vitest';
+
 import { massFilter, vectorify } from '..';
 
 test('thresholdFactor', () => {

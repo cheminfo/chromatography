@@ -50,7 +50,7 @@ export function massFilter(massXYObject, options = {}) {
  * @param {Array<object>} list - Sorted list of XY-objects to be filtered
  * @param {number} maxNumberPeaks - Maximum number of peaks for each mass spectra
  * @param {number} groupWidth - When find a max can't be another max in a radius of this size
- * @return {Array<object>} - List of XY-objects filtered
+ * @returns {Array<object>} - List of XY-objects filtered
  */
 export function moreDistinct(list, maxNumberPeaks, groupWidth) {
   let len = 0;

@@ -15,7 +15,7 @@ export function merge(chromatogram, options = {}) {
     throw new Error(`The series "${seriesName}" is not of dimension 2`);
   }
 
-  if (!range || range.from > time[time.length - 1] || range.to < time[0]) {
+  if (!range || range.from > time.at(-1) || range.to < time[0]) {
     return { x: [], y: [] };
   }
   let { fromIndex, toIndex } = xGetFromToIndex(time, range);

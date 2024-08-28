@@ -18,12 +18,10 @@ export function calculateEic(chromatogram, targetMass, options = {}) {
   if (!Number.isNaN(Number(targetMass))) {
     targetMasses = [Number(targetMass)];
   } else if (typeof targetMass === 'string') {
-    targetMasses = targetMass
-      .split(/[ ,;\r\n\t]+/)
-      .map((value) => Number(value));
+    targetMasses = targetMass.split(/[\t\n\r ,;]+/).map(Number);
   }
   for (let mass of targetMasses) {
-    if (isNaN(mass)) {
+    if (Number.isNaN(mass)) {
       throw new Error(
         'targetMass must be defined and a number or string of comma separated numbers',
       );

@@ -8,7 +8,7 @@ import { vectorify } from './vectorify';
  * @ignore
  * @param {Chromatogram} chromatogram - Chromatogram to process
  * @param {object} [options] - Options object (same as spectraComparison)
- * @return {{peaks: Array<object>, integratedMs: Array<object>, vector: Array<object>}} - Array of peaks, integrated mass spectra and weighted mass spectra
+ * @returns {{peaks: Array<object>, integratedMs: Array<object>, vector: Array<object>}} - Array of peaks, integrated mass spectra and weighted mass spectra
  */
 function preprocessing(chromatogram, options) {
   // peak picking

@@ -1,3 +1,5 @@
+import { test, expect } from 'vitest';
+
 import { fromJSON } from '..';
 import { simpleStringified } from '../../testFiles/examples';
 

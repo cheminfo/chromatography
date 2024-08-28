@@ -1,3 +1,5 @@
+import { test, expect } from 'vitest';
+
 import { simple } from '../../testFiles/examples.js';
 
 test('Create a JSON', () => {

@@ -1,3 +1,5 @@
+import { test, expect } from 'vitest';
+
 import { cosineSimilarity } from '../cosineSimilarity';
 
 test('simple case', () => {

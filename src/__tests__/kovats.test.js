@@ -1,3 +1,5 @@
+import { test, expect } from 'vitest';
+
 import { kovats } from '..';
 
 test('Simple case', () => {

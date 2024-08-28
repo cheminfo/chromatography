@@ -55,10 +55,8 @@ export function applyLockMass(chromatogram, mfs, options = {}) {
     // apply identified lock mass
     if (Math.abs(difference) < maxShift) {
       previousValidDifference = difference;
-      if (!usingPreviousValidDifference) {
-        if (closestIndex !== -1) {
-          referencesCount[closestIndex] += 1;
-        }
+      if (!usingPreviousValidDifference && closestIndex !== -1) {
+        referencesCount[closestIndex] += 1;
       }
       for (let m = 0; m < ms[massIndex][0].length; m++) {
         ms[massIndex][0][m] += difference;
