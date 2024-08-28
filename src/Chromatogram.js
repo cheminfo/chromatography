@@ -19,7 +19,8 @@ import { getMzVsTimesMatrix } from './util/getMzVsTimesMatrix';
 import { integrate } from './util/integrate';
 
 export class Chromatogram {
-  constructor(times, series) {
+  constructor(times, series, options = {}) {
+    this.meta = options.meta || {};
     this.series = {};
     this.times = [];
     if (!isAnyArray(times)) {
@@ -237,9 +238,8 @@ export class Chromatogram {
 }
 
 export function fromJSON(json) {
-  let series = json.series;
-  let times = json.times;
-  let chromatogram = new Chromatogram(times);
+  const { series, times, meta = {} } = json;
+  let chromatogram = new Chromatogram(times, undefined, { meta });
 
   if (Array.isArray(series)) {
     for (let i = 0; i < series.length; i++) {

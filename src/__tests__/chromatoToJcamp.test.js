@@ -34,6 +34,7 @@ test('chromatoToJcamp', () => {
       title: 'Total ion chromatogram',
       dataType: 'Chromatogram',
     },
+    meta: chromatogram.meta,
   });
-  expect(jcamp.split(/\n/)).toHaveLength(4529);
+  expect(jcamp.split(/\n/)).toHaveLength(4558);
 });
