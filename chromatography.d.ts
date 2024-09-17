@@ -307,7 +307,7 @@ export interface nmfOptions {
 
 export interface DeconvolutionOptions {
   /**
-   * Number of pure components 
+   * Number of pure components
    */
   rank: number;
   range: ChromatogramRange;
@@ -317,7 +317,7 @@ export interface DeconvolutionOptions {
 export interface DeconvolutionResult {
   /**
    * submatrix, times and m/z axis of the range
-  */
+   */
   matrix: number[][];
   /**
    * vector with retention times of the range
@@ -336,7 +336,7 @@ export interface DeconvolutionResult {
    */
   profile: number[][];
   /**
-   * Matrix with row as estimated pure components 
+   * Matrix with row as estimated pure components
    */
   component: number[][];
 }
@@ -349,6 +349,9 @@ export class Chromatogram {
   constructor(
     times: number[],
     series: { [key: string]: ChromatogramSeriesData },
+    options?: {
+      meta?: Record<string, any>;
+    },
   );
 
   /**
@@ -576,16 +579,12 @@ export class Chromatogram {
    * Performing non-negative matrix factorization solving
    * argmin_(A >= 0, S >= 0) 1 / 2 * ||Y - AS||_2^2 + lambda * ||S||_1
    */
-  deconvolution(
-    options?: DeconvolutionOptions
-  ): DeconvolutionResult;
+  deconvolution(options?: DeconvolutionOptions): DeconvolutionResult;
 
   /**
    * Return the submatrix, times, and mass x axis for each range
    */
-  getMzVsTimesMatrix(
-    range: ChromatogramRange
-  )
+  getMzVsTimesMatrix(range: ChromatogramRange);
 }
 
 export interface FromJSONObject {
