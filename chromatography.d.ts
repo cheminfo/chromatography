@@ -899,4 +899,4 @@ export function fromNetCDF(netcdf: any): Chromatogram;
  * Creates a new Chromatogram from supported XML formats.
  * @param xml - String containing the XML chromatogram.
  */
-export function fromXML(xml: string): Chromatogram;
+export async function fromXML(xml: string): Chromatogram;
