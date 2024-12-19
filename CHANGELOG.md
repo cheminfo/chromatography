@@ -1,5 +1,16 @@
 # Changelog
 
+## [8.0.0](https://github.com/cheminfo/chromatography/compare/v7.0.0...v8.0.0) (2024-12-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* Improve fromXML performances that requires async function
+
+### Features
+
+* Improve fromXML performances that requires async function ([494e4a6](https://github.com/cheminfo/chromatography/commit/494e4a622719c155074674c50e0ef5a66fc1901e))
+
 ## [7.0.0](https://github.com/cheminfo/chromatography/compare/v6.1.0...v7.0.0) (2024-08-28)
 
 
