@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/cheminfo/chromatography/compare/v8.0.0...v8.0.1) (2024-12-19)
+
+
+### Bug Fixes
+
+* make code compatible with bluebird Promise ([2a272d8](https://github.com/cheminfo/chromatography/commit/2a272d8c3db83ec85df83af2ef5987936176e42d))
+
 ## [8.0.0](https://github.com/cheminfo/chromatography/compare/v7.0.0...v8.0.0) (2024-12-19)
 
 
