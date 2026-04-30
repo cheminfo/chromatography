@@ -1,6 +1,6 @@
 {
   "name": "chromatography",
-  "version": "8.0.1",
+  "version": "8.1.0",
   "description": "Tools for storing, searching and analyzing GC/MS data",
   "main": "lib/index.js",
   "module": "src/index.js",

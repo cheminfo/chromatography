@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/cheminfo/chromatography/compare/v8.0.1...v8.1.0) (2026-04-30)
+
+
+### Features
+
+* update all dependencies ([#63](https://github.com/cheminfo/chromatography/issues/63)) ([76c01e2](https://github.com/cheminfo/chromatography/commit/76c01e2d79c715e869eeebfc51108096828b8617))
+
 ## [8.0.1](https://github.com/cheminfo/chromatography/compare/v8.0.0...v8.0.1) (2024-12-19)
 
 
