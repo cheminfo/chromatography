@@ -1,13 +1,10 @@
-import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to';
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import {
   highResolution4,
   highResolution,
   simple,
 } from '../../../testFiles/examples';
-
-expect.extend({ toBeDeepCloseTo });
 
 describe('merge: Low resolution', () => {
   it('no options', () => {

@@ -1,16 +1,7 @@
-import cheminfo from 'eslint-config-cheminfo';
-import globals from 'globals';
+import { defineConfig , globalIgnores} from 'eslint/config'
+import cheminfo from 'eslint-config-cheminfo/base';
 
-export default [
-  ...cheminfo,
-  {
-    languageOptions: {
-      globals: {
-        ...globals.node,
-      },
-    },
-    rules: {
-      //      "camelcase": "off",
-    }
-  }
-]
+export default defineConfig(
+  // globalIgnores([]),
+  cheminfo,
+);

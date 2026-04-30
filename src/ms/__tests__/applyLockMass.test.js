@@ -1,9 +1,6 @@
-import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to';
-import { test, expect } from 'vitest';
+import { expect, test } from 'vitest';
 
 import { Chromatogram } from '../..';
-
-expect.extend({ toBeDeepCloseTo });
 
 test('simple case', () => {
   let chromatogram = new Chromatogram([1, 2], {

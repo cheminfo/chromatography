@@ -1,12 +1,15 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-import { test, expect } from 'vitest';
+import { expect, test } from 'vitest';
 
 import { fromJcamp } from '../..';
 
 test('deconvolution of overlap signals', () => {
-  const path = join(__dirname, '../../../testFiles/jcamp/signalOverlap.jdx');
+  const path = join(
+    import.meta.dirname,
+    '../../../testFiles/jcamp/signalOverlap.jdx',
+  );
   const jcamp = readFileSync(path, 'utf8');
   const chromatogram = fromJcamp(jcamp);
   let result = chromatogram.deconvolution({

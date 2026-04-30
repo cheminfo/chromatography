@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { appendKovats } from '../..';
 import { tenPeaksKovats as chromatogram } from '../../../testFiles/examples';

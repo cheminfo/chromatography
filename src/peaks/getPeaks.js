@@ -1,5 +1,5 @@
 import airpls from 'ml-airpls';
-import { gsd, broadenPeaks } from 'ml-gsd';
+import { broadenPeaks, gsd } from 'ml-gsd';
 import { xMedianAbsoluteDeviation } from 'ml-spectra-processing';
 
 /**

@@ -1,14 +1,14 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
-import { Chromatogram, appendMass, vectorify, fromJcamp } from '..';
+import { Chromatogram, appendMass, fromJcamp, vectorify } from '..';
 import { lorentzian } from '../../testFiles/examples';
 
 describe('vectorify', () => {
   it('from a Diesel chromatogram', () => {
-    const path = join(__dirname, '../../testFiles/jcamp/P064.JDX');
+    const path = join(import.meta.dirname, '../../testFiles/jcamp/P064.JDX');
     const jcamp = readFileSync(path, 'utf8');
     const chromatogram = fromJcamp(jcamp);
     expect(chromatogram).toHaveLength(6992);
