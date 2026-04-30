@@ -2,13 +2,13 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { fromVariables } from 'convert-to-jcamp';
-import { test, expect } from 'vitest';
+import { expect, test } from 'vitest';
 
 import { fromNetCDF } from '..';
 
 test('chromatoToJcamp', () => {
   const arrayBuffer = readFileSync(
-    join(__dirname, '../../testFiles/netcdf/bruker-gcms.cdf'),
+    join(import.meta.dirname, '../../testFiles/netcdf/bruker-gcms.cdf'),
   );
 
   const chromatogram = fromNetCDF(arrayBuffer);

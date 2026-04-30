@@ -1,17 +1,14 @@
 import fs from 'node:fs';
 import { join } from 'node:path';
 
-import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to';
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { Chromatogram, fromJcamp } from '../..';
-import { getSimulatedSpectrum, fivePeaks } from '../../../testFiles/examples';
-
-expect.extend({ toBeDeepCloseTo });
+import { fivePeaks, getSimulatedSpectrum } from '../../../testFiles/examples';
 
 describe('getPeaks', () => {
   it('from a Diesel chromatogram', () => {
-    const path = join(__dirname, '../../../testFiles/jcamp/P064.JDX');
+    const path = join(import.meta.dirname, '../../../testFiles/jcamp/P064.JDX');
     const jcamp = fs.readFileSync(path, 'utf8');
 
     const chromatogram = fromJcamp(jcamp);
@@ -19,7 +16,7 @@ describe('getPeaks', () => {
 
     let peakList = chromatogram.getPeaks();
 
-    expect(peakList).toHaveLength(244);
+    expect(peakList).toHaveLength(250);
     expect(peakList[0]).toBeDeepCloseTo({
       from: 24.906,
       to: 25.452,

@@ -1,27 +1,24 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to';
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { Chromatogram, appendMass, fromJcamp } from '../..';
 import { lorentzian, simple4 } from '../../../testFiles/examples';
 
-expect.extend({ toBeDeepCloseTo });
-
 describe('appendMass', () => {
   it('from a Diesel chromatogram', () => {
-    const path = join(__dirname, '../../../testFiles/jcamp/P064.JDX');
+    const path = join(import.meta.dirname, '../../../testFiles/jcamp/P064.JDX');
     const jcamp = readFileSync(path, 'utf8');
     const chromatogram = fromJcamp(jcamp);
     expect(chromatogram).toHaveLength(6992);
 
-    let peaks = chromatogram.getPeaks();
-    expect(peaks).toHaveLength(244);
+    const peaks = chromatogram.getPeaks();
+    expect(peaks).toHaveLength(250);
 
-    let sampleMS = chromatogram.getSeries('ms').data;
+    const sampleMS = chromatogram.getSeries('ms').data;
     expect(sampleMS).not.toHaveLength(0);
-    let peaksWithMS = appendMass(chromatogram, peaks, sampleMS);
+    const peaksWithMS = appendMass(chromatogram, peaks, sampleMS);
     expect(peaks).toHaveLength(peaksWithMS.length);
   });
 

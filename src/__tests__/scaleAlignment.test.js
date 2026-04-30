@@ -1,6 +1,6 @@
-import { test, expect } from 'vitest';
+import { expect, test } from 'vitest';
 
-import { Chromatogram, spectraComparison, scaleAlignment } from '..';
+import { Chromatogram, scaleAlignment, spectraComparison } from '..';
 import { lorentzian } from '../../testFiles/examples';
 
 test('Simple case', () => {

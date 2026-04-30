@@ -1,7 +1,7 @@
 import {
-  xySortX,
   xGetFromToIndex,
   xyArrayWeightedMerge,
+  xySortX,
 } from 'ml-spectra-processing';
 
 export function merge(chromatogram, options = {}) {

@@ -1,4 +1,4 @@
-import { test, expect, describe, it } from 'vitest';
+import { describe, expect, it, test } from 'vitest';
 
 import { Chromatogram } from '../../index';
 import { percentageFilter } from '../percentageFilter';
