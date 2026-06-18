@@ -1,3 +1,5 @@
+import type Matrix from 'ml-matrix';
+
 export abstract class ChromatogramSeries<DataType> {
   getData(): DataType;
   is1D(): boolean;
@@ -341,6 +343,12 @@ export interface DeconvolutionResult {
   component: number[][];
 }
 
+export interface MzVsTimesMatrixResult {
+  times: number[];
+  mzAxis: number[];
+  matrix: Matrix;
+}
+
 export class Chromatogram {
   /**
    * @param times - Array of time points.
@@ -584,7 +592,7 @@ export class Chromatogram {
   /**
    * Return the submatrix, times, and mass x axis for each range
    */
-  getMzVsTimesMatrix(range: ChromatogramRange);
+  getMzVsTimesMatrix(range: ChromatogramRange): MzVsTimesMatrixResult;
 }
 
 export interface FromJSONObject {
@@ -899,4 +907,4 @@ export function fromNetCDF(netcdf: any): Chromatogram;
  * Creates a new Chromatogram from supported XML formats.
  * @param xml - String containing the XML chromatogram.
  */
-export async function fromXML(xml: string): Chromatogram;
+export function fromXML(xml: string): Promise<Chromatogram>;
