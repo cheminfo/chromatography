@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.1](https://github.com/cheminfo/chromatography/compare/v8.1.0...v8.1.1) (2026-06-18)
+
+
+### Bug Fixes
+
+* typings of `getMzVsTimesMatrix` ([#65](https://github.com/cheminfo/chromatography/issues/65)) ([cf886bd](https://github.com/cheminfo/chromatography/commit/cf886bdcf7f6723c7dfd1feba1ad54276006808e))
+
 ## [8.1.0](https://github.com/cheminfo/chromatography/compare/v8.0.1...v8.1.0) (2026-04-30)
 
 
