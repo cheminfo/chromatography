@@ -1,4 +1,4 @@
-import max from 'ml-array-max';
+import { xMaxValue } from 'ml-spectra-processing/x';
 
 /**
  * Calculate bpc
@@ -11,7 +11,7 @@ export function calculateBpc(chromatogram) {
   const bpc = [];
   for (const massSpectrum of massSpectra) {
     if (massSpectrum[1].length > 0) {
-      bpc.push(max(massSpectrum[1]));
+      bpc.push(xMaxValue(massSpectrum[1]));
     } else {
       bpc.push(0);
     }

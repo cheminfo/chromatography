@@ -1,8 +1,6 @@
-import {
-  xGetFromToIndex,
-  xyArrayWeightedMerge,
-  xySortX,
-} from 'ml-spectra-processing';
+import { xGetFromToIndex } from 'ml-spectra-processing/x';
+import { xySortX } from 'ml-spectra-processing/xy';
+import { xyArrayWeightedMerge } from 'ml-spectra-processing/xyArray';
 
 export function merge(chromatogram, options = {}) {
   let { mergeThreshold = 0.3, seriesName = 'ms', range = {} } = options;

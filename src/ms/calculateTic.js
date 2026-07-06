@@ -1,4 +1,4 @@
-import sum from 'ml-array-sum';
+import { xSum } from 'ml-spectra-processing/x';
 
 export function calculateTic(chromatogram) {
   const ms = chromatogram.getSeries('ms');
@@ -6,7 +6,7 @@ export function calculateTic(chromatogram) {
   const tic = [];
   for (const massSpectrum of massSpectra) {
     if (massSpectrum[1].length > 0) {
-      tic.push(sum(massSpectrum[1]));
+      tic.push(xSum(massSpectrum[1]));
     } else {
       tic.push(0);
     }

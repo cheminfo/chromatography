@@ -1,5 +1,5 @@
 import { isAnyArray } from 'is-any-array';
-import { xFindClosestIndex } from 'ml-spectra-processing';
+import { xFindClosestIndex } from 'ml-spectra-processing/x';
 
 import { meanFilter } from './filter/meanFilter';
 import { percentageFilter } from './filter/percentageFilter';

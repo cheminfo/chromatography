@@ -1,6 +1,6 @@
 import airpls from 'ml-airpls';
 import { broadenPeaks, gsd } from 'ml-gsd';
-import { xMedianAbsoluteDeviation } from 'ml-spectra-processing';
+import { xMedianAbsoluteDeviation } from 'ml-spectra-processing/x';
 
 /**
  * Returns the result of a peak picking in the chromatogram

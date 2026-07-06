@@ -1,5 +1,5 @@
 import { Matrix } from 'ml-matrix';
-import { xFindClosestIndex } from 'ml-spectra-processing';
+import { xFindClosestIndex } from 'ml-spectra-processing/x';
 
 /**
  * Return the submatrix, times, and mass x axis for each range
