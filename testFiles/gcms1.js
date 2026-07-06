@@ -1,4 +1,5 @@
 import { SpectrumGenerator } from 'spectrum-generator';
+
 import { Chromatogram } from '../src';
 
 const nbPeaks = 5;

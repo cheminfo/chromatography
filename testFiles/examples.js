@@ -37,15 +37,7 @@ export const highResolution4 = new Chromatogram([1, 2, 3, 4], {
   ms: [
     [
       [
-        300.0002,
-        100.002,
-        200.02,
-        99.999,
-        100,
-        100.01,
-        200.01,
-        200.02,
-        100.31,
+        300.0002, 100.002, 200.02, 99.999, 100, 100.01, 200.01, 200.02, 100.31,
         100.32,
       ],
       [0, 20, 0, 15, 0, 2, 3, 0, 5, 6],
@@ -114,7 +106,7 @@ export function getSimulatedSpectrum(options = {}) {
     ];
   }
   return new Chromatogram(times, {
-    tic: tic,
-    ms: ms,
+    tic,
+    ms,
   });
 }
