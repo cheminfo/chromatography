@@ -23,11 +23,11 @@
   ],
   "scripts": {
     "build": "cheminfo-build --entry src/index.js --root Chromatography",
-    "eslint": "eslint src --cache",
+    "eslint": "eslint . --cache",
     "eslint-fix": "npm run eslint -- --fix",
     "prepack": "rollup -c",
-    "prettier": "prettier --check src",
-    "prettier-write": "prettier --write src",
+    "prettier": "prettier --check .",
+    "prettier-write": "prettier --write .",
     "test": "npm run test-only && npm run eslint && npm run prettier",
     "test-only": "vitest run --coverage"
   },
