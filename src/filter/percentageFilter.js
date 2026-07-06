@@ -1,4 +1,4 @@
-import arrayMax from 'ml-array-max';
+import { xMaxValue } from 'ml-spectra-processing/x';
 
 import { seriesFromArray } from '../seriesFromArray';
 
@@ -18,7 +18,7 @@ export function percentageFilter(chromatogram, seriesName, options = {}) {
 function applyFilter(series, percentage) {
   let basePeak;
   try {
-    basePeak = arrayMax(series[1]);
+    basePeak = xMaxValue(series[1]);
   } catch {
     basePeak = 0;
   }

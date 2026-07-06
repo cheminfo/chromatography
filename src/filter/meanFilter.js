@@ -1,4 +1,4 @@
-import arrayMean from 'ml-array-mean';
+import { xMean } from 'ml-spectra-processing/x';
 
 import { seriesFromArray } from '../seriesFromArray';
 
@@ -17,7 +17,7 @@ export function meanFilter(chromatogram, seriesName, options = {}) {
 function applyFilter(series, factor) {
   let filtered = [[], []];
   if (series[1].length === 0) return filtered;
-  const meanIntensity = factor * arrayMean(series[1]);
+  const meanIntensity = factor * xMean(series[1]);
   for (let i = 0; i < series[0].length; i++) {
     if (series[1][i] > meanIntensity) {
       filtered[0].push(series[0][i]);

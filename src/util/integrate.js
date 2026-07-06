@@ -1,4 +1,5 @@
-import { xGetFromToIndex, xyIntegration } from 'ml-spectra-processing';
+import { xGetFromToIndex } from 'ml-spectra-processing/x';
+import { xyIntegration } from 'ml-spectra-processing/xy';
 
 import { baselineCorrection } from './baselineCorrection';
 

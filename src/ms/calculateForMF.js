@@ -1,6 +1,6 @@
 import { IsotopicDistribution } from 'isotopic-distribution';
 import { generateMFs } from 'mf-generator';
-import { xyObjectSlotX } from 'ml-spectra-processing';
+import { xyObjectSlotX } from 'ml-spectra-processing/xyObject';
 
 /**
  * Calculate tic for specific molecular formula and ionizations

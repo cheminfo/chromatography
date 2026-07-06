@@ -1,5 +1,6 @@
-import { xySortX } from 'ml-spectra-processing';
+import { xySortX } from 'ml-spectra-processing/xy';
 import { SpectrumGenerator } from 'spectrum-generator';
+
 import { Chromatogram } from '../src';
 
 const nbPeaks = 20;

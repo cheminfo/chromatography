@@ -1,4 +1,4 @@
-import max from 'ml-array-max';
+import { xMaxValue } from 'ml-spectra-processing/x';
 
 /**
  * @typedef KovatsReturn
@@ -19,7 +19,7 @@ import max from 'ml-array-max';
 export function kovats(ms, options = {}) {
   const { threshold = 0.01 } = options;
   // we normalize the data and filter them
-  let maxY = max(ms.y);
+  let maxY = xMaxValue(ms.y);
   let masses = [];
   let intensities = [];
   for (let i = 0; i < ms.x.length; i++) {
