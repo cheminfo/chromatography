@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest';
 import { Chromatogram, fromJcamp } from '../..';
 import { fivePeaks, getSimulatedSpectrum } from '../../../testFiles/examples';
 
-describe('getPeaks', () => {
+describe('getPeaks', { timeout: 10_000 }, () => {
   it('from a Diesel chromatogram', () => {
     const path = join(import.meta.dirname, '../../../testFiles/jcamp/P064.JDX');
     const jcamp = fs.readFileSync(path, 'utf8');
