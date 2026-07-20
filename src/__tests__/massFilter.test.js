@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 
-import { massFilter, vectorify } from '..';
+import { massFilter, vectorify } from '../index.js';
 
 test('thresholdFactor', () => {
   let mass = {

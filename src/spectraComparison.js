@@ -1,7 +1,7 @@
-import { cosineSimilarity } from './ms/cosineSimilarity';
-import { appendMass } from './peaks/appendMass';
-import { getPeaks } from './peaks/getPeaks';
-import { vectorify } from './vectorify';
+import { cosineSimilarity } from './ms/cosineSimilarity.js';
+import { appendMass } from './peaks/appendMass.js';
+import { getPeaks } from './peaks/getPeaks.js';
+import { vectorify } from './vectorify.js';
 
 /**
  * Preprocessing task over the signalsj

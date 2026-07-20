@@ -1,7 +1,7 @@
 import { describe, expect, it, test } from 'vitest';
 
-import { Chromatogram } from '../../index';
-import { percentageFilter } from '../percentageFilter';
+import { Chromatogram } from '../../index.js';
+import { percentageFilter } from '../percentageFilter.js';
 
 test('simple case', () => {
   let chromatogram = new Chromatogram([1, 2], {

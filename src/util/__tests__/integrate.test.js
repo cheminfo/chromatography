@@ -1,7 +1,7 @@
 import { describe, expect, it, test } from 'vitest';
 
-import { Chromatogram } from '../..';
-import { simpleTic } from '../../../testFiles/examples';
+import { simpleTic } from '../../../testFiles/examples.js';
+import { Chromatogram } from '../../index.js';
 
 let chromatogram = new Chromatogram([1, 2, 3, 4], { tic: [2, 4, 6, 8] });
 

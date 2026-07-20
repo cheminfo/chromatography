@@ -3,7 +3,7 @@ import { join } from 'node:path';
 
 import { expect, test } from 'vitest';
 
-import { fromNetCDF } from '../..';
+import { fromNetCDF } from '../../index.js';
 
 test('load NetCDF', () => {
   const path = join(

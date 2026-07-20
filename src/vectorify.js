@@ -1,4 +1,4 @@
-import { massFilter } from './massFilter';
+import { massFilter } from './massFilter.js';
 
 export function vectorify(ranges, options = {}) {
   const { massPower = 3, intPower = 0.6 } = options;

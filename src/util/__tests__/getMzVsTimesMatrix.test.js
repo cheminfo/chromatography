@@ -3,7 +3,7 @@ import { join } from 'node:path';
 
 import { expect, test } from 'vitest';
 
-import { fromJcamp } from '../..';
+import { fromJcamp } from '../../index.js';
 
 test('get sub-matrix', () => {
   const path = join(

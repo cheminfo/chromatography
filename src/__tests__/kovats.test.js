@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 
-import { kovats } from '..';
+import { kovats } from '../index.js';
 
 test('Simple case', () => {
   expect(

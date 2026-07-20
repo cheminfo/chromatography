@@ -3,8 +3,11 @@ import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-import { Chromatogram, fromJcamp } from '../..';
-import { fivePeaks, getSimulatedSpectrum } from '../../../testFiles/examples';
+import {
+  fivePeaks,
+  getSimulatedSpectrum,
+} from '../../../testFiles/examples.js';
+import { Chromatogram, fromJcamp } from '../../index.js';
 
 describe('getPeaks', { timeout: 10_000 }, () => {
   it('from a Diesel chromatogram', () => {

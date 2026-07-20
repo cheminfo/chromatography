@@ -1,6 +1,6 @@
 import { xMaxValue } from 'ml-spectra-processing/x';
 
-import { seriesFromArray } from '../seriesFromArray';
+import { seriesFromArray } from '../seriesFromArray.js';
 
 export function percentageFilter(chromatogram, seriesName, options = {}) {
   const { percentage = 0.1 } = options;

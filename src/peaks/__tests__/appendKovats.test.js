@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
-import { appendKovats } from '../..';
-import { tenPeaksKovats as chromatogram } from '../../../testFiles/examples';
-import { appendMass } from '../appendMass';
-import { getPeaks } from '../getPeaks';
+import { tenPeaksKovats as chromatogram } from '../../../testFiles/examples.js';
+import { appendKovats } from '../../index.js';
+import { appendMass } from '../appendMass.js';
+import { getPeaks } from '../getPeaks.js';
 
 describe('appendKovats', () => {
   it('ten peaks', () => {

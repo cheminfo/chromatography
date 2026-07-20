@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { Chromatogram } from '../../index';
-import { meanFilter } from '../meanFilter';
+import { Chromatogram } from '../../index.js';
+import { meanFilter } from '../meanFilter.js';
 
 describe('meanFilter', () => {
   it('simple case', () => {

@@ -1,4 +1,4 @@
-import { kovats } from '../kovats';
+import { kovats } from '../kovats.js';
 
 export function appendKovats(peaks) {
   const result = [];

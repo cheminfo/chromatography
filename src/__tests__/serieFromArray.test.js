@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 
-import { seriesFromArray } from '../seriesFromArray';
+import { seriesFromArray } from '../seriesFromArray.js';
 
 test('Errors', () => {
   expect(() => seriesFromArray(1)).toThrow(

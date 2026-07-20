@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest';
 
-import { Chromatogram, scaleAlignment, spectraComparison } from '..';
-import { lorentzian } from '../../testFiles/examples';
+import { lorentzian } from '../../testFiles/examples.js';
+import { Chromatogram, scaleAlignment, spectraComparison } from '../index.js';
 
 test('Simple case', () => {
   const size = 70;

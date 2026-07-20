@@ -1,6 +1,6 @@
 import { parseMZ } from 'mzdata';
 
-import { fromJSON } from '../Chromatogram';
+import { fromJSON } from '../Chromatogram.js';
 
 export async function fromXML(xml) {
   return fromJSON(await parseMZ(xml));

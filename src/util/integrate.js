@@ -1,7 +1,7 @@
 import { xGetFromToIndex } from 'ml-spectra-processing/x';
 import { xyIntegration } from 'ml-spectra-processing/xy';
 
-import { baselineCorrection } from './baselineCorrection';
+import { baselineCorrection } from './baselineCorrection.js';
 
 export function integrate(chromatogram, ranges, options = {}) {
   const { baseline, seriesName = 'tic' } = options;

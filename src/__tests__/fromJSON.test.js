@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest';
 
-import { fromJSON } from '..';
-import { simpleStringified } from '../../testFiles/examples';
+import { simpleStringified } from '../../testFiles/examples.js';
+import { fromJSON } from '../index.js';
 
 test('Parse a JSON', () => {
   let newChromatogram = fromJSON(JSON.parse(simpleStringified));

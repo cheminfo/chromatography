@@ -3,7 +3,7 @@ import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-import { fromXML } from '../..';
+import { fromXML } from '../../index.js';
 
 describe('mzML data files', () => {
   it('mzData', async () => {
