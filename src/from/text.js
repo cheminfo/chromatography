@@ -1,6 +1,6 @@
 import { parseXY } from 'xy-parser';
 
-import { Chromatogram } from '../Chromatogram';
+import { Chromatogram } from '../Chromatogram.js';
 
 export function fromText(text, options = {}) {
   const data = parseXY(text, options);

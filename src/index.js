@@ -1,17 +1,17 @@
-export { Chromatogram, fromJSON } from './Chromatogram';
+export { Chromatogram, fromJSON } from './Chromatogram.js';
 
-export { appendMass } from './peaks/appendMass';
-export { vectorify } from './vectorify';
-export { massFilter } from './massFilter';
-export { spectraComparison } from './spectraComparison';
-export { scaleAlignment } from './scaleAlignment';
-export { kovats } from './kovats';
-export { appendKovats } from './peaks/appendKovats';
-export { getKovatsConversionFunction } from './getKovatsConversionFunction';
+export { appendMass } from './peaks/appendMass.js';
+export { vectorify } from './vectorify.js';
+export { massFilter } from './massFilter.js';
+export { spectraComparison } from './spectraComparison.js';
+export { scaleAlignment } from './scaleAlignment.js';
+export { kovats } from './kovats.js';
+export { appendKovats } from './peaks/appendKovats.js';
+export { getKovatsConversionFunction } from './getKovatsConversionFunction.js';
 
-export { cosineSimilarity } from './ms/cosineSimilarity';
+export { cosineSimilarity } from './ms/cosineSimilarity.js';
 
-export { fromJcamp } from './from/jcamp';
-export { fromText } from './from/text';
-export { fromNetCDF } from './from/netcdf';
-export { fromXML } from './from/xml';
+export { fromJcamp } from './from/jcamp.js';
+export { fromText } from './from/text.js';
+export { fromNetCDF } from './from/netcdf.js';
+export { fromXML } from './from/xml.js';

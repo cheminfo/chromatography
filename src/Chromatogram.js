@@ -1,22 +1,22 @@
 import { isAnyArray } from 'is-any-array';
 import { xFindClosestIndex } from 'ml-spectra-processing/x';
 
-import { meanFilter } from './filter/meanFilter';
-import { percentageFilter } from './filter/percentageFilter';
-import { applyLockMass } from './ms/applyLockMass';
-import { calculateBpc } from './ms/calculateBpc';
-import { calculateEic } from './ms/calculateEic';
-import { calculateForMF } from './ms/calculateForMF';
-import { calculateLength } from './ms/calculateLength';
-import { calculateTic } from './ms/calculateTic';
-import { deconvolution } from './ms/deconvolution';
-import { merge } from './ms/merge';
-import { getPeaks } from './peaks/getPeaks';
-import { seriesFromArray } from './seriesFromArray';
-import { filter } from './util/filter';
-import { getClosestData } from './util/getClosestData';
-import { getMzVsTimesMatrix } from './util/getMzVsTimesMatrix';
-import { integrate } from './util/integrate';
+import { meanFilter } from './filter/meanFilter.js';
+import { percentageFilter } from './filter/percentageFilter.js';
+import { applyLockMass } from './ms/applyLockMass.js';
+import { calculateBpc } from './ms/calculateBpc.js';
+import { calculateEic } from './ms/calculateEic.js';
+import { calculateForMF } from './ms/calculateForMF.js';
+import { calculateLength } from './ms/calculateLength.js';
+import { calculateTic } from './ms/calculateTic.js';
+import { deconvolution } from './ms/deconvolution.js';
+import { merge } from './ms/merge.js';
+import { getPeaks } from './peaks/getPeaks.js';
+import { seriesFromArray } from './seriesFromArray.js';
+import { filter } from './util/filter.js';
+import { getClosestData } from './util/getClosestData.js';
+import { getMzVsTimesMatrix } from './util/getMzVsTimesMatrix.js';
+import { integrate } from './util/integrate.js';
 
 export class Chromatogram {
   constructor(times, series, options = {}) {

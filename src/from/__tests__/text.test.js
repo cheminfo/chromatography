@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 
-import { fromText } from '../..';
+import { fromText } from '../../index.js';
 
 test('Parse a text', () => {
   const text = `

@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 
-import { simple4 as chromatogram } from '../../../testFiles/examples';
+import { simple4 as chromatogram } from '../../../testFiles/examples.js';
 
 test('Get closest data', () => {
   // time : [1, 2, 3, 4]

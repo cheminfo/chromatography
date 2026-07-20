@@ -3,8 +3,8 @@ import { join } from 'node:path';
 
 import { expect, test } from 'vitest';
 
-import { fromJcamp } from '../..';
-import { estimateNbPureComponents } from '../estimateNbPureComponents';
+import { fromJcamp } from '../../index.js';
+import { estimateNbPureComponents } from '../estimateNbPureComponents.js';
 
 test('Estimate number of pure components', () => {
   const path = join(

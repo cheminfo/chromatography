@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { Chromatogram } from '../..';
-import { simple } from '../../../testFiles/examples';
+import { simple } from '../../../testFiles/examples.js';
+import { Chromatogram } from '../../index.js';
 
 describe('calculateBps', () => {
   it('simple case', () => {

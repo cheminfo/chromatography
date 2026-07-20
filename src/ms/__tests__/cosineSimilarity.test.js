@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 
-import { cosineSimilarity } from '../cosineSimilarity';
+import { cosineSimilarity } from '../cosineSimilarity.js';
 
 test('simple case', () => {
   expect(cosineSimilarity([1, 2, 3], [1, 1, 1], [1, 2, 3], [1, 1, 1])).toBe(1);

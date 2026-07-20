@@ -1,4 +1,4 @@
-import { Series } from './Series';
+import { Series } from './Series.js';
 
 /**
  * Class allowing to manage a 2D Serie

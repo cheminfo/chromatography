@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest';
 
-import { Chromatogram } from '../..';
 import { simple } from '../../../testFiles/examples.js';
+import { Chromatogram } from '../../index.js';
 
 test('simple case', () => {
   simple.calculateTic();

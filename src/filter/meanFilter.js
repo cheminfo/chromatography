@@ -1,6 +1,6 @@
 import { xMean } from 'ml-spectra-processing/x';
 
-import { seriesFromArray } from '../seriesFromArray';
+import { seriesFromArray } from '../seriesFromArray.js';
 
 export function meanFilter(chromatogram, seriesName, options = {}) {
   const { factor = 2 } = options;

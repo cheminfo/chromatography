@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { fromVariables } from 'convert-to-jcamp';
 import { expect, test } from 'vitest';
 
-import { fromNetCDF } from '..';
+import { fromNetCDF } from '../index.js';
 
 test('chromatoToJcamp', () => {
   const arrayBuffer = readFileSync(

@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 
-import { Chromatogram } from '../..';
+import { Chromatogram } from '../../index.js';
 
 test('calculate length with empty mass', () => {
   let example = new Chromatogram([1, 2], {

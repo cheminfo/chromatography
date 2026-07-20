@@ -1,6 +1,6 @@
 import { nGMCA } from 'ml-ngmca';
 
-import { estimateNbPureComponents } from '../util/estimateNbPureComponents';
+import { estimateNbPureComponents } from '../util/estimateNbPureComponents.js';
 
 /**
  * Performing non-negative matrix factorization solving argmin_(A >= 0, S >= 0) 1 / 2 * ||Y - AS||_2^2 + lambda * ||S||_1

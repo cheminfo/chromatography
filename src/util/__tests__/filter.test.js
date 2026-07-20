@@ -1,13 +1,12 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { simple4 } from '../../../testFiles/examples';
+import { simple4 } from '../../../testFiles/examples.js';
 
 let chromatogram;
 
 describe('filter', () => {
   beforeEach(() => {
     chromatogram = simple4.copy();
-    //   jest.resetModules();
   });
 
   it('Keep the odd', () => {

@@ -1,4 +1,4 @@
-import { merge } from '../ms/merge';
+import { merge } from '../ms/merge.js';
 
 /**
  * Append MS spectra to a list of peaks

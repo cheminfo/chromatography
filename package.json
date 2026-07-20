@@ -1,11 +1,20 @@
 {
   "name": "chromatography",
   "version": "8.1.2",
+  "license": "MIT",
   "description": "Tools for storing, searching and analyzing GC/MS data",
-  "main": "lib/index.js",
-  "module": "src/index.js",
-  "types": "chromatography.d.ts",
-  "sideEffects": false,
+  "type": "module",
+  "author": "Michaël Zasso",
+  "contributors": [
+    "Miguel Asencio <maasencioh@gmail.com>"
+  ],
+  "exports": {
+    ".": "./lib/index.js"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
   "cheminfo": {
     "build": {
       "namedExports": {
@@ -16,46 +25,19 @@
       }
     }
   },
-  "files": [
-    "chromatography.d.ts",
-    "lib",
-    "src"
-  ],
   "scripts": {
     "build": "cheminfo-build --entry src/index.js --root Chromatography",
+    "check-types": "tsc --noEmit",
+    "clean": "rimraf coverage lib",
     "eslint": "eslint . --cache",
     "eslint-fix": "npm run eslint -- --fix",
-    "prepack": "rollup -c",
+    "prepack": "npm run tsc",
     "prettier": "prettier --check .",
     "prettier-write": "prettier --write .",
-    "test": "npm run test-only && npm run eslint && npm run prettier",
-    "test-only": "vitest run --coverage"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cheminfo/chromatography.git"
-  },
-  "author": "Michaël Zasso",
-  "contributors": [
-    "Miguel Asencio <maasencioh@gmail.com>"
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/cheminfo/chromatography/issues"
-  },
-  "homepage": "https://github.com/cheminfo/chromatography#readme",
-  "devDependencies": {
-    "@vitest/coverage-v8": "^4.1.10",
-    "cheminfo-build": "^1.3.2",
-    "convert-to-jcamp": "^7.0.1",
-    "eslint": "^9.39.4",
-    "eslint-config-cheminfo": "^18.1.0",
-    "jest-matcher-deep-close-to": "^3.0.2",
-    "prettier": "^3.9.5",
-    "rollup": "^4.62.2",
-    "spectrum-generator": "^8.2.1",
-    "typescript": "^6.0.3",
-    "vitest": "^4.1.10"
+    "test": "npm run test-only && npm run check-types && npm run eslint && npm run prettier",
+    "test-only": "vitest run --coverage",
+    "tsc": "npm run clean && npm run tsc-build",
+    "tsc-build": "tsc --project tsconfig.build.json"
   },
   "dependencies": {
     "binary-search": "^1.3.6",
@@ -74,5 +56,28 @@
     "mzdata": "^4.1.0",
     "netcdf-gcms": "^4.0.0",
     "xy-parser": "^6.0.1"
-  }
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "@vitest/coverage-v8": "^4.1.10",
+    "@zakodium/tsconfig": "^1.0.5",
+    "cheminfo-build": "^1.3.2",
+    "convert-to-jcamp": "^7.0.1",
+    "eslint": "^9.39.4",
+    "eslint-config-cheminfo-typescript": "^22.1.0",
+    "jest-matcher-deep-close-to": "^3.0.2",
+    "prettier": "^3.9.5",
+    "rimraf": "^6.1.3",
+    "spectrum-generator": "^8.2.1",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheminfo/chromatography.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cheminfo/chromatography/issues"
+  },
+  "homepage": "https://github.com/cheminfo/chromatography#readme"
 }

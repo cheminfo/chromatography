@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 
-import { getKovatsConversionFunction } from '..';
+import { getKovatsConversionFunction } from '../index.js';
 
 const conversionTable = [
   { x: 10, kovats: { index: 800 } },

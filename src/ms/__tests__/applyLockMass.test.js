@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 
-import { Chromatogram } from '../..';
+import { Chromatogram } from '../../index.js';
 
 test('simple case', () => {
   let chromatogram = new Chromatogram([1, 2], {

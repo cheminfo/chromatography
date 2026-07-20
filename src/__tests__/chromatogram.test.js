@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { Chromatogram } from '..';
-import { simple, simpleTic } from '../../testFiles/examples';
+import { simple, simpleTic } from '../../testFiles/examples.js';
+import { Chromatogram } from '../index.js';
 
 describe('General methods', () => {
   it('Constructor errors', () => {

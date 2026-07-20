@@ -3,8 +3,8 @@ import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-import { Chromatogram, appendMass, fromJcamp, vectorify } from '..';
-import { lorentzian } from '../../testFiles/examples';
+import { lorentzian } from '../../testFiles/examples.js';
+import { Chromatogram, appendMass, fromJcamp, vectorify } from '../index.js';
 
 describe('vectorify', () => {
   it('from a Diesel chromatogram', () => {

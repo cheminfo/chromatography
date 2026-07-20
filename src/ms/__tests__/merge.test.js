@@ -4,7 +4,7 @@ import {
   highResolution4,
   highResolution,
   simple,
-} from '../../../testFiles/examples';
+} from '../../../testFiles/examples.js';
 
 describe('merge: Low resolution', () => {
   it('no options', () => {

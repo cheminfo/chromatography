@@ -1,7 +1,7 @@
 import { isAnyArray } from 'is-any-array';
 
-import { Series1D } from './Series1D';
-import { Series2D } from './Series2D';
+import { Series1D } from './Series1D.js';
+import { Series2D } from './Series2D.js';
 
 export function seriesFromArray(array) {
   // need to check if it is a 1D or 2D array (or 3D ?)
