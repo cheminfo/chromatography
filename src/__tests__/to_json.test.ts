@@ -1,0 +1,10 @@
+import { expect, test } from 'vitest';
+
+import { simple } from '../../testFiles/examples.ts';
+
+test('Create a JSON', () => {
+  const json = JSON.stringify(simple);
+  expect(json).toContain('series');
+  expect(json).toContain('times":[1,2]');
+  expect(json).toContain('meta');
+});
