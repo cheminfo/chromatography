@@ -1,10 +1,9 @@
 {
   "extends": "@zakodium/tsconfig",
   "compilerOptions": {
-    "allowJs": true,
     "noUncheckedIndexedAccess": false,
     "outDir": "lib",
     "types": ["node"]
   },
-  "include": ["src", "vite*.ts"]
+  "include": ["src", "testFiles", "vite*.ts"]
 }
