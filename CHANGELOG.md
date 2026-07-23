@@ -1,5 +1,21 @@
 # Changelog
 
+## [9.0.0](https://github.com/cheminfo/chromatography/compare/v8.1.2...v9.0.0) (2026-07-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* The package was migrated to TypeScript and it includes many fixes and changes in behavior to make it type-safer.
+
+### Features
+
+* implement API to simulate 1D and 2D chromatograms ([#71](https://github.com/cheminfo/chromatography/issues/71)) ([b0569a3](https://github.com/cheminfo/chromatography/commit/b0569a3781fa157058226e4c4fdcfdc977440c56))
+
+
+### Code Refactoring
+
+* migrate to TypeScript ([0233635](https://github.com/cheminfo/chromatography/commit/02336351f504a86bad956c5ea2ed4a64730d900f))
+
 ## [8.1.2](https://github.com/cheminfo/chromatography/compare/v8.1.1...v8.1.2) (2026-07-06)
 
 
