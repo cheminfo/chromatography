@@ -13,11 +13,6 @@ export interface GenerateChromatogram1DPeak {
   intensity: number;
 
   /**
-   * Width of the peak.
-   */
-  width?: number;
-
-  /**
    * Shape of the peak.
    * @default { kind: 'gaussian', fwhm: 4 }
    */
@@ -56,9 +51,9 @@ export function generateChromatogram1D(
   peaks: GenerateChromatogram1DPeak[],
   options: GenerateChromatogram1DOptions,
 ) {
-  const nbPoints = Math.round(
-    (options.lastTime - options.firstTime) * options.scansPerTime,
-  );
+  const nbPoints =
+    Math.round((options.lastTime - options.firstTime) * options.scansPerTime) +
+    1;
 
   const generator = new SpectrumGenerator({
     from: options.firstTime,
@@ -70,7 +65,6 @@ export function generateChromatogram1D(
     return {
       x: peak.retentionTime,
       y: peak.intensity,
-      width: peak.width,
       shape: peak.shape ?? defaultPeakShape,
     };
   });
