@@ -44,3 +44,6 @@ export type {
 } from './ms/deconvolution.ts';
 export type { MzVsTimesMatrixResult } from './util/get_mz_vs_times_matrix.ts';
 export type { AppendMassOptions } from './peaks/append_mass.ts';
+
+export * from './generation/generate_chromatogram_1d.ts';
+export * from './generation/generate_chromatogram_2d.ts';
