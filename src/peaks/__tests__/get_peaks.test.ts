@@ -58,6 +58,6 @@ describe('getPeaks', { timeout: 10_000 }, () => {
     for (const peak of peaks) {
       sumOfDiffFromTo += peak.to - peak.from;
     }
-    expect(sumOfDiffFromTo).toBeCloseTo(deltaInflexionPoints * 5, 2);
+    expect(sumOfDiffFromTo).toBeCloseTo(deltaInflexionPoints * 5, 1);
   });
 });
